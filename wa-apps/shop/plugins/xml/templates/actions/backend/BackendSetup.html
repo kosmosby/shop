@@ -1,0 +1,835 @@
+<link rel="stylesheet" type="text/css" href="{$wa_url}wa-apps/shop/plugins/xml/css/tooltipster.bundle.min.css?v={$version}">
+<link rel="stylesheet" type="text/css" href="{$wa_url}wa-apps/shop/plugins/xml/css/import.css?v={$version}"/>
+
+<link rel="stylesheet" type="text/css" href="{$wa_url}wa-apps/shop/plugins/xml/css/jquery.formstyler.theme.css?v={$version}"/>
+<link rel="stylesheet" type="text/css" href="{$wa_url}wa-content/css/jquery-ui/ui-lightness/jquery.ui.slider.css?v={$version}">
+
+<script type="text/javascript">
+    xml_t = {
+        save: "[`Save`]",
+        saved: "[`Saved`]",
+        load_as: "[`Import as`]",
+        error: "[`Error`]",
+        delete_profile: "[`Delete profile`]",
+        error_request: "[`An error occurred. Reload the page.`]",
+        no_matches: "[`Matches not specified`]",
+        match_manager: "[`Matchings manager`]",
+        up_scheme: "[`Update scheme`]",
+        cancel: "[`Cancel`]",
+        no_feature: "[`No feature selected`]",
+        delete_item_type: "[`Delete item type`]",
+        bad_request: "[`Bad request`]",
+        cannot_save: "[`Cannot save`]",
+        select_option: "[`Select at least one option`]",
+        delete_session: "[`Delete saved session`]",
+        error_occurred: "[`An error occurred`]",
+        not_uploaded: "[`File not uploaded`]",
+        file_manager: "[`File manager`]",
+        update: "[`Update`]",
+        close: "[`Close`]",
+        select_file: "[`Need to select the file`]",
+        save_error: "[`Error while saving`]",
+        delete_file: "[`Delete file`]",
+        delete_failed: "[`Delete failed`]",
+        server_error: "[`Server error`]"
+    };
+
+    _csrf = '{ifempty($csrf,"")}';
+</script>
+
+<script type="text/javascript" src="{$wa_url}wa-apps/shop/plugins/xml/js/tooltipster.bundle.min.js?v={$version}"></script>
+<script type="text/javascript" src="{$wa_url}wa-content/js/jquery-ui/jquery.ui.slider.min.js?v={$version}"></script>
+<script type="text/javascript" src="{$wa_url}wa-content/js/jquery-plugins/fileupload/jquery.iframe-transport.js?v={$version}"></script>
+<script type="text/javascript" src="{$wa_url}wa-content/js/jquery-plugins/fileupload/jquery.fileupload.js?v={$version}"></script>
+<script type="text/javascript" src="{$wa_url}wa-apps/shop/plugins/xml/js/jquery.formstyler.min.js?v={$version}"></script>
+<script type="text/javascript" src="{$wa_url}wa-apps/shop/plugins/xml/js/import.js?v={$version}"></script>
+
+<div id="xml">
+
+    <div class="profiles">
+
+        <div class="profile-nav">
+            <span class="profile-nav-button prev" data-direction="left">&larr;</span>
+            <span class="profile-nav-button next" data-direction="right">&rarr;</span>
+        </div>
+
+        <ul class="tabs">
+            <li {if !$profile_id}class="selected"{/if} id="default-profile">
+                <a href="#/xml/">
+                    {ifempty($default_title, "[`Profile 1`]")}
+                </a>
+            </li>
+
+            {foreach $profiles as $p_id => $p}
+                <li data-id="{$p_id}" id="profile{$p_id}"{if $profile_id == $p_id} class="selected"{/if}>
+                    <a href="#/xml:{$p_id}/">
+                        {$p.name}
+                    </a>
+                </li>
+            {/foreach}
+
+            <li class="no-tab add-profile">
+                <a href="#" title="[`Add profile`]">
+                    <i class="icon16 add"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="fields form tab-content" id="profile-content">
+
+        {if !empty($profile_id)}
+        <span class="delete-profile" data-id="{$profile_id}">
+                <i class="icon16 no"></i> [`Delete profile`]
+            </span>
+        {/if}
+
+        <form action="?plugin=xml&module=backend&action=save" id="importform" method="POST">
+
+            <div class="field" id="profile-name" style="margin-top: 10px">
+                <div class="name special-padd">[`Profile`]</div>
+                <div class="value">
+                    <input type="text" class="std" name="settings[name]" value="{ifempty($settings.name, "[`Profile 1`]")}">
+                </div>
+            </div>
+
+            <div class="field no-border">
+                <div class="name special-padd">[`File`]</div>
+                <div class="value">
+
+                    <div class="sources">
+                        <div class="sources-head">
+                            <span class="sh-col{if empty($settings.source_type) || ($settings.source_type == 'remote')} active{/if}" data-type="remote">[`Link`]</span>
+                            <span class="sh-col{if ifempty($settings.source_type) == 'local'} active{/if}" data-type="local">[`From computer`]</span>
+                            <span class="sh-col{if ifempty($settings.source_type) == 'server'} active{/if}" data-type="server">[`From server`]</span>
+
+                            <input type="hidden" name="settings[source_type]" value="{ifempty($settings.source_type)}">
+                        </div>
+                        <div class="source-tabs">
+                            <div class="source-tab remote{if empty($settings.source_type) || ($settings.source_type == 'remote')} active{/if}">
+                                <input type="text" class="std" name="settings[url]" {if !empty($settings.url)} value="{$settings.url}"{/if}/>
+
+                                <div class="xml-auth" id="xml-auth">
+                                    <input type="checkbox" class="iButton no_highlight" name="settings[http_auth]" value="1"{if !empty($settings.http_auth)} checked{/if}>
+                                    HTTP авторизация
+
+                                    <div class="xml-auth-data"{if empty($settings.http_auth)} style="display: none"{/if}>
+                                        <span class="hint">Логин:</span>
+                                        <input type="text" class="short" name="settings[http_login]" value="{ifempty($settings.http_login,'')}" style="margin-right: 15px">
+
+                                        <span class="hint">Пароль:</span>
+                                        <input type="password" class="short" name="settings[http_pass]" value="{ifempty($settings.http_pass,'')}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="source-tab local{if ifempty($settings.source_type) == 'local'} active{/if}">
+                                <div class="server-col left" style="width: 210px">
+                                    <input type="file" name="xml_file" id="local-source-file">
+
+                                    <div class="progress" style="display: none;">
+                                        <div class="progress-bar" style="width: 0"></div>
+                                    </div>
+                                </div>
+
+                                {$finfo = shopXmlPlugin::pathInfo(ifempty($settings['local.file']))}
+                                <div class="server-col right"{if empty($settings['local.file'])} style="display:none"{/if}>
+                                    <span class="server-file file" style="margin-top: 4px">
+                                        <span class="server-file-name" title="{ifempty($finfo.basename,'')}">{ifempty($finfo.basename,'')|truncate:35:'..'}</span>
+                                        <span class="server-file-size">{ifempty($settings['local.file.size'])}</span>
+
+                                        <span class="xml-file-delete" title="[`Delete`]"><i class="icon16 delete"></i></span>
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div class="source-tab server{if ifempty($settings.source_type) == 'server'} active{/if}">
+                                <div class="server-col left" style="width: 120px">
+                                    <button type="button" class="button mini yellow">{if empty($settings['server.file'])}[`Select`]{else}[`Change`]{/if}</button>
+                                </div>
+
+                                <div class="server-col right"{if empty($settings['server.file'])} style="display:none"{/if}>
+                                    {$finfo = shopXmlPlugin::pathInfo(ifempty($settings['server.file']))}
+                                    <span class="server-file path">
+                                        {ifempty($finfo.dirname,'')}
+                                    </span>
+
+                                    <span class="server-file file">
+                                        <span class="server-file-name">{ifempty($finfo.basename,'')}</span>
+                                        <span class="server-file-size">{if !empty($settings['server.file'])}{shopXmlPlugin::formatSize($settings['server.file'])}{/if}</span>
+
+                                        <span class="xml-file-delete" title="[`Delete`]"><i class="icon16 delete"></i></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="xml-matches make-snapshot button" type="button">
+                        <i class="icon16 merge"></i>
+                        {if empty($settings.matched)}
+                        [`Set matchings`]
+                        {else}
+                        [`Change matchings`]
+                        {/if}
+                    </button>
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="name">[`Product type`]</div>
+                <div class="value">
+                    {if !empty($types)}
+                    <select name="settings[product_type]">
+                        {foreach $types as $t}
+                            <option{if ifempty($settings.product_type) == $t.id} selected{/if} value="{$t.id}">
+                                {$t.name}
+                            </option>
+                        {/foreach}
+                    </select>
+                    {/if}
+                </div>
+            </div>
+
+            <div class="field">
+                <div class="name special-padd">
+                    [`Bind to profile`]
+                </div>
+
+                <div class="value">
+                    <ul class="menu-h" style="display:inline-block">
+                        <li>[`No`]</li>
+
+                        <li>
+                            <input type="checkbox" class="iButton" value="1" name="settings[bind_to_profile]"{if !empty($settings.bind_to_profile)} checked{/if}>
+                        </li>
+
+                        <li>[`Yes`]</li>
+                    </ul>
+
+                    <div>
+                        <span class="hint">
+                           <i class="icon16 info"></i>
+                            [`Enable if you have several files in which there may be products with the same external identifier.`]
+                        </span>
+                    </div>
+
+                </div>
+            </div>
+
+    <div class="field no-border">
+        <div class="name special-padd">
+            [`Import categories`]
+        </div>
+
+        <div class="value">
+            <ul class="menu-h" style="display:inline-block">
+                <li>[`No`]</li>
+
+                <li>
+                    <input type="checkbox" class="iButton categs" value="1" id="importCategs" name="settings[import_categories]"{if !empty($settings.import_categories)} checked{/if}>
+                </li>
+
+                <li>[`Yes`]</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="field no-border" id="category-settings"{if empty($settings.import_categories)} style="display: none"{/if}>
+    <div class="name">[`Belonging to categories`]</div>
+    <div class="value vopts">
+        <label {if !empty($settings.category) && $settings.category == 1 } class="checkedinput"{/if}>
+        <input type="radio" name="settings[category]" {if !empty($settings.category) && $settings.category == 1 } checked="checked"{/if} value="1"/>
+        [`Delete from old, add to new`]
+        </label>
+
+        <label {if !empty($settings.category) && $settings.category == 2 } class="checkedinput"{/if}>
+        <input type="radio" name="settings[category]" {if !empty($settings.category) && $settings.category == 2 } checked="checked"{/if} value="2"/>
+        [`Leave old, add to new ones`]
+        </label>
+
+        <label {if !empty($settings.category) && $settings.category == 3 } class="checkedinput"{/if}>
+        <input type="radio" name="settings[category]" {if !empty($settings.category) && $settings.category == 3 } checked="checked"{/if} value="3"/>
+        [`Set only for new products`]
+        </label>
+
+        <label {if !empty($settings.category) && $settings.category == 4 } class="checkedinput"{/if}>
+        <input type="radio" name="settings[category]" {if !empty($settings.category) && $settings.category == 4 } checked="checked"{/if} value="4"/>
+        [`Do not set`]
+        </label>
+        <br />
+        <label id="duplicate_as_child">
+            <input class="no_highlight" type="checkbox" name="settings[duplicate_as_child]" {if !empty($settings.duplicate_as_child)} checked{/if} value="1"/>
+            [`Upload category structure to a separate category`]
+        </label>
+
+        <div style="margin-top:14px;{if empty($settings.duplicate_as_child)} display:none{/if}" id="parent-category">
+            <label style="display:block;margin-bottom:4px;font-size: 13px">[`Choose parent category`]:</label>
+
+            <select name="settings[parent_id]">
+                {foreach $categories as $category}
+                    <option value="{$category.id}"{if ifempty($settings.parent_id) == $category.id} selected{/if}>
+                        {"-"|str_repeat:$category.depth}{$category.name|escape}
+                    </option>
+                {/foreach}
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="field">
+    <div class="name">[`Add new products to category`]</div>
+    <div class="value">
+        <select name="settings[new_parent_id]">
+            <option value="0">[`Do not add`]</option>
+            {foreach $categories as $category}
+                <option value="{$category.id}"{if ifempty($settings.new_parent_id) == $category.id} selected{/if}>
+                    {"-"|str_repeat:$category.depth}{$category.name|escape}
+                </option>
+            {/foreach}
+        </select>
+    </div>
+</div>
+
+<div class="field">
+    <div class="name">[`Products name`]</div>
+    <div class="value">
+        <div class="xml-pnames">
+            <label>
+                <input type="radio" name="settings[product_name]" value="1"{if empty($settings.product_name) || ($settings.product_name == '1')} checked{/if}> Из одного тега
+            </label>
+
+            <label>
+                <input type="radio" name="settings[product_name]" value="2"{if !empty($settings.product_name) && ($settings.product_name == '2')} checked{/if}> Из нескольких тегов
+            </label>
+        </div>
+
+        <div class="xml-pname-multi" {if empty($settings.product_name) || ($settings.product_name !== '2')}style="display: none"{/if}>
+
+            <span class="pname-update"><i class="icon16 update"></i> Обновить</span>
+
+            <div class="xml-pname-items"{if empty($product_name_tags)} style="display: none"{/if}>
+                {if !empty($product_name_tags)}
+                    {foreach $product_name_tags as $pnt}
+                        <div class="xml-pname-item">
+                            <span class="sort">
+                                <i class="icon16 sort"></i>
+                            </span>
+
+                            <span class="xml-pname-tag" data-full-path="{$pnt.key}">
+                                {$pnt.name}
+                                <input type="hidden" name="pnames[]" value="{$pnt.key}">
+                            </span>
+                        </div>
+                    {/foreach}
+                {/if}
+            </div>
+
+            <span class="xml-pnames-message"{if !empty($product_name_tags)} style="display: none"{/if}>
+                <i class="icon16 exclamation"></i> Теги с названиями не найдены
+            </span>
+
+        </div>
+    </div>
+</div>
+
+<div class="field">
+    <div class="name">[`Reset stocks that are not updated by the plugin`]</div>
+    <div class="value">
+        <ul class="menu-h" style="display:inline-block">
+            <li>[`No`]</li>
+
+            <li>
+                <input type="checkbox" class="iButton" value="1" id="reset_stocks" name="settings[reset_stocks]"{if !empty($settings.reset_stocks)} checked{/if}>
+            </li>
+
+            <li>[`Yes`]</li>
+        </ul>
+
+        <span class="hint">
+            <i class="icon16 info"></i> [`If you load leftovers into a specific warehouse, then the other warehouses will be reset to zero. To prevent other stores from changing the value, disable this option.`]
+        </span>
+    </div>
+</div>
+
+<div class="field">
+    <div class="name">[`Images`]</div>
+    <div class="value vopts">
+        <label {if ifempty($settings.images) == 1 } class="checkedinput"{/if}>
+        <input type="radio" name="settings[images]" {if !empty($settings.images) && $settings.images == 1 } checked="checked"{/if} value="1"/>
+        [`Delete old, add new`]
+        </label>
+
+        <label {if ifempty($settings.images) == 2 } class="checkedinput"{/if}>
+        <input type="radio" name="settings[images]" {if !empty($settings.images) && $settings.images == 2 } checked="checked"{/if} value="2"/>
+        [`Add only new`]
+        </label>
+
+        <label {if ifempty($settings.images) == 3 } class="checkedinput"{/if}>
+        <input type="radio" name="settings[images]" {if !empty($settings.images) && $settings.images == 3 } checked="checked"{/if} value="3"/>
+        [`Add only for new products`]
+        </label>
+
+        <label {if ifempty($settings.images) == 4 } class="checkedinput"{/if}>
+        <input type="radio" name="settings[images]" {if !empty($settings.images) && $settings.images == 4 } checked="checked"{/if} value="4"/>
+        [`Do not add`]
+        </label>
+
+        <div class="img_separator">
+            {$separator = ifempty($settings.link_separator)}
+            [`Image URL separator`]: <select name="settings[link_separator]">
+            <option value="0">[`No`]</option>
+            <option value="1"{if $separator === '1'} selected{/if}>[`Comma`] (,)</option>
+            <option value="2"{if $separator === '2'} selected{/if}>[`Semicolon`] (;)</option>
+            <option value="3"{if $separator === '3'} selected{/if}>[`Space`]</option>
+            <option value="4"{if $separator === '4'} selected{/if}>[`Vertical bar`] (|)</option>
+        </select>
+
+            <br>
+            <span class="hint">
+                <i class="icon16 info"></i>
+                [`By default, plugin takes every tag/attribute value as a separate and direct link to the image. But sometimes links are concatenated and separted by comma or another char`]
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="field no-border">
+    <div class="name">[`Markup`]</div>
+    <div class="value">
+
+        <div class="xml-markup">
+            <div class="xml-markup-types">
+                <label data-id="">
+                    <input type="radio" name="settings[markup_type]" value="0"{if empty($settings.markup_type)} checked{/if}> [`No markup`]
+                </label>
+
+                <label data-id="fixed">
+                    <input type="radio" name="settings[markup_type]" value="1"{if ifempty($settings.markup_type) == '1'} checked{/if}> [`Fixed`]
+                </label>
+
+                <label data-id="stepped">
+                    <input type="radio" name="settings[markup_type]" value="2"{if ifempty($settings.markup_type) == '2'} checked{/if}> [`Stepped`]
+                </label>
+            </div>
+
+            <div class="xml-markup-content">
+                {$markup_type = ifempty($settings.markup_type,'0')}
+                <div id="xml-markup-fixed" class="xml-markup-tab xml-fixed"{if $markup_type !== '1'} style="display:none"{/if}>
+                <input type="text" name="settings[price_up]" class="short" value="{ifempty($settings.price_up,0)}">
+                <select name="settings[type_of_markup]">
+                    <option value="0"{if empty($settings.type_of_markup)} selected{/if}>[`Sum`]</option>
+                    <option value="1"{if !empty($settings.type_of_markup)} selected{/if}>[`Percent`]</option>
+                </select>
+            </div>
+
+            <div id="xml-markup-stepped" class="xml-markup-tab xml-stepped"{if $markup_type !== '2'} style="display:none"{/if}>
+
+            <div class="xml-stepped-header">
+                                    <span class="step-header-col">
+                                        [`Price`]
+                                    </span>
+
+                <span class="step-header-col">
+                                        [`Markup`]
+                                    </span>
+
+                <span class="step-header-col">
+                                        [`Type`]
+                                    </span>
+
+                <span class="stepped-markup-add"><i class="icon16 add"></i></span>
+            </div>
+
+            <div class="xml-stepped-body">
+                {if !empty($markup)}
+                {foreach $markup.steps as $m_id => $m}
+                <div class="xml-stepped-row" data-id="{$m_id}">
+                                                <span class="step-body-col">
+                                                    <i>[`till`]</i> &nbsp;<input type="text" name="stepped_markup[{$m_id}][limit]" value="{$m.limit}">
+                                                </span>
+
+                    <span class="step-body-col">
+                                                    <input type="text" name="stepped_markup[{$m_id}][rate]" value="{$m.rate}">
+                                                </span>
+
+                    <span class="step-body-col">
+                                                    <select name="stepped_markup[{$m_id}][type]">
+                                                        <option value="0"{if $m.type == '0'} selected{/if}>[`Sum`]</option>
+                                                        <option value="1"{if $m.type == '1'} selected{/if}>[`Percent`]</option>
+                                                    </select>
+                                                </span>
+
+                    <span class="markup-delete">
+                                                    <i class="icon16 delete"></i>
+                                                </span>
+                </div>
+                {/foreach}
+                {/if}
+
+                <div class="xml-stepped-row empty"{if !empty($markup.steps)} style="display: none"{/if}>
+                <span class="xml-markup-message">
+                                                <i class="icon16 exclamation"></i> [`Rules not found`]
+                                            </span>
+            </div>
+
+            <div class="xml-stepped-row step-default"{if empty($markup)} style="display: none"{/if}>
+            <div class="step-default-label">[`In other cases`]:</div>
+
+            <span class="step-body-col">
+                                            <input type="text" name="stepped_default[rate]" value="{ifempty($markup.default.rate,'')}">
+                                        </span>
+
+            <span class="step-body-col">
+                                            <select name="stepped_default[type]">
+                                                <option value="0"{if ifempty($markup.default.type,'') == 0} selected{/if}>[`Sum`]</option>
+                                                <option value="1"{if ifempty($markup.default.type,'') == 1} selected{/if}>[`Percent`]</option>
+                                            </select>
+                                        </span>
+        </div>
+    </div>
+
+    <div class="xml-stepped-row" id="stepped-template" style="display: none">
+                                    <span class="step-body-col till">
+                                        <i>[`till`]</i> &nbsp;<input type="text" data-key="limit">
+                                    </span>
+
+        <span class="step-body-col rate">
+                                        <input type="text" data-key="rate">
+                                    </span>
+
+        <span class="step-body-col">
+                                        <select data-key="type">
+                                                <option value="1">[`Percent`]</option>
+                                                <option value="0">[`Fixed`]</option>
+                                        </select>
+                                    </span>
+
+        <span class="markup-delete">
+                                        <i class="icon16 delete"></i>
+                                    </span>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="floated-ibutton" style="margin-top: 15px">
+    <input type="checkbox" class="iButton" name="settings[convert_prices]" {if !empty($settings.convert_prices) } checked="checked"{/if} value="1">
+    [`Convert prices to the main store currency`]
+</div>
+
+</div>
+</div>
+
+{*}
+<div class="field">
+    <div class="name">
+        Название товара
+    </div>
+
+    <div class="value">
+        <label>
+            <input type="radio" name="settings[product_names]" value="1"{if empty($settings.product_names) || $settings.product_names == 1} checked{/if}>
+            Упрощённый тип <span class="hint">(name)</span>
+        </label>
+
+        <label style="margin-left: 20px">
+            <input type="radio" name="settings[product_names]" value="2"{if ifempty($settings.product_names) == 2} checked{/if}>
+            Произвольный тип <span class="hint">(typePrefix + vendor + model)</span>
+        </label>
+    </div>
+</div>
+{*}
+
+<div class="field">
+    <div class="name">
+        [`Round prices`]
+    </div>
+
+    <div class="value">
+        <select name="settings[round]">
+            <option value="0"{if empty($settings.round)} selected{/if}>[`Do not round`]</option>
+            <option value="1"{if ifempty($settings.round) == '1'} selected{/if}>1</option>
+            <option value="5"{if ifempty($settings.round) == '5'} selected{/if}>5</option>
+            <option value="10"{if ifempty($settings.round) == '10'} selected{/if}>10</option>
+            <option value="100"{if ifempty($settings.round) == '100'} selected{/if}>100</option>
+        </select>
+    </div>
+</div>
+
+<div class="field">
+    <div class="name">
+        [`Weight unit`]
+    </div>
+
+    <div class="value">
+        <select name="settings[weight_unit]">
+            <option value="g"{if ifempty($settings.weight_unit) == 'g'} selected{/if}>[`g`]</option>
+            <option value="kg"{if ifempty($settings.weight_unit) == 'kg'} selected{/if}>[`kg`]</option>
+        </select>
+    </div>
+</div>
+
+<div class="field">
+    <div class="name">
+        [`Mark items`]
+    </div>
+    <div class="value" id="mark-with-feature">
+        <select name="settings[mark_feature]">
+            <option value="0">[`No`]</option>
+            {if !empty($features)}
+                {foreach $features as $f}
+                    <option value="{$f.code}"{if ifempty($settings.mark_feature) == $f.code} selected{/if}>{$f.name}</option>
+                {/foreach}
+            {/if}
+        </select>
+        <br><br>
+
+        <input style="padding: 4px 6px; min-width: 120px;width: 120px;{if empty($settings.mark_feature)}display:none{/if}" type="text" name="settings[mark_value]" value="{ifempty($settings.mark_value)}">
+    </div>
+</div>
+
+<div class="field">
+    <div class="name">[`Search rules`]</div>
+    <div class="value">
+        <div class="value-w">
+            <div style="padding: 5px 0;font-size: 12px" {if !empty($settings.searchbyname) && $settings.searchbyname == 1 } class="checkedinput"{/if}>[`Search by name`]:</div>
+            <ul class="menu-h" style="display:inline-block">
+                <li style="padding: 0;vertical-align: top;">[`No`]</li>
+                <li style="padding: 0;"><input type="checkbox" class="iButton x" name="settings[searchbyname]" {if ifempty($settings.searchbyname) == 1 } checked="checked"{/if} value="1"/></li>
+                <li class="istrue {if !empty($settings.searchbyname) && $settings.searchbyname == 1 }checkedinput{/if}" style="padding: 0;vertical-align: top;">[`Yes`]</li>
+            </ul>
+        </div>
+
+        <div class="value-w">
+            <div style="padding: 5px 0;font-size: 12px" {if !empty($settings.searchbysku) && $settings.searchbysku == 1 } class="checkedinput"{/if}>[`Search by sku`]:</div>
+            <ul class="menu-h" style="display:inline-block">
+                <li style="padding: 0;vertical-align: top;">[`No`]</li>
+                <li style="padding: 0;"><input type="checkbox" class="iButton x" name="settings[searchbysku]" {if ifempty($settings.searchbysku) == 1 } checked="checked"{/if} value="1"/></li>
+                <li class="istrue {if ifempty($settings.searchbysku) == 1 }checkedinput{/if}" style="padding: 0;vertical-align: top;">[`Yes`]</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="field">
+    <div class="name">[`Other settings`]</div>
+    <div class="value floated-ibutton">
+        <div>
+            <input type="checkbox" class="iButton no_highlight" name="settings[no_new_products]" value="1"{if !empty($settings.no_new_products)} checked{/if}>
+            <span class="xml-label">
+                            [`Do not add new products`]
+                            <span class="hint">[`Skip new products updating only those that were created earlier`]</span>
+                        </span>
+        </div>
+
+        <div>
+            <input type="checkbox" class="iButton no_highlight" name="settings[no_update_products]" value="1"{if !empty($settings.no_update_products)} checked{/if}>
+            <span class="xml-label">
+                            [`Do not update products`]
+                            <span class="hint">[`Skip the goods that were created earlier by adding only new items`]</span>
+                        </span>
+        </div>
+
+        <div>
+            <input type="checkbox" class="iButton no_highlight" name="settings[no_new_categs]" value="1"{if !empty($settings.no_new_categs)} checked{/if}>
+            <span class="xml-label">[`Do not add new categories`]
+                            <span class="hint">[`Skip new categories updating only those that were created earlier`]</span>
+                        </span>
+        </div>
+
+        <div>
+            <input type="checkbox" class="iButton no_highlight" name="settings[no_update_categs]" value="1"{if !empty($settings.no_update_categs)} checked{/if}>
+            <span class="xml-label">[`Do not update categories`]
+                            <span class="hint">[`Skip categories that were created earlier by adding only new items`]</span>
+                        </span>
+        </div>
+
+        <div>
+            <input type="checkbox" class="iButton no_highlight" name="settings[hide_excluded]" value="1"{if !empty($settings.hide_excluded)} checked{/if}>
+            <span class="xml-label">[`Reset count of missing items`]
+                <span class="hint">[`Products that disappear from the file will be removed from sale`]</span>
+                        </span>
+        </div>
+
+        <div id="enforce-protocol">
+            <input type="checkbox" class="iButton no_highlight" name="settings[enforce_protocol]" value="1"{if !empty($settings.enforce_protocol)} checked{/if}>
+            <span class="xml-label"> [`Force the use of the protocol in image references`]
+                            <span class="hint">[`This option allows you to replace the protocol for accessing images (for example, from http to https) <br> when it is specified incorrectly and the redirect does not work due to the included options <i> safe_mode / open_basedir </ i>`]</span>
+                        </span>
+
+            <div class="enforce-option" style="margin-top: 10px; font-size: 0.9em;{if empty($settings.enforce_protocol)}display:none{/if}">
+                [`Select protocol`]:
+                <select name="settings[enforce_protocol_option]">
+                    <option value="1"{if empty($settings.enforce_protocol_option) || ($settings.enforce_protocol_option == '1')} selected{/if}>https</option>
+                    <option value="2"{if ifempty($settings.enforce_protocol_option) == '2'} selected{/if}>http</option>
+                </select>
+            </div>
+        </div>
+
+        <div id="xml-slider">
+            <input type="checkbox" class="iButton" value="1" name="settings[limit_stream]"{if !empty($settings.limit_stream)} checked{/if}>
+
+            <span class="xml-label">
+                            [`Limit thread length`]
+
+                            <span class="hint">
+                                [`Automatic restart of the import process to prevent exceeding the limit for the execution time of the script.`]
+                            </span>
+                        </span>
+
+            <div class="xml-slider-value"{if empty($settings.limit_stream)} style="display: none"{/if}>
+                <span id="slider-value">
+                                    {ifempty($settings.stream_value,40)}
+                                </span>
+
+                <input type="hidden" name="settings[stream_value]" value="{ifempty($settings.stream_value,40)}">
+            </div>
+
+            <div class="xml-slider"{if empty($settings.limit_stream)} style="display: none"{/if}></div>
+        </div>
+
+</div>
+</div>
+
+<div class="field">
+    <div class="name">
+        [`Restore unfinished sessions`]
+    </div>
+
+    <div class="value">
+        <ul class="menu-h" style="display:inline-block">
+            <li>[`No`]</li>
+            <li>
+                <input type="checkbox" class="iButton" value="1" name="settings[restore]"{if !empty($settings.restore)} checked{/if}>
+            </li>
+            <li>[`Yes`]</li>
+        </ul>
+
+        {if !empty($session)}
+        <div style="margin-top: 10px;{if empty($settings.restore)}display:none;{/if}">
+            <div class="session">
+                                <span class="session-label">
+                                    <i class="icon16 exclamation"></i>
+                                    [`Unfinished import session detected`]
+                                </span>
+
+                <span class="session-remove" title="[`Delete session`]">x</span>
+
+                <div class="session-info">
+                                    <span class="sess-inf-time">
+                                        <strong>[`Start time`]:</strong>
+                                        <i>{$session.time_start|wa_datetime:'humandatetime'}</i>
+                                    </span>
+
+                    <span class="sess-inf-time">
+                                        <strong>[`Interruption time`]:</strong>
+                                        <i>{$session.time_end|wa_datetime:'humandatetime'}</i>
+                                    </span>
+                </div>
+
+                <span class="hint">
+                    <i class="icon16 info"></i>  [`The next import will start from the place where the previous import was interrupted`].<br>
+                    [`To make the import work by default - delete this session using the button above`].
+                </span>
+            </div>
+        </div>
+        {/if}
+    </div>
+</div>
+
+<div class="field">
+    <div class="name" >[`Delayed execution`]:</div>
+    <div class="value">
+        <ul class="menu-h" style="display:inline-block">
+            <li style="padding: 0;vertical-align: top;">[`No`]</li>
+            <li style="padding: 0;"><input type="checkbox" class="iButton" name="settings[automatization]" {if !empty($settings.automatization) && $settings.automatization == 1 } checked="checked"{/if} value="1"/></li>
+            <li class="istrue {if !empty($settings.automatization) && $settings.automatization == 1 }checkedinput{/if}" style="padding: 0;vertical-align: top;">[`Yes`]</li>
+        </ul>
+        <div class="xml-cli">php {$root_path}/cli.php shop xmlSyncFile{if !empty($profile_id)} -profile {$profile_id}{/if}</div>
+
+        <div class="xml-cli-alert">
+                {if empty($settings.last_cli_time)}
+                    <span class="xml-cli-alert-text no">
+                        <i class="icon16 status-red"></i> [`CRON job not configured`]
+                        <span class="hint">
+                            [`A deferred update has never been executed.`]
+                        </span>
+                {else}
+                    {$diff = shopXmlPlugin::dateDiff($settings.last_cli_time)}
+                    <span class="xml-cli-alert-text">
+                        {if $diff > 3}
+                            <i class="icon16 status-yellow"></i> [`The CRON job has not been performed for a long time`]
+                        {else}
+                            <i class="icon16 status-green"></i> [`CRON job configured`]
+                        {/if}
+
+                        <span class="hint">
+                            [`The last deferred synchronization was performed`]: <strong><i>{wa_date('humandatetime', $settings.last_cli_time)}</i></strong>
+                        </span>
+                {/if}
+                </span>
+            </span>
+        </div>
+    </div>
+</div>
+
+<div class="field xml-buttons" style="padding-top: 0">
+    <div class="name" style="background: #f7f7f7"></div>
+    <div class="value" style="margin-left: 225px; padding: 0; border: 0">
+        <input type="submit" id="xml-pre-sync" class="button green" value="[`Save`]" />
+        <span id="save-status"></span>
+        <input type="button" class="button green" id="xml-start-sync" value="[`Start sync`]" />
+
+        <input type="button" class="button red" id="xml-cancel" style="display: none" value="Остановить">
+
+        <input type="hidden" name="profile_id" value="{ifempty($profile_id,'')}">
+    </div>
+</div>
+
+<div class="field no-border" style="padding-left: 30px">
+    <div class="name" style="background: #fff"></div>
+    <div class="value" style="margin-left:0; padding-left: 0; border: none;">
+        <!-- Progress bar -->
+        <div id="progressbar" style="display:none; margin-top: 20px;">
+            <div class="stage_label"></div>
+
+            <div class="progressbar blue float-left" style="display: none; width: 80%;">
+                <div class="progressbar-outer" style="overflow: hidden;">
+                    <div class="progressbar-inner" style="width: 0%;"></div>
+                </div>
+            </div>
+
+            <img style="float:left; margin-top:8px;" src="{$wa_url}wa-content/img/loading32.gif" />
+            <div class="clear"></div>
+            <span class="progressbar-description">0%</span>
+            <em class="hint">[`Please do not close the browser until the operation is finished.`]</em>
+            <br clear="left" />
+            <em class="errormsg"></em>
+        </div>
+
+        <div id="report"></div>
+        <!-- ./Progress Bar -->
+    </div>
+</div>
+
+</form>
+</div>
+</div>
+
+<div id="xml-dialog">
+    <div class="xml-dialog-inner">
+        <form name="xml-dialog-form">
+            <div class="xml-dialog-header bg-gd-modern-blue no-hover">
+                <span class="xml-dialog-title"></span>
+
+                <div class="xml-dialog-buttons"></div>
+            </div>
+
+            <div class="xml-dialog-content">
+                <div class="xml-loader-wrap">
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,6 @@
+<div id="{$tab.name}" class="{$tab_class|default:'tab-pane fade'}{if $tab.name == $theme_settings.product_active_tab} in active{/if}">
+    <h2>{$tab.title}</h2>
+    <div class="contentDescription">
+        {eval var=$tab.content}
+    </div>
+</div>

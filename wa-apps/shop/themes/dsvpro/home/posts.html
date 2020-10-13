@@ -1,0 +1,37 @@
+{strip}
+{**
+* @param string $id - blog id (null)
+* @param bool $auto - auto scroll slider (0)
+* @param int $interval - auto scroll interval (3000)
+* @param int $limit - count of posts (9)
+* @param string $mytitle - heading ([`Latest news`])
+*}
+{if $wa->blog}
+    {$posts = $wa->blog->posts($id|default:null,$limit|default:9)}
+    {if count($posts)}
+        <div class="heading">
+            <span class="h3">{$mytitle|default:'[`Latest news`]'}</span>
+        </div>
+        <div class="blog dataSlider" data-slick='{ "slidesToShow": 3, "slidesToScroll": 3, "autoplay": {$auto|default:0}, "autoplaySpeed": {$interval|default:3000}, "infinite": true, "dots": false, "responsive": [ { "breakpoint": 1024, "settings": { "slidesToShow": 2, "slidesToScroll": 2 } }, { "breakpoint": 480, "settings": { "slidesToShow": 1, "slidesToScroll": 1, "fade": true, "dots": true, "arrows": false } } ]}'>
+            {foreach $posts as $post}
+                {$preview = $post.preview|default:"`$wa_theme_url`img/noimage200.png"}
+                <div class="post">
+                    <a class="td-none dp-b" href="{$post.link}">
+                        <div class="post__panel">
+                            <div class="timeline__heading">
+                                <div class="timeline__image">
+                                    {* <meta itemprop="image" content={$preview}> *}
+                                    <img class="img-responsive" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-lazy="{$preview}" alt="{$post.title}">
+                                    <div class="timeline__mask"></div>
+                                </div>
+                                <div class="h2 fw-7 black blog__name">{$post.title}</div>
+                            </div>
+                            <div class="timelineBody blog__description mb-30 fs-15em gray">{strip_tags($post.text)|truncate:250:"..."}</div>
+                        </div>
+                    </a>
+                </div>
+            {/foreach}
+        </div>
+    {/if}
+{/if}
+{/strip}

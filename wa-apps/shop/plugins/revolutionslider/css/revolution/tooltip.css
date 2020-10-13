@@ -1,0 +1,125 @@
+.rstooltipwrapper {
+ 	width: 25px;
+ 	height: 25px;
+ 	background: #FF5722;
+ 	display: block;
+ 	position: absolute;
+ 	border-radius: 60px;
+ 	border-width: 2px;
+ 	border-style: solid;
+ 	border-color: #FFFFFF;	
+ }
+ 
+
+ .rstooltipwrapper:hover {
+    cursor:pointer;
+ }
+ 
+ .rstooltipwrapper:hover .rstooltip {
+    -webkit-animation-name: fadeInDownRevo;
+    animation-name: fadeInDownRevo;
+    -webkit-animation-duration: 0.4s;
+    animation-duration: 0.4s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+    visibility:inherit;
+ }
+
+.rstooltip {
+  visibility:hidden;
+  height: 100px;
+  width: 200px;
+  border-radius: 3px;
+  padding: 5px 10px;
+  font-size: 14px;
+  position: absolute;
+  left: -90px;
+  top: -100px;
+  background-color: white;
+  box-shadow: 0px 5px 15px 0px rgba(0,0,0,0.3);
+  -webkit-animation-name: fadeOutRevo;
+  animation-name: fadeOutRevo;
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
+
+.rstooltip-title {
+	display: block;
+	font-size: 14px;
+	font-weight: 600;
+	font-family:Arial;
+}
+
+.rstooltip-description {
+	display: block;
+	font-size: 12px;
+	line-height:16px;
+	margin-top: 6px;
+	font-family:Arial;
+}
+  
+  .rstooltip-arrow {
+    position: absolute;
+    bottom: -6px;
+    left: 50%;
+    margin-left: -7px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 6px solid;
+    border-top-color: #fff;
+  
+}
+
+
+
+@-webkit-keyframes fadeInDownRevo {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -50%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@keyframes fadeInDownRevo {
+  from {
+    opacity: 0;
+    -webkit-transform: translate3d(0, -50%, 0);
+    transform: translate3d(0, -50%, 0);
+  }
+
+  to {
+    opacity: 1;
+    -webkit-transform: none;
+    transform: none;
+  }
+}
+
+@-webkit-keyframes fadeOutRevo {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadeOutRevo {
+  from {
+    opacity: 1;
+  }
+
+  to {
+    opacity: 0;
+  }
+}

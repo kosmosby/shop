@@ -1,0 +1,54 @@
+{strip}
+{**
+* @param string $id - album id (theme setting)
+* @param bool $auto - auto scroll slider (0)
+* @param int $interval - auto scroll interval (3000)
+* @param int $limit - count of brands (10)
+*}
+
+{if $theme_settings.brands_option == "default" && $wa->photos}
+    {$brands = $wa->photos->photos("album/`$id|default:$theme_settings.brands_album`", "200x0", $limit|default:10)}
+{elseif $theme_settings.brands_option == "productbrands" && class_exists("shopProductbrandsPlugin")}
+    {$brands = shopProductbrandsPlugin::getBrands()}
+{elseif $theme_settings.brands_option == "brandspro" && class_exists("shopBrandPlugin")}
+    {$brands = shopBrandViewHelper::getAllBrands()}
+{/if}
+{if isset($brands) && count($brands)}
+    {$sb_cnt = 0}
+    {if $sidebar|default:false}
+        {$sb_cnt = 1}
+    {/if}
+    <div class="brands mb-40">
+        <div class="container-fluid">
+            <div class="brands__content">
+                <div class="dataSlider" data-slick='{ "slidesToShow": {7-$sb_cnt}, "slidesToScroll": {7-$sb_cnt}, "autoplay": {$auto|default:0}, "autoplaySpeed": {$interval|default:3000}, "infinite": true, "responsive": [{ "breakpoint": 1200, "settings": { "slidesToShow": {6-$sb_cnt}, "slidesToScroll": {6-$sb_cnt} } },{ "breakpoint": 1024, "settings": { "slidesToShow": {4-$sb_cnt}, "slidesToScroll": {4-$sb_cnt} } },{ "breakpoint": 600, "settings": { "slidesToShow": 2, "slidesToScroll": 2, "arrows": false, "autoplay": true } },{ "breakpoint": 480, "settings": { "slidesToShow": 2, "slidesToScroll": 2, "arrows": false, "autoplay": true } } ]}'>
+                    {if $theme_settings.brands_option == "default"}
+                        {foreach $brands as $brand}
+                            <a class="d-ib brands__item" href="{$brand.description|default:'javascript:void(0)'}">
+                                <img class="brands__img img-responsive" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-lazy="{$brand['thumb_200x0'].url}" alt="{$brand.name}">
+                            </a>
+                        {/foreach}
+                    {elseif $theme_settings.brands_option == "productbrands" && class_exists("shopProductbrandsPlugin")}
+                        {foreach $brands as $brand}
+                            {if $brand.image === null}{continue}{/if}
+                            <a class="d-ib brands__item" href="{$brand.url|default:'javascript:void(0)'}">
+                                <img class="brands__img img-responsive" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-lazy="{$wa_url}wa-data/public/shop/brands/{$brand.id}/{$brand.id}{$brand.image}" alt="{$brand.name}">
+                            </a>
+                        {/foreach}
+                    {elseif $theme_settings.brands_option == "brandspro" && class_exists("shopBrandPlugin")}
+                        {foreach $brands as $brand}
+                            {if empty($brand.image_url)}{continue}{/if}
+                            <a href="{$brand.frontend_url}" class="d-ib brands__item">
+                                <img class="brands__img img-responsive" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-lazy="{$brand.image_url}" alt="{$brand.name}">
+                            </a>
+                        {/foreach}
+                    {/if}
+                </div>
+                {*
+                <a class="brands__all fs-15em" href="{$link|default:'#'}">[`All brands`]</a>
+                *}
+            </div>
+        </div>
+    </div>
+{/if}
+{/strip}

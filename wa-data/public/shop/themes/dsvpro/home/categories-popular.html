@@ -1,0 +1,40 @@
+{strip}
+{**
+* @param string $id - category id (0)
+* @param int $limit - count of categories (0)
+* @param string $mytitle - slider title ([`Popular categories`])
+*}
+{$cats = $wa->shop->categories($id|default:0, null, true, true)}
+{if count($cats)}
+    <div class="container-fluid mb-20">
+        <div class="heading">
+            <span class="h3">{$mytitle|default:'[`Popular categories`]'}</span>
+        </div>
+        <ul class="popCats list-unstyled list-inline clearfix">
+            {foreach $cats as $item}
+                <li class="popCats__item col-sm-4 col-xs-6">
+                    <a class="popCats__link rounded-sm text-center td-none" href="{$item.url}"{if isset($item.params.background)} style="background-color: {$item.params.background};"{/if}>
+                        <div class="popCats__mask transition-3e">
+                            <div class="popCats__image image">
+                                {$image_url = ''}
+                                {if $theme_settings.subcategories_image == 'params' && isset($item.params.image)}
+                                    {$image_url = $item.params.image}
+                                {elseif $theme_settings.subcategories_image == 'categoryimages' && class_exists('shopCategoryimagesPlugin')}
+                                    {$image_url = shopCategoryImagesPlugin::getCategoryImageUrl($item.id)}
+                                {elseif $theme_settings.subcategories_image == 'categoryimage' && class_exists('shopCategoryimagePlugin') && isset($item.image)}
+                                    {$image_url = "{$wa_url}wa-data/public/shop/categories/{$item.id}/{$item.id}.200{$item.image}"}
+                                {elseif $theme_settings.subcategories_image == 'wmimage' && class_exists('shopWmimageincatPlugin')}
+                                    {$image_url = shopWmimageincatPlugin::getCategoryImage($item.id,'image')}
+                                {/if}
+                                <img src='{$image_url|default:"`$wa_theme_url`img/noimage96.png"}' alt="{$item.name|escape}" class="transition-3e">
+                            </div>
+                            <div class="popCats__name fw-5">{$item.name|escape}</div>
+                        </div>
+                    </a>
+                </li>
+                {if $item@iteration == $limit|default:0}{break}{/if}
+            {/foreach}
+        </ul>
+    </div>
+{/if}
+{/strip}

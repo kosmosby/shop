@@ -1,0 +1,8 @@
+<div class="hCallback">
+    <div class="hCallback__inner text-center">
+        <div class="hCallback__heading mt-0 mb-25 h1">
+            {$theme_settings.callback_text|default:"Нужна помощь специалиста? Позвоните нам!"}
+        </div>
+        <a class="btn btn-default fs-14em" href="tel:{$wa->shop->settings('phone')|regex_replace:'/[^0-9\+]/':''}">{$wa->shop->settings('phone')}</a> <span class="fs-13em">[`or`]</span> <a class="btn btn-primary fs-14em {$theme_settings.callback_class}">{$theme_settings.callback_btn|default:"Заказать звонок"}</a>
+    </div>
+</div>

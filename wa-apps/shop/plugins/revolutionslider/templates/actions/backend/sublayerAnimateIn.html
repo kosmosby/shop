@@ -1,0 +1,123 @@
+<h4><i class="icon-rocket"></i> [`Start Animation`] <i class="fa icon-angle-down control"></i></h4>
+<div class="line">
+    <div>
+        <div class="form-group fullthird icon">
+            <label data-html="true" data-toggle="tooltip" data-placement="top" title="[`Duration of the Start Animation`]" for=""><i class="icon-duration"></i></label>
+            <input type="text" name="rsLayerTransformInDuration" value="{if isset ($sublayer.rsLayerTransformInDuration)}{$sublayer.rsLayerTransformInDuration}{else}900{/if}">
+        </div>
+    </div>
+    <div>
+            <div class="form-group fullsix">
+        <label data-toggle="tooltip" data-placement="top" title="[`Layer Start X axis position in px relatively to Slider Grid`]" for="">[`X position`]</label>
+        <input class="form-control half" type="text" name="rsLayerTransformInX" value="{if isset ($sublayer.rsLayerTransformInX)}{$sublayer.rsLayerTransformInX}{else}-200{/if}">
+    </div>
+        <div class="form-group fullsix">
+            <label data-toggle="tooltip" data-placement="top" title="[`Layer Start Y axis position in px relatively to Slider Grid`]" for="">[`Y position`]</label>
+            <input class="form-control half" type="text" name="rsLayerTransformInY" value="{if isset ($sublayer.rsLayerTransformInY)}{$sublayer.rsLayerTransformInY}{else}0{/if}">
+        </div>
+        <div class="form-group fullsix">
+            <label data-toggle="tooltip" data-placement="top" title="[`Layer Start Z axis position in px relatively to Slider Grid`]" for="">[`Z position`]</label>
+            <input class="form-control half" type="text" name="rsLayerTransformInZ" value="{if isset ($sublayer.rsLayerTransformInZ)}{$sublayer.rsLayerTransformInZ}{else}0{/if}">
+        </div>
+        <div class="form-group fullhalf">
+            <label data-toggle="tooltip" data-placement="top" title="[`Animation In Easing`]" for="">[`Easing`]</label>
+            <select class="form-control" name="rsLayerTransformInTransition">
+                {if !isset($sublayer.rsLayerTransformInTransition)}
+                {assign var='rsLayerTransformInTransition' value='Power1.easeInOut'}
+                {else}
+                {assign var='rsLayerTransformInTransition' value=$sublayer.rsLayerTransformInTransition|default:'Power1.easeInOut'}
+                {/if}
+                <option {if $rsLayerTransformInTransition == 'Default'}selected="selected"{/if} value="Default">Default</option>
+                <option {if $rsLayerTransformInTransition == 'Linear.easeNone'}selected="selected"{/if} value="Linear.easeNone">Linear.easeNone</option>
+                <option {if $rsLayerTransformInTransition == 'Power0.easeIn'}selected="selected"{/if} value="Power0.easeIn">Power0.easeIn</option>
+                <option {if $rsLayerTransformInTransition == 'Power0.easeInOut'}selected="selected"{/if} value="Power0.easeInOut">Power0.easeInOut</option>
+                <option {if $rsLayerTransformInTransition == 'Power0.easeOut'}selected="selected"{/if} value="Power0.easeOut">Power0.easeOut</option>
+                <option {if $rsLayerTransformInTransition == 'Power1.easeIn'}selected="selected"{/if} value="Power1.easeIn">Power1.easeIn</option>
+                <option {if $rsLayerTransformInTransition == 'Power1.easeInOut'}selected="selected"{/if} value="Power1.easeInOut">Power1.easeInOut</option>
+                <option {if $rsLayerTransformInTransition == 'Power1.easeOut'}selected="selected"{/if} value="Power1.easeOut">Power1.easeOut</option>
+                <option {if $rsLayerTransformInTransition == 'Power2.easeIn'}selected="selected"{/if} value="Power2.easeIn">Power2.easeIn</option>
+                <option {if $rsLayerTransformInTransition == 'Power2.easeInOut'}selected="selected"{/if} value="Power2.easeInOut">Power2.easeInOut</option>
+                <option {if $rsLayerTransformInTransition == 'Power2.easeOut'}selected="selected"{/if} value="Power2.easeOut">Power2.easeOut</option>
+                <option {if $rsLayerTransformInTransition == 'Power3.easeIn'}selected="selected"{/if} value="Power3.easeIn">Power3.easeIn</option>
+                <option {if $rsLayerTransformInTransition == 'Power3.easeInOut'}selected="selected"{/if} value="Power3.easeInOut">Power3.easeInOut</option>
+                <option {if $rsLayerTransformInTransition == 'Power3.easeOut'}selected="selected"{/if} value="Power3.easeOut">Power3.easeOut</option>
+                <option {if $rsLayerTransformInTransition == 'Power4.easeIn'}selected="selected"{/if} value="Power4.easeIn">Power4.easeIn</option>
+                <option {if $rsLayerTransformInTransition == 'Power4.easeInOut'}selected="selected"{/if} value="Power4.easeInOut">Power4.easeInOut</option>
+                <option {if $rsLayerTransformInTransition == 'Power4.easeOut'}selected="selected"{/if} value="Power4.easeOut">Power4.easeOut</option>
+                <option {if $rsLayerTransformInTransition == 'Quad.easeIn'}selected="selected"{/if} value="Quad.easeIn">Quad.easeIn</option>
+                <option {if $rsLayerTransformInTransition == 'Quad.easeInOut'}selected="selected"{/if} value="Quad.easeInOut">Quad.easeInOut</option>
+                <option {if $rsLayerTransformInTransition == 'Quad.easeOut'}selected="selected"{/if} value="Quad.easeOut">Quad.easeOut</option>
+                <option {if $rsLayerTransformInTransition == 'Cubic.easeIn'}selected="selected"{/if} value="Cubic.easeIn">Cubic.easeIn</option>
+                <option {if $rsLayerTransformInTransition == 'Cubic.easeInOut'}selected="selected"{/if} value="Cubic.easeInOut">Cubic.easeInOut</option>
+                <option {if $rsLayerTransformInTransition == 'Cubic.easeOut'}selected="selected"{/if} value="Cubic.easeOut">Cubic.easeOut</option>
+                <option {if $rsLayerTransformInTransition == 'Quart.easeIn'}selected="selected"{/if} value="Quart.easeIn">Quart.easeIn</option>
+                <option {if $rsLayerTransformInTransition == 'Quart.easeInOut'}selected="selected"{/if} value="Quart.easeInOut">Quart.easeInOut</option>
+                <option {if $rsLayerTransformInTransition == 'Quart.easeOut'}selected="selected"{/if} value="Quart.easeOut">Quart.easeOut</option>
+                <option {if $rsLayerTransformInTransition == 'Quint.easeIn'}selected="selected"{/if} value="Quint.easeIn">Quint.easeIn</option>
+                <option {if $rsLayerTransformInTransition == 'Quint.easeInOut'}selected="selected"{/if} value="Quint.easeInOut">Quint.easeInOut</option>
+                <option {if $rsLayerTransformInTransition == 'Quint.easeOut'}selected="selected"{/if} value="Quint.easeOut">Quint.easeOut</option>
+                <option {if $rsLayerTransformInTransition == 'Strong.easeIn'}selected="selected"{/if} value="Strong.easeIn">Strong.easeIn</option>
+                <option {if $rsLayerTransformInTransition == 'Strong.easeInOut'}selected="selected"{/if} value="Strong.easeInOut">Strong.easeInOut</option>
+                <option {if $rsLayerTransformInTransition == 'Strong.easeOut'}selected="selected"{/if} value="Strong.easeOut">Strong.easeOut</option>
+                <option {if $rsLayerTransformInTransition == 'Back.easeIn'}selected="selected"{/if} value="Back.easeIn">Back.easeIn</option>
+                <option {if $rsLayerTransformInTransition == 'Back.easeInOut'}selected="selected"{/if} value="Back.easeInOut">Back.easeInOut</option>
+                <option {if $rsLayerTransformInTransition == 'Back.easeOut'}selected="selected"{/if} value="Back.easeOut">Back.easeOut</option>
+                <option {if $rsLayerTransformInTransition == 'Bounce.easeIn'}selected="selected"{/if} value="Bounce.easeIn">Bounce.easeIn</option>
+                <option {if $rsLayerTransformInTransition == 'Bounce.easeInOut'}selected="selected"{/if} value="Bounce.easeInOut">Bounce.easeInOut</option>
+                <option {if $rsLayerTransformInTransition == 'Bounce.easeOut'}selected="selected"{/if} value="Bounce.easeOut">Bounce.easeOut</option>
+                <option {if $rsLayerTransformInTransition == 'Circ.easeIn'}selected="selected"{/if} value="Circ.easeIn">Circ.easeIn</option>
+                <option {if $rsLayerTransformInTransition == 'Circ.easeInOut'}selected="selected"{/if} value="Circ.easeInOut">Circ.easeInOut</option>
+                <option {if $rsLayerTransformInTransition == 'Circ.easeOut'}selected="selected"{/if} value="Circ.easeOut">Circ.easeOut</option>
+                <option {if $rsLayerTransformInTransition == 'Elastic.easeIn'}selected="selected"{/if} value="Elastic.easeIn">Elastic.easeIn</option>
+                <option {if $rsLayerTransformInTransition == 'Elastic.easeInOut'}selected="selected"{/if} value="Elastic.easeInOut">Elastic.easeInOut</option>
+                <option {if $rsLayerTransformInTransition == 'Elastic.easeOut'}selected="selected"{/if} value="Elastic.easeOut">Elastic.easeOut</option>
+                <option {if $rsLayerTransformInTransition == 'Expo.easeIn'}selected="selected"{/if} value="Expo.easeIn">Expo.easeIn</option>
+                <option {if $rsLayerTransformInTransition == 'Expo.easeInOut'}selected="selected"{/if} value="Expo.easeInOut">Expo.easeInOut</option>
+                <option {if $rsLayerTransformInTransition == 'Expo.easeOut'}selected="selected"{/if} value="Expo.easeOut">Expo.easeOut</option>
+                <option {if $rsLayerTransformInTransition == 'Sine.easeIn'}selected="selected"{/if} value="Sine.easeIn">Sine.easeIn</option>
+                <option {if $rsLayerTransformInTransition == 'Sine.easeInOut'}selected="selected"{/if} value="Sine.easeInOut">Sine.easeInOut</option>
+                <option {if $rsLayerTransformInTransition == 'Sine.easeOut'}selected="selected"{/if} value="Sine.easeOut">Sine.easeOut</option>
+                <option {if $rsLayerTransformInTransition == 'SlowMo.ease'}selected="selected"{/if} value="SlowMo.ease">SlowMo.ease</option>
+            </select>
+        </div>
+    </div>
+
+
+<h5>[`Scale, Skew, Opacity`]</h5>
+<div>
+    <div class="form-group fullthird icon">
+        <label data-toggle="tooltip" data-placement="top" data-html="true" title="[`Layer horizontal scale on start position<br> The value between 0 and 100, 1 = 100% of layer horizontal size`]" for=""><i class="icon-sizex" aria-hidden="true"></i></label>
+        <input class="form-control" type="number" min="0" max="100" name="rsLayerTransformInScaleX" value="{if isset ($sublayer.rsLayerTransformInScaleX)}{$sublayer.rsLayerTransformInScaleX}{else}1{/if}">
+    </div>                                                                    
+    <div class="form-group fullthird icon">
+        <label data-toggle="tooltip" data-placement="top" data-html="true" title="[`Layer vertical scale on start position<br> The value between 0 and 100, 1 = 100% of layer vertical size`]" for=""><i class="icon-sizey" aria-hidden="true"></i></label>
+        <input class="form-control" type="number" min="0" max="100" name="rsLayerTransformInScaleY" value="{if isset ($sublayer.rsLayerTransformInScaleY)}{$sublayer.rsLayerTransformInScaleY}{else}1{/if}">
+    </div>
+    <div class="form-group fullthird icon">
+        <label data-toggle="tooltip" data-placement="top" data-html="true" title="[`Horizontal skew on start position.<br> The value between -100 and 100<br> 0 - no skew`]" for=""><i class="icon-skewx bolder" aria-hidden="true"></i></label>
+        <input class="form-control" type="number" min="-100" max="100" name="rsLayerTransformInSkewX" value="{if isset ($sublayer.rsLayerTransformInSkewX)}{$sublayer.rsLayerTransformInSkewX}{else}0{/if}">
+    </div>
+    <div class="form-group fullthird icon">
+        <label data-toggle="tooltip" data-html="true" data-placement="top" title="[`Vertical skew on start position.<br> The value between -100 and 100<br> 0 - no skew`]" for=""><i class="icon-skewy bolder" aria-hidden="true"></i></label>
+        <input class="form-control" type="number" min="-100" max="100" name="rsLayerTransformInSkewY" value="{if isset ($sublayer.rsLayerTransformInSkewY)}{$sublayer.rsLayerTransformInSkewY}{else}0{/if}">
+    </div>
+</div>
+<div>
+    <div class="form-group fullthird icon">
+        <label data-toggle="tooltip" data-placement="top" title="[`Layer Opacity on start position`]" for=""><i class="icon-opacity" aria-hidden="true"></i></label>
+        <input class="form-control" type="number" min="0" max="1" step="0.1" name="rsLayerOpacityIn" value="{if isset ($sublayer.rsLayerOpacityIn)}{$sublayer.rsLayerOpacityIn}{else}0{/if}">
+    </div>
+    <div class="form-group fullthird icon">
+        <label data-toggle="tooltip" data-html="true" data-placement="top" title="[`Z axis rotation degree on start position<br> The value between -1200 and 1200`]" for=""><i class="icon-rotatez" aria-hidden="true"></i></label>
+        <input class="form-control" type="number" min="-1200" max="1200" name="rsLayerTransformInRotateZ" value="{if isset ($sublayer.rsLayerTransformInRotateZ)}{$sublayer.rsLayerTransformInRotateZ}{else}0{/if}">
+    </div>
+    <div class="form-group fullthird icon">
+        <label class="icon" data-toggle="tooltip"  data-placement="top" data-html="true" title="[`Horizontal axis rotation degree on start position<br> The value between -1200 and 1200`]" for=""><i class="icon-rotatex bolder" aria-hidden="true"></i></label>
+        <input class="form-control" type="number" min="-1200" max="1200" name="rsLayerTransformInRotateX" value="{if isset ($sublayer.rsLayerTransformInRotateX)}{$sublayer.rsLayerTransformInRotateX}{else}0{/if}">
+    </div>
+    <div class="form-group fullthird icon">
+        <label class="icon" data-toggle="tooltip" data-html="true" data-placement="top" title="[`Vertical axis rotation degree on start position<br> The value between -1200 and 1200`]" for=""><i class="icon-rotatey" aria-hidden="true"></i></label>
+        <input class="form-control" type="number" min="-1200" max="1200" name="rsLayerTransformInRotateY" value="{if isset ($sublayer.rsLayerTransformInRotateY)}{$sublayer.rsLayerTransformInRotateY}{else}0{/if}">
+    </div>
+</div>
+</div>

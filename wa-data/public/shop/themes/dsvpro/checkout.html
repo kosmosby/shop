@@ -1,0 +1,57 @@
+{strip}
+{$wa->globals("js","checkout.js")}
+{$wa->globals("displayBreadcrumbs", 1)}
+{function name="stepcontent"}
+    {if $checkout_current_step == $step_id}
+        {if in_array($step_id,['contactinfo', 'shipping', 'payment', 'confirmation'])}
+            {include file="checkout.`$step_id`.html"}
+        {else}
+            {$s.content}
+        {/if}
+    {/if}
+{/function}
+<div class="container-fluid">
+    <div class="checkout">
+        {if isset($checkout_steps)}
+            <div class="panel-group" id="checkout" role="tablist" aria-multiselectable="true">
+                {foreach $checkout_steps as $step_id => $s}
+                    <div class="panel panel-default step-{$step_id}{if $s@first} active{/if}">
+                        <div class="panel-heading" role="tab" id="heading_{$step_id}">
+                            <div class="h4 panel-title">
+                                <a href="#collapse_{$step_id}" data-toggle="collapse" data-parent="#checkout">{$s@iteration}. {$s.name}</a>
+                            </div>
+                        </div>
+                        <div class="panel-collapse collapse{if $checkout_current_step == $step_id} in{/if}" id="collapse_{$step_id}" role="tabpanel" aria-labelledby="headingContacts">
+                            <form class="checkout-form {if $s@last}last{/if}" method="post" action="">
+                                <div class="panel-body">
+                                    {if $checkout_current_step == $step_id}
+                                        {if $s@first && $wa->isAuthEnabled()}
+                                            {include file="checkout.auth.html" inline}
+                                        {else}
+                                            {* step *}
+                                            {stepcontent}
+                                        {/if}
+                                    {else}
+                                        <div class="checkout-content" data-step-id="{$step_id}"></div>
+                                    {/if}
+
+                                    {if $s@last}
+                                        <input type="submit" class="btn btn-danger cart__btn" value="[`Place order`]">
+                                    {else}
+                                        <input type="submit" class="btn btn-primary cart__btn" value="[`Next`]">
+                                    {/if}
+                                </div>
+                                <input type="hidden" name="step" value="{$step_id}">
+                            </form>
+                        </div>
+                    </div>
+                {/foreach}
+            </div>
+        {else}
+            <div class="checkout-step">
+                {include file="checkout.`$checkout_current_step`.html"}
+            </div>
+        {/if}
+    </div>
+</div>
+{/strip}

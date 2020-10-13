@@ -1,0 +1,92 @@
+<div class="col-xs-12">
+    <div class="row contain">
+    	<div class="col-xs-12 form-inline">
+
+            <div class="form-group">
+    	        <label data-toggle="tooltip" data-html="true" data-placement="bottom" title="[`Defines the Event type of the Parallax sensibility.<br><strong>Off</strong> -  No Parallax Effect enabled Globally;<br> <strong>Mouse</strong> - elements will follow the mouse pointer movements over the sliders;<br><strong>Scroll</strong> - elements will follow the scroll positions<br><strong>Scroll+Mouse</strong> - elements will vertical follow the scroll positions, and horizontal follow the mouse positions <br><strong>3D</strong> - Just select and see it in action`]" for="">[`Effect Type`]</label>
+                <select class="form-control" name="globalparallaxtype">
+                    {if !isset($slide) && !isset($slide.properties) && !isset($slide.properties.globalparallaxtype)}
+                        {assign var='globalparallaxtype' value='mouse'}
+                    {else}
+                        {assign var='globalparallaxtype' value=$slide.properties.globalparallaxtype|default:'mouse'}
+                    {/if}
+                    <option value="off" {if $globalparallaxtype == 'off'}selected="selected"{/if}>[`Off`]</option>
+                    <option value="mouse" {if $globalparallaxtype == 'mouse'}selected="selected"{/if}>[`Mouse`]</option>
+                    <option value="scroll" {if $globalparallaxtype == 'scroll'}selected="selected"{/if}>[`Scroll`]</option>
+                    <option value="mouse+scroll" {if $globalparallaxtype == 'mouse+scroll'}selected="selected"{/if}>[`Mouse + Scroll`]</option>
+                    <option value="3d" {if $globalparallaxtype == '3d'}selected="selected"{/if}>[`3D`]</option>
+                </select>
+	        </div>
+
+            <div class="form-group">
+                <label data-toggle="tooltip" data-html="true" data-placement="bottom" title="[`Defines the calculation base of the parallax direction and distances.<br><strong>Slider Center</strong> - distance between mouse and slider center will be calculated. The outer side of slider is -100% / 100% and the center is 0%.  Elements will be transformed like “distance percent” * “responsive strength of element” in vertical and horizontal direction;<br><strong>Enter Point</strong> - distance between mouse enter point and current mouse point will be calculated. Elements will be transformed like “distance percent” * “responsive strength of element” in vertical and horizontal direction`]" for="">[`Orign`]</label>
+                <select class="form-control" name="globalparallaxorigo">
+                    {if !isset($slide) && !isset($slide.properties) && !isset($slide.properties.globalparallaxorigo)}
+                        {assign var='globalparallaxorigo' value='enterpoint'}
+                    {else}
+                        {assign var='globalparallaxorigo' value=$slide.properties.globalparallaxorigo|default:'enterpoint'}
+                    {/if}
+                    <option value="enterpoint" {if $globalparallaxorigo == 'enterpoint'}selected="selected"{/if}>[`Enter Point`]</option>
+                    <option value="slidercenter" {if $globalparallaxorigo == 'slidercenter'}selected="selected"{/if}>[`Slider Center`]</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label data-toggle="tooltip" data-placement="bottom" data-html="true" title="[`If checked - enable Background Parallax effects.  Still, you will need to set the Parallax Effect per Slide Background`]" for="">[`Background`]</label>
+                <label style="display:block">
+                    <input class="js-switch" type="checkbox" name="globalsparallaxbg" value="1" {if  $slide.properties.globalsparallaxbg == 'on'}checked="checked"{/if}>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label data-toggle="tooltip" data-placement="bottom" data-html="true" title="[`Disable Parallax Effect on mobiles for better Performance and smoother effects.`]" for="">[`Disable on Mobile`]</label>
+                <label style="display:block">
+                    <input class="js-switch" type="checkbox" name="globalsparallaxmobileoff" value="1" {if  $slide.properties.globalsparallaxmobileoff == 'on'}checked="checked"{/if}>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label data-toggle="tooltip" data-placement="bottom" title="[`The speed of the position transform of element. 400 will move the elements in 0.4s.`]" for="">[`Speed`]</label>
+                <input class="form-control half" type="number" min="0" step="100" name="globalsparallaxspeed" value="{if isset ($slide.properties.globalsparallaxspeed)}{$slide.properties.globalsparallaxspeed}{else}400{/if}">
+            </div>
+
+  	    	   
+        </div>
+
+        <div class="col-xs-12 form-inline dddsettings" {if !isset($slide.properties.globalparallaxtype) || $slide.properties.globalparallaxtype != '3d'} style="display: none" {/if}>
+            <h5>[`3D Settings`]</h5>
+            <div class="form-group">
+                <label data-toggle="tooltip" data-placement="bottom" data-html="true" title="[`Add Shadow effect to each Layer`]" for="">[`Shadow`]</label>
+                <label style="display:block">
+                    <input class="js-switch" type="checkbox" name="globalsparallaxdddshadow" value="1" {if  $slide.properties.globalsparallaxdddshadow == 'on'}checked="checked"{/if}>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label data-toggle="tooltip" data-placement="bottom" data-html="true" title="[`If checked - disable Background 3D effect.`]" for="">[`Background Freeze`]</label>
+                <label style="display:block">
+                    <input class="js-switch" type="checkbox" name="globalsparallaxdddbgfreeze" value="1" {if  $slide.properties.globalsparallaxdddbgfreeze == 'on'}checked="checked"{/if}>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label data-toggle="tooltip" data-placement="bottom" data-html="true" title="[`If checked, all Slides and Layers are cropped by the Slider sides`]" for=""> [`Slider Overflow`]</label>
+                <label style="display:block">
+                    <input class="js-switch" type="checkbox" name="globalsparallaxdddoverflow" value="1" {if  $slide.properties.globalsparallaxdddoverflow == 'hidden'}checked="checked"{/if}>
+                </label>
+            </div>
+
+            <div class="form-group">
+                <label data-toggle="tooltip" data-placement="bottom" data-html="true" title="[`If checked, Layers are cropped by the Grid dimensions to avoid Floated 3D Text and hide elements outside of the Slider`]" for="">[`Layers Overflow`]</label>
+                <label style="display:block">
+                    <input class="js-switch" type="checkbox" name="globalsparallaxdddlayeroverflow" value="1" {if  $slide.properties.globalsparallaxdddlayeroverflow == 'hidden'}checked="checked"{/if}>
+                </label>
+            </div>
+           
+            <div class="form-group">
+                <label data-toggle="tooltip" data-html="true" data-placement="bottom" title="[`Solves issues in Safari Browser. It will move layers along Z axis if Background Freeze enabled to avoid 3D Renderig issues.`]" for="">[`Crop Fix`]</label>
+                <input class="form-control halfto" type="number" min="0"  name="globalsparallaxdddcropfix" value="{if isset ($slide.properties.globalsparallaxdddcropfix)}{$slide.properties.globalsparallaxdddcropfix}{else}12{/if}">
+            </div>
+        </div>
+    </div>
+</div>

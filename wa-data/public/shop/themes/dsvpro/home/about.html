@@ -1,0 +1,14 @@
+{strip}
+<div class="about fs-15em mb-40">
+    {if $wa->block("shop.about")}
+        {$wa->block("shop.about")}
+    {else}
+        <h1>Мы {$wa->accountName()}</h1>
+        <div class="xAboutTag gray">{$theme_settings.slogan}</div>
+        <hr>
+        <p>{$wa->accountName()}: Professional Edition - это универсальный тема дизайна, которая прекрасно подойдет для продажи любых типов товаров: электроники и бытовой техники, одежды и обуви, стройматериалов и инструментов, продуктов и прочих товаров.</p>
+        <p>Мы гарантируем: качественную поддержку, надежную работу шаблона, своевременные обновления по поддержке новых функциональных возможностей приложений, для которых разработана тема.</p>
+        <a href="#">Далее</a>{if $wa->user()->isAdmin()} <a href="http://designsovkusom.pro/docs/#shopabout" rel="nofollow" target="_blank">Как изменить?</a>{/if}
+    {/if}
+</div>
+{/strip}

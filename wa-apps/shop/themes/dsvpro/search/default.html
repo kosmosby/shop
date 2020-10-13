@@ -1,0 +1,23 @@
+{if count($products)}
+    <h1>{$title|default:"[`Search results`]"}</h1>
+    <p class="fs-15em">{sprintf("[`Result for «%s», found %d products`]", $title, $products_count)}</p>
+    {if $wa->get("autocomplete")}
+        <div id="searchProducts">
+            {include file="search/autocomplete.html"}
+        </div>
+    {else}
+        <div id="product-list">
+            {include file="list-thumbs.html"}
+        </div>
+    {/if}
+{else}
+    <div class="blank text-center">
+        <div class="blank__inner">
+            <div class="blank__icon">
+                <i class="mi mi-search"></i>
+            </div>
+            <h1 class="blank__heading">[`Search results`]</h1>
+            <p class="blank__text fs-15em">[`No products were found.`]</p>
+        </div>
+    </div>
+{/if}

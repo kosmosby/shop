@@ -1,0 +1,45 @@
+{strip}
+{if !empty($theme_settings.fbid)}
+    <meta property="fb:app_id" content="{$theme_settings.fbid}">
+{/if}
+{if !empty($nofollow)}
+    <meta name="robots" content="noindex,nofollow" />
+{/if}
+{if $theme_settings.tab_vk && !empty($theme_settings.tab_vkid)}
+    <script src="//vk.com/js/api/openapi.js?150"></script>
+    <script>
+        VK.init({ apiId: {$theme_settings.tab_vkid}, onlyWidgets: true });
+    </script>
+{/if}
+
+{* LOAD PRINT CSS *}
+<script>loadCSS("{$wa_active_theme_url}css/print.css", false, "print");</script>
+<style>
+    {if $theme_settings.product_image_height_tablet}
+        @media (min-width: 768px) {
+            .products__image .image-wrap,
+            .products__image .image {
+                height: {$theme_settings.product_image_height_tablet}px;
+            }
+            .products__image img {
+                max-height: {$theme_settings.product_image_height_tablet}px;
+            }
+        }
+    {/if}
+    {if $theme_settings.product_image_height}
+        @media (min-width: 1200px) {
+            .products__image .image-wrap,
+            .products__image .image {
+                height: {$theme_settings.product_image_height}px;
+            }
+            .products__image img {
+                max-height: {$theme_settings.product_image_height}px;
+            }
+        }
+    {/if}
+</style>
+
+<!-- plugin hook: 'frontend_head' -->
+{* @event frontend_head.%plugin_id% *}
+{foreach $frontend_head as $_}{$_}{/foreach}
+{/strip}

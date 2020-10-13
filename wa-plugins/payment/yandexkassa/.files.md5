@@ -1,0 +1,15 @@
+e580d202469748b9730a131f4b6fa2d9 *img/yandexkassa.png
+67f8a6a443939d6831b63193756187f5 *img/yandexkassa16.png
+ae41afcc8bd550608397b1bfa8621097 *js/settings.js
+a1751e1f10a3b96b05d0401c97e72008 *lib/.htaccess
+6ea76d5cc507056bf34b0016f6f1a0b1 *lib/classes/yandexkassaPaymentViewHelper.class.php
+a1751e1f10a3b96b05d0401c97e72008 *lib/config/.htaccess
+b2db444169edacf675466740fe03184e *lib/config/build.php
+cb56d873804e276c7445a7d11df2ba87 *lib/config/guide.php
+9bee782b9c984a0e402995e89de3c210 *lib/config/plugin.php
+d340532f2f261051c0f233fdd27227c8 *lib/config/requirements.php
+ae0ae4a9c38a0dfde54f6b13f99bf2c7 *lib/config/settings.php
+c0208f0411f12c4634323f4da423c457 *lib/yandexkassaPayment.class.php
+a1751e1f10a3b96b05d0401c97e72008 *templates/.htaccess
+9d1c73e675c7f6c31545ef6f0ee2a9af *templates/details.html
+c03edb9af47a1133b55a0380469c6351 *templates/payment.html

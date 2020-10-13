@@ -1,0 +1,39 @@
+{strip}
+{if $wa->photos}
+    {if $wa->isMobile()}
+        {$size = "768x0"}
+    {else}
+        {if $sidebar}
+            {$size = "1050x0"}
+        {else}
+            {$size = "1400x0"}
+        {/if}
+    {/if}
+    {$album_id = $album|default:$theme_settings.slider_album}
+    {$banners = $wa->photos->photos("album/`$album_id`", $size, null, $limit|default:10)}
+{/if}
+{$speed = $theme_settings.slider_delay|default:5 * 1000}
+{if count($banners)}
+    <div class="slider bannerSlider">
+        <ul class="list-unstyled dataSlider slick-slider-wm"  data-slick='{
+            "dots": true,
+            "infinite": true,
+            "autoplay": {$theme_settings.slider_auto},
+            "autoplaySpeed": {$speed},
+            "fade": true
+        }'>
+            {foreach $banners as $banner}
+                <li>
+                    <a href="{$banner.description|default:'javascript:void(0)'}">
+                        {if $banner@first}
+                            <img src="{$banner['thumb_'|cat:$size].url}" alt="{$banner.name}" class="img-responsive">
+                        {else}
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-lazy="{$banner['thumb_'|cat:$size].url}" alt="{$banner.name}" class="img-responsive">
+                        {/if}
+                    </a>
+                </li>
+            {/foreach}
+        </ul>
+    </div>
+{/if}
+{/strip}

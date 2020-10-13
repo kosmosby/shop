@@ -1,0 +1,139 @@
+{strip}
+{$sidebar_default = $theme_settings.sidebar_shop_home && $theme_settings.sidebar_shop}
+{$sidebar = $wa->cookie("sidebar", $sidebar_default)}
+{$wa->globals("sidebar",$sidebar)}
+{if $theme_settings.slider_type != "off"}
+    {if $theme_settings.slider_type == "promoslider"}
+        {include file="home/`$theme_settings.slider_type`.html" inline}
+    {else}
+        <div class="container-fluid">
+            <div class="row mb-20">
+                {include file="home/`$theme_settings.slider_type`.html" inline}
+            </div>
+        </div>
+    {/if}
+{/if}
+<div class="container-fluid">
+    <!-- plugin hook: 'frontend_homepage' -->
+    {* @event frontend_homepage.%plugin_id% *}
+    {foreach $frontend_homepage as $_}{$_}{/foreach}
+
+    {********* УСЛУГИ / SERVICES **********}
+    {if $theme_settings.home_services}
+        {include file="home/services.html" inline}
+    {/if}
+
+    {********* СПИСКИ ТОВАРОВ / SETS ******}
+    {if $theme_settings.home_sets}
+        {include file="home/productset.html" auto=true interval=5000 inline}
+        {include file="home/productset.html" condition="set/bestsellers" mytitle="[`Bestsellers`]" inline}
+    {/if}
+</div>
+
+{********* ПРОМО / PROMOS *************}
+{if $theme_settings.home_promos && !$sidebar}
+    {include file="home/promos.html" inline}
+{/if}
+
+{********* ТАБЫ / TABS ****************}
+{if $theme_settings.home_tabs}
+    <div class="container-fluid">
+        {$sets = [
+            0 => [
+                "name" => "[`Promos`]",
+                "id" => "promo",
+                "slider" => [
+                    "auto" => true
+                ]
+            ],
+            1 => [
+                "name" => "[`Best sellers`]",
+                "id" => "bestsellers",
+                "noscript" => true,
+                "limit" => 5
+            ]
+        ]}
+        {include file="home/tabs.html" sets=$sets inline}
+    </div>
+{/if}
+
+<div class="mb-30">
+    {********* СПИСКИ ТОВАРОВ / SETS ******}
+    {if $theme_settings.home_sets}
+        {include file="home/productmini.html" bg="#c5d5cb" inline}
+    {/if}
+
+    {********* КАТЕГОРИИ / CATEGORIES *****}
+    {if $theme_settings.home_categories}
+        {include file="home/categories.html" id=90 image="/wa-data/public/shop/themes/dsvpro/img/catsbg.jpg" inline}
+    {/if}
+</div>
+{********* КАТЕГОРИИ 2 / CATEGORIES 2 *****}
+{if $theme_settings.home_categories_type2}
+    {include file="home/categories-popular.html" id=90 inline}
+{/if}
+
+{********* БАННЕРЫ / BANNERS **************}
+{if $theme_settings.home_banners}
+    {include file="home/banners.html" album=4 inline}
+{/if}
+
+{********* РЕКОММЕНДАЦИИ / RECOMMENDED **}
+{if $theme_settings.home_recommended}
+    {include file="home/recommended.html" inline}
+{/if}
+
+{********* ПОСТЫ / POSTS **************}
+{if $wa->blog && $theme_settings.home_posts}
+    <div class="container-fluid">
+        {include file="home/posts.html" inline}
+    </div>
+{/if}
+
+{********* ОТЗЫВЫ / REWIEWS ***********}
+{if $theme_settings.home_reviews}
+    <div class="container-fluid">
+        {include file="home/reviews.html" inline}
+    </div>
+{/if}
+
+{********* КАРТА / MAP ****************}
+{if !empty($theme_settings.home_maps)}
+    <div id="google-maps" class="map">
+        {$theme_settings.home_maps}
+        <div class="map__info">
+            <div class="container-fluid">
+                <div class="map__text bg-primary">
+                    {if $theme_settings.map_info}
+                        {$theme_settings.map_info}
+                    {else}
+                        <ul class="list-unstyled">
+                            <li class="fs-14em tt-uc">Адресс</li>
+                            <li class="fs-13em fw-7 mb-10">Москва, улица Выдуманная, 6</li>
+                            <li class="fs-14em tt-uc">Телефон</li>
+                            <li class="fs-13em fw-7 mb-10"><a href="tel:{$wa->shop->settings('phone')|regex_replace:'/[^0-9\+]/':''}">{$wa->shop->settings("phone")}</a></li>
+                            <li class="fs-14em tt-uc">Email</li>
+                            <li class="fs-13em fw-7"><a href="mailto:{$wa->shop->settings('email')}">{$wa->shop->settings("email")}</a></li>
+                        </ul>
+                    {/if}
+                </div>
+            </div>
+        </div>
+    </div>
+{/if}
+
+{********* БРЕНДЫ / BRANDS ************}
+{if $theme_settings.home_brands}
+    {include file="home/brands.html" inline}
+{/if}
+
+{********* О МАГАЗИНЕ / ABOUT SHOP ****}
+<div class="container-fluid">
+    {include file="home/about.html" inline}
+</div>
+
+{********* ОБРАТНЫЙ ЗВОНОК / CALLBACK *}
+{if !empty($theme_settings.home_callback)}
+    {include file="home/callback.html" inline}
+{/if}
+{/strip}

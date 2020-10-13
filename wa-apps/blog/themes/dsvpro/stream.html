@@ -1,0 +1,65 @@
+{strip}
+
+{$sidebar_default = $theme_settings.sidebar_blog_home && $theme_settings.sidebar_blog}
+{$sidebar = $wa->cookie("sidebar", $sidebar_default)}
+{$wa->globals("sidebar",$sidebar)}
+{$is_lazyloading = false}
+{if !$is_lazyloading}
+<div id="post-stream" role="main" class="lazyloading" {if $wa->param("blog_url")}itemscope itemtype="http://schema.org/Blog"{/if}>
+{/if}
+    {if !$is_lazyloading and !empty($stream_title)}
+        <h1>{$stream_title|escape}</h1>
+        {$wa->globals("crumb",$stream_title|escape)}
+    {else}
+        <h1>[`Blogs`]</h1>
+        {$wa->globals("crumb","[`Blogs`]")}
+    {/if}
+    <a name="page_{$page}"></a>
+
+    {include file="stream_posts.html" inline}
+{if !$is_lazyloading}
+    <div class="text-center">
+        {wa_pagination total=$pages page=$wa->get('page',1) prev="<i class='mi mi-chevron-left mi-24'></i>" next="<i class='mi mi-chevron-right mi-24'></i>" nb=5 attrs=['class' => 'pagination', 'id' => 'stream-paging']}
+    </div>
+</div>
+{else}
+    {wa_pagination total=$pages page=$wa->get('page',1) prev="<i class='mi mi-chevron-left mi-24'></i>" next="<i class='mi mi-chevron-right mi-24'></i>" nb=5 attrs=['class' => 'pagination', 'id' => 'stream-paging']}
+{/if}
+
+{*
+<div class="text-center">
+    <ul class="pagination " id="stream-paging">
+        {for $p=1 to $pages}
+        <li{if $p eq $page} class="selected"{/if}><a href="{if $p eq $page}#page_{$page}{else}?page={$p}{/if}">{$p}</a></li>
+        {/for}
+    </ul>
+</div>
+*}
+{if $page eq 1 && !$wa->globals('disable_pageless') && !$is_lazyloading}
+<script type="text/javascript">
+    $.pageless({
+        auto: true,
+        url: '?layout=lazyloading{if $blog_query}&query={urlencode($blog_query)}{/if}',
+        target: '.lazyloading:first',
+        scroll: function(response){
+            var progress = '';
+            if (response) {
+                progress = '<i class="icon16 loading"><'+'/i> <em>[`Loading`]...<'+'/em>';
+            }
+        },
+        count: {$pages},
+        paging_selector:'#stream-paging'
+
+    {if $blog_query}
+    ,prepareContent: function(html) {
+        var tmp = $('<div></div>').append(html);
+        $.blog_utils.highlight(tmp);
+        var html = tmp.html();
+        tmp.remove();
+        return html;
+    }
+    {/if}
+    });
+</script>
+{/if}
+{/strip}

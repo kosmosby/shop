@@ -1,0 +1,63 @@
+<div id="{$tab.name}" class="{$tab_class|default:'tab-pane fade'}{if $active_tab[$tab.name]} in active{/if}">
+    {if !empty($rates)}
+        <div class="row">
+            <div class="col-md-2">
+                <p class="rating rating20">
+                    {$wa->shop->ratingHtml($product.rating, 20)}
+                </p>
+                <p class="fs-13em">{$reviews_total_count} [`Reviews`] | {$product.rating} [`from`] 5</p>
+            </div>
+            <div class="col-md-7 col-xs-12">
+                <table class="rating__table mb-10">
+                    {$_total_count = 0}
+                    {foreach $rates as $_rate => $_count}
+                        {$_total_count = $_total_count + $_count}
+                    {/foreach}
+                    {for $i = 5 to 0 step -1}
+                        {if empty($rates[$i]) || !$rates[$i]}
+                            {$_count = 0}
+                        {else}
+                            {$_count = $rates[$i]}
+                        {/if}
+                        {if $i || $_count}
+                            <tr>
+                                <td>
+                                    <span class="rating rating16">
+                                        {for $j=1 to 5}
+                                            <i class="{if $j <= $i}star{else}star-empty{/if}"></i>
+                                        {forelse}
+                                            <span class="hint">[`no rate`]</span>
+                                        {/for}
+                                    </span>
+                                </td>
+                                <td>({$_count})</td>
+                                <td>
+                                    <div class="bar">
+                                        <div style="width: {if $_total_count > 0}{str_replace(',','.', 100*$_count/$_total_count)}{else}0{/if}%;"></div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {/if}
+                    {/for}
+                </table>
+            </div>
+            <div class="col-md-3 text-right">
+                {if !$theme_settings.product_reviews_ajax}
+                    <a class="btn btn-primary" href="{$wa->shop->productUrl($product, 'reviews')}">[`Write a review`]</a>
+                {/if}
+            </div>
+        </div>
+    {elseif $theme_settings.product_nav == 'anchors' || !$theme_settings.product_reviews_ajax}
+        <a href="{$wa->shop->productUrl($product, 'reviews')}" class="write-review btn btn-primary" id="write-review">[`Write a review`]</a>
+    {/if}
+
+    <div class="reviews__wrapper">
+        <ul class="reviews__branch list-unstyled">
+            {foreach $reviews as $review}
+                <li data-id={$review.id} data-parent-id="0">
+                    {include file="review.html" reply_allowed=false inline}
+                </li>
+            {/foreach}
+        </ul>
+    </div>
+</div>

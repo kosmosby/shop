@@ -1,0 +1,19 @@
+{if $wa->shop && $theme_settings.header_nav_tags}
+    {$tagcloud = $wa->shop->tags()}
+    {if $tagcloud}
+        <li class="dropdown megaMenu">
+            <a href="javascript:void(0)"><span>[`Tags`]</span></a>
+            <div class="dropdown-menu">
+                <div class="container-fluid">
+                    <div class="megaMenu__body">
+                        {foreach $tagcloud as $tag}
+                            <a href="{$wa_app_url}tag/{$tag.uri_name}/" style="font-size: {$tag.size}%; opacity: {$tag.opacity}" class="megaMenu__tag">
+                                {$tag.name|escape}
+                            </a>
+                        {/foreach}
+                    </div>
+                </div>
+            </div>
+        </li>
+    {/if}
+{/if}

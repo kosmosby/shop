@@ -1,0 +1,39 @@
+{if $theme_settings.sidebar_nav}
+    {include file="`$wa_parent_theme_path`/sidebar/nav.html"}
+{/if}
+
+{* @event (frontend_action_default|frontend_action_post|frontend_action_page|frontend_action_error).%plugin_id%.sidebar *}
+{foreach $frontend_action as $plugin => $output}
+    {if !empty($output.sidebar)}
+        <hr>
+        <div class="{$plugin}">
+            {$output.sidebar}
+        </div>
+    {/if}
+{/foreach}
+
+{if $theme_settings.sidebar_promos}
+    {include file="`$wa_parent_theme_path`/sidebar/promos.html"}
+{/if}
+
+{if $theme_settings.sidebar_related}
+    {include file="`$wa_parent_theme_path`/sidebar/related.html"}
+{/if}
+
+{if $theme_settings.sidebar_posts}
+    {include file="`$wa_parent_theme_path`/sidebar/posts.html"}
+{/if}
+
+{if $theme_settings.sidebar_tags}
+    {include file="`$wa_parent_theme_path`/sidebar/tags.html" limit=10}
+{/if}
+
+{if $theme_settings.sidebar_latestphotos}
+    {include file="`$wa_parent_theme_path`/sidebar/photos.html"}
+{/if}
+
+{include file="`$wa_parent_theme_path`/social/vkontakte.html"}
+{include file="`$wa_parent_theme_path`/social/facebook.html"}
+{include file="`$wa_parent_theme_path`/social/instagram.html"}
+{include file="`$wa_parent_theme_path`/social/odnoklassniki.html"}
+{include file="`$wa_parent_theme_path`/social/twitter.html"}

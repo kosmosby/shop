@@ -1,0 +1,54 @@
+{strip}
+<div id="demo_overlay"></div>
+<div class="demo" id="demo">
+    <div class="demo__switch">
+        <a href="javascript:void(0)" class="td-none" title="[`Settings`]"><i class="mi mi-settings mi-24 demo__icon"></i></a>
+    </div>
+    <div class="demo__panel">
+        {$header = $wa->cookie("header",$theme_settings.header)}
+        {$sidebar = $wa->cookie("sidebar","0")}
+        {$layout = $wa->cookie("layout",$theme_settings.layout)}
+        {$settings = [
+            1 => [
+                "name" => "header",
+                "title" => "[`Header`]",
+                "values" => [ "theme_ua" => 1, "theme_am" => 2, "theme_wm" => 3, "theme_el" => 4 ],
+                "active" => $header
+            ],
+            2 => [
+                "name" => "sidebar",
+                "title" => "[`Sidebar`]",
+                "values" => [ "1" => "[`Enabled`]", "0" => "[`Disabled`]" ],
+                "image" => 1,
+                "active" => $sidebar
+            ],
+            3 => [
+                "name" => "layout",
+                "title" => "[`Layout`]",
+                "values" => [ "boxed" => "[`Boxed`]", "wide" => "[`Wide`]" ],
+                "image" => 1,
+                "active" => $layout
+            ]
+        ]}
+        {foreach $settings as $setting}
+            <div class="setting">
+                <div class="setting__name">
+                    <span>{$setting.title}</span>
+                </div>
+                <ul class="list-unstyled list-inline">
+                    {foreach $setting.values as $key => $name}
+                        <li class="setting__item">
+                            {if !isset($setting.image)}
+                                <a href="javascript:void(0)" class="setting__value td-none{if $setting.active == $key} active{/if}" data-setting="{$setting.name}" data-value="{$key}">{$name}</a>
+                            {else}
+                                <a href="javascript:void(0)" class="setting__image setting__image-{$setting.name}{$key} td-none{if $setting.active == $key} active{/if}" data-setting="{$setting.name}" data-value="{$key}" title="{$name}">
+                                </a>
+                            {/if}
+                        </li>
+                    {/foreach}
+                </ul>
+            </div>
+        {/foreach}
+    </div>
+</div>
+{/strip}

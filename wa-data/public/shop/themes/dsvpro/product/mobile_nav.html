@@ -1,0 +1,21 @@
+{strip}
+<div class="row">
+    <div class="panel-group product__accordion product__nav" role="tablist" aria-multiselectable="true">
+        {foreach $product_tabs as $tab}
+            {if $tab.name == "features" && count($product.features) == 0}{continue}{/if}
+            <div class="panel">
+                <div class="panel-heading" role="tab" id="heading_{$tab.name}">
+                    <div class="panel-title">
+                        <a href="#collapse_{$tab.name}" class="product__accordion_link td-none {if !$active_tab[$tab.name]}collapsed{/if}" role="button" data-toggle="collapse" aria-expanded="true" aria-controls="collapse_{$tab.name}">{$tab.title}<i class="mi mi-24"></i></a>
+                    </div>
+                </div>
+                <div id="collapse_{$tab.name}" class="panel-collapse collapse{if $active_tab[$tab.name]} in{/if}" role="tabpanel" aria-labelledby="heading_{$tab.name}">
+                    <div class="panel-body">
+                        {include file="product/`$tab.template`.html" tab=$tab tab_class="product_panel" inline}
+                    </div>
+                </div>
+            </div>
+        {/foreach}
+    </div>
+</div>
+{/strip}

@@ -1,0 +1,107 @@
+<link rel="stylesheet" href="{$wa_app_static_url}plugins/slider/js/vendors/nivo-slider/themes/{$slider.theme|escape}/{$slider.theme|escape}.css" type="text/css" media="screen" />
+
+<link rel="stylesheet" href="{$wa_app_static_url}plugins/slider/js/vendors/nivo-slider/nivo-slider.css" type="text/css" media="screen" />
+
+
+<script src="{$wa_app_static_url}plugins/slider/js/vendors/nivo-slider/jquery.nivo.slider.pack.js" type="text/javascript"></script>
+
+
+
+
+
+<link rel="stylesheet" href="{$wa_app_static_url}plugins/slider/js/vendors/zoomslider/css/layerslider.css" type="text/css">
+
+<script src="{$wa_app_static_url}plugins/slider/js/vendors/zoomslider/js/greensock.js"></script>
+<script src="{$wa_app_static_url}plugins/slider/js/vendors/zoomslider/js/layerslider.transitions.js"></script>
+<script src="{$wa_app_static_url}plugins/slider/js/vendors/zoomslider/js/layerslider.kreaturamedia.jquery.js"></script>
+фвафваы
+
+
+<div id="layerslider-{$slider.id}" style="width: 800px; height: 400px;">
+
+    <div class="ls-slide" data-ls="slidedelay: 4000; transition2d: 2,7,9;">
+        <img src="/wa-data/public/shop/plugins/slider/images/0gJfPM4b64.png" class="ls-bg" alt="Slide background">
+    </div>
+ 
+ 
+    <div class="ls-slide" data-ls="slidedelay: 4000; transition2d: 2,7,9;">
+        <img src="/wa-data/public/shop/plugins/slider/images/0gJfPM4b64.png" class="ls-bg" alt="Slide background">
+    </div>
+ 
+
+  {foreach from=$slides item=slide}
+        {if $slide.html}
+        	 {$slide.html}
+        {/if}
+  {/foreach}
+ 
+</div>
+
+
+<!--
+<div class="slider-wrapper theme-{$slider.theme|escape}" style="{if $slider.width}width: {$slider.width|escape}px;{/if} {if $slider.height}height: {$slider.height|escape}px;{/if} {if $slider.aligncenter}margin: 0 auto;{/if}">
+    <div id="slider-{$slider.id}" class="nivoSlider" >
+        {foreach from=$slides item=slide}
+        {if $slide.link}<a href="{$slide.link|escape}">{/if}
+            <img src="{$wa_url}wa-data/public/shop/plugins/slider/images/{$slide.img}" alt="{$slide.title|escape}" title="{$slide.title|escape}" />
+        {if $slide.link}</a>{/if}
+        
+        {if $slide.html}
+        	 {$slide.html}
+        {/if}
+        
+        {/foreach}
+    </div>
+</div>
+-->
+
+
+
+<script type="text/javascript">
+ 
+    // Running the code when the document is ready
+    $(document).ready(function(){
+ 
+        // Calling LayerSlider on the target element
+        $('#layerslider-{$slider.id}').layerSlider({
+			
+			skinsPath: '{$wa_app_static_url}plugins/slider/js/vendors/zoomslider/skins/',
+			autoStart:false,
+			skin: 'borderlesslight',
+			responsive : true,
+			navButtons: true,
+			thumbnailNavigation: 'disabled'
+			
+ 
+            // Slider options goes here,
+            // please check the 'List of slider options' section in the documentation
+        });
+    });
+ 
+</script>
+
+
+<script type="text/javascript">
+
+/*    $(document).ready(function() {
+        $('#slider-{$slider.id}').nivoSlider(
+                {
+                    effect: '{$slider.effect|escape}',
+                    slices: {$slider.slices|escape},
+                    boxCols: {$slider.boxCols|escape},
+                    boxRows: {$slider.boxRows|escape}, 
+                    animSpeed: {$slider.animSpeed|escape},
+                    pauseTime: {$slider.pauseTime|escape},
+                    startSlide: {$slider.startSlide|escape},
+                    directionNav: {$slider.directionNav|escape},
+                    controlNav: {$slider.controlNav|escape},
+                    controlNavThumbs: {$slider.controlNavThumbs|escape},
+                    pauseOnHover: {$slider.pauseOnHover|escape},
+                    manualAdvance: {$slider.manualAdvance|escape},
+                    prevText: '{$slider.prevText|escape}',
+                    nextText: '{$slider.nextText|escape}',
+                    randomStart: {$slider.randomStart|escape},
+                });
+    }
+    );*/
+</script>

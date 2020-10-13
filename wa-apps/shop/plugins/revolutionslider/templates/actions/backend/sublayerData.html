@@ -1,0 +1,19 @@
+<h4><i class="icon-link"></i> [`Link`] <i class="fa icon-angle-down control"></i></h4>
+<div class="line" style="display: none">
+    <div class="form-group fullhalf">
+        <label data-toggle="tooltip" data-placement="top" title="[`Link URL`]" for="">[`Link`]</label>
+        <input type="text" name="rsLayerActionLink" value="{if isset ($sublayer.rsLayerActionLink)}{$sublayer.rsLayerActionLink}{else}{/if}">
+    </div>
+    <div class="form-group fullthird">
+        <label data-toggle="tooltip" data-html="true" data-placement="bottom" title="" for="" data-original-title="[`<strong>_blank</strong> - Opens the linked document in a new window or tab;<br> <strong>_self</strong> - Opens the linked document in the same frame.`]">[`Target`]</label>
+        <select name="rsLayerDataLinktarget">
+            {if !isset($sublayer.rsLayerDataLinktarget)}
+            {assign var='rsLayerDataLinktarget' value='_self'}
+            {else}
+            {assign var='rsLayerDataLinktarget' value=$sublayer.rsLayerDataLinktarget|default:'_self'}
+            {/if}
+            <option {if $rsLayerDataLinktarget == '_self'}selected="selected"{/if} value="_self">self</option>
+            <option {if $rsLayerDataLinktarget == '_blank'}selected="selected"{/if} value="_blank">blank</option>
+        </select>
+    </div>
+</div>

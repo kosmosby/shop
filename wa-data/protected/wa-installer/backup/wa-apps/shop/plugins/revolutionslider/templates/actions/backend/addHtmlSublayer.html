@@ -1,0 +1,120 @@
+<div class="row sublayer">
+    <div class="col-xs-12 form-inline">
+        <input type="hidden" name="type" value="html">
+
+        <div class="moveable"><i class="icon-bullets"></i></div>
+
+        <span class="open-sublayer"><i class="fa icon-angle-down"></i></span>
+        <i class="icon-text layerlinecontrol"></i>
+        <i class="icon-eye hide-sublayer layerlinecontrol" data-toggle="tooltip" data-placement="top" title="[`Hide Layer on artboard`]"></i>
+        <i class="icon-trash remove-sublayer layerlinecontrol" data-toggle="tooltip" data-placement="top" title="[`Delete Layer`]"></i>
+        <i class="icon-docs layerlinecontrol clone-sublayer" data-toggle="tooltip" data-placement="top" title="[`Dubplicate Layer`]"></i>
+
+
+        <input class="form-control name" type="text" name="name" data-html="true" value="{if isset ($sublayer.name)}{$sublayer.name}{else}Name{/if}">
+
+        <div class="form-group">
+            <label data-toggle="tooltip" data-html="true" data-placement="top" title="[`Initial Layer Animation will start from that time point.<br><strong>Value in milliseconds</strong>`]">[`Start`]</label>
+            <input class="form-control half" type="text" name="delayin" value="{if isset ($sublayer.delayin)}{$sublayer.delayin}{else}300{/if}">
+        </div>
+        <div class="form-group">
+            <label data-toggle="tooltip" data-html="true" data-placement="top" title="[`Finish Layer Animation will start from that time point.<br><strong>Value in milliseconds</strong>`]">[`Finish`]</label>
+            <input class="form-control half" type="text" name="delayout" value="{if isset ($sublayer.delayout)}{$sublayer.delayout}{/if}">
+        </div>
+        <div class="form-group">
+            <label data-toggle="tooltip" data-placement="top" title="[`Current Horizontal position of Layer`]">X</label>
+            <input class="form-control half" type="text" name="top" value="{if isset ($sublayer.top)}{$sublayer.top}{else}100{/if}">
+        </div>
+        <div class="form-group">
+            <label data-toggle="tooltip" data-placement="top" title="[`Current Vertical position of Layer`]">Y</label>
+            <input class="form-control half" type="text" name="left" value="{if isset ($sublayer.left)}{$sublayer.left}{else}100{/if}">
+        </div>
+        <div class="form-group">
+            <label data-toggle="tooltip" data-placement="top" title="[`Type of layer container`]">[`Type`]</label>
+            <select class="form-control type" name="htmltype">
+                {if !isset ($sublayer.htmltype)}
+                {assign var='htmltype' value=$sublayer.type|default:'div'}
+                {else}
+                {assign var='htmltype' value=$sublayer.htmltype|default:'div'}
+                {/if}
+
+                <option {if $htmltype == 'div'}selected="selected"{/if}>div</option>
+                <option {if $htmltype == 'span'}selected="selected"{/if}>span</option>
+                <option {if $htmltype == 'button'}selected="selected"{/if}>button</option>
+                <option {if $htmltype == 'p'}selected="selected"{/if}>p</option>
+                <option {if $htmltype == 'h1'}selected="selected"{/if}>h1</option>
+                <option {if $htmltype == 'h2'}selected="selected"{/if}>h2</option>
+                <option {if $htmltype == 'h3'}selected="selected"{/if}>h3</option>
+                <option {if $htmltype == 'h4'}selected="selected"{/if}>h4</option>
+                <option {if $htmltype == 'h5'}selected="selected"{/if}>h5</option>
+                <option {if $htmltype == 'h6'}selected="selected"{/if}>h6</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="col-xs-12 html right">
+        <div class="row">
+            <div class="col-xs-12 form-inline">
+                <div class="form-group">
+                    <input class="form-control name" type="text" name="name" value="{if isset ($sublayer.name)}{$sublayer.name}{else}Name{/if}"><button class="change-editor-position control"><i class="icon-arrows"></i></button><button class="close-editor control"><i class="icon-close"></i></button>
+                </div>
+
+                <ul class="nav nav-tabs" role="tablist">
+                    <li class="active first"><a href="#" role="tab" data-toggle="tab">[`General`]</a></li>
+                    <li><a href="#" role="tab" data-toggle="tab">[`Styles`]</a></li>
+                    <li><a href="#" role="tab" data-toggle="tab">[`Animation`]</a></li>
+                    <li><a href="#" role="tab" data-toggle="tab">[`More`]</a></li>
+                </ul>
+
+
+                <div class="tab-content">
+
+                    <!-- General -->
+                    <div role="tabpanel" class="tab-pane fade in active" >
+                        <div class="row contain">
+                            <div class="col-xs-12">
+                                {include file='./sublayerContent.html' inline}
+                                {include file='./sublayerStyleFont.html' inline}
+                                {include file='./sublayerStyleBackground.html' inline}
+                                {include file='./sublayerStyleBorder.html' inline}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Styles -->
+                    <div role="tabpanel" class="tab-pane fade" >
+                        <div class="row contain">
+                            <div class="col-xs-12">
+                                {include file='./sublayerIDLEtransformation.html' inline}
+                                {include file='./sublayerIDLErotation.html' inline}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Animation -->
+                    <div role="tabpanel" class="tab-pane fade">
+                        <div class="row contain">
+                            <div class="col-xs-12">
+                                {include file='./sublayerAnimateIn.html' inline}
+                                {include file='./sublayerAnimateOut.html' inline}
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- More -->
+                    <div role="tabpanel" class="tab-pane">
+                        <div class="row contain">
+                            <div class="col-xs-12">
+                                {include file='./sublayerParallax.html' inline}
+                                {include file='./sublayerData.html' inline}
+                            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+        <a class="globalsave" data-toggle="tooltip" data-placement="left" data-html="true" title="" href="javascript:void(0);" data-original-title="Сохранить"><i class="icon-floppy" aria-hidden="true"></i></a>
+    </div>
+</div>

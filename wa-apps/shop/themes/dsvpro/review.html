@@ -1,0 +1,54 @@
+{strip}
+{if !empty($ajax_append)}<li data-id={$review.id} data-parent-id="{$review.parent_id}">{/if}
+<div class="review" itemprop="review" itemscope itemtype="http://schema.org/Review">
+    {********* РЕЙТИНГ / RATING ***********}
+    {if !$review.parent_id && !empty($review.rate)}
+        <span class="rating" itemprop="reviewRating" itemscope itemtype="http://schema.org/Rating">
+            {$rate = round($review.rate)}
+            <meta itemprop="worstRating" content = "1">
+            <meta itemprop="ratingValue" content="{$rate}">
+            <meta itemprop="bestRating" content = "5">
+            {$wa->shop->ratingHtml($rate,12)}
+        </span>
+    {/if}
+
+    {********* АВТОР / AUTHOR *************}
+    {if empty($review.site)}
+        <span class="review__author fs-13em" itemprop="author">[`By`] {$review.author.name}</span>
+        {*
+            {if ifempty($review.author.is_user) > 0}
+                <span class="badge blue fs-13em">{$wa->shop->settings('name')}</span>
+            {/if}
+        *}
+    {else}
+        <a href="{$review.site}" class="review__author fs-13em" itemprop="author" rel="nofollow" target="_blank">{$review.author.name}</a>
+    {/if}
+
+    <div class="review__name">
+        {********* ЗАГОЛОВОК / HEADING ********}
+        {if $review.title}
+            <strong itemprop="name">{$review.title}</strong>
+        {/if}
+
+        {********* ДАТА / DATE ****************}
+        <span class="review__date">{$review.datetime|date_format:"d/m/y"}</span>
+    </div>
+
+    <meta itemprop="itemReviewed" content="{$product.name|escape}">
+    <meta itemprop="datePublished" content="{$review.datetime|date_format:'Y-m-d'}">
+
+    {********* ТЕКСТ / TEXT ***************}
+    {if $review.text}
+        <p class="fs-13em" itemprop="description">{$review.text}</p>
+    {/if}
+
+    {********* ОТВЕТИТЬ / REPLY ***********}
+    {if $reply_allowed}
+        <div class="review__action">
+            <a class="review__reply fs-13em" href="{if isset($reply_link)}{$reply_link}{else}#{/if}">[`reply`]</a>
+        </div>
+    {/if}
+</div>
+
+{if !empty($ajax_append)}<ul class="reviews__branch list-unstyled"></ul></li>{/if}
+{/strip}

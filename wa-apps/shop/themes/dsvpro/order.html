@@ -1,0 +1,94 @@
+{$_show_cart = true}
+{$_cart_count = $wa->shop->cart->count()}
+{$_cart_total = $wa->shop->cart->total()}
+
+<style>
+    #header-container { display: none; }
+    .s-cart-empty-wrapper { margin: 100px 0; text-align: center; }
+    .s-cart-empty-wrapper .s-image-wrapper { margin: 0 0 20px; }
+    .s-cart-empty-wrapper .s-image-wrapper img { vertical-align: top; width: 100%; max-height: 160px; }
+    .s-cart-empty-wrapper .s-description { margin: 20px 0 0; }
+    .s-cart-empty-wrapper .s-actions-wrapper { margin: 30px 0 0; color: #006bd8; }
+</style>
+
+<div class="container-fluid order">
+    <div class="order__heading">
+        <h1 class="fw-4">[`Cart`]</h1>
+    </div>
+    {*EMPTY*}
+    {if empty($_cart_count)}
+        <div class="blank text-center">
+            <div class="blank__inner">
+                <div class="blank__icon">
+                    <i class="mi mi-shopping-cart"></i>
+                </div>
+                <h1 class="blank__heading">[`Your shopping cart is empty.`]</h1>
+                <p class="blank__text fs-15em">[`Add item to the shopping cart. It will be displayed automatically`]</p>
+            </div>
+        </div>
+    {*ORDER*}
+    {else}
+        <link rel="stylesheet" href="{$wa_theme_url}css/order.css?v={$wa_theme_version}">
+
+        <div class="s-order-page row" id="js-order-page">
+            {if !empty($_show_cart)}
+            <div class="s-order-column col-md-6">
+
+                <section class="s-order-section" id="js-order-cart">
+                    {if $_cart_count && $_cart_total}
+                        <div class="order__info fs-14em flex justify-space-between">
+                            <div class="gray">{sprintf("[`You order %d products worth %s`]", $_cart_count, wa_currency_html($_cart_total, $wa->shop->currency()))}</div>
+                            <div class="hidden-xs">
+                                <a class="s-delete-button js-clear-cart" href="javascript:void(0);">
+                                    <span class="mi mi-delete mi-18 gray"></span>[`Reset all`]
+                                </a>
+                            </div>
+                        </div>
+                    {/if}
+                    <div class="s-section-body">
+                        {$wa->shop->checkout()->cart([
+                            "DEBUG" => false,
+                            "wrapper" => "#js-order-cart"
+                        ])}
+                    </div>
+                </section>
+
+            </div>
+            {/if}
+
+            <div class="s-order-column col-md-6">
+
+                <section class="s-order-section" id="js-order-form">
+                    <div class="s-section-body">
+                        {$wa->shop->checkout()->form([
+                            "DEBUG" => false,
+                            "wrapper" => "#js-order-form"
+                        ])}
+                    </div>
+                </section>
+
+            </div>
+
+            <script>
+              ( function($) {
+                ( typeof window.ShopOrderPage === "function" ? init() : load().then(init) );
+                function load() {
+                  var deferred = $.Deferred();
+                  $.getScript("{$wa_theme_url}js/order.js?v={$wa->version()}", function() {
+                    deferred.resolve();
+                  });
+                  return deferred.promise();
+                }
+                function init() {
+                  new window.ShopOrderPage({
+                    $wrapper: $("#js-order-page"),
+                    urls: {
+                      "checkbox-icon": "{$wa_app_static_url}img/frontend/order/svg/sprite.svg#checkbox-yes"
+                    }
+                  });
+                }
+              })(jQuery);
+            </script>
+        </div>
+    {/if}
+</div>

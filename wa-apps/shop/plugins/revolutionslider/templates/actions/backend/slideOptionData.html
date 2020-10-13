@@ -1,0 +1,12 @@
+<div class="contain">
+    <div class="col-xs-12 form-inline">                             
+        <div class="form-group">
+            <img class="imgplaceholder" style="height: 80px;" src="{if isset($layer.properties.thumbimage)}{$layer.properties.thumbimage}{else}{$wa_app_static_url}plugins/revolutionslider/img/imgplaceholder.png{/if}" alt="">
+            <input type="hidden" class="thumbImage" name="thumbimage" value="{if isset ($layer.properties.thumbimage)}{$layer.properties.thumbimage}{/if}">
+        </div>
+        <div class="form-group">    
+            <input type="text" name="image" class="revoslider_upload_input" style="float: left;display: block;margin-right: 5px;" value="{if isset ($layer.properties.thumbimage)}{$layer.properties.thumbimage}{/if}">
+            <input style="margin: -2px 0 0 0;" class="revoslider_upload_input fileupload thumb" type="file" name="files[]" data-url="?plugin=revolutionslider&action=photoupload" value="{if isset ($layer.properties.thumbimage)}{$layer.properties.thumbimage}{/if}">
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+{strip}
+{**
+* @param string $condition - search condition (set/promo)
+* @param int $limit - count of products (null)
+*}
+{$size = ["1400x0", "500"]}
+{$products = $wa->shop->products($condition|default:"`$theme_settings.slider_condition`", null, $limit|default:null, ["params" => 1])}
+{$products_photos = $wa->shop->images( array_keys($products), $size )}
+{$slides_photos = []}
+{foreach $products_photos as $product_id => $photos}
+    {foreach $photos as $photo}
+        {if $photo.description == "bg"}
+            {$slides_photos[$product_id]["bg"] = $photo['url_0']}
+        {/if}
+        {if $photo.description == "video"}
+            {$slides_photos[$product_id]["video"] = $photo['url_1']}
+        {/if}
+    {/foreach}
+{/foreach}
+{if count($slides_photos) > 0}
+    <div class="slider master-slider ms-skin-default" id="masterslider" data-type="{$theme_settings.slider_type}" data-autoplay="{$theme_settings.slider_auto}">
+        {foreach $products as $p}
+            {if !isset($slides_photos[$p.id]["bg"])}
+                {continue}
+            {/if}
+            {$available = $wa->shop->settings('ignore_stock_count') || $p.count === null || $p.count > 0}
+
+            {$default_name = $p.name|escape}
+            {$default_description = strip_tags($p.summary)|truncate:130:"..."}
+            <div class="ms-slide slide3" data-delay="{$theme_settings.slider_delay|default:5}" data-fill-mode="fill">
+                {* BACKGROUND IMAGE *}
+                {if isset($slides_photos[$p.id]["bg"])}
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{$slides_photos[$p.id]['bg']}" alt="{$p.name}">
+                {/if}
+
+                {* PARAM HEADING / PRODUCT NAME *}
+                <div class="ms-layer ms-slide__name ms-slide__white" data-origin="tl" data-offset-x="100" data-offset-y="100" data-effect="bottom(20)" data-delay="1500" data-ease="easeInOutCubic" data-resize="false">{$p.params.heading|default:$default_name}</div>
+
+                {* CATEGORY NAME *}
+                {$cat = $wa->shop->category($p.category_id)}
+                <div class="ms-layer ms-slide__caption" data-origin="tl" data-offset-x="100" data-offset-y="145" data-effect="left(40)" data-delay="1100" data-ease="easeInOutCubic" data-widthlimit="991">{$cat.name|escape}</div>
+
+                {* PARAM TEXT / PRODUCT SUMMARY *}
+                <div class="ms-layer ms-slide__promo ms-slide__white" data-effect="right(40)" data-delay="1500" data-ease="easeInOutCubic" data-origin="tl" data-offset-x="100" data-offset-y="250" data-widthlimit="768">{$p.params.text|default:$default_description}</div>
+
+                {* PRODUCT LINK *}
+                <a href="{$wa->shop->productUrl($p)}"></a>
+                <button class="ms-layer btn btn-primary btn-lg" data-origin="tl" data-offset-x="100" data-offset-y="350" data-effect="bottom(40)" data-delay="1600" data-ease="easeInOutBack" data-type="button" data-resize="false" data-widthlimit="768">[`More info`]</button>
+
+                {if isset($p.params.video)}
+                    <div class="ms-layer ms-slide__video" style="width: 450px; height: 300px" data-effect="right(100)" data-type="video" data-offset-x="700" data-origin="ml">
+                        {* VIDEO COVER *}
+                        {if isset($slides_photos[$p.id]["video"])}
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{$slides_photos[$p.id]['video']}" alt="{$p.name|escape}">
+                        {/if}
+
+                        {* VIDEO *}
+                        <iframe src="{$p.params.video}?hd=1&amp;wmode=opaque&amp;controls=1&amp;showinfo=0" frameborder="0" style="width: 100%; height: 100%; display: none"></iframe>
+                    </div>
+                {/if}
+            </div>
+        {/foreach}
+    </div>
+{/if}
+{/strip}

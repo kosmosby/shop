@@ -1,0 +1,69 @@
+{strip}
+<div class="filters filter filter-horizontal hidden-xs{if !empty($theme_settings.ajax_filters)} ajax{/if}">
+    <form method="get" action="{$wa->currentUrl(0,1)}" data-loading="{$wa_active_theme_url}img/ajax-loader.gif">
+        {foreach $filters as $fid => $filter}
+            <div class="filter-horizontal__item dropdown">
+            {if $fid == "price"}
+                {$c = $wa->shop->currency(true)}
+                <a href="javascript:void(0)" id="hFilter-price" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="td-none filter-horizontal__name fs-14em">
+                    [`Price`]
+                </a>
+                <div class="dropdown-menu dropdown-menu-range" id="filter{$filter@index}" aria-labelledby="hFilter-price">
+                    <div class="filter__slider">
+                        [`from`] <input type="text" class="form-control min" name="price_min" {if $wa->get('price_min')}value="{(int)$wa->get('price_min')}"{/if} placeholder="{floor($filter.min)}">
+                        [`to`] <input type="text" class="form-control max" name="price_max" {if $wa->get('price_max')}value="{(int)$wa->get('price_max')}"{/if} placeholder="{ceil($filter.max)}"> {$c.sign}
+                    </div>
+                </div>
+            {else}
+                <a href="javascript:void(0)" id="hFilter-{$filter.id}" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" class="td-none filter-horizontal__name fs-14em">
+                    {$filter.name|escape}
+                </a>
+
+                {if $filter.type == "boolean"}
+
+                {elseif isset($filter.min)}
+                    <div class="dropdown-menu dropdown-menu-range" id="filter{$filter@index} aria-labelledby="hFilter-{$filter.id}"">
+                        <div class="filter__slider">
+                            [`from`] <input type="text" class="form-control min" name="{$filter.code}[min]" placeholder="{$filter.min}" {if !empty($_v.min)}value="{$_v.min}"{/if}>
+                            [`to`] <input type="text" class="form-control max" name="{$filter.code}[max]" placeholder="{$filter.max}" {if !empty($_v.max)}value="{$_v.max}"{/if}>
+                            {if !empty($filter.unit)}
+                                {$filter.unit.title}
+                                {if $filter.unit.value != $filter.base_unit.value}
+                                    <input type="hidden" name="{$filter.code}[unit]" value="{$filter.unit.value}">
+                                {/if}
+                            {/if}
+                        </div>
+                    </div>
+                {else}
+                    <ul class="dropdown-menu" aria-labelledby="hFilter-{$filter.id}">
+                        {foreach $filter.values as $v_id => $v}
+                            <li>
+                                <input class="checkbox" type="checkbox" name="{$filter.code}[]" id="filter{$filter@index}-option{$v_id}" value="{$v_id}"{if in_array($v_id, (array)$wa->get($filter.code, array()))} checked{/if}>
+                                <label for="filter{$filter@index}-option{$v_id}">
+                                    {if class_exists("shopSeofilterPlugin")}
+                                        {$filter_url = shopSeofilterViewHelper::getFilterUrl($fid, $v_id, $filter.code)}
+                                        {if $filter_url}
+                                            <a class="filter-link" href="{$filter_url}">{$v}</a>
+                                        {else}
+                                            {$v}
+                                        {/if}
+                                    {else}
+                                        {$v}
+                                    {/if}
+                                </label>
+                            </li>
+                        {/foreach}
+                    </ul>
+                {/if}
+            {/if}
+            </div>
+        {/foreach}
+
+        {if empty($theme_settings.ajax_filters)}
+            <input type="submit" value="[`Filter products`]" class="btn btn-default btn-xs">
+        {/if}
+        {if $wa->get("sort")}<input type="hidden" name="sort" value="{$wa->get('sort')|escape}">{/if}
+        {if $wa->get("order")}<input type="hidden" name="order" value="{$wa->get('order')|escape}">{/if}
+    </form>
+</div>
+{/strip}

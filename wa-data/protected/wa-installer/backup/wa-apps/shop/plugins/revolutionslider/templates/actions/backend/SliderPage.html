@@ -1,0 +1,318 @@
+<script>
+    var _str_error = '[`Error`]';
+    var _str_slider_saved = '[`Slider saved successfully!`]';
+    var _str_delete_layer = '[`Are sure want to delete this Layer?`]';
+</script>
+
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{$wa_app_static_url}plugins/revolutionslider/css/bootstrap.min.css">
+<link rel="stylesheet" href="{$wa_app_static_url}plugins/revolutionslider/css/revolution/revoslider_admin.css">
+<link rel="stylesheet" href="{$wa_app_static_url}plugins/revolutionslider/css/revolution/magic-slider.css">
+<link rel="stylesheet" href="{$wa_app_static_url}plugins/revolutionslider/css/revolution/jquery.minicolors.css">
+<link rel="stylesheet" href="{$wa_app_static_url}plugins/revolutionslider/css/revolution/jBox.css">
+<link rel="stylesheet" href="{$wa_app_static_url}plugins/revolutionslider/css/slider.css?ver=1.3">
+<link rel="stylesheet" type="text/css" href="{$wa_app_static_url}plugins/revolutionslider/css/revolution/settings.css">
+<link rel="stylesheet" type="text/css" href="{$wa_app_static_url}plugins/revolutionslider/css/revolution/layers.css">
+<link rel="stylesheet" type="text/css" href="{$wa_app_static_url}plugins/revolutionslider/css/revolution/navigation.css">
+
+
+
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/revoslider/resizer.js"></script>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/file_uploader/vendor/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/file_uploader/jquery.iframe-transport.js"></script>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/file_uploader/jquery.fileupload.js"></script>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/jquery.minicolors.min.js"></script>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/jBox.min.js"></script>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/revolution/jquery.themepunch.tools.min.js"></script>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/revolution/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/revolution/extensions/revolution.extension.carousel.min.js"></script>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/revolution/extensions/revolution.extension.parallax.min.js"></script>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/revoslider/revoslider_admin.js?ver=1.3"></script>
+
+
+    <div class="wrap magic-slider revoslider">
+        <!-- Add New SLIDE -->
+        <div class="add-new-slide" style="display:none">
+            <li class="revoslider_slides">
+                <div class="row global-slide-options global-slide-options-form">
+                    <ul class="nav nav-tabs" role="tablist">
+                        <li class="tab-title"><span class="title"><i class="fa fa-sliders" aria-hidden="true"></i> [`Slider Settings`]</span></li>
+                        <li class="active first"><a href="#" role="tab" data-toggle="tab"> [`Meta`]</a></li>
+                        <li><a href="#" role="tab" data-toggle="tab"> [`Background`]</a></li>
+                        <li><a href="#" role="tab" data-toggle="tab"> [`Animation`]</a></li>
+                        <li><a href="#" role="tab" data-toggle="tab"> [`Kenburns`]</a></li>
+                        <li><a href="#" role="tab" data-toggle="tab"> [`CSS`]</a></li>
+                        <li><a href="#" role="tab" data-toggle="tab"> [`Thumb`]</a></li>
+                        <li class="controls"><a data-toggle="tooltip" data-placement="top" data-html="true" title="[`Delete Slide`]" class="delete-slide" href="javascript:vouid(0);"><i class="icon-trash remove-layer" aria-hidden="true"></i></a></li>
+                        <li class="controls"><a data-toggle="tooltip" data-placement="top" data-html="true" title="[`Duplicate Slide`]" class="duplicate-slide" href="javascript:vouid(0);"><i class="icon-docs" aria-hidden="true"></i></a></li>
+                        <li class="controls"><a data-toggle="tooltip" data-placement="top" data-html="true" title="[`Preview`]" class="icon-play slide-preview" href="javascript:vouid(0);"><i class="slide-preview" aria-hidden="true"></i></a></li>
+                    </ul>
+
+                    <div class="tab-content">
+                        <div role="tabpanel" class="tab-pane fade in" >
+                            {include file='./slideOptionMeta.html' inline}
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane fade" >
+                            {include file='./slideOptionBackground.html' inline}
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane fade" >
+                            {include file='./slideOptionAnimation.html' inline}
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane fade" >
+                            {include file='./slideOptionKenburns.html' inline}
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" >
+                            {include file='./slideOptionCss.html' inline}
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" >                            
+                            {include file='./slideOptionData.html' inline}
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Artboard-->
+                <div class="visual-board">
+                    <div class="draggable_wrapper">
+                        <div class="draggable" style="position: relative;">
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <h3 class="titlum"><span><i class="fa fa-tasks" aria-hidden="true"></i> [`Layers`]</span></h3>
+                <div class="container sublayers sortable"></div>
+                <div class="dropup">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        [`Add New Layer`]
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="menu-item-html"><i class="icon-text"></i> [`HTML`]</a></li>
+                        <li><a href="#" class="menu-item-img"><i class="icon-image"></i> [`Image`]</a></li>
+                        <li><a href="#" class="menu-item-tooltip"><i class="icon-tooltip" aria-hidden="true"></i> [`ToolTip`]</a></li>
+                    </ul>
+                </div>
+            </li>
+        </div>
+
+        <!-- Add New Sublayer HTML -->
+        <div class="htmltype" style="display:none">
+            {include file='./addHtmlSublayer.html' inline}
+        </div>
+
+        <!-- Add New Sublayer IMAGE -->
+        <div class="imagetype" style="display:none">
+            {include file='./addImageSublayer.html' inline}
+        </div>
+
+        <!-- Add New Sublayer TIP -->
+        <div class="tooltiptype" style="display:none">
+            {include file='./addTipSublayer.html' inline}
+        </div>
+
+
+    <div method="post" action="?plugin=revolutionslider&action=saveslider" id="revoslider_form" enctype="multipart/form-data" novalidate>
+        <div id="revoslider-tabs">
+            {foreach from=$slides key=slidekey item=slide name=slides}
+            <div id="tabs-{$slidekey+1}" class="revoslider_tabs">
+                    <input type="hidden" name="slider_id" id="slider_id" value="{$slide.slider_id}">
+                    <div class="row">
+                        <div class="global-slider-settings form-table">
+                            <div class="col-lg-12">
+                                <ul class="nav nav-tabs" role="tablist">
+                                    <li class="tab-title"><span class="title back-to-slider-list"><a href="?plugin=revolutionslider"><i class="icon-angle-left" aria-hidden="true"></i> [`Back to Slider List`]</a></span></li>
+                                    <li class="tab-title"><span class="title"><i class="fa fa-cog" aria-hidden="true"></i> <span class="title-val">{if isset ($slide.properties.globalname)}{$slide.properties.globalname}{else}[`Slider`] {$slide.slider_id}{/if}</span></span></li>
+                                    <li class="active first"><a href="#" role="tab" data-toggle="tab"> [`General`]</a></li>
+                                    <li><a href="#" role="tab" data-toggle="tab"> [`Progress`]</a></li>
+                                    <li><a href="#" role="tab" data-toggle="tab"> [`Appearance`]</a></li>
+                                    <li><a href="#" role="tab" data-toggle="tab"> [`Parallax & 3D`]</a></li>
+                                    <li><a href="#" role="tab" data-toggle="tab"> [`Thumb`]</a></li>
+                                    <li class="controls"><a class="globalsave" data-toggle="tooltip" data-placement="top" data-html="true" title="[`Save`]" href="javascript:void(0);"><i class="icon-floppy" aria-hidden="true"></i></a></li>
+                                    <li class="controls"><a class="globalpreview" data-toggle="tooltip" data-placement="top" data-html="true" title="[`Slider Preview`]" href="javascript:void(0);"><i class="icon-play" aria-hidden="true"></i></a></li>
+                                    <li class="controls"><a data-toggle="tooltip" data-placement="top" data-html="true" title="[`Reorder Slides`]" class="revoslider_sort_layers" href="javascript:void(0);"><i class="icon-retweet" aria-hidden="true"></i></a></li>
+                                    <li class="controls"><a class="revoslider_add_slide" href="javascript:void(0);"><i class="icon-plus" aria-hidden="true"></i> [`Add Slide`]</a></li>
+                                </ul>
+                                <div class="tab-content">
+                                    <div role="tabpanel" class="tab-pane fade in active">
+                                        {include file='./globalSliderOptionMain.html' inline}
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade">
+                                        {include file='./globalSliderOptionLayout.html' inline}
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade">
+                                         {include file='./globalSliderOptionNavigation.html' inline}
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade">
+                                        {include file='./globalSliderOptionParalax.html' inline}
+                                    </div>
+                                    <div role="tabpanel" class="tab-pane fade">
+                                        {include file='./globalSliderOptionThumb.html' inline}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <ul class="revoslider_slides_wrapper" id="{$slide.slider_id}">
+                        {if !empty($slide)}
+                        {if !empty($slide.layers)}
+                        {foreach from=$slide.layers key=layerkey item=layer}
+                        <li class="revoslider_slides">
+                            <!-- Global slide options -->
+                            <div class="row global-slide-options">
+                                <div>
+                                    <ul class="nav nav-tabs" role="tablist">
+                                        <li class="tab-title"><span class="title"><i class="icon-sliders" aria-hidden="true"></i> [`Slider Settings`]</span></li>
+                                        <li class="active first"><a href="#" role="tab" data-toggle="tab"> [`Meta`]</a></li>
+                                        <li><a href="#" role="tab" data-toggle="tab"> [`Background`]</a></li>
+                                        <li><a href="#" role="tab" data-toggle="tab"> [`Animation`]</a></li>
+                                        <li><a href="#" role="tab" data-toggle="tab"> [`Kenburns`]</a></li>
+                                        <li><a href="#" role="tab" data-toggle="tab"> [`CSS`]</a></li>
+                                        <li><a href="#" role="tab" data-toggle="tab"> [`Thumb`]</a></li>
+                                        <li class="controls"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="[`Delete Slide`]" class="delete-slide"><i class="icon-trash remove-layer" aria-hidden="true"></i></a></li>
+                                        <li class="controls"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="[`Duplicate Slide`]" class="duplicate-slide"><i class="icon-docs" aria-hidden="true"></i></a></li>
+                                        <li class="controls"><a href="#" data-toggle="tooltip" data-placement="top" data-html="true" title="[`Preview`]" class="slide-preview"><i class="icon-play" aria-hidden="true"></i></a></li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div role="tabpanel" class="tab-pane fade in">
+                                            {include file='./slideOptionMeta.html' inline}
+                                        </div>
+
+                                        <div role="tabpanel" class="tab-pane fade">
+                                            {include file='./slideOptionBackground.html' inline}
+                                        </div>
+
+                                        <div role="tabpanel" class="tab-pane fade">
+                                            {include file='./slideOptionAnimation.html' inline}
+                                        </div>
+
+                                        <div role="tabpanel" class="tab-pane fade">
+                                            {include file='./slideOptionKenburns.html' inline}
+                                        </div>
+
+                                        <div role="tabpanel" class="tab-pane fade">
+                                            {include file='./slideOptionCss.html' inline}
+                                        </div>
+                                        <div role="tabpanel" class="tab-pane fade">
+                                            {include file='./slideOptionData.html' inline}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <!-- Artboard-->
+                            <div class="visual-board">
+                                <div class="draggable_wrapper" style="width:{$slide.properties.width}px; height:{$slide.properties.height}px;">
+                                    <div class="draggable parent" style="width: {$slide.properties.width}px; height: {$slide.properties.height}px; position: relative; background-image:url({$layer.properties.background}); background-color:{$layer.properties.bgcolor}; background-size:{$layer.properties.bgfit}; background-repeat:{$layer.properties.bgrepeat}; background-position:{$layer.properties.bgposition};">
+                                        {if !empty($layer.sublayers)}
+                                            {foreach from=$layer.sublayers key=sublayerkey item=sublayer}
+                                                {if empty($sublayer.type)} {$sublayer.type = 'html'} {/if}
+                                                {if $sublayer.type == 'image'}
+                                                    {if isset ($sublayer.image)}
+                                                        <img class="child" src="{$sublayer.image}" style="position: absolute; top:{$sublayer.top}px; left:{$sublayer.left}px; z-index:{$sublayerkey}; transform: scale({$sublayer.rsLayerTransformIdleScaleX}, {$sublayer.rsLayerTransformIdleScaleY}) skewX({$sublayer.rsLayerTransformIdleSkewX}deg) skewY({$sublayer.rsLayerTransformIdleSkewY}deg) rotateX({$sublayer.rsLayerTransformIdleRotateX}deg) rotateY({$sublayer.rsLayerTransformIdleRotateY}deg) rotateZ({$sublayer.rsLayerTransformIdleRotateZ}deg); height:{$sublayer.rsLayerStylehHeight}px; width:{$sublayer.rsLayerStyleWidth}px;">
+                                                    {/if}
+                                                {elseif $sublayer.type == 'tooltip'}
+                                                    <div class="rstooltipwrapper" style="
+                                                        position: absolute;
+                                                        top:{$sublayer.top}px;
+                                                        left:{$sublayer.left}px;
+                                                        z-index:{$sublayerkey};
+                                                        background-color:{$sublayer.rsLayerTipBgColor};
+                                                        border-width:{$sublayer.rsLayerTipBorderSize}px;
+                                                        border-color:{$sublayer.rsLayerTipBorderColor};
+                                                        width:{$sublayer.rsLayerTipSize}px;
+                                                        height:{$sublayer.rsLayerTipSize}px;
+                                                    ">
+                                                        <div class="rstooltip" style="width:{$sublayer.rsLayerTipDescriptionSize}px;{if isset ($sublayer.rsLayerTipDescriptionHeight)}height:{$sublayer.rsLayerTipDescriptionHeight}px{/if};left:{$sublayer.rsLayerTipDescriptionLeftOffset}px;top:{$sublayer.rsLayerTipDescriptionTopOffset}px;background-color:{$sublayer.rsLayerTipDescriptionBgColor}">
+                                                            <span class="rstooltip-title" style="color:{$sublayer.rsLayerTipTitleColor}">{$sublayer.rsLayerHtmlTiptitle}</span>
+                                                            <span class="rstooltip-description" style="color:{$sublayer.rsLayerTipDescriptionColor}">{$sublayer.rsLayerHtmlTipdescription}</span>
+                                                            <span class="rstooltip-arrow" style="border-top-color:{$sublayer.rsLayerTipDescriptionBgColor}"></span>
+                                                        </div>
+                                                    </div>
+                                                {else}
+                                                    <{$sublayer.htmltype} style="
+                                                        position: absolute;
+                                                        top:{$sublayer.top}px;
+                                                        left:{$sublayer.left}px;
+                                                        height:{$sublayer.rsLayerStylehHeight}px;
+                                                        width:{$sublayer.rsLayerStyleWidth}px;
+                                                        z-index:{$sublayerkey};
+                                                        color:{$sublayer.rsLayerStyleTxtColor};
+                                                        font-size:{$sublayer.rsLayerStyleTxtfontsize}px;
+                                                        font-family:{$sublayer.rsLayerStyleTxtFontfamily};
+                                                        font-weight:{$sublayer.rsLayerStyleTxtWeight};
+                                                        line-height:{$sublayer.rsLayerStyleTxtlineheight}px;
+                                                        text-decoration:{$sublayer.rsLayerStyleTxtDecoration};
+                                                        text-align:{$sublayer.rsLayerStyleTxtAlign};
+                                                        transform: scaleX({$sublayer.rsLayerTransformIdleScaleX}) scaleY({$sublayer.rsLayerTransformIdleScaleY}) skewX({$sublayer.rsLayerTransformIdleSkewX}deg) skewY({$sublayer.rsLayerTransformIdleSkewY}deg) rotateX({$sublayer.rsLayerTransformIdleRotateX}deg) rotateY({$sublayer.rsLayerTransformIdleRotateY}deg) rotateZ({$sublayer.rsLayerTransformIdleRotateZ}deg);
+                                                        background-color:{$sublayer.rsLayerStyleBackgroundColor};
+
+                                                        padding-top:{$sublayer.rsLayerStyleBackgroundPaddingTop}px;
+                                                        padding-right:{$sublayer.rsLayerStyleBackgroundPaddingRight}px;
+                                                        padding-bottom:{$sublayer.rsLayerStyleBackgroundPaddingBottom}px;
+                                                        padding-left:{$sublayer.rsLayerStyleBackgroundPaddingLeft}px;
+
+                                                        border-color:{$sublayer.rsLayerStyleBorderColor};
+                                                        border-style:{$sublayer.rsLayerStyleBorderStyle};
+                                                        border-width:{$sublayer.rsLayerStyleBorderSize}px;
+
+                                                        border-top-left-radius:{$sublayer.rsLayerStyleBorderTopLeftRadius}px;
+                                                        border-top-right-radius:{$sublayer.rsLayerStyleBorderTopRightRadius}px;
+                                                        border-bottom-right-radius:{$sublayer.rsLayerStyleBorderBottomRightRadius}px;
+                                                        border-bottom-left-radius:{$sublayer.rsLayerStyleBorderBottomLeftRadius}px;
+                                                    ">
+                                                            {$sublayer.rsLayerHtml}
+                                                    </{$sublayer.htmltype}>
+                                                {/if}
+                                            {/foreach}
+                                        {/if}
+                                    </div>
+                                </div>
+                            </div>
+
+                <h3 class="titlum"><span><i class="fa fa-tasks" aria-hidden="true"></i> [`Layers`]</span></h3>
+                <div class="container sublayers sortable">
+                    {if !empty($layer.sublayers)}
+                        {foreach from=$layer.sublayers key=sublayerkey item=sublayer}
+                            {if $sublayer.type == 'image' || $sublayer.type == 'img'}
+                                {include file='./addImageSublayer.html' inline}
+                            {elseif $sublayer.type == 'tooltip' || $sublayer.type == 'tooltip'}
+                                {include file='./addTipSublayer.html' inline}
+                            {else}
+                                {include file='./addHtmlSublayer.html' inline}
+                            {/if}
+                        {/foreach}
+                    {/if}
+                </div>
+
+
+                <div class="dropup">
+                    <button class="btn btn-default dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        [`Add New Layer`]
+                        <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#" class="menu-item-html"><i class="icon-text"></i> [`HTML`]</a></li>
+                        <li><a href="#" class="menu-item-img"><i class="icon-image"></i> [`Image`]</a></li>
+                        <li><a href="#" class="menu-item-tooltip"><i class="icon-tooltip" aria-hidden="true"></i> [`ToolTip`]</a></li>
+                    </ul>
+                </div>
+                </li>
+                {/foreach}
+
+                {/if}
+
+                {/if}
+                </ul>
+
+            
+        </div>
+        {/foreach}
+</div>
+</form>

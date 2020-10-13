@@ -1,0 +1,197 @@
+<div id="xml-snapshot">
+    <div class="xml-s-body">
+
+        <div class="xml-tags-map">
+
+            <div class="tags-map-title bg-gd-modern-blue">
+                [`File structure`]
+            </div>
+
+            {strip}
+            <div class="xml-tags-list">
+
+                <div class="xml-tags-scroller">
+                    {if !empty($snapshot)}
+                        {$display = false}
+                        {$depth   = 0}
+                        {$group_stack = []}
+                        {foreach $snapshot as $key => $v}
+                            {$tag_path = explode('\\', $key)}
+                            {$tag_data = explode(':', end($tag_path))}
+                            {$depth = intval($tag_data[0])}
+                            {$name = $tag_data[1]}
+
+                            {$display = true}
+
+                            {if !empty($control_tag)}
+                                {$control_key = "`$control_depth`:`$control_tag`"}
+                                {if $key === $control_key}
+                                    {$display = true}
+                                {elseif $display && ($depth <= 3)}
+                                    {$display = false}
+                                {/if}
+                            {/if}
+
+                            {if $display}
+                                {$tag_v = $v}
+                                {if is_array($v)}
+                                    {$tag_v = $v.value}
+                                {/if}
+
+                                {$have_attrs = is_array($v) && !empty($v['attrs'])}
+                                {$tag_v = strip_tags($tag_v)}
+
+                                {$ready = !empty($map[$key].type)}
+
+                                {if $depth === 1}{$plus = 27}{else}{$plus=37}{/if}
+
+                                {$attrs_len = 0}
+                                {if $have_attrs}
+                                    {foreach $v['attrs'] as $attr_id => $attr_value}
+                                        {$attrs_len = $attrs_len + mb_strlen($attr_id)}
+                                    {/foreach}
+                                {/if}
+
+                                {if is_array($v) && empty($v.empty) && empty($v.end)}
+                                    <div class="node-group" data-level="{$depth}" data-node="{$name}">
+                                    {$skey = "`$key`/"}
+                                    {$group_stack[$skey] = 1}
+                                {/if}
+
+                                <div class="xml-s-row{if $ready} tag-ready{/if}{if $attrs_len > 86} expandable{/if}"{if $depth} style="padding-left: {$depth*10 + $plus}px"{/if} data-depth="{$depth}">
+                                    {if $attrs_len > 86}
+                        <span class="xml-row-expand bg-gd-modern-blue" data-arr="&#10548;">
+                            &#10549;
+                        </span>
+                    {/if}
+
+                                    <span class="xml-item tag{if $ready} ready{/if}" title="{htmlspecialchars($tag_v)|escape}" data-value="{htmlspecialchars($tag_v)|escape}" data-key="{$key|escape}"
+                                          data-type="{ifempty($map[$key].type,'')}{if !empty($map[$key].type) && empty($map[$key].up)}|1{/if}">
+                                                        &lt;{$name}{if !$have_attrs}&gt;{/if}
+                                                    </span>
+
+                                    {if $have_attrs}
+                                        {foreach $v['attrs'] as $attr_id => $attr_value}
+                                            {$attr_key = "`$key`:a:`$attr_id`"}
+                                            <span class="xml-item attr{if !empty($map[$attr_key].type)} ready{/if}" title="{$attr_value.value}" data-value="{$attr_value.value}" data-key="{$attr_key|escape}"
+                                                  data-type="{ifempty($map[$attr_key].type,'')}{if !empty($map[$attr_key].type) && empty($map[$attr_key].up)}|1{/if}">
+                                                {$attr_id}="<i>{$attr_value.value|truncate:40:'..'}</i>"
+                                                                    </span>
+                                        {/foreach}
+
+                                        <span class="xml-open-right-arrow">&gt;</span>
+                                    {/if}
+
+                                    {if !empty($v.end)}<span class="xml-value">{$tag_v|truncate:100}</span><span class="end-tag">&lt;/{$name}&gt;</span>{/if}
+                                </div>
+
+                                {if !is_array($v) && ($v === 1) && (!empty($group_stack[$key]))}</div>{$group_stack[$key] = null}{/if}
+                            {/if}
+                        {/foreach}
+                    {/if}
+                </div>
+            </div>
+            {/strip}
+        </div>
+    </div>
+
+    {$fields_map = shopXmlHelper::getMapFields(false,true)}
+    <div class="xml-item-type">
+        <p>
+            Select element type:
+        </p>
+
+        <label>
+            <select name="item_type">
+                <option value="0">Do not import</option>
+                {foreach $fields_map as $key => $types}
+                <optgroup label="{shopXmlPlugin::translate($key)}">
+                    {foreach $types as $type_id => $type_name}
+                    <option value="{$key}:{$type_id}">{$type_name}</option>
+                    {/foreach}
+                </optgroup>
+                {/foreach}
+            </select>
+        </label>
+
+        <div class="xml-type-actions">
+            <a class="type-multi-add" href="#" title="[`Add`]"><i class="icon16 add"></i></a>
+            <a class="type-action type-save" title="[`Save`]" href="#"><i class="icon16 yes"></i></a>
+            <a class="type-action type-cancel" title="[`Cancel`]" href="#"><i class="icon16 no"></i></a>
+        </div>
+
+        <div class="feature-settings" style="display: none">
+            <div class="feature-content">
+                <div id="f-existing" class="f-settings-item">
+                    <span class="f-settings-label">[`Select feature`]:</span>
+                    <select name="feature_id" class="select2">
+                        {if !empty($features)}
+                        {foreach $features as $f}
+                        <option value="{$f.id}" data-multiple="{$f.multiple}">{$f.name}</option>
+                        {/foreach}
+                        {/if}
+                    </select>
+                </div>
+
+                <div id="f-new" class="f-settings-item" style="display: none">
+                    <div class="settings-item-block">
+                        <span class="f-settings-label">[`Select product type`]:</span>
+                        <select name="feature_type">
+                            {if !empty($feature_types)}
+                            {foreach $feature_types as $t}
+                            <option value="{$t.type}">{$t.name}</option>
+                            {/foreach}
+                            {/if}
+                        </select>
+                    </div>
+
+                    {if false && !empty($product_types)}
+                    <div class="settings-item-block product-types">
+                        <div class="product-type-all">
+                            <label>
+                                <input type="checkbox" name="product_type" value="0" checked>
+                                [`All product types`]
+                            </label>
+                        </div>
+
+                        <div class="product-type-other" style="display: none">
+                            <ul class="menu-v">
+                                {foreach $product_types as $type}
+                                <li>
+                                    <label>
+                                        <input type="checkbox" name="product_type[]" value="{$type.id}">
+                                        {if !empty($type.icon)}<i class="icon16 {$type.icon}"></i>{/if}
+                                        {$type.name}
+                                    </label>
+                                </li>
+                                {/foreach}
+                            </ul>
+                        </div>
+                    </div>
+                    {/if}
+                </div>
+            </div>
+
+        </div>
+
+        <div class="multi-list">
+
+        </div>
+
+        <div class="xml-type-options">
+            <label id="create_sku" style="display:none">
+                <input type="checkbox" name="create_sku"> [`Create sku`]
+            </label>
+
+            <label>
+                <input type="checkbox" name="up"> [`Resubmit`]
+            </label>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        max_inputs      = {$max_inputs};
+        xml_fields      = {json_encode($fields_map)};
+        xml_type_titles = {json_encode(shopXmlPlugin::translate())};
+    </script>
+</div>

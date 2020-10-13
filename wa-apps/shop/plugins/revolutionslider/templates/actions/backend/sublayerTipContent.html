@@ -1,0 +1,36 @@
+<h4><i class="icon-settings"></i> [`General`] <i class="fa icon-angle-down control"></i></h4>
+<div class="line">
+<div class="form-group fullhalf">
+    <label data-toggle="tooltip" data-placement="top" title="[`Tooltip Title text`]">[`Title`]</label>
+    <input name="rsLayerHtmlTiptitle" value="{if isset ($sublayer.rsLayerHtmlTiptitle)}{$sublayer.rsLayerHtmlTiptitle}{else}Заголовок{/if}" class="form-control">
+    </div>
+    <div class="form-group fullhalf">
+        <label data-toggle="tooltip" data-placement="top" title="[`Tooltip Description text`]">[`Description`]</label>
+        <input name="rsLayerHtmlTipdescription" value="{if isset ($sublayer.rsLayerHtmlTipdescription)}{$sublayer.rsLayerHtmlTipdescription}{else}Описание{/if}" class="form-control">
+    </div>
+    <div class="form-group">
+        <label class="check-inline">[`Show Tooltip`]
+        <input type="checkbox" class="form-control showtipdescription" /></label>
+    </div>
+    <div>
+        <div class="form-group fullsix">
+            <label data-toggle="tooltip" data-placement="top" title="[`Current Horizontal position of Layer`]">[`X position`]</label>
+            <input type="text" name="top" value="{if isset ($sublayer.top)}{$sublayer.top}{else}100{/if}">
+        </div>
+        <div class="form-group fullsix">
+            <label data-toggle="tooltip" data-placement="top" title="[`Current Vertical position of Layer`]">[`Y position`]</label>
+            <input type="text" name="left" value="{if isset ($sublayer.left)}{$sublayer.left}{else}100{/if}">
+        </div>
+        <div class="form-group spanlable">
+            <label><i class="icon-delay" aria-hidden="true"></i></label>
+        </div>
+        <div class="form-group fullsix">
+            <label data-toggle="tooltip" data-html="true" data-placement="top" title="[`Initial Layer Animation will start from that time point.<br><strong>Value in milliseconds</strong>`]">[`Start`]</label>
+            <input type="text" name="delayin" value="{if isset ($sublayer.delayin)}{$sublayer.delayin}{else}300{/if}">
+        </div>
+        <div class="form-group fullsix">
+            <label data-toggle="tooltip" data-html="true" data-placement="top" title="[`Finish Layer Animation will start from that time point.<br><strong>Value in milliseconds</strong>`]">[`Finish`]</label>
+            <input type="text" name="delayout" value="{if isset ($sublayer.delayout)}{$sublayer.delayout}{/if}">
+        </div>
+    </div>
+</div>

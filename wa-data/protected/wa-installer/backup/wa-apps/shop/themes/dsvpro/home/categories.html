@@ -1,0 +1,51 @@
+{strip}
+{**
+* @param string $id - category id (0)
+* @param bool $auto - auto scroll slider (0)
+* @param int $interval - auto scroll interval (3000)
+* @param int $limit - count of categories (0)
+* @param string $bg - slider background-color (#f2f8fd)
+* @param string $image - slider background-image (none)
+* @param string $color - category name color (white)
+*}
+{$cats = $wa->shop->categories($id|default:0, null, true, true)}
+{$cat = $wa->shop->category($id|default:0)}
+{if count($cats)}
+    {$sb_cnt = 0}
+    {if $sidebar|default:false}
+        {$sb_cnt = 1}
+    {/if}
+    <div class="wmCats container-fluid" style="background-color: {$bg|default:'#f2f8fd'};  background-image: {if isset($image)}url({$image}){else}none{/if};">
+        {if !empty($cat)}
+            <div class="wmCats__promo flex justify-center align-center">
+                <div class="wmCats__heading" style="color: {$color|default:'white'}">
+                    {$cat.name}<a class="btn btn-danger wmCats__btn" href="{$wa->shop->categoryUrl($cat)}">[`View`]</a>
+                </div>
+            </div>
+        {/if}
+        <ul class="wmCats__list list-unstyled slick-wm dataSlider clearfix" data-slick='{ "slidesToShow": {8-$sb_cnt}, "slidesToScroll": {8-$sb_cnt}, "dots": true, "autoplay": {$auto|default:0}, "autoplaySpeed": {$interval|default:3000}, "infinite": true, "responsive": [{ "breakpoint": 1600, "settings": { "slidesToShow": {6-$sb_cnt}, "slidesToScroll": {6-$sb_cnt} } },{ "breakpoint": 1024, "settings": { "slidesToShow": {4-$sb_cnt}, "slidesToScroll": {4-$sb_cnt} } },{ "breakpoint": 600, "settings": { "slidesToShow": 2, "slidesToScroll": 2 } } ]}'>
+            {foreach $cats as $item}
+                <li class="wmCats__item col-md-3 col-sm-4 col-xs-6">
+                    <a class="wmCats__link" href="{$item.url}">
+                        <div class="wmCats__image image">
+                            {$image_url = ''}
+                            {if $theme_settings.subcategories_image == 'params' && isset($item.params.image)}
+                                {$image_url = $item.params.image}
+                            {elseif $theme_settings.subcategories_image == 'categoryimages' && class_exists('shopCategoryimagesPlugin')}
+                                {$image_url = shopCategoryImagesPlugin::getCategoryImageUrl($item.id)}
+                            {elseif $theme_settings.subcategories_image == 'categoryimage' && class_exists('shopCategoryimagePlugin') && isset($item.image)}
+                                {$image_url = "{$wa_url}wa-data/public/shop/categories/{$item.id}/{$item.id}.200{$item.image}"}
+                            {elseif $theme_settings.subcategories_image == 'wmimage' && class_exists('shopWmimageincatPlugin')}
+                                {$image_url = shopWmimageincatPlugin::getCategoryImage($item.id,'image')}
+                            {/if}
+                            <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-lazy='{$image_url|default:"`$wa_theme_url`img/noimage96.png"}' alt="{$item.name|escape}">
+                        </div>
+                        <div class="wmCats__name">{$item.name|escape}</div>
+                    </a>
+                </li>
+                {if $item@iteration == $limit|default:0}{break}{/if}
+            {/foreach}
+        </ul>
+    </div>
+{/if}
+{/strip}

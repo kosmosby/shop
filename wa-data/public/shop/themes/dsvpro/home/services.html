@@ -1,0 +1,46 @@
+<div class="row mb-25">
+    <div class="col-sm-3 col-xs-6 service">
+        <a class="dp-bl td-none" href="{$theme_settings.service_one_link|default:'#'}">
+            {if !empty($theme_settings.service_one_image)}
+                <img src="{$wa_active_theme_url}{$theme_settings.service_one_image}?v{$wa_theme_version}" class="service__icon" alt="{$theme_settings.service_one_name|default:'[`Payment`]'}">
+            {else}
+                <i class="mi {$theme_settings.service_one_icon|default:'mi-local-atm'} service__icon color-primary"></i>
+            {/if}
+            <div class="service__heading darken">{$theme_settings.service_one_name|default:"[`Payment`]"}</div>
+            <div class="service__description gray">{$theme_settings.service_one_desc|default:"[`Payment description`]"}</div>
+        </a>
+    </div>
+    <div class="col-sm-3 col-xs-6 service">
+        <a class="dp-bl td-none" href="{$theme_settings.service_two_link|default:'#'}">
+            {if !empty($theme_settings.service_two_image)}
+                <img src="{$wa_active_theme_url}{$theme_settings.service_two_image}?v{$wa_theme_version}" class="service__icon" alt="{$theme_settings.service_one_name|default:'[`Payment`]'}">
+            {else}
+                <i class="mi {$theme_settings.service_two_icon|default:'mi-flight-takeoff'} service__icon color-primary"></i>
+            {/if}
+            <div class="service__heading darken">{$theme_settings.service_two_name|default:"[`Shipping`]"}</div>
+            <div class="service__description gray">{$theme_settings.service_two_desc|default:"[`Shipping description`]"}</div>
+        </a>
+    </div>
+    <div class="col-sm-3 col-xs-6 service">
+        <a class="dp-bl td-none" href="{$theme_settings.service_three_link|default:'#'}">
+            {if !empty($theme_settings.service_three_image)}
+                <img src="{$wa_active_theme_url}{$theme_settings.service_three_image}?v{$wa_theme_version}" class="service__icon" alt="{$theme_settings.service_one_name|default:'[`Payment`]'}">
+            {else}
+                <i class="mi {$theme_settings.service_three_icon|default:'mi-perm-identity'} service__icon color-primary"></i>
+            {/if}
+            <div class="service__heading darken">{$theme_settings.service_three_name|default:"[`Location`]"}</div>
+            <div class="service__description gray">{$theme_settings.service_three_desc|default:"[`Location description`]"}</div>
+        </a>
+    </div>
+    <div class="col-sm-3 col-xs-6 service">
+        <a class="dp-bl td-none" href="{$theme_settings.service_four_link|default:'#'}">
+            {if !empty($theme_settings.service_four_image)}
+                <img src="{$wa_active_theme_url}{$theme_settings.service_four_image}?v{$wa_theme_version}" class="service__icon" alt="{$theme_settings.service_one_name|default:'[`Payment`]'}">
+            {else}
+                <i class="mi {$theme_settings.service_four_icon|default:'mi-lock-open'} service__icon color-primary"></i>
+            {/if}
+            <div class="service__heading darken">{$theme_settings.service_four_name|default:"[`Guarantee`]"}</div>
+            <div class="service__description gray">{$theme_settings.service_four_desc|default:"[`Guarantee description`]"}</div>
+        </a>
+    </div>
+</div>

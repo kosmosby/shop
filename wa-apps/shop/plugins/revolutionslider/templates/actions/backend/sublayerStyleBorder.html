@@ -1,0 +1,53 @@
+<h4><i class="icon-borderwidth"></i> [`Border`] <i class="fa icon-angle-down control"></i></h4>
+<div class="line" style="display: none">
+    <div class="form-group incolor">
+        <label class="colorchange" data-toggle="tooltip" data-html="true" data-placement="top" title="<i class='icon-color'></i>[`Border color`]">[`Color`]</label>
+        <div class="form-group">
+        <input class="colorpick colorin" data-position="top left" data-format="rgb" data-opacity="1.00" data-keywords="transparent, initial, inherit" name="rsLayerStyleBorderColor" value="{if isset ($sublayer.rsLayerStyleBorderColor)}{$sublayer.rsLayerStyleBorderColor}{else}transparent{/if}">
+        </div>
+    </div>
+    <div class="form-group spanlable">
+        <label data-toggle="tooltip" data-placement="top" title="[`Border radius (Top-left, Top-right, Bottom-right, Bottom-left`]"><i class="icon-borderradius" aria-hidden="true"></i></label>
+    </div>
+    <div class="form-group fullsix">
+        <label>[`top-left`]</label>
+        <input type="number" name="rsLayerStyleBorderTopLeftRadius" value="{if isset ($sublayer.rsLayerStyleBorderTopLeftRadius)}{$sublayer.rsLayerStyleBorderTopLeftRadius}{else}0{/if}">
+    </div>
+    <div class="form-group fullsix">
+        <label>[`top-right`]</label>
+        <input type="number" name="rsLayerStyleBorderTopRightRadius" value="{if isset ($sublayer.rsLayerStyleBorderTopRightRadius)}{$sublayer.rsLayerStyleBorderTopRightRadius}{else}0{/if}">
+    </div>
+    <div class="form-group fullsix">
+        <label>[`bot-right`]</label>
+        <input type="number" name="rsLayerStyleBorderBottomRightRadius" value="{if isset ($sublayer.rsLayerStyleBorderBottomRightRadius)}{$sublayer.rsLayerStyleBorderBottomRightRadius}{else}0{/if}">
+    </div>
+    <div class="form-group fullsix">
+        <label>[`bot-left`]</label>
+        <input type="number" name="rsLayerStyleBorderBottomLeftRadius" value="{if isset ($sublayer.rsLayerStyleBorderBottomLeftRadius)}{$sublayer.rsLayerStyleBorderBottomLeftRadius}{else}0{/if}">
+    </div>
+
+    <div>
+        <div class="form-group fullhalf">
+        </div>
+        <div class="form-group fullthird">
+            <label data-toggle="tooltip" data-placement="top" data-html="true" title="<i class='icon-borderstyles'></i>[`Border style`]">[`Border style`]</label>
+            <select class="form-control"  name="rsLayerStyleBorderStyle">
+                {if !isset($sublayer.rsLayerStyleBorderStyle)}
+                {assign var='rsLayerStyleBorderStyle' value='solid'}
+                {else}
+                {assign var='rsLayerStyleBorderStyle' value=$sublayer.rsLayerStyleBorderStyle|default:'solid'}
+                {/if}
+                <option {if $rsLayerStyleBorderStyle == 'none'}selected="selected"{/if}value="none">[`none`]</option>
+                <option {if $rsLayerStyleBorderStyle == 'solid'}selected="selected"{/if}value="solid">[`solid`]</option>
+                <option {if $rsLayerStyleBorderStyle == 'dashed'}selected="selected"{/if}value="dashed">[`dashed`]</option>
+                <option {if $rsLayerStyleBorderStyle == 'dotted'}selected="selected"{/if}value="dotted">[`dotted`]</option>
+                <option {if $rsLayerStyleBorderStyle == 'double'}selected="selected"{/if}value="double">[`double`]</option>
+
+            </select>
+        </div>
+        <div class="form-group fullthird">
+            <label data-toggle="tooltip" data-placement="top" data-html="true" title="<i class='icon-borderwidth'></i>[`Border weight in px`]">[`Border weight`]</label>
+            <input type="number" min="0" max="100" step="1" name="rsLayerStyleBorderSize" value="{if isset ($sublayer.rsLayerStyleBorderSize)}{$sublayer.rsLayerStyleBorderSize}{else}0{/if}">
+        </div>
+    </div>
+</div>

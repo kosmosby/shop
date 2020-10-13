@@ -1,0 +1,103 @@
+{strip}
+{$wa->globals("crumb","[`Compare`]")}
+<div class="container-fluid">
+    <div class="comparison productsWrapper">
+        {if count($products) > 0}
+            <h1>[`Compare products`]{if count($products) > 0} <a href="#" class="reset-compare">[`clear`]</a>{/if}</h1>
+            {$td_width = round((100-25)/max(1,count($products)))}
+            <div class="table-responsive">
+                <table class="table table-hover" id="compare-table">
+                    <thead>
+                        <tr>
+                            <td>
+                                <input class="checkbox" type="checkbox" name="compare-diff" id="compare-diff">
+                                <label for="compare-diff">[`Different`]</label>
+                            </td>
+                            {$product_names = ''}
+                            {foreach $products as $p name=product_names}
+                                <td style="width:{$td_width}%;">
+                                    <div class="comparison__product">
+                                        <div class="image vertical-align">
+                                            {$wa->shop->productImgHtml($p, "150", ['class' => 'comparison__image', 'itemprop' => 'image', 'default' => "`$wa_theme_url`img/noimage96.png", 'title' => $p.name|cat:' ':strip_tags($p.summary)|escape])}
+                                            <a href="{$p.delete_url}" class="comparison__remove rounded-x js-compare-remove" title="[`Remove from comparison list`]" data-product="{$p.id}">
+                                                <i class="mi mi-close black"></i>
+                                            </a>
+                                        </div>
+                                        <p>
+                                            <a class="fs-15em fw-7" href="{$wa->getUrl('/frontend/product/', ['product_url' => $p.url])}">{$p.name}</a>
+                                        </p>
+                                        <div>
+                                            <span class="comparison__price color-price fw-7">{shop_currency_html($p.price)}</span>
+                                            {if $p.compare_price > 0}
+                                                <span class="comparison__old gray">{shop_currency_html($p.compare_price)}</span>
+                                            {/if}
+                                        </div>
+                                    </div>
+
+                                    {$product_names = $product_names|cat:($p.name)}
+                                    {if !$smarty.foreach.product_names.last}{$product_names = $product_names|cat:', '}{/if}
+                                </td>
+                            {/foreach}
+                        </tr>
+                        <tr>
+                            <td></td>
+                            {foreach $products as $p}
+                                <td>
+                                    <form method="post" action="{$wa->getUrl('/frontendCart/add')}" class="products__add"{if $p.sku_count > 1} data-url="{$p.frontend_url}{if strpos($p.frontend_url, '?')}&{else}?{/if}cart=1"{/if}>
+                                        <input type="hidden" name="product_id" value="{$p.id}">
+                                        <input type="submit" class="btn btn-primary" value="[`Add to cart`]">
+                                        <div class="js-product-data hidden" data-id="{$p.id}" data-name="{$p.name|escape}" data-image96="{$wa->shop->productImgUrl($p, '96x96')}" data-price="{$p.price}"></div>
+                                    </form>
+                                </td>
+                            {/foreach}
+                        </tr>
+                    </thead>
+                    <tbody class="fs-13em">
+                        {foreach $features as $f_id=>$f}
+                            {if $f.type == "divider"}{continue}{/if}
+                            <tr{if $f.same} class="same"{/if}>
+                                <th>{$f.name}</th>
+                                {foreach $products as $p}
+                                    <td>
+                                    {if isset($p.features[$f_id])}
+                                        {if is_array($p.features[$f_id])}
+                                            {implode("<br> ", $p.features[$f_id])}
+                                        {else}
+                                            {$p.features[$f_id]}
+                                        {/if}
+                                    {else}
+                                        <span class="gray fw-7">&mdash;</span>
+                                    {/if}
+                                    </td>
+                                {/foreach}
+                            </tr>
+                        {/foreach}
+                    </tbody>
+                </table>
+            </div>
+            {$wa->title( sprintf('[`Compare %s`]', $product_names) )}
+        {else}
+            <div class="blank text-center">
+                <div class="blank__inner">
+                    <div class="blank__icon">
+                        <i class="mi mi-filter-none"></i>
+                    </div>
+                    <h1 class="blank__heading">[`Nothing to display`]</h1>
+                    <p class="blank__text fs-15em">[`Browsing catalogue, you may add products to your comparison table`]</p>
+                </div>
+            </div>
+        {/if}
+    </div>
+</div>
+<script>
+    $(function(){
+        $("#compare-diff").on("change", function () {
+            if ($(this).is(":checked")) {
+                $("#compare-table tr.same").hide();
+            } else {
+                $("#compare-table tr.same").show();
+            }
+        });
+    });
+</script>
+{/strip}

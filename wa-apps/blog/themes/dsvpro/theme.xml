@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE theme PUBLIC "wa-app-theme" "http://www.webasyst.com/wa-content/xml/wa-app-theme.dtd">
+<theme id="dsvpro" system="0" vendor="988467" author="Designsovkusom" app="blog" parent_theme_id="site:dsvpro" version="1.8.0">
+    <name locale="en_US">Design with taste PRO</name>
+    <name locale="ru_RU">Дизайн со вкусом PRO</name>
+    <files>
+        <file path="comment.html">
+            <description locale="en_US">Comment template</description>
+            <description locale="ru_RU">Шаблон вывода комментария</description>
+        </file>
+        <file path="error.html" parent="1"></file>
+        <file path="forgotpassword.html" parent="1"></file>
+        <file path="head.html">
+            <description locale="en_US">Blog's &lt;head&gt; instructions</description>
+            <description locale="en_US">Блок &lt;head&gt; приложения Блог</description>
+        </file>
+        <file path="js.html" custom="0">
+            <description locale="en_US">Blog app's javascript</description>
+            <description locale="ru_RU">Javascript приложения «Блог»</description>
+        </file>
+        <file path="login.html" parent="1"></file>
+        <file path="index.html" parent="1"></file>
+        <file path="main.html">
+            <description locale="en_US">Main blog layout</description>
+            <description locale="ru_RU">Основное макет вывода содержимого в блоге</description>
+        </file>
+        <file path="layout/menu.html">
+            <description locale="en_US">Blog app's menu</description>
+            <description locale="ru_RU">Меню приложения «Блог»</description>
+        </file>
+        <file path="page.html" parent="1"></file>
+        <file path="post.html" custom="0">
+            <description locale="en_US">Dedicated post page</description>
+            <description locale="ru_RU">Страница одной записи блога</description>
+        </file>
+        <file path="post.album.html" custom="0">
+            <description locale="en_US">Post comments</description>
+            <description locale="ru_RU">Комментарии записи блога</description>
+        </file>
+        <file path="post/comments.html" custom="0">
+            <description locale="en_US">Post album photos from photos app</description>
+            <description locale="ru_RU">Альбом фотографий поста из приложения Фото</description>
+        </file>
+        <file path="layout/searchform.html" custom="0">
+            <description locale="en_US">Search form</description>
+            <description locale="ru_RU">Форма поиска</description>
+        </file>
+        <file path="sidebar.html" custom="0">
+            <description locale="en_US">Sidebar blog app</description>
+            <description locale="ru_RU">Боковая панель приложения Блог</description>
+        </file>
+        <file path="signup.html" parent="1"></file>
+        <file path="stream.html" custom="0">
+            <description locale="en_US">Post stream wrapper</description>
+            <description locale="ru_RU">Обертка для страницы вывода списка записей</description>
+        </file>
+        <file path="stream_posts.html" custom="0">
+            <description locale="en_US">Default post list view mode</description>
+            <description locale="ru_RU">Основной вид списка записей блога</description>
+        </file>
+        <file path="blog.css" custom="0">
+            <description locale="en_US">Blog app styles</description>
+            <description locale="ru_RU">Стили приложения Блог</description>
+        </file>
+        <file path="blog.js" custom="0">
+            <description locale="en_US">Blog app js</description>
+            <description locale="ru_RU">Скрипты приложения Блог</description>
+        </file>
+    </files>
+    <about locale="en_US"><![CDATA[
+<p>Tasteful Design: <b>Professional Edition</b> is a multi-purpose design solution, developed for selling any kind of goods and services. Contemporary-looking and smart interface will attract new customers to your store. Our design theme will make your online store utterly unique. An uncontestable advantage of the theme is its flexibility. Your customers may browse the website and shop online using versatile devices. The elegant and intuitive interface will turn shopping into a pleasure. This design theme is developed for the basic webasyst applications (shop, website, photos, blog, mailer).</p>
+]]></about>
+    <about locale="ru_RU"><![CDATA[
+<p>Дизайн со вкусом: <b>Professional Edition</b> – это универсальная тема дизайна, которая подойдет для продажи любых видов товаров и услуг. Красивый и современный дизайн, привлечет в ваш магазин новых покупателей. Наша тема дизайна позволит вам создавать уникальный интернет-магазин не похожим на других!   Тема дизайна адаптивна, что позволит вашим покупателям совершать покупки с любых устройств. А простой и интуитивно понятный интерфейс позволит с легкостью совершать покупки. Тема дизайна спроектирована под основные приложения webasyst (магазин, сайт, фото, блог, рассылки).</p>
+]]></about>
+    <settings>
+        <setting var="divider_sidebar_blog" control_type="group_divider">
+            <value/>
+            <name locale="en_US">Sidebar (Blog)</name>
+            <name locale="ru_RU">Боковая панель (Блог)</name>
+        </setting>
+        <setting var="sidebar_blog_home" control_type="checkbox">
+            <value>0</value>
+            <name locale="en_US">Homepage</name>
+            <name locale="ru_RU">Главная страница</name>
+        </setting>
+        <setting var="sidebar_blog_post" control_type="checkbox">
+            <value>0</value>
+            <name locale="en_US">Post page</name>
+            <name locale="ru_RU">Страница поста</name>
+        </setting>
+    </settings>
+</theme>

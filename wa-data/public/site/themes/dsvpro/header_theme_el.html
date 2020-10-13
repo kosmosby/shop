@@ -1,0 +1,302 @@
+{strip}
+<header class="header header_theme_el hidden-xs hidden-sm"{if !isset($product)} data-spy="affix" data-offset-top="220"{/if}>
+    <div class="top-header-line"></div>
+    {*<div class="top-header-line-2"></div>*}
+    <div class="container-fluid height-95">
+    <div class="header-left-and-center">    
+    <div class="left-header-block">
+        {********* ЛОГОТИП / LOGO *************}
+        {include file="layout/logo.html"}
+        {literal}
+        <!-- Yandex.Metrika counter -->
+<script type="text/javascript" >
+   (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+   m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+   (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+   ym(55096180, "init", {
+        clickmap:true,
+        trackLinks:true,
+        accurateTrackBounce:true,
+        ecommerce:"dataLayer"
+   });
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/55096180" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+{/literal}
+    </div>  
+    {* TOPMENU *}
+    {*include file="./layout/topmenu.html" theme=$wa->cookie("header")|default:$theme_settings.header inline*}
+
+    {* HEADER CONTENT *}
+    <div class="headerContent headerContent_theme_el">
+        {*<div class="container-fluid"> *}
+            <div class="row vertical-align header-place">
+                {*<div class="col-md-2">*}
+                    {********* ЛОГОТИП / LOGO *************}
+                    {*include file="layout/logo.html"}
+                </div>*}
+                <div class="col-md-3 col-lg-4">
+                    {********* ПОИСК / SEARCH *************}
+                    <div class="search-form search-form_theme_el" id="searchWrapper">
+                        {if in_array($wa_app,['site','shop','photos','mailer'])}
+                            {include file="layout/searchform.html" autocomplete="1" inline}
+                        {else}
+                            {include file="`$wa_active_theme_path`/layout/searchform.html" inline}
+                        {/if}
+                    </div>
+                </div>
+              
+
+            </div>
+       {* </div>*}
+    </div>
+    
+    
+    <div class="header-navbar-menu">
+    {if in_array($wa_app,["site","shop","mailer","hub"])}
+        {********* КАТЕГОРИИ / CATEGORIES *****}
+        {if $wa->shop && count($categories)}
+       
+            <nav class="navbar navbar-default navbar_theme_el" id="navbar-shadowed">
+                <div class="container-fluid">
+                    <div class="row header-place">
+                        <ul class="nav navbar-nav navbar-flex">
+                            <li class="navbar-catalog dropdown dropdown_theme_am">
+                                <a class="navber-catalog__link" href="javascript:void(0)">
+                                    <i class="navber-catalog__icon mi mi-blur-on mi-24"></i>
+                                    <span class="navber-catalog__text">Каталог товаров</span>
+                                </a>
+                                <ul class="dropdown-menu dropdown-menu_theme_am">
+                                    {foreach $categories as $item}
+                                        {if isset($item.params.hidden)}{continue}{/if}
+
+                                        {$item_depth = 0}
+                                        {$depth = $item.params.depth|default:2}
+                                        {if count($item.childs) && $item_depth < $depth}
+                                            <li class="dropdown-submenu{if $selected_category == $item.id} active{/if}">
+                                                <a href="{$item.url}" data-icon-id="{$item.id}">
+                                                    {if $theme_settings.catalog_icons != "none"}
+                                                        {catalog_icon item=$item}
+                                                    {/if}
+                                                    <span>{$item.name}</span>
+                                                </a>
+                                                {* {amamenu item=$item col=3} *}
+                                                {$column=2}
+                                                {if isset($item.params.multicolumn)}
+                                                    {$column=$item.params.multicolumn}
+                                                {/if}
+                                                {multicolumn item=$item col=$column depth=$depth level=$item.depth}
+                                            </li>
+                                        {else}
+                                            <li>
+                                                <a href="{$item.url}" data-icon-id="{$item.id}">
+                                                    {if $theme_settings.catalog_icons != "none"}
+                                                        {catalog_icon item=$item}
+                                                    {/if}
+                                                    <span>{$item.name}</span>
+                                                </a>
+                                            </li>
+                                        {/if}
+                                    {/foreach}
+
+                                    {if $wa->block("shop.nav")}
+                                        {$wa->block("shop.nav")}
+                                    {/if}
+                                </ul>
+                            </li>
+                            {foreach $categories as $item}
+                                {if !isset($item.params.primary)}{continue}{/if}
+                                {catalog_item item=$item level=$item.depth}
+                            {/foreach}
+
+                            {if $wa->block("shop.primary_nav")}
+                                {$wa->block("shop.primary_nav")}
+                            {/if}
+
+                            {*include file="header/tags.html"*}
+
+                            {*include file="header/frontend_nav.html"*}
+                        </ul>
+                        {*if !empty($theme_settings.header_msg)}
+                            <ul class="nav navbar-nav navbar-right affix-hidden">
+                                <li>
+                                    <a href="{$theme_settings.header_msg_link|default:'javascript:void(0)'}" class="navbar-promo">{$theme_settings.header_msg}</a>
+                                </li>
+                            </ul>
+                        {/if*}
+                    </div>
+                </div>
+            </nav>
+               
+        
+        
+                
+          
+        {/if}
+    {else}
+        {********* МЕНЮ / MENU ****************}
+        <nav class="navbar navbar-default navbar_theme_el" id="navbar-shadowed">
+            <div class="container-fluid">
+                <div class="row">
+                    <ul class="nav navbar-nav navbar-flex">
+                        {include file="`$wa_active_theme_path`/layout/menu.html" inline}
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    {/if}
+    
+                        {******** МЕНЮ / ФУНКЦИИ ********}
+     {*<ul class="topMenu__user list-inline list-unstyled">
+            {if $wa->shop*}
+                {********* СРАВНЕНИЕ / COMPARE 
+                <li>
+                    <a class="topMenu__link js-compare{if count($shop_compare)} full{/if}" href="{if count($shop_compare)}{$wa->getUrl('shop/frontend/compare', ['id' => implode(',', $shop_compare)])}{else}javascript:void(0);{/if}">
+                        <i class="mi mi-filter-none topMenu__icon"></i>
+                        <span class="topMenu__label">[`Compare`]</span>
+                        <span class="badge topMenu__badge js-compare-count">{count($shop_compare)}</span>
+                    </a>
+                </li>********}
+
+                {********* ИЗБРАННОЕ / FAVOURITE 
+                <li class="favorite-left">
+                    <a class="topMenu__link js-favorite{if count($shop_wishlist)} full{/if}" href="{$wa->getUrl('shop/frontend/search')}?func=wishlist" rel="nofollow">
+                        <i class="mi mi-favorite-border topMenu__icon"></i>
+                        <span class="topMenu__label">[`Favourite`]</span>
+                        <span class="badge topMenu__badge js-favorite-count">{count($shop_wishlist)}</span>
+                    </a>
+                </li>******}
+
+                {********* ПРОСМОТРЕННЫЕ / VIEWED 
+                <li class="viewed-right">
+                    <a class="topMenu__link js-viewed{if count($shop_viewed)} full{/if}" href="{$wa->getUrl('shop/frontend/search')}?func=viewed" rel="nofollow">
+                      <i class="mi mi-access-time topMenu__icon"></i> 
+                        <span class="topMenu__label">Просмотрено</span>
+                        <span class="badge topMenu__badge js-viewed-count">{count($shop_viewed)}</span>
+                    </a>
+                </li>
+            {/if}*****}
+
+            {********* АВТОРИЗАЦИЯ / AUTH *********}
+            {*if $wa->isAuthEnabled() && $wa->cookie("header", $theme_settings.header) == "theme_el"}
+                <li class="dropdown dropdown-right">
+                    <a href="{$wa->getUrl('/frontend/myProfile')}?mynav=1">
+                        <i class="mi mi-person topMenu__icon"></i> Кабинет
+                    </a>
+                    <ul class="dropdown-menu">
+                        {if $wa->user()->isAuth()}
+                            <li><a href="{$wa->getUrl('/frontend/myProfile')}?mynav=1">[s`My profile`]</a></li>
+                            {if $wa->shop}
+                                <li><a href="{$wa->getUrl('shop/frontend/myOrders')}">[`My orders`]</a></li>
+                                {if shopAffiliate::isEnabled()}
+                                    <li><a href="{$wa->getUrl('shop/frontend/myAffiliate')}">[`Affiliate program`]</a></li>
+                                {/if}
+                            {/if}
+                            {if $wa->mailer}
+                                <li><a href="{$wa->getUrl('mailer/frontend/mySubscriptions')}">[`My subscriptions`]</a></li>
+                            {/if}
+                            <li><a href="?logout">[s`Log out`]</a></li>
+                        {else}
+                            <li><a href="{$wa->loginUrl()}">[s`Log in`]</a></li>
+                            <li><a href="{$wa->signupUrl()}">[s`Sign up`]</a></li>
+                        {/if}
+                    </ul>
+                </li>
+            {/if}
+        </ul>*}
+
+    
+    
+        </div> 
+        </div>
+        <div class="header-right-side"> <ul class="headerLinks headerLinks_theme_el">
+                {**********ЛИЧНЫЙ КАБИНЕТ / AUTH
+                <li class="dropdown dropdown-right">
+                    <a href="{$wa->getUrl('/frontend/myProfile')}?mynav=1">
+                        <i class="mi mi-person topMenu__icon"></i> Кабинет
+                    </a>
+                    <ul class="dropdown-menu">
+                        {if $wa->user()->isAuth()}
+                            <li><a href="{$wa->getUrl('/frontend/myProfile')}?mynav=1">[s`My profile`]</a></li>
+                            {if $wa->shop}
+                                <li><a href="{$wa->getUrl('shop/frontend/myOrders')}">[`My orders`]</a></li>
+                                {if shopAffiliate::isEnabled()}
+                                    <li><a href="{$wa->getUrl('shop/frontend/myAffiliate')}">[`Affiliate program`]</a></li>
+                                {/if}
+                            {/if}
+                            {if $wa->mailer}
+                                <li><a href="{$wa->getUrl('mailer/frontend/mySubscriptions')}">[`My subscriptions`]</a></li>
+                            {/if}
+                            <li><a href="?logout">[s`Log out`]</a></li>
+                        {else}
+                            <li><a href="{$wa->loginUrl()}">[s`Log in`]</a></li>
+                            <li><a href="{$wa->signupUrl()}">[s`Sign up`]</a></li>
+                        {/if}
+                    </ul>
+                </li>***********}
+            
+                            <div class="col-md-7 col-lg-6 headerContent__info">
+                <ul class="list-unstyled headerContent__contacts top-contacts">
+                        {if $wa->block("site.contacts")}
+                            {$wa->block("site.contacts")}
+                        {else}
+                            {if $wa->shop}
+                                {if $wh = $wa->shop->settings("workhours")}
+                                    <li class="fs-18em fw-7">8 (800) 511-02-60</li>
+                                    {*<li class="fs-13em">
+                                        <span class="fw-7">{$wh.days_from_to}</span>{if $wh.hours_from && $wh.hours_to} {$wh.hours_from}—{$wh.hours_to}{/if}
+                                    </li>*}
+                                {/if}
+                            {*  <li class="fs-13em"><a href="mailto:{$wa->shop->settings('email')}">{$wa->shop->settings('email')}</a></li> *}
+                            {/if}
+                            {*if $wa->user()->isAdmin()}
+                                <li class="fs-13em affix-hidden"><a href="http://designsovkusom.pro/docs/#sitecontacts" rel="nofollow" target="_blank">Как изменить?</a></li>
+                            {/if*}
+                        {/if}
+                    </ul>
+                    <ul class="list-unstyled headerContent__contacts bottom-contacts">
+                        {if $wa->block("site.contacts2")}
+                            {$wa->block("site.contacts2")}
+                        {else}
+                            {if $wa->shop}
+                                <li class="fs-18em fw-7">{$wa->shop->settings("phone")}</li>
+                            {/if}
+                            {*<li class="fs-12em text-elips">Бесплатный звонок с 8:00 до 22:00</li>*}
+                        {/if}
+                    </ul>
+                    </div>
+                    
+                
+                        {********* КОРЗИНА / CART *************}
+                        {if $wa->shop}
+                            {$cart_total = $wa->shop->cart->total()}
+                            {$cart_count = $wa->shop->cart->count()}
+                            {if method_exists($wa->shop, 'checkout')}
+                                {$_cart_url = $wa->shop->checkout()->cartUrl()}
+                            {else}
+                                {$_cart_url = $wa->getUrl('shop/frontend/cart')}
+                            {/if}
+                            <li id="cart">
+                                <a class="headerContent__cart td-none js-cart{if $cart_count > 0} full{/if}" href="{$_cart_url}">
+                                    <span class="mi-icon-badge js-cart-count" data-badge="{$cart_count}">
+                                        <i class="mi{if $theme_settings.preset == 'newyear'} mi-shopping-basket{else} mi-add-shopping-cart{/if} headerLinks__icon"></i>
+                                    </span>
+                                    <div class="text-left">
+                                        <p class="fs-15em fw-5">[`Cart`]</p>
+                                        <p class="fs-11em tt-lc">[`Total`] <span class="js-cart-total">{wa_currency_html($cart_total, $wa->shop->currency())}</span></p>
+                                    </div>
+                                </a>
+                                {if $theme_settings.header_popup_cart && strpos($wa->currentUrl(), "cart/") === false}
+                                    {include file="layout/popupcart.html" inline}
+                                {/if}
+                            </li>
+                        {/if}
+                    </ul>
+    </div>
+        
+        
+    </div>
+    
+</header>
+{/strip}

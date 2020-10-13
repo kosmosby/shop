@@ -1,0 +1,39 @@
+<h4><i class="icon-brush"></i> [`Tooltip`] <i class="fa icon-angle-down control"></i></h4>
+<div class="line">
+    <div class="form-group fullthird">
+        <label data-toggle="tooltip" data-placement="top"  title="[`Tooltip weight`]">[`Weight`]</label>
+        <input type="number" name="rsLayerTipDescriptionSize" value="{if isset ($sublayer.rsLayerTipDescriptionSize)}{$sublayer.rsLayerTipDescriptionSize}{else}200{/if}">
+    </div>
+    <div class="form-group fullthird">
+        <label data-toggle="tooltip" data-placement="top"  title="[`Tooltip height`]">[`Height`]</label>
+        <input type="number" name="rsLayerTipDescriptionHeight" value="{if isset ($sublayer.rsLayerTipDescriptionHeight)}{$sublayer.rsLayerTipDescriptionHeight}{else}100{/if}">
+    </div>
+    <div class="form-group fullthird">
+        <label data-toggle="tooltip" data-placement="top"  title="[`Change this value to move tooltip wrapper left or right`]">[`Left Offset`]</label>
+        <input type="number" name="rsLayerTipDescriptionLeftOffset" value="{if isset ($sublayer.rsLayerTipDescriptionLeftOffset)}{$sublayer.rsLayerTipDescriptionLeftOffset}{else}-90{/if}">
+    </div>
+    <div class="form-group fullthird">
+        <label data-toggle="tooltip" data-placement="top"  title="[`Change this value to move tooltip wrapper top or bottom`]">[`Top Offset`]</label>
+        <input type="number" name="rsLayerTipDescriptionTopOffset" value="{if isset ($sublayer.rsLayerTipDescriptionTopOffset)}{$sublayer.rsLayerTipDescriptionTopOffset}{else}-100{/if}">
+    </div>
+    <div>
+        <div class="form-group spanlablepad fullthird">
+            <label class="colorchange" data-toggle="tooltip" data-placement="top" title="[`Title color`]"><i class="icon-color" aria-hidden="true"></i></label>
+            <div class="form-group">
+                 <input  class="form-control colorpick colorin" data-position="top left" data-format="rgb" data-opacity="1.00"   name="rsLayerTipTitleColor" value="{if isset ($sublayer.rsLayerTipTitleColor)}{$sublayer.rsLayerTipTitleColor}{else}rgba(255, 255, 255, 1){/if}">
+            </div>
+        </div>
+        <div class="form-group spanlablepad fullthird">
+            <label class="colorchange" data-toggle="tooltip" data-placement="top" title="[`Description color`]"><i class="icon-color" aria-hidden="true"></i></label>
+            <div class="form-group">
+                <input class="form-control colorpick colorin" data-position="top left" data-format="rgb" data-opacity="1.00"  name="rsLayerTipDescriptionColor" value="{if isset ($sublayer.rsLayerTipDescriptionColor)}{$sublayer.rsLayerTipDescriptionColor}{else}rgba(255, 255, 255, 1){/if}">
+            </div>
+        </div>
+        <div class="form-group spanlablepad fullthird">
+            <label class="colorchange" data-toggle="tooltip" data-placement="top" title="[`Background color`]"><i class="icon-bgcolor" aria-hidden="true"></i></label>
+            <div class="form-group">
+                <input class="form-control colorpick colorin" data-position="top left" data-format="rgb" data-opacity="1.00" data-keywords="transparent, initial, inherit" name="rsLayerTipDescriptionBgColor" value="{if isset ($sublayer.rsLayerTipDescriptionBgColor)}{$sublayer.rsLayerTipDescriptionBgColor}{else}rgba(0, 0, 0, 0.75){/if}">
+            </div>
+        </div>
+    </div>
+</div>

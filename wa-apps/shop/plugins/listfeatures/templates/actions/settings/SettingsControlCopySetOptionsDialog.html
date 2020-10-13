@@ -1,0 +1,62 @@
+<div>
+    <div class="content">
+        <h1>[`Copy set options`]</h1>
+        <p>{str_replace(['%s', '%u'], [$settlement_name, $set_id], '[`Select sets and settlements to which you want to copy the settings of <strong class="nowrap">%s</strong> settlement’s  set <strong>%u</strong>.`]')}</p>
+        
+        {if $empty_set_config}
+            <p><em class="highlighted">[`This set has empty settings. Copying them to other sets will clear their settings, too.`]</em></p>
+        {/if}
+        
+        <input type="hidden" name="set" value="{$set_id}">
+        <input type="hidden" name="settlement_hash" value="{$settlement_hash}">
+        <input type="hidden" name="settlement_name" value="{$settlement_name}">
+
+        <div class="fields">
+            <div class="field">
+                <div class="name">[`Settlements`]</div>
+                <div class="value">
+                    <ul class="menu-h set-options-copy-dialog-apps">
+                        {foreach $apps as $app_id => $app}
+                            <li>
+                                <a href="" class="inline-link set-options-copy-dialog-app" data-app="{$app_id}">
+                                    <i class="icon16{if isset($app.icon_class)} {$app.icon_class}{/if}"{if isset($app.icon_url)}
+                                        style="background-image: url('{$wa_url}{$app.icon_url}'); background-size: 16px;"{/if}
+                                    ></i><b><i>{$app.title}</i></b>
+                                </a>
+                            </li>
+                        {/foreach}
+                    </ul>
+                    <br>
+                    {foreach $settlements as $key => $settlement}
+                        <label>
+                            <input type="checkbox" name="settlements[]" value="{$key}" data-app="{$settlement.app_id}" class="set-options-copy-dialog-settlement">
+                            {$settlement.title|escape}
+                            <span class="hint">{$settlement.description|escape}</span>
+                        </label>
+                        {if !$settlement@last}
+                            <br>
+                        {/if}
+                    {/foreach}
+                </div>
+            </div>
+            <div class="field">
+                <div class="name">[`Sets`]</div>
+                <div class="value">
+                    <ul class="menu-h">
+                        <li>
+                            <a href="" class="inline-link set-options-copy-dialog-sets">
+                                <i class="icon16 folders"></i><b><i>[`All sets`]</i></b>
+                            </a>
+                        </li>
+                    </ul>
+                    {$sets}
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="buttons">
+        <input type="submit" value="[`Copy`]" class="button green">
+        <a href="" class="cancel">[`close`]</a>
+        <i class="icon16 loading hidden" style="vertical-align: middle;"></i>
+    </div>
+</div>

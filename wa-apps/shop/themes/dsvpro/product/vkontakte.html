@@ -1,0 +1,15 @@
+{strip}
+<div class="{$tab_class|default:'tab-pane fade'}" id="{$tab.name}">
+    <div id="vk_comments"></div>
+    <script>
+        $(function () {
+            VK.Widgets.Comments("vk_comments", {
+                limit: {$theme_settings.tab_vklimit|default:10},
+                attach: {if $theme_settings.tab_vkattach}"*"{else}false{/if},
+                height: {$theme_settings.tab_vkheight|default:0},
+                autoPublish: {$theme_settings.tab_vkautopost|default:0}
+            });
+        });
+    </script>
+</div>
+{/strip}

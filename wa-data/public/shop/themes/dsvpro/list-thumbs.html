@@ -1,0 +1,330 @@
+{strip}
+{* DEFINE DEFAULT VARS *}
+{$default_view = 'thumbs'}
+{$setting_image_size = $theme_settings.product_image_thumb|default:"300"}
+{$setting_product_view = $theme_settings.product_view|default:$default_view}
+{$setting_product_size = $theme_settings.product_size|default:5}
+{$setting_product_skus = $theme_settings.catalog_skus|default:false}
+
+{if !empty($category.params.enable_sorting)}
+  {$default_view = $wa->cookie("product_view", $setting_product_view)}
+{/if}
+{$shop_compare = $wa->shop->inComparison()}
+
+{if $wa->cookie("shop_wishlist")}
+    {$shop_wishlist = ","|explode:$wa->cookie("shop_wishlist")}
+{else}
+    {$shop_wishlist = []}
+{/if}
+
+{if !$wa->isMobile()}{/if}
+{$products_photos = $wa->shop->images( array_keys($products), $setting_image_size )}
+
+
+{$sb_cnt = 0}
+{if $sidebar|default:false}
+    {$sb_cnt = 1}
+{/if}
+
+{function name="count" num=1}
+    {if $num === null || $num > 0}
+        <div class="stocks__item stock-high">
+            <i class="fill"></i>
+            <i class="fill"></i>
+            <i class="fill"></i>
+            <span class="stocks__msg">[`In stock`]</span>
+        </div>
+    {else}
+        <div class="stocks__item stock-none">
+            <i class="empty"></i>
+            <i class="empty"></i>
+            <i class="empty"></i>
+            <span class="stocks__msg">{if $wa->shop->settings('ignore_stock_count')}[`Pre-order only`]{else}[`Out of stock`]{/if}</span>
+        </div>
+    {/if}
+{/function}
+<div class="productsWrapper">
+    {if !empty($sorting)}
+        <div class="sort clearfix">
+            {if !empty($category.params.enable_sorting)}
+                {$sort_fields = [
+                    "name" => "[`Name`]",
+                    "price" => "[`Price`]",
+                    "total_sales" => "[`Bestsellers`]",
+                    "rating" => "[`Customer rating`]",
+                    "create_datetime"=>"[`Date added`]",
+                    "stock" => "[`In stock`]"
+                ]}
+                {if !isset($active_sort)}
+                    {$active_sort = $wa->get("sort", "create_datetime")}
+                {/if}
+                <ul class="sort__type list-unstyled list-inline">
+                    <li class="hidden-xs">[`Sort by`]:</li>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">{$sort_fields[$active_sort]|default:"[`New & Popular`]"}</a>
+                        <ul class="dropdown-menu">
+                            {foreach $sort_fields as $sort => $name}
+                                <li{if $active_sort == $sort} class="selected"{/if}>
+                                    {if class_exists("shopSeofilterPlugin")}
+                                        {shopSeofilterViewHelper::sortUrl($sort, $name, $active_sort)|replace:'&':'&amp;'}
+                                    {else}
+                                        {$wa->shop->sortUrl($sort, $name, $active_sort)|replace:'&':'&amp;'}
+                                    {/if}
+                                </li>
+                                {if $wa->get('sort') == $sort}{$wa->title($wa->title()|cat:' — '|cat:$name)}{/if}
+                            {/foreach}
+                            {if !empty($category) && !$category.sort_products}
+                                <li{if !$active_sort} class="selected"{/if}><a href="{$wa->currentUrl(0, 1)}">[`New & Popular`]</a></li>
+                            {/if}
+                        </ul>
+                    </li>
+                </ul>
+            {/if}
+
+            <ul class="sort__count list-unstyled list-inline">
+                {if isset($pages_count)}
+                    {$lazy = $wa->cookie("lazyppp",false)}
+                    {$ppp = $wa->cookie("products_per_page")}
+                    {$page_counts = ["10", "20", "30", "40"]}
+
+                    <li class="hidden-xs">[`Show`]:</li>
+                    <li class="dropdown hidden-xs">
+                        <a class="dropdown-toggle" href="#" data-toggle="dropdown">{$ppp|default:"[`All`]"}</a>
+                        <ul class="dropdown-menu" id="productsCount">
+                            {foreach $page_counts as $page_count}
+                                <li{if $page_count == $ppp && !$lazy} class="selected"{/if}>
+                                    <a href="javascript:void(0)" data-perpage="{$page_count}">{$page_count}</a>
+                                </li>
+                            {/foreach}
+                            <li{if $lazy || empty($ppp)} class="selected"{/if}><a href="javascript:void(0)" data-href="{$wa->currentUrl(0, 1)}" data-perpage="all">[`All`]</a></li>
+                        </ul>
+                    </li>
+                {/if}
+                <li class="sort__view">
+                    <a class="{if $default_view=='thumbs'}active{/if}" href="javascript:void(0)" data-view="thumbs">
+                        <i class="mi mi-view-module mi-24"></i>
+                    </a>
+                    <a class="hidden-xs{if $default_view=='list'} active{/if}" href="javascript:void(0)" data-view="list">
+                        <i class="mi mi-view-list mi-24"></i>
+                    </a>
+                    <a class="{if $default_view=='stream'} active{/if}" href="javascript:void(0)" data-view="stream">
+                        <i class="mi mi-view-stream mi-24"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    {/if}
+    <ul class="products{if isset($category)} {$default_view} products-size-{$setting_product_size}{else} thumbs{/if}{if isset($carousel)} dataSlider slick-wm{/if}"{if isset($carousel)} data-slick='{ "slidesToShow": {$setting_product_size-$sb_cnt}, "slidesToScroll": {$setting_product_size-$sb_cnt}, "autoplay": {$carousel.auto|default:0}, "autoplaySpeed": {$carousel.interval|default:3000}, "infinite": true, "responsive": [{ "breakpoint": 1600, "settings": { "slidesToShow": {4-$sb_cnt}, "slidesToScroll": {4-$sb_cnt} } }, { "breakpoint": 1024, "settings": { "slidesToShow": {3-$sb_cnt}, "slidesToScroll": {3-$sb_cnt} } }, { "breakpoint": 768, "settings": { "slidesToShow": 3, "slidesToScroll": 3, "arrows": false } }, { "breakpoint": 600, "settings": { "slidesToShow": 2, "slidesToScroll": 2, "dots": true, "arrows": false } }, { "breakpoint": 321, "settings": { "slidesToShow": 1, "slidesToScroll": 1, "dots": true, "arrows": false } } ]}'{/if}>
+        {foreach $products as $p}
+            {$available = $wa->shop->settings('ignore_stock_count') || $p.count === null || $p.count > 0}
+            <li class="products__item">
+                <div class="products__inner flexdiscount-product-wrap">
+                    <div class="products__image">
+                        <a href="{$p.frontend_url}" class="products__link">
+                            {$imagesCount = 0}
+                            {if isset($products_photos[ $p.id ])}
+                                {$imagesCount = count($products_photos[ $p.id ])}
+                            {/if}
+                            {if $imagesCount > 1}
+                                <div class="products__gallery">
+                                    {$gallery = $products_photos[ $p.id ]}
+                                    {$gallery_poster = $gallery[$p.image_id]}
+                                    {$gallery_poster_id = $p.image_id}
+
+                                    {$product_current_sku_image = $p.skus[$p.sku_id][image_id]|default:null}
+                                    {if $product_current_sku_image !== null}
+                                        {$gallery_poster = $gallery[$product_current_sku_image]}
+                                        {$gallery_poster_id = $product_current_sku_image}
+                                    {/if}
+                                    <img src="{$wa->shop->imgUrl($gallery_poster, $setting_image_size)}" alt="{$gallery_poster.description|default:$p.name}" class="active">
+                                    {foreach $gallery as $image}
+                                        {if $image.id == $gallery_poster_id}{continue}{/if}
+                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-original="{$wa->shop->imgUrl($image, $setting_image_size)}" alt="{$image.description|default:$p.name}" class="lazy">
+                                        {if $image@iteration === 5 && $imagesCount > 5}
+                                            <div class="galleryMore">
+                                                <div class="galleryMore__wrapper">
+                                                    <div class="galleryMore__icon"></div>
+                                                    <div class="galleryMore__text">{sprintf("[`More %d photos`]", $imagesCount - 5)}</div>
+                                                </div>
+                                            </div>
+                                            {break}
+                                        {/if}
+                                    {/foreach}
+                                    <!-- TODO: настройку ограничения фото товара в карусели -->
+                                </div>
+                            {else}
+                                <div class="image">
+                                    {if isset($carousel)}
+                                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-lazy="{$wa->shop->productImgUrl($p, $setting_image_size)}" alt="{$p.name}">
+                                    {else}
+                                        {$wa->shop->productImgHtml($p, $setting_image_size, ["itemprop" => "image", "alt" => $p.name, "default" => "`$wa_theme_url`img/noimage200.png"])}
+                                    {/if}
+                                </div>
+                            {/if}
+                        </a>
+                    </div>
+                    <div class="products__text">
+                        {if $setting_product_skus}
+                            <div class="products__info hidden-list hidden-stream">
+                                <span>
+                                    {if $p.sku_count > 1}
+                                        {_w("%d SKU", "%d SKUs", $p.sku_count)}
+                                    {/if}
+                                    {if $p.sku_count === '1'}
+                                        {$p_sku = $p.skus[$p.sku_id]['sku']}
+                                        {if !empty($p_sku)}[`SKU code`]: {$p_sku}{/if}
+                                    {/if}
+                                </span>
+                            </div>
+                        {/if}
+                        <div class="products__name mb-10">
+                            <a href="{$p.frontend_url}" class="products__link">{$p.name}</a>
+                        </div>
+                        <div class="stocks visible-stream fs-13em">
+                            {if $available}
+                                {count num=$p.count}
+                            {/if}
+                        </div>
+                        {if $theme_settings.product_reviews}
+                            <div class="visible-list mb-10">
+                                <span class="rating text-nowrap">
+                                    {if $p.rating > 0}
+                                        {$wa->shop->ratingHtml($p.rating)}
+                                    {else}
+                                        <i class="star-empty"></i>
+                                        <i class="star-empty"></i>
+                                        <i class="star-empty"></i>
+                                        <i class="star-empty"></i>
+                                        <i class="star-empty"></i>
+                                    {/if}
+                                </span>
+                            </div>
+                        {/if}
+                        
+                        {if $p.summary}
+                            <div class="products__description visible-list">
+                                {$p.summary}
+                            </div>
+                        {/if}
+                    </div>
+                    <div class="products__buy">
+                        <div>
+                            <form method="post" action="{$wa->getUrl('/frontendCart/add')}" class="products__add flexdiscount-product-form"{if $p.sku_count > 1} data-url="{$p.frontend_url}{if strpos($p.frontend_url, '?')}&{else}?{/if}cart=1"{/if}>
+                                <input type="hidden" name="product_id" value="{$p.id}">
+
+                                <div class="products__prices">
+                                    {if $theme_settings.product_price_min && $p.sku_count > 1}
+                                        {if $theme_settings.product_price_from}<span class="fs-13em">[`from`]</span> {/if}
+                                        <span class="products__price color-price text-nowrap">{shop_currency_html(0.8*$p.min_price)} - </span>
+                                        <span class="products__price color-price text-nowrap">{shop_currency_html($p.min_price)}</span>
+                                    {else}
+                                        <span class="products__price color-price text-nowrap">{shop_currency_html(0.8*$p.min_price)} - </span>
+                                        <span class="products__price color-price text-nowrap">{shop_currency_html($p.price)}</span>
+                                    {/if}
+        
+                                    {*if $p.compare_price > 0}
+                                        <span class="products__priceCompare color-compare-price text-nowrap hidden-stream">{shop_currency_html($p.compare_price)}</span>
+                                    {/if*}
+                                </div>
+                                <div class="stocks visible-list fs-13em mb-20">
+                                    <div class="fw-7">[`Availability`]:</div>
+
+                                    {if $available}
+                                        {count num=$p.count}
+                                    {/if}
+                                </div>
+                                {if $theme_settings.product_reviews}
+                                    <div class="rating mb-10 hidden-list hidden-stream text-nowrap">
+                                        {if $p.rating > 0}
+                                            {$wa->shop->ratingHtml($p.rating)}
+                                            ({$p.rating_count})
+                                        {else}
+                                            <i class="star-empty"></i>
+                                            <i class="star-empty"></i>
+                                            <i class="star-empty"></i>
+                                            <i class="star-empty"></i>
+                                            <i class="star-empty"></i>
+                                        {/if}
+                                    </div>
+                                {/if}
+                                
+                                
+                                
+                                <div class="qty category-qty">
+                                    <input type="hidden" class="mywholesale" name="wholesale" value="{if $p.wholesale_multiplicity!=0}{$p.wholesale_multiplicity}{else}1{/if}">
+                                    <input type="hidden" class="mywholesale_min_count" name="wholesale" value="{if $p.wholesale_min_product_count!=0}{$p.wholesale_min_product_count}{else}1{/if}">
+                                    <input class="form-control qty__input category-qty" type="text" name="quantity" value="{if $p.wholesale_min_product_count!=0}{$p.wholesale_min_product_count}{else}1{/if}">
+                                    {*<input class="form-control qty__input category-qty" type="text" name="quantity" value=
+                                    {if $p.wholesale_min_product_count >0}
+                                        "{$p.wholesale_min_product_count}"
+                                    {else}
+                                        "1"
+                                    {/if}">*}
+                                    <button class="qty__plus" type="button"></button>
+                                    <button class="qty__minus" type="button"></button>
+                                </div>
+                                
+                                {*<div class="qty hidden-thumbs hidden-list">
+                                    <input class="form-control qty__input" type="text" name="quantity" value="1">
+                                    <button class="qty__plus" type="button"></button>
+                                    <button class="qty__minus" type="button"></button>
+                                </div>*}
+
+                                <div class="products__buttons">
+                                    <a class="hidden-list product__action tooltip-top compare{if $wa->shop->inComparison($p.id)} active{/if}" href="javascript:void(0)" data-list="compare" data-id="{$p.id}" title="[`Add to comparison table`]">
+                                        <i class="mi mi-toll"></i>
+                                    </a>
+                                    {if $available}
+                                        <button class="btn btn-primary btn-ripple products__btn" type="submit">[`Add to cart`]</button>
+                                    {else}
+                                        <button class="btn btn-default products__btn" type="submit" disabled>[`Add to cart`]</button>
+                                    {/if}
+                                    <a class="hidden-list product__action tooltip-top favorite{if in_array($p.id, $shop_wishlist)} active{/if}" href="javascript:void(0)" data-list="favorite" data-id="{$p.id}" title="[`Add to favourites`]">
+                                        <i class="mi mi-favorite-border"></i>
+                                    </a>
+                                </div>
+                                <div class="js-product-data hidden" data-id="{$p.id}" data-name="{$p.name|escape}" data-image96="{$wa->shop->productImgUrl($p, '96x96')}" data-price="{$p.price}"></div>
+                            </form>
+
+                            {$badge_html = $wa->shop->badgeHtml($p.badge)}
+                            <div class="badge__wrapper hidden-stream">
+                                {if $badge_html}
+                                    {$badge_html}
+                                {/if}
+                                {if $p.compare_price > 0}
+                                    {$percent = ($p.compare_price-$p.price)*100/$p.compare_price}
+                                    <div class="badge low-price">-{$percent|ceil}%</div>
+                                {/if}
+                                {*
+                                    {if isset($p.params.badgeName) && isset($p.params.badgeClass)}
+                                        <div class="badge {$p.params.badgeClass}">{$p.params.badgeName}</div>
+                                    {/if}
+                                *}
+                            </div>
+                            <div class="thumbs-features">
+                            {shopListfeaturesPlugin::display($p, $products)}
+                        </div>
+                        </div>
+                    </div>
+                    <span class="products__quickview tooltip-left hidden-stream" title="[`Quick view`]" data-url="{$p.frontend_url}{if strpos($p.frontend_url, '?')}&{else}?{/if}cart=1" data-id="{$p.id}">
+                        <i class="mi mi-visibility mi-24"></i>
+                    </span>
+                </div>
+            </li>
+        {/foreach}
+    </ul>
+    {if isset($pages_count) && $pages_count > 1}
+        {$lazy = $wa->cookie("lazyppp")|default:false}
+        <div class="block text-center {if $theme_settings.category_pagination=='lazyload' || $lazy}lazyloading-paging{/if}" data-times="5" data-link-text="[`Load more`]" data-loading-str="[`Loading...`]">
+            {if class_exists("shopSeofilterPlugin")}
+                {capture assign=pagination}
+                    {wa_pagination total=$pages_count prev="<i class='mi mi-chevron-left mi-24'></i>" next="<i class='mi mi-chevron-right mi-24'></i>" attrs=["class" => "pagination"]}
+                {/capture}
+                {shopSeofilterViewHelper::paginationDecorate($pagination)}
+            {else}
+                {wa_pagination total=$pages_count prev="<i class='mi mi-chevron-left mi-24'></i>" next="<i class='mi mi-chevron-right mi-24'></i>" attrs=["class" => "pagination"]}
+            {/if}
+        </div>
+    {/if}
+</div>
+{/strip}

@@ -1,0 +1,89 @@
+{strip}
+{$mobile = $wa->isMobile() || $wa->userAgent("device") == "ipad" || $wa->userAgent("device") == "android"}
+<div class="checkout-content" data-step-id="confirmation">
+    {if !empty($error)}
+        <div class="checkout-result error">
+            {$error}
+            <br><br>
+            <a href="{$wa->getUrl('/frontend/checkout')}">[`Restart checkout`]</a>
+        </div>
+    {else}
+        <h3>[`Ship to`]</h3>
+        <p class="fs-13em">{$contact.name|escape}</p>
+        <p class="fs-13em">{$shipping_address.value}</p>
+        {if $billing_address}
+            <h3>[`Bill to`]</h3>
+            <p class="fs-13em">{$contact.name|escape}</p>
+            <p class="fs-13em">{$billing_address.value}</p>
+        {/if}
+        <table class="table fs-13em">
+            <tr>
+                <th>[`Product name`]</th>
+                <th class="text-right fw-5 hidden-xs">[`Quantity`]</th>
+                {if $tax > 0}
+                    <th class="text-right hidden-xs">[`Tax`]</th>
+                {/if}
+                <th class="text-right">[`Total`]</th>
+            </tr>
+            {foreach $items as $item}
+                <tr{if $item.type == "service"} class="service"{/if}>
+                    <td>{if $item.type == "service"}+ {/if}{$item.name|escape} <span class="visible-xs-inline gray">&times; {$item.quantity}</span></td>
+                    <td class="text-right text-nowrap hidden-xs">
+                        <span class="gray">{shop_currency_html($item.price, $item.currency)} &times;</span> {$item.quantity}
+                    </td>
+                    {if $tax > 0}
+                    <td class="text-right text-nowrap hidden-xs">{if isset($item.tax)}{shop_currency_html($item.tax, true)}{else}&ndash;{/if}</td>
+                    {/if}
+                    <td class="text-right text-nowrap">{shop_currency_html($item.price * $item.quantity, $item.currency)}</td>
+                </tr>
+            {/foreach}
+            {$colspan=1}
+            {if !$mobile}
+                {if $tax > 0}
+                    {$colspan=3}
+                {else}
+                    {$colspan=2}
+                {/if}
+            {/if}
+            <tr class="text-right">
+                <td class="fw-7" colspan="{$colspan}">[`Subtotal`]</td>
+                <td class="fw-7 text-nowrap">{shop_currency_html($subtotal, true)}</td>
+            </tr>
+            <tr class="text-right">
+                <td class="fw-7" colspan="{$colspan}">[`Discount`]</td>
+                <td class="fw-7 text-nowrap">&minus; {shop_currency_html($discount, true)}</td>
+            </tr>
+            <tr class="text-right">
+                <td class="fw-7" colspan="{$colspan}">[`Shipping`]{if !empty($params.shipping_name)} &mdash; <span class="fw-5">{$params.shipping_name}</span>{/if}</td>
+                <td class="fw-7 text-nowrap">{shop_currency_html($shipping, true)}</td>
+            </tr>
+            {if $tax > 0}
+                <tr class="text-right">
+                    <td class="fw-7" colspan="{$colspan}">[`Tax`]</td>
+                    <td class="fw-7 text-nowrap">{shop_currency_html($tax, true)}</td>
+                </tr>
+            {/if}
+            <tr class="text-right">
+                <td class="fw-7" colspan="{$colspan}">[`Total`]</td>
+                <td class="fw-7 text-nowrap">{shop_currency_html($total, true)}</td>
+            </tr>
+        </table>
+        <span class="fw-5 fs-13em">[`Comment`]</span>
+        <textarea class="form-control mb-20" name="comment" rows="5">{waRequest::post('comment', '', 'string')|escape}</textarea>
+
+        {if !empty($terms)}
+            <br>
+            {if waRequest::method() == 'post' && !$wa->post('terms')}
+                <p class="text-danger">[`You must read and agree to the Terms of service to place an order.`]</p>
+            {/if}
+            <label>
+                <input type="checkbox" name="terms" value="1"> {sprintf('[`I have read and agree to the <a href="%s" target="_blank">Terms of service</a>`]', $wa->getUrl('/frontend/checkout', ['step' => 'confirmation'])|cat:'?terms=1')}
+            </label>
+        {/if}
+    {/if}
+
+    <!-- plugin hook: 'frontend_checkout' -->
+    {* @event frontend_checkout.%plugin_id% *}
+    {foreach $frontend_checkout as $_}{$_}{/foreach}
+</div>
+{/strip}

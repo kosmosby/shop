@@ -1,0 +1,25 @@
+{strip}
+{**
+* @param int $limit
+* @param int $col (1..12)
+*}
+{foreach $wa->shop->promos() as $promo}
+    <div class="col-sm-{$col|default:4} text-center promo">
+        <a class="td-none promo__link" href="{$promo.link|escape}"></a>
+        <div class="promo__cover">
+            <div class="promo__image" style="background-image: url({$promo.image})"></div>
+            <div class="promo__caption">
+                <div class="promo__more">[`More info`]</div>
+            </div>
+        </div>
+        {if !empty($promo.title)}
+            <div class="black fw-7 promo__name">{$promo.title|escape}</div>
+        {/if}
+        {if !empty($promo.body)}
+            <div class="gray promo__description">{$promo.body|escape}</div>
+        {/if}
+    </div>
+    {if $promo@iteration == $limit|default:8}{break}{/if}
+{/foreach}
+<div class="clearfix"></div>
+{/strip}

@@ -1,0 +1,20 @@
+{strip}
+
+{$visible=$page.hidesidebar|default:true}
+{if $visible && $theme_settings.sidebar_site}
+    {$wa->globals("sidebar",true)}
+{/if}
+<div{if $wa_app == "shop"} class="container-fluid"{/if}>
+    
+    <div class="contentDescription page-type" role="main" itemprop="description">
+        {*$wa->globals("page", $page.id)}
+        {if !empty($page.url)}
+            {$wa->globals("crumb",$page.name)}
+        {/if*}
+        <div class="page-h2">
+            <h2 itemprop="name">{$page.name}</h2>
+        </div>
+        {$page.content}
+    </div>
+</div>
+{/strip}

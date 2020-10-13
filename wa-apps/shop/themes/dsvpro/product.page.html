@@ -1,0 +1,13 @@
+<div class="container-fluid">
+    <h1>{$page.title|escape}</h1>
+
+    <ul class="nav nav-tabs container-fluid" role="tablist" id="productTabs">
+        <li><a href="{$wa->shop->productUrl($product)}">[`Overview`]</a></li>
+        {foreach $product.pages as $p}
+        <li{if $page.id == $p.id} class="active"{/if}><a href="{$wa->shop->productUrl($product, 'page', ['page_url' => $p.url])}">{$p.name|escape}</a></li>
+        {/foreach}
+    </ul>
+    <div class="tab-content">
+        <div class="contentDescription">{$page.content}</div>
+    </div>
+</div>

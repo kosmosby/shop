@@ -1,0 +1,110 @@
+{strip}
+{$wa->globals("crumb",$category.name|escape)}
+{$wa->globals("heading",$category.name|escape)}
+{$mobile = $wa->isMobile() || $wa->userAgent("device") == "ipad" || $wa->userAgent("device") == "android"}
+{$sidebar_default = (!empty($filters) && $mobile) || (!empty($filters) && $theme_settings.filter_position == "sidebar") || ($theme_settings.sidebar_shop_category && $theme_settings.sidebar_shop)}
+{$sidebar = $wa->cookie("sidebar", $sidebar_default)}
+{if $sidebar}
+    {$wa->globals("sidebar",true)}
+{/if}
+
+<div class="container-fluid">
+    <!-- plugin hook: 'frontend_category' -->
+    {* @event frontend_category.%plugin_id% *}
+    
+    {****H1****}
+    {$heading = $wa->globals("heading")}
+            {if !empty($heading)}
+                <div class="container-fluid main__heading">
+                    <h1 class="category-name">{$wa->globals("heading")}</h1>
+                </div>
+    {/if}
+    
+    {foreach $frontend_category as $_}{$_}{/foreach}
+
+    <div class="mb-20 visible-xs">
+        <div class="category__count pull-left">[`Quantity`]: {$products_count}</div>
+        {if !empty($filters)}
+            <div class="fs-13em pull-right">
+                <a href="#" class="filter__show">[`Product filtering`]</a>
+            </div>
+        {/if}
+        <div class="clearfix"></div>
+    </div>
+
+    {if $category.description && $theme_settings.category_description == "before"}
+        <div class="contentDescription category-desc">{$category.description}</div>
+    {/if}
+    
+    
+    {********* ПОДКАТЕГОРИИ / SUBCATS *****}
+    {if $category.subcategories}
+        <div class="subcats mb-20">
+            {if $theme_settings.subcategories == "image"}
+                {foreach $category.subcategories as $sc}
+                    {$image_url = ""}
+                    {if $theme_settings.subcategories_image == 'params' && isset($sc.params.image)}
+                        {$image_url = $sc.params.image}
+                    {elseif $theme_settings.subcategories_image == 'categoryimages' && class_exists('shopCategoryimagesPlugin')}
+                        {$image_url = shopCategoryImagesPlugin::getCategoryImageUrl($sc.id)}
+                    {elseif $theme_settings.subcategories_image == 'categoryimage' && class_exists('shopCategoryimagePlugin') && isset($sc.image)}
+                        {$image_url = "{$wa_url}wa-data/public/shop/categories/{$sc.id}/{$sc.id}.200{$sc.image}"}
+                    {elseif $theme_settings.subcategories_image == 'wmimage' && class_exists('shopWmimageincatPlugin')}
+                        {$image_url = shopWmimageincatPlugin::getCategoryImage($sc.id,'image')}
+                    {/if}
+                    <div class="subcats__item">
+                        <a href="{$sc.url}">
+                            <div class="subcats__image">
+                                <img src="{if $image_url}{$image_url}{else}{$wa_theme_url}img/noimage200.png{/if}" alt="{$sc.name|escape}">
+                            </div>
+                            <div class="subcats__name">{$sc.name|escape}</div>
+                        </a>
+                    </div>
+                    {if $mobile && $sc@iteration == 3 && !$sc@last}
+                        <div class="collapse" id="subcatsCollapse">
+                    {/if}
+                    {if $mobile && $sc@iteration > 3 && $sc@last}
+                        </div>
+                    {/if}
+                {/foreach}
+                {if $mobile && count($category.subcategories) > 3}
+                    <div>
+                        <button class="btn btn-block btn-lg btn-blue btn-brd" id="subcatsToggle" type="button" data-toggle="collapse" data-target="#subcatsCollapse" data-shown="[`Show more`]" data-hidden="[`Hide`]">[`Show more`]</button>
+                    </div>
+                {/if}
+            {else}
+                {foreach $category.subcategories as $sc}
+                    <a class="subcats__link btn btn-link" href="{$sc.url}">{$sc.name|escape}</a>
+                {/foreach}
+            {/if}
+        </div>
+        <div class="clearfix"></div>
+    {/if}
+
+    {if $theme_settings.filter_position == "horizontal" && !empty($filters) && !$mobile}
+        {include file="category.filters.html" inline}
+    {/if}
+
+
+    {********* ПРОДУКТЫ / PRODUCTS ********}
+    <div id="product-list">
+        {if !$products}
+            <div class="col-xs-12">
+                <div class="productsWrapper products">
+                    {if !empty($filters)}
+                        [`No products were found.`]
+                    {else}
+                        [`This category does not contain any products.`]
+                    {/if}
+                </div>
+            </div>
+        {else}
+            {include file="list-thumbs.html" sorting=!empty($category.params.enable_sorting)}
+        {/if}
+    </div>
+
+    {if $category.description && $theme_settings.category_description == "after"}
+        <div class="contentDescription category-desc">{$category.description}</div>
+    {/if}
+</div>
+{/strip}

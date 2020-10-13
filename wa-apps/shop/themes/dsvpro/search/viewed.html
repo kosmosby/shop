@@ -1,0 +1,18 @@
+{$wa->title("[`Recently viewed`]")}
+{$products = $wa->shop->products("id/`$wa->cookie('shop_viewed')`")}
+{if count($products)}
+    <h1>[`Recently viewed`] {if count($products) > 0}<a href="#" class="reset-{$func}">[`clear`]</a>{/if}</h1>
+    <div id="product-list">
+        {include file="list-thumbs.html"}
+    </div>
+{else}
+    <div class="blank text-center">
+        <div class="blank__inner">
+            <div class="blank__icon">
+                <i class="mi mi-access-time"></i>
+            </div>
+            <h1 class="blank__heading">[`Nothing to display`]</h1>
+            <p class="blank__text fs-15em">[`Browse item and it will be added to this section`]</p>
+        </div>
+    </div>
+{/if}

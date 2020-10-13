@@ -1,0 +1,28 @@
+{* @event frontend_nav.%plugin_id% *}
+{if $wa->shop && $theme_settings.header_nav_plugins}
+    {foreach $frontend_nav as $_key => $_}
+        <li class="dropdown megaMenu">
+            {if substr($_key, -7) == '-plugin'}
+                <a href="javascript:void(0)">{$wa->pluginName(substr($_key, 0, -7))}</a>
+            {/if}
+            <div class="dropdown-menu">
+                <div class="container-fluid">
+                    <div class="megaMenu__body">
+                        {if $_key == "brands-plugin"}
+                            {$_|replace:"brands":"brandsMenu list-unstyled list-inline clearfix"}
+                        {elseif $_key == "productbrands-plugin"}
+                            {$brands = shopProductbrandsPlugin::getBrands()}
+                            <ul class="brandsMenu list-unstyled list-inline clearfix">
+                                {foreach $brands as $b}
+                                    <li><a href="{$b.url|default:'javascript:void(0)'}">{$b.name}</a></li>
+                                {/foreach}
+                            </ul>
+                        {else}
+                            {$_|replace:"menu-v":"brandsMenu list-unstyled list-inline "}
+                        {/if}
+                    </div>
+                </div>
+            </div>
+        </li>
+    {/foreach}
+{/if}

@@ -1,0 +1,25 @@
+{strip}
+{**
+* @param string $condition - search condition (set/promo)
+* @param bool $auto - auto scroll slider (0)
+* @param int $interval - auto scroll interval (3000)
+* @param int $limit - count of products (null)
+* @param string $mytitle - slider title ([`Promos`])
+* @param bool $noscript - disable slider
+*}
+{$slider.auto = $auto|default:0}
+{$slider.interval = $interval|default:3000}
+{$products = $wa->shop->products($condition|default:"set/promo", null, $limit|default:null)}
+{if count($products)}
+    <div class="productsSet">
+        <div class="heading">
+            {*<span class="h3">{$mytitle|default:'[`Promos`]'}</span>*}
+        </div>
+        {if $noscript|default:false}
+            {include file="list-thumbs.html" products=$products}
+        {else}
+            {include file="list-thumbs.html" products=$products carousel=$slider}
+        {/if}
+    </div>
+{/if}
+{/strip}

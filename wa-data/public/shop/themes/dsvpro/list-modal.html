@@ -1,0 +1,78 @@
+{strip}
+{$size = "200x0"}
+<div class="productsWrapper">
+    <ul class="products thumbs clearfix{if count($products) > 3} dataSlider{/if}"{if count($products) > 3} data-slick='{ "slidesToShow": 3, "slidesToScroll": 3, "infinite": true }'{/if}>
+        {foreach $products as $p}
+            {$available = $wa->shop->settings("ignore_stock_count") || $p.count === null || $p.count > 0}
+            <li class="products__item">
+                <div class="products__inner">
+                    <div class="products__image">
+                        <a href="{$p.frontend_url}" class="products__link">
+                            <div class="image">
+                                {$wa->shop->productImgHtml($p, $size, ["alt" => $p.name, "default" => "`$wa_theme_url`img/noimage200.png"])}
+                            </div>
+                        </a>
+                    </div>
+                    <div class="products__text">
+                        {if $p.sku_count > 1}
+                            <div class="products__info hidden-list">
+                                <span>{$p.sku_count} [`option`]</span>
+                            </div>
+                        {/if}
+                        <div class="products__name mb-10">
+                            <a href="{$p.frontend_url}" class="products__link">{$p.name}</a>
+                        </div>
+                    </div>
+                    <div class="products__buy">
+                        <div class="products__prices">
+                            <span class="products__price color-price text-nowrap">
+                                {shop_currency_html($p.price)}
+                            </span>
+                            {if $p.compare_price > 0}
+                                <span class="products__priceCompare color-compare-price text-nowrap">{shop_currency_html($p.compare_price)}</span>
+                            {/if}
+                        </div>
+                        <div class="rating mb-10 hidden-list text-nowrap">
+                            {if $p.rating > 0}
+                                {$wa->shop->ratingHtml($p.rating)}
+                                ({$p.rating_count})
+                            {else}
+                                <i class="star-empty"></i>
+                                <i class="star-empty"></i>
+                                <i class="star-empty"></i>
+                                <i class="star-empty"></i>
+                                <i class="star-empty"></i>
+                            {/if}
+                        </div>
+
+                        {$badge_html = $wa->shop->badgeHtml($p.badge)}
+                        <div class="badge__wrapper">
+                            {if $badge_html}
+                                {$badge_html}
+                            {/if}
+                            {if $p.compare_price > 0}
+                                {$percent = ($p.compare_price-$p.price)*100/$p.compare_price}
+                                <div class="badge low-price">-{$percent|ceil}%</div>
+                            {/if}
+                            {*
+                                {if isset($p.params.badgeName) && isset($p.params.badgeClass)}
+                                    <div class="badge {$p.params.badgeClass}">{$p.params.badgeName}</div>
+                                {/if}
+                            *}
+                        </div>
+                    </div>
+                    <span class="products__quickview tooltip-left" title="[`Quick view`]" data-url="{$p.frontend_url}{if strpos($p.frontend_url, '?')}&{else}?{/if}cart=1">
+                        <i class="mi mi-visibility mi-24"></i>
+                    </span>
+                </div>
+            </li>
+        {/foreach}
+    </ul>
+    {if isset($pages_count) && $pages_count > 1}
+        {$lazy = $wa->cookie("lazyppp",false)}
+        <div class="block text-center {if $theme_settings.category_pagination=='lazyload' || $lazy}lazyloading-paging{/if}" data-times="5" data-link-text="[`Load more`]" data-loading-str="[`Loading...`]">
+            {wa_pagination total=$pages_count prev="<i class='mi mi-chevron-left mi-24'></i>" next="<i class='mi mi-chevron-right mi-24'></i>" attrs=["class" => "pagination"]}
+        </div>
+    {/if}
+</div>
+{/strip}

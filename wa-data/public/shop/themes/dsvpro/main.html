@@ -1,0 +1,25 @@
+{strip}
+<!-- plugin hook: 'frontend_header' -->
+{* @event frontend_header.%plugin_id% *}
+{foreach $frontend_header as $_}{$_}{/foreach}
+
+{* APP CONTENT *}
+
+{$is_auth = $wa->globals("auth")}
+<div itemscope itemtype="http://schema.org/{if $action == 'default'}Store{else}WebPage{/if}" id="page-content"{if !empty($is_auth)} class="container-fluid"{/if}>
+    {if $action == 'default'}
+        <meta itemprop="name" content="{$wa->shop->settings('name')}">
+        <meta itemprop="address" content="{$wa->shop->settings('country')}">
+        <meta itemprop="telephone" content="{$wa->shop->settings('phone')}">
+        <meta itemprop="currenciesAccepted" content="{$wa->shop->currency()}">
+        <meta itemprop="image" content="{$wa->domainUrl()}{$wa_parent_theme_url}{$theme_settings.logo|default:'img/logo.png'}">
+        {if $theme_settings.price_range}
+            <meta itemprop="priceRange" content="{$theme_settings.price_range}">
+        {/if}
+    {/if}
+
+    <div{if $theme_settings.filter_option == "smartfilters"} id="smartfiltercontent"{/if}>
+        {$content}
+    </div>
+</div>
+{/strip}

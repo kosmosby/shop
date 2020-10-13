@@ -1,0 +1,115 @@
+<div class="contain">
+    <div class="col-xs-12 form-inline">
+        <div class="checkbox">
+            <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`If checked, the Ken Burns Effect will be enabled.`]">[`On/Off`]</label>
+            <input class="js-switch"  type="checkbox" name="kenburns" value="1" {if isset ($layer.properties.kenburns) == '1'}checked="checked"{/if}>
+         </div>
+
+        <div class="form-group">
+            <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`The duration length of the Ken Burns Effect. It should be same or longer then the length of Slide Duration defined per slide or default in slider settings.`]">[`Duration`]</label>
+            <input class="form-control halfto" type="text" name="kenburnsduration" value="{if isset ($layer.properties.kenburnsduration)}{$layer.properties.kenburnsduration}{else}18000{/if}">
+        </div>
+
+        <div class="form-group">
+            <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`The Ease effect of the Ken Burns Effect.`]">[`Easing`]</label>
+            <select class="form-control" name="kenburnsease">                                  
+                {if !isset($layer) && !isset($layer.properties) && !isset($layer.properties.kenburnsease)}
+                    {assign var='kenburnsease' value='Linear.easeNone'}
+                {else}
+                     {assign var='kenburnsease' value=$layer.properties.kenburnsease|default:'Linear.easeNone'}
+                {/if}
+                <option {if $kenburnsease == 'Default'}selected="selected"{/if} value="Default">Default</option>
+                <option {if $kenburnsease == 'Linear.easeNone'}selected="selected"{/if} value="Linear.easeNone">Linear.easeNone</option>
+                <option {if $kenburnsease == 'Power0.easeIn'}selected="selected"{/if} value="Power0.easeIn">Power0.easeIn</option>
+                <option {if $kenburnsease == 'Power0.easeInOut'}selected="selected"{/if} value="Power0.easeInOut">Power0.easeInOut</option>
+                <option {if $kenburnsease == 'Power0.easeOut'}selected="selected"{/if} value="Power0.easeOut">Power0.easeOut</option>
+                <option {if $kenburnsease == 'Power1.easeIn'}selected="selected"{/if} value="Power1.easeIn">Power1.easeIn</option>
+                <option {if $kenburnsease == 'Power1.easeInOut'}selected="selected"{/if} value="Power1.easeInOut">Power1.easeInOut</option>
+                <option {if $kenburnsease == 'Power1.easeOut'}selected="selected"{/if} value="Power1.easeOut">Power1.easeOut</option>
+                <option {if $kenburnsease == 'Power2.easeIn'}selected="selected"{/if} value="Power2.easeIn">Power2.easeIn</option>
+                <option {if $kenburnsease == 'Power2.easeInOut'}selected="selected"{/if} value="Power2.easeInOut">Power2.easeInOut</option>
+                <option {if $kenburnsease == 'Power2.easeOut'}selected="selected"{/if} value="Power2.easeOut">Power2.easeOut</option>
+                <option {if $kenburnsease == 'Power3.easeIn'}selected="selected"{/if} value="Power3.easeIn">Power3.easeIn</option>
+                <option {if $kenburnsease == 'Power3.easeInOut'}selected="selected"{/if} value="Power3.easeInOut">Power3.easeInOut</option>
+                <option {if $kenburnsease == 'Power3.easeOut'}selected="selected"{/if} value="Power3.easeOut">Power3.easeOut</option>
+                <option {if $kenburnsease == 'Power4.easeIn'}selected="selected"{/if} value="Power4.easeIn">Power4.easeIn</option>
+                <option {if $kenburnsease == 'Power4.easeInOut'}selected="selected"{/if} value="Power4.easeInOut">Power4.easeInOut</option>
+                <option {if $kenburnsease == 'Power4.easeOut'}selected="selected"{/if} value="Power4.easeOut">Power4.easeOut</option>
+                <option {if $kenburnsease == 'Quad.easeIn'}selected="selected"{/if} value="Quad.easeIn">Quad.easeIn</option>
+                <option {if $kenburnsease == 'Quad.easeInOut'}selected="selected"{/if} value="Quad.easeInOut">Quad.easeInOut</option>
+                <option {if $kenburnsease == 'Quad.easeOut'}selected="selected"{/if} value="Quad.easeOut">Quad.easeOut</option>
+                <option {if $kenburnsease == 'Cubic.easeIn'}selected="selected"{/if} value="Cubic.easeIn">Cubic.easeIn</option>
+                <option {if $kenburnsease == 'Cubic.easeInOut'}selected="selected"{/if} value="Cubic.easeInOut">Cubic.easeInOut</option>
+                <option {if $kenburnsease == 'Cubic.easeOut'}selected="selected"{/if} value="Cubic.easeOut">Cubic.easeOut</option>
+                <option {if $kenburnsease == 'Quart.easeIn'}selected="selected"{/if} value="Quart.easeIn">Quart.easeIn</option>
+                <option {if $kenburnsease == 'Quart.easeInOut'}selected="selected"{/if} value="Quart.easeInOut">Quart.easeInOut</option>
+                <option {if $kenburnsease == 'Quart.easeOut'}selected="selected"{/if} value="Quart.easeOut">Quart.easeOut</option>
+                <option {if $kenburnsease == 'Quint.easeIn'}selected="selected"{/if} value="Quint.easeIn">Quint.easeIn</option>
+                <option {if $kenburnsease == 'Quint.easeInOut'}selected="selected"{/if} value="Quint.easeInOut">Quint.easeInOut</option>
+                <option {if $kenburnsease == 'Quint.easeOut'}selected="selected"{/if} value="Quint.easeOut">Quint.easeOut</option>
+                <option {if $kenburnsease == 'Strong.easeIn'}selected="selected"{/if} value="Strong.easeIn">Strong.easeIn</option>
+                <option {if $kenburnsease == 'Strong.easeInOut'}selected="selected"{/if} value="Strong.easeInOut">Strong.easeInOut</option>
+                <option {if $kenburnsease == 'Strong.easeOut'}selected="selected"{/if} value="Strong.easeOut">Strong.easeOut</option>
+                <option {if $kenburnsease == 'Back.easeIn'}selected="selected"{/if} value="Back.easeIn">Back.easeIn</option>
+                <option {if $kenburnsease == 'Back.easeInOut'}selected="selected"{/if} value="Back.easeInOut">Back.easeInOut</option>
+                <option {if $kenburnsease == 'Back.easeOut'}selected="selected"{/if} value="Back.easeOut">Back.easeOut</option>
+                <option {if $kenburnsease == 'Bounce.easeIn'}selected="selected"{/if} value="Bounce.easeIn">Bounce.easeIn</option>
+                <option {if $kenburnsease == 'Bounce.easeInOut'}selected="selected"{/if} value="Bounce.easeInOut">Bounce.easeInOut</option>
+                <option {if $kenburnsease == 'Bounce.easeOut'}selected="selected"{/if} value="Bounce.easeOut">Bounce.easeOut</option>
+                <option {if $kenburnsease == 'Circ.easeIn'}selected="selected"{/if} value="Circ.easeIn">Circ.easeIn</option>
+                <option {if $kenburnsease == 'Circ.easeInOut'}selected="selected"{/if} value="Circ.easeInOut">Circ.easeInOut</option>
+                <option {if $kenburnsease == 'Circ.easeOut'}selected="selected"{/if} value="Circ.easeOut">Circ.easeOut</option>
+                <option {if $kenburnsease == 'Elastic.easeIn'}selected="selected"{/if} value="Elastic.easeIn">Elastic.easeIn</option>
+                <option {if $kenburnsease == 'Elastic.easeInOut'}selected="selected"{/if} value="Elastic.easeInOut">Elastic.easeInOut</option>
+                <option {if $kenburnsease == 'Elastic.easeOut'}selected="selected"{/if} value="Elastic.easeOut">Elastic.easeOut</option>
+                <option {if $kenburnsease == 'Expo.easeIn'}selected="selected"{/if} value="Expo.easeIn">Expo.easeIn</option>
+                <option {if $kenburnsease == 'Expo.easeInOut'}selected="selected"{/if} value="Expo.easeInOut">Expo.easeInOut</option>
+                <option {if $kenburnsease == 'Expo.easeOut'}selected="selected"{/if} value="Expo.easeOut">Expo.easeOut</option>
+                <option {if $kenburnsease == 'Sine.easeIn'}selected="selected"{/if} value="Sine.easeIn">Sine.easeIn</option>
+                <option {if $kenburnsease == 'Sine.easeInOut'}selected="selected"{/if} value="Sine.easeInOut">Sine.easeInOut</option>
+                <option {if $kenburnsease == 'Sine.easeOut'}selected="selected"{/if} value="Sine.easeOut">Sine.easeOut</option>
+                <option {if $kenburnsease == 'SlowMo.ease'}selected="selected"{/if} value="SlowMo.ease">SlowMo.ease</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-toggle="tooltip" data-html="true" data-placement="bottom" title="" for="" data-original-title="[`The start Zoom Value. If the image would not cover the container any more, it will be automatically corrected to the next possible value.<br><strong>Default:</strong> - 100 (no scale)`]">[`Start Zoom`]</label>
+            <input class="form-control halfto" type="text" name="kenburnsscalestart" value="{if isset ($layer.properties.kenburnsscalestart)}{$layer.properties.kenburnsscalestart}{else}100{/if}">
+        </div>
+
+        <div class="form-group">
+            <label data-toggle="tooltip" data-html="true" data-placement="bottom" title="" for="" data-original-title="[`The End Zoom Value of the Ken Burns Effect. If the image would not cover the container any more, it will be automatically corrected to the next possible value.<br><strong>Example:</strong> - 110 (background will be zoomed for 10%)`]`]">[`Finish Zoom`]</label>
+            <input class="form-control halfto" type="text" name="kenburnsscaleend" value="{if isset ($layer.properties.kenburnsscaleend)}{$layer.properties.kenburnsscaleend}{else}110{/if}">
+        </div>
+            
+        <div class="form-group">
+            <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`Horizontal offsets for the Start position. It will be related to the Zoom and background position settings, and from that position it will move the full slide offsetting on X axis`]">[`X Start`]</label>
+            <input class="form-control halfto" type="text" name="kenburnsoffsetstartx" value="{if isset ($layer.properties.kenburnsscaleend)}{$layer.properties.kenburnsoffsetstartx}{else}0{/if}">
+        </div>  
+            
+        <div class="form-group">
+            <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`Vertical offsets for the Start position. It will be related to the Zoom and background position settings, and from that position it will move the full slide offsetting on Y axis`]">[`Y Start`]</label>
+            <input class="form-control halfto" type="text" name="kenburnsoffsetstarty" value="{if isset ($layer.properties.kenburnsscaleend)}{$layer.properties.kenburnsoffsetstarty}{else}0{/if}">
+        </div>
+
+        <div class="form-group">
+            <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`Horizontal offsets for the End position.`]">[`X Finish`]</label>
+            <input class="form-control halfto" type="text" name="kenburnsoffsetendx" value="{if isset ($layer.properties.kenburnsoffsetendx)}{$layer.properties.kenburnsoffsetendx}{else}0{/if}">
+        </div>
+            
+        <div class="form-group">
+            <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`Vertical offsets for the End position.`]">[`Y Finish`]</label>
+            <input class="form-control halfto" type="text" name="kenburnsoffsetendy" value="{if isset ($layer.properties.kenburnsoffsetendy)}{$layer.properties.kenburnsoffsetendy}{else}0{/if}">
+        </div>
+
+        <div class="form-group">
+            <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`Defines the rotation degree of the SlideMain image at the start of the Ken Burns Effect. Use small values (positive or negative).  i.e. “-5” for a smooth and clever effect.`]">[`Start Rotation`]</label>
+            <input class="form-control halfto" type="text" name="kenburnsrotatestart" value="{if isset ($layer.properties.kenburnsrotatestart)}{$layer.properties.kenburnsrotatestart}{else}0{/if}">
+        </div>
+
+        <div class="form-group">
+            <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`Defines the rotation degree of the Slide Main image at the end of the Ken Burns Effect. Use small values (positive or negative).  i.e. “-5” for a smooth and clever effect.`]">[`Finish Rotation`]</label>
+            <input class="form-control halfto" type="text" name="kenburnsrotateend" value="{if isset ($layer.properties.kenburnsrotateend)}{$layer.properties.kenburnsrotateend}{else}0{/if}">
+        </div>
+    </div>
+</div>

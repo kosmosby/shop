@@ -1,0 +1,85 @@
+{strip}
+{if $theme_settings.ss7_support}
+    {$video = $product->getVideo(['96x96','500'])}
+{/if}
+{if $product.images || ($theme_settings.ss7_support && $video)}
+    <div class="product__media{if $wa->get('cart')} product__mediaH{else} product__mediaV{/if}">
+        {if count($product.images) > 1 || ($theme_settings.ss7_support && $video)}
+            <div class="product__images">
+                {foreach $product.images as $image}
+                    {if $image.description == "bg" || $image.description == "image" || $image.description == "video"}{continue}{/if}
+                    {$url = $wa->shop->imgUrl($image, $size|default:'970')}
+                    {if $theme_settings.product_zoom == "fancybox" || $mobile}
+                        <a href="{$url}" data-fancybox="images" class="image">
+                            <img src="{$wa->shop->imgUrl($image, '500')}" alt="{$product.name|escape}" class="product__images__img"{if $image@first} itemprop="image"{/if}>
+                        </a>
+                    {else}
+                        <div class="product__images__item image">
+                            <img src="{$url}" alt="{$product.name|escape}" class="product__images__img"{if $image@first} itemprop="image"{/if}>
+                        </div>
+                    {/if}
+                {/foreach}
+                {if $theme_settings.ss7_support && $video}
+                    {if $theme_settings.product_zoom == "fancybox" || $mobile}
+                        <a data-fancybox="images" href="{$video.url}" class="image">
+                            <img src="{$video.images[1]}" alt="{$product.name|escape} [`Video`]">
+                        </a>
+                    {else}
+                        <div class="product__images__video" itemprop="video" itemscope itemtype="http://schema.org/VideoObject">
+                            <div class="embed-responsive embed-responsive-4by3" itemprop="embedHTML">
+                                <iframe src="{$video.url}" class="embed-responsive-item" width="{$video.width}" height="{$video.height}" style="border:0" allowfullscreen></iframe>
+                            </div>
+                            <meta itemprop="width" content="{$video.width}">
+                            <meta itemprop="height" content="{$video.height}">
+                        </div>
+                    {/if}
+                {/if}
+            </div>
+        {else}
+            <div class="product__images__item image">
+                {$wa->shop->productImgHtml($product, '970', [ 'itemprop' => 'image', 'class' => 'product__images__img', 'id' => 'product-image', 'alt' => $product.name|escape ])}
+            </div>
+        {/if}
+
+        {if $theme_settings.ss7_support && $video && !$wa->get("cart")}
+            <div class="product__video">
+                <a href="#">
+                    <i class="mi mi-play-circle-outline"></i><br>
+                    [`Video`]
+                </a>
+            </div>
+        {/if}
+
+        {if count($product.images) > 1 || ($theme_settings.ss7_support && $video)}
+            <div class="product__gallery hidden-xs">
+                {foreach $product.images as $image}
+                    {if $image.description == "bg" || $image.description == "image" || $image.description == "video"}{continue}{/if}
+                    <div class="product__gallery__item" id="product-image-{$image.id}">
+                        <div class="product__gallery__inner">
+                            {$wa->shop->imgHtml($image, "96x96", ["alt" => $product.name|escape ])}
+                        </div>
+                    </div>
+                {/foreach}
+                {if $theme_settings.ss7_support && $video}
+                    <div class="product__gallery__video">
+                        <div class="product__gallery__inner">
+                            <img src="{$video.images[0]}" alt="{$product.name|escape} [`Video`]">
+                        </div>
+                    </div>
+                {/if}
+            </div>
+        {/if}
+
+        {$badge_html = $wa->shop->badgeHtml($product.badge)}
+        <div class="badge__wrapper">
+            {if $badge_html}
+                {$badge_html}
+            {/if}
+            {if $product.compare_price > 0}
+                {$percent = ($product.compare_price-$product.price)*100/$product.compare_price}
+                <div class="badge low-price">-{$percent|ceil}%</div>
+            {/if}
+        </div>
+    </div>
+{/if}
+{/strip}

@@ -1,0 +1,35 @@
+{strip}
+{**
+* @param array $sets
+*}
+{if count($sets)}
+    <div class="productsTabs mb-15">
+        <div class="heading">
+            <span class="h3">{$mytitle|default:'[`Discounts`]'}</span>
+        </div>
+        <ul class="nav nav-tabs productsTabs__list" role="tablist">
+            {foreach $sets as $set}
+                <li class="productsTabs__item{if $set@first} active{/if}">
+                    <a class="productsTabs__link" href="#tabset_{$set.id}" role="tab" data-toggle="tab">{$set.name}</a>
+                </li>
+            {/foreach}
+        </ul>
+        <div class="tab-content">
+            {foreach $sets as $set}
+                {$products = $wa->shop->productSet($set.id, null, $set.limit|default:null)}
+                <div class="tab-pane fade{if $set@first} in active{/if}" id="tabset_{$set.id}">
+                    <div class="productsSet">
+                        {if count($products)}
+                            {if $set.noscript|default:false}
+                                {include file="list-thumbs.html" products=$products}
+                            {else}
+                                {include file="list-thumbs.html" products=$products carousel=$set.slider|default:[]}
+                            {/if}
+                        {/if}
+                    </div>
+                </div>
+            {/foreach}
+        </div>
+    </div>
+{/if}
+{/strip}

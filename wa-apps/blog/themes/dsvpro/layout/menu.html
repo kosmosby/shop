@@ -1,0 +1,70 @@
+{strip}
+{function name="nav_item" item=[]}
+    {if isset($item.childs)}
+        {if empty($item.parent_id)}
+            {$li = "dropdown"}
+        {else}
+            {$li = "dropdown-submenu"}
+        {/if}
+        <li class="{$li}{if $wa->currentUrl() == $item.url || $wa->currentUrl()|strstr:$item.url} active{/if}">
+            <a href="{$item.url}">{$item.name}</a>
+            <ul class="dropdown-menu">
+                {foreach $item.childs as $ic}
+                    {nav_item item=$ic}
+                {/foreach}
+            </ul>
+        </li>
+    {else}
+        <li{if $wa->currentUrl() == $item.url} class="active"{/if}><a href="{$item.url}">{$item.name}</a></li>
+    {/if}
+{/function}
+
+{$timeline = $wa->blog->timeline()}
+{if !empty($timeline)}
+    <li class="dropdown">
+        <a href="javascript:void(0)">[`Calendar`]</a>
+        <ul class="dropdown-menu">
+            {$year=null}
+            {foreach $timeline as $year_month => $item}
+                {if $year neq $item.year}
+                    {if !$item@first}
+                            </ul>
+                        </li>
+                    {/if}
+                    <li class="dropdown-submenu{if $item.year_selected} active{/if}">
+                    {$year=$item.year}
+                    <a href="{$item.year_link}" class="dropdown-toggle disabled" data-toggle="dropdown" data-hover="dropdown" data-delay="500" data-close-others="false">{$item.year|default:'NULL'}</a>
+                    <ul class="dropdown-menu">
+                {/if}
+                <li {if $item.selected}class="active"{/if}>
+                    <a href="{$item.link}" title="{_w("%d post","%d posts",$item.count)}">{_ws(date("F",gmmktime(0,0,0,$item.month,1)))}</a>
+                </li>
+                {if $item@last}
+                        </ul>
+                    </li>
+                {/if}
+            {/foreach}
+        </ul>
+    </li>
+{/if}
+
+{if $rss = $wa->blog->rssUrl()}
+    <li><a href="{$rss}" title="[s`RSS`]">[s`RSS`] <i class="fa fa-rss"></i></a></li>
+{/if}
+
+{$blogs = $wa->blog->blogs()}
+{if count($blogs) > 1}
+    <li class="{if is_array($wa->globals('blog_id')) && empty($is_search)}active{/if}"><a href="{$wa->blog->url()}">[`All posts`]</a></li>
+    {foreach $blogs as $blog}
+        <li class="{if $wa->globals('blog_id') eq $blog.id && empty($is_search)}active{/if}">
+            <a href="{$blog.link}">{$blog.name}</a>
+        </li>
+    {/foreach}
+{/if}
+
+{if $blog_pages=$wa->blog->pages()}
+    {foreach $blog_pages as $_page}
+        {nav_item item=$_page}
+    {/foreach}
+{/if}
+{/strip}

@@ -1,0 +1,34 @@
+<script src="{$wa_app_static_url}js/lazy.load.js?v{$wa->version()}"></script>
+<script src="{$wa_active_theme_url}js/jQuery.Brazzers-Carousel.min.js"></script>
+{if !empty($filters)}
+<script src="{$wa_active_theme_url}js/jquery-ui.min.js?v{$wa_theme_version}"></script>
+{/if}
+{$global_js = $wa->globals("js")}
+{if !empty($global_js)}
+    <script src="{$wa_active_theme_url}js/{$global_js}?v{$wa_theme_version}"></script>
+{/if}
+{if isset($product)}
+<script src="{$wa_active_theme_url}js/jquery.zoom.min.js?v{$wa_theme_version}"></script>
+{/if}
+{if $wa->shop->config('enable_2x')}
+    {$wa->globals("isRetina", 1)}
+{/if}
+{if isset($reviews)}
+<script src="{$wa_active_theme_url}js/reviews.js"></script>
+{/if}
+<script>
+    $(function () {
+        if ("Products" in WA_THEME) {
+            new WA_THEME.Products();
+        };
+        if ("shop" in WA_THEME) {
+            WA_THEME.shop.init();
+
+            {if isset($action) && $action == "default" && in_array($theme_settings.slider_type, ["productslider","productslider2","productslider3","productslider4"])}
+                $.getScript("{$wa_active_theme_url}js/masterslider.min.js?v{$wa_theme_version}", function() {
+                    WA_THEME.shop.initProductSlider();
+                });
+            {/if}
+        }
+    });
+</script>

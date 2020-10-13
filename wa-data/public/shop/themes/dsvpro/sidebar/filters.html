@@ -1,0 +1,156 @@
+{strip}
+<div class="filters filter mb-40 {if !empty($theme_settings.ajax_filters)} ajax{/if}"{if !empty($theme_settings.filter_limit)} data-limit="{$theme_settings.filter_limit}"{/if}>
+    {if !empty($category.params.enable_sorting)}
+        {$sort_fields = [
+            "name" => "[`Name`]",
+            "price" => "[`Price`]",
+            "total_sales" => "[`Bestsellers`]",
+            "rating" => "[`Customer rating`]",
+            "create_datetime"=>"[`Date added`]",
+            "stock" => "[`In stock`]"
+        ]}
+        {if !isset($active_sort)}
+            {$active_sort = $wa->get("sort", "create_datetime")}
+        {/if}
+        <div class="sbSort visible-xs">
+            <div class="sbSort__inner">
+                <a class="sbSort__btn td-none" href="#sbSort__list" data-toggle="collapse">[`Sort by`] <span>{$sort_fields[$active_sort]|default:"[`New & Popular`]"}</span></a>
+                <ul class="collapse sbSort__list" id="sbSort__list">
+                    {foreach $sort_fields as $sort => $name}
+                        <li class="sbSort__item">
+                            <input class="radio" type="radio" name="sort" id="sort_{$sort}" value="{$sort}"{if $active_sort == $sort} checked{/if}>
+                            <label class="sbSort__label" for="sort_{$sort}">{$wa->shop->sortUrl($sort, $name, $active_sort)|replace:"&":"&amp;"}</label>
+                        </li>
+                    {/foreach}
+                </ul>
+            </div>
+        </div>
+    {/if}
+
+    <form method="get" action="{$wa->currentUrl(0,1)}" data-loading="{$wa_active_theme_url}img/ajax-loader.gif">
+        <div class="filterMobile clearfix visible-xs">
+            <div class="col-xs-6">
+                <button class="btn btn-darkblue btn-brd btn-block filterMobile__btn filter__uncheck" type="reset">[`Reset`]</button>
+            </div>
+            <div class="col-xs-6">
+                <button class="btn btn-primary btn-block filterMobile__btn sbMobile__hide" type="submit">[`Apply`]</button>
+            </div>
+        </div>
+
+        <div class="filter__block hidden">
+            <div class="filter__header">[`Selected filters`]:</div>
+            <ul class="filter__reset list-unstyled list-inline" id="filters-active">
+                {foreach $filters as $fid => $filter}
+                    {if isset($filter.min) || $filter.type == "boolean"}{continue}{/if}
+
+                    {foreach $filter.values as $v_id => $v}
+                        {if in_array($v_id, (array)$wa->get($filter.code, array()))}
+                            <li><a href="#" data-name="{$filter.code}[]" data-value="{$v_id}" class="filter-active">{$v}</a></li>
+                        {/if}
+                    {/foreach}
+                {/foreach}
+            </ul>
+            <button class="btn btn-link filter__uncheck" type="reset">[`Reset all`]</button>
+        </div>
+
+        {foreach $filters as $fid => $filter}
+            <div class="filter__block">
+                {if $fid == "price"}
+                    {$c = $wa->shop->currency(true)}
+                    <div class="filter__header">
+                        <a href="#filter{$filter@index}" data-toggle="collapse">[`Price`]</a>
+                    </div>
+                    <div class="in filter__content collapse" id="filter{$filter@index}">
+                        <div class="filter__slider">
+                            [`from`] <input type="text" class="form-control min" name="price_min" {if $wa->get('price_min')}value="{(int)$wa->get('price_min')}"{/if} placeholder="{floor($filter.min)}">
+                            [`to`] <input type="text" class="form-control max" name="price_max" {if $wa->get('price_max')}value="{(int)$wa->get('price_max')}"{/if} placeholder="{ceil($filter.max)}"> {$c.sign}
+                        </div>
+                    </div>
+                {else}
+                    <div class="filter__header">
+                        <a href="#filter{$filter@index}" data-toggle="collapse"{if $theme_settings.filter_type == "hide"} class="collapsed"{/if}>{$filter.name|escape}</a>
+                    </div>
+                    <div class="collapse filter__content{if $theme_settings.filter_type == 'display'} in{/if}" id="filter{$filter@index}">
+                        {if $filter.type == "boolean"}
+                            <div>
+                                <input class="radio" type="radio" id="option-yes-{$filter.id}" name="{$filter.code}"{if $wa->get($filter.code)} checked{/if} value="1">
+                                <label for="option-yes-{$filter.id}">
+                                    {if class_exists("shopSeofilterPlugin")}
+                                        {$radio_filter_url = shopSeofilterViewHelper::getFilterUrl($fid, "1", $filter.code)}
+                                        {if $radio_filter_url}
+                                            <a class="filter-link" href="{$radio_filter_url}">[`Yes`]</a>
+                                        {else}
+                                            [`Yes`]
+                                        {/if}
+                                    {else}
+                                        [`Yes`]
+                                    {/if}
+                                </label>
+                            </div>
+                            <div>
+                                <input class="radio" type="radio" id="option-no-{$filter.id}" name="{$filter.code}"{if $wa->get($filter.code) === '0'} checked{/if} value="0">
+                                <label for="option-no-{$filter.id}">
+                                    {if class_exists("shopSeofilterPlugin")}
+                                        {$radio_filter_url = shopSeofilterViewHelper::getFilterUrl($fid, "0", $filter.code)}
+                                        {if $radio_filter_url}
+                                            <a class="filter-link" href="{$radio_filter_url}">[`No`]</a>
+                                        {else}
+                                            [`No`]
+                                        {/if}
+                                    {else}
+                                        [`No`]
+                                    {/if}
+                                </label>
+                            </div>
+                            <div>
+                                <input class="radio" type="radio" id="option-any-{$filter.id}" name="{$filter.code}"{if $wa->get($filter.code, '') === ''} checked{/if} value="">
+                                <label for="option-any-{$filter.id}">[`Any`]</label>
+                            </div>
+                        {elseif isset($filter.min)}
+                            <div class="filter__slider">
+                                [`from`] <input type="text" class="form-control min" name="{$filter.code}[min]" placeholder="{$filter.min}" {if !empty($_v.min)}value="{$_v.min}"{/if}>
+                                [`to`] <input type="text" class="form-control max" name="{$filter.code}[max]" placeholder="{$filter.max}" {if !empty($_v.max)}value="{$_v.max}"{/if}>
+                                {if !empty($filter.unit)}
+                                    {$filter.unit.title}
+                                    {if $filter.unit.value != $filter.base_unit.value}
+                                        <input type="hidden" name="{$filter.code}[unit]" value="{$filter.unit.value}">
+                                    {/if}
+                                {/if}
+                            </div>
+                        {else}
+                            {foreach $filter.values as $v_id => $v}
+                                <p class="filter__value">
+                                    <input class="checkbox" type="checkbox" name="{$filter.code}[]" id="filter{$filter@index}-option{$v_id}" value="{$v_id}"{if in_array($v_id, (array)$wa->get($filter.code, array()))} checked{/if}>
+                                    <label for="filter{$filter@index}-option{$v_id}">
+                                        {if class_exists("shopSeofilterPlugin")}
+                                            {$filter_url = shopSeofilterViewHelper::getFilterUrl($fid, $v_id, $filter.code)}
+                                            {if $filter_url}
+                                                <a class="filter-link" href="{$filter_url}">{$v}</a>
+                                            {else}
+                                                {$v}
+                                            {/if}
+                                        {else}
+                                            {$v}
+                                        {/if}
+                                    </label>
+                                </p>
+                            {/foreach}
+                            {if !empty($theme_settings.filter_limit) && count($filter.values)>$theme_settings.filter_limit}
+                                <div class="more-values collapse" id="more-values-{$filter.id}"></div>
+                                <a href="#more-values-{$filter.id}" class="show_values mdl-button mdl-js-button mdl-button--primary" data-toggle="collapse">[`More`]</a>
+                            {/if}
+                        {/if}
+                    </div>
+                {/if}
+            </div>
+        {/foreach}
+        {if $wa->get("sort")}<input type="hidden" name="sort" value="{$wa->get('sort')|escape}">{/if}
+        {if $wa->get("order")}<input type="hidden" name="order" value="{$wa->get('order')|escape}">{/if}
+        {if !$theme_settings.ajax_filters}
+            <div class="filter__block">
+                <input type="submit" value="[`Filter products`]" class="btn btn-default">
+            </div>
+        {/if}
+    </form>
+</div>
+{/strip}

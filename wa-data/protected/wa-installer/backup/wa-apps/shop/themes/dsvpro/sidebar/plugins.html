@@ -1,0 +1,34 @@
+{strip}
+<div class="sidebar__block">
+    {* @event frontend_nav.%plugin_id% *}
+    {foreach $frontend_nav as $_key => $_}
+        {if substr($_key, -7) == '-plugin'}
+            <div class="sbHeading">{$wa->pluginName(substr($_key, 0, -7))}</div>
+        {/if}
+        {if $_key == "brands-plugin"}
+            {$_|replace:"brands":"sbBrands mb-40 list-unstyled clearfix"}
+        {elseif $_key == "productbrands-plugin"}
+            {$brands = shopProductbrandsPlugin::getBrands()}
+            <ul class="sbBrands mb-40 list-unstyled clearfix">
+                {foreach $brands as $b}
+                    <li><a href="{$b.url|default:'javascript:void(0)'}">{$b.name}</a></li>
+                {/foreach}
+            </ul>
+        {else}
+            {$_|replace:"menu-v":"list-unstyled mb-40"}
+        {/if}
+    {/foreach}
+
+    {* @event frontend_nav_aux.%plugin_id% *}
+    {foreach $frontend_nav_aux as $_key => $_}
+        {if substr($_key, -7) == '-plugin'}
+            <div class="sbHeading">{$wa->pluginName(substr($_key, 0, -7))}</div>
+        {/if}
+        {if $_key == "brands-plugin"}
+            {$_|replace:"brands":"sbBrands mb-40 list-unstyled clearfix"}
+        {else}
+            {$_|replace:"menu-v":"list-unstyled mb-40"}
+        {/if}
+    {/foreach}
+</div>
+{/strip}

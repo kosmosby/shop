@@ -1,0 +1,820 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: shop/plugins/xml\n"
+"POT-Creation-Date: 2018-09-22 15:43+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator:  shop/plugins/xml\n"
+"Language-Team:  shop/plugins/xml\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=((((n%10)==1)&&((n%100)!=11))?(0):(((((n%10)>=2)&&((n%10)<=4))&&(((n%100)<10)||((n%100)>=20)))?(1):2));\n"
+"X-Poedit-Language: ru_RU\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:9
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:712
+#: /wa-apps/shop/plugins/xml/templates/actions/snapshot/Snapshot.html:97
+msgid "Save"
+msgstr "Сохранить"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:10
+msgid "Saved"
+msgstr "Сохранено"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:11
+msgid "Import as"
+msgstr "Загружать как"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:12
+msgid "Error"
+msgstr "Ошибка"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:13
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:81
+msgid "Delete profile"
+msgstr "Удалить профиль"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:14
+msgid "An error occurred. Reload the page."
+msgstr "Произошла ошибка. Перезагрузите страницу"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:15
+msgid "Matches not specified"
+msgstr "Соответствия не установлены"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:16
+msgid "Matchings manager"
+msgstr "Менеджер соответствий"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:17
+msgid "Update scheme"
+msgstr "Обновить схему"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:18
+#: /wa-apps/shop/plugins/xml/templates/actions/snapshot/Snapshot.html:98
+msgid "Cancel"
+msgstr "Отмена"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:19
+msgid "No feature selected"
+msgstr "Необходимо выбрать характеристику"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:20
+msgid "Delete item type"
+msgstr "Удалить тип эллемента"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:21
+msgid "Bad request"
+msgstr "Запрос не удался"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:22
+msgid "Cannot save"
+msgstr "Ошибка при сохранении"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:23
+msgid "Select at least one option"
+msgstr "Необходимо вырать хотябы однин параметр"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:24
+msgid "Delete saved session"
+msgstr "Удалить сохранённую сессию"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:25
+msgid "An error occurred"
+msgstr "Произошла ошибка"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:26
+msgid "File not uploaded"
+msgstr "Файл не загружен"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:27
+msgid "File manager"
+msgstr "Файловый менеджер"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:28
+msgid "Update"
+msgstr "Обновить"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:29
+msgid "Close"
+msgstr "Закрыть"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:30
+msgid "Need to select the file"
+msgstr "Необходимо выбрать файл"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:31
+msgid "Error while saving"
+msgstr "Ошибка при сохранении"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:32
+msgid "Delete file"
+msgstr "Удалить файл"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:33
+msgid "Delete failed"
+msgstr "Удаление не уалось"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:34
+msgid "Server error"
+msgstr "Серверная ошибка"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:57
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:90
+msgid "Profile 1"
+msgstr "Профиль 1"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:88
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:1771
+msgid "Profile"
+msgstr "Профиль"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:95
+msgid "File"
+msgstr "Файл"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:100
+msgid "Link"
+msgstr "Ссылка"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:101
+msgid "From computer"
+msgstr "С компьютера"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:102
+msgid "From server"
+msgstr "С сервера"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:126
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:147
+msgid "Delete"
+msgstr "Удалить"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:134
+msgid "Select"
+msgstr "Выбрать"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:134
+msgid "Change"
+msgstr "Сменить"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:162
+msgid "Set matchings"
+msgstr "Установить соответствия"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:164
+msgid "Change matchings"
+msgstr "Сменить соответсвия"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:171
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:137
+msgid "Product type"
+msgstr "Тип товаров"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:187
+msgid "Bind to profile"
+msgstr "Привязать к профилю"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:192
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:218
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:529
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:538
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:634
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:676
+msgid "No"
+msgstr "Нет"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:198
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:224
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:535
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:546
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:640
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:679
+msgid "Yes"
+msgstr "Да"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:204
+msgid "Enable if you have several files in which there may be products with the same external identifier."
+msgstr " Включите если у вас будут синхронизироватся несколько файлов в которых могут быть товары с одинаковым внешним идентификатором"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:213
+msgid "Import categories"
+msgstr "Импортировать категории"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:253
+msgid "Belonging to categories"
+msgstr "Связь товаров с категориями"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:258
+msgid "Delete from old, add to new"
+msgstr "Удалять из старых, добавлять в новые"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:263
+msgid "Leave old, add to new ones"
+msgstr "Оставлять старые, добавлять в новые"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:268
+msgid "Set only for new products"
+msgstr "Устанавливать только для новых товаров"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:273
+msgid "Do not set"
+msgstr "Не устанавливать"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:277
+msgid "Upload category structure to a separate category"
+msgstr "Загрузить структуру категорий в отдельную категорию"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:282
+msgid "Choose parent category"
+msgstr "Выберите родительскую категорию"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:295
+msgid "Add new products to category"
+msgstr "Добавлять новые товары в категорию"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:298
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:331
+msgid "Do not add"
+msgstr "Не добавлять"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:310
+msgid "Images"
+msgstr "Изображения"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:315
+msgid "Delete old, add new"
+msgstr "Удалять старые, добавлять новые"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:320
+msgid "Add only new"
+msgstr "Добавлять только новые"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:325
+msgid "Add only for new products"
+msgstr "Только для новых товаров"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:336
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:370
+msgid "Markup"
+msgstr "Наценка"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:342
+msgid "No markup"
+msgstr "Нет"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:346
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:440
+msgid "Fixed"
+msgstr "Фиксированная"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:349
+msgid "Stepped"
+msgstr "Ступенчатая"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:357
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:394
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:421
+msgid "Sum"
+msgstr "Сумма"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:359
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:395
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:422
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:439
+msgid "Percent"
+msgstr "Процент"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:366
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:151
+msgid "Price"
+msgstr "Цена"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:375
+msgid "Type"
+msgstr "Тип"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:384
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:429
+msgid "till"
+msgstr "до"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:408
+msgid "Rules not found"
+msgstr "Правила не установлены"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:414
+msgid "In other cases"
+msgstr "В иных случаях"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:480
+msgid "Round prices"
+msgstr "Округлять цены"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:482
+msgid "Do not round"
+msgstr "Не округлять"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:496
+msgid "Weight unit"
+msgstr "Ед. измерения веса"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:498
+msgid "g"
+msgstr "г"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:504
+msgid "kg"
+msgstr "кг"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:508
+msgid "Mark items"
+msgstr "Отмечать товары"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:511
+msgid "Do not mark"
+msgstr "Не отмечать"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:526
+msgid "Search rules"
+msgstr "Правила поиска"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:528
+msgid "Search by name"
+msgstr "Искать товары по наименованию"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:537
+msgid "Search by sku"
+msgstr "Искать товары по артикулу"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:549
+msgid "Other settings"
+msgstr "Другие настройки"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:552
+msgid "Do not add new products"
+msgstr "Не добавлять новые товары"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:553
+msgid "Skip new products updating only those that were created earlier"
+msgstr "Пропускать новые товары обновляя только те которые были созданы ранее"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:560
+msgid "Do not update products"
+msgstr "Не обновлять товары"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:561
+msgid "Skip the goods that were created earlier by adding only new items"
+msgstr "Пропускать товары которые были созданы ранее добавляя только новинки"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:567
+msgid "Do not add new categories"
+msgstr "Не добавлять новые категории"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:568
+msgid "Skip new categories updating only those that were created earlier"
+msgstr "Пропускать новые категории обновляя только те которые были созданы ранее"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:574
+msgid "Do not update categories"
+msgstr "Не обновлять категории"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:575
+msgid "Skip categories that were created earlier by adding only new items"
+msgstr "Пропускать категории которые были созданы ранее, добавляя новые"
+
+msgid "Reset count of missing items"
+msgstr "Обнулять исчезнувшие товары"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:582
+msgid "Products that disappear from the file will be removed from sale"
+msgstr "Товары которые исчезнут из файла будут сняты с продажи"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:588
+msgid "Force the use of the protocol in image references"
+msgstr "Принуждать использование протокола в ссылках на изображения"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:588
+msgid "This option allows you to replace the protocol for accessing images (for example, from http to https) <br> when it is specified incorrectly and the redirect does not work due to the included options <i> safe_mode / open_basedir </ i>"
+msgstr "Данная опция позволяет заменять протокол доступа к изображениям (например с http на https) в тех случаях когда он указан неверно а редирект не работает из за вклчённых опциях safe_mode/open_basedir"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:594
+msgid "Select protocol"
+msgstr "Выберите нужный протокол"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:607
+msgid "Limit thread length"
+msgstr "Ограничить длину потока"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:607
+msgid "Automatic restart of the import process to prevent exceeding the limit for the execution time of the script."
+msgstr "Настройте автоматический перезапуск процесса импорта чтобы предотвратить превышение лимита на время выполнения скрипта."
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:631
+msgid "Restore unfinished sessions"
+msgstr "Восстанавливать незавершенные сессии"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:647
+msgid "Unfinished import session detected"
+msgstr "Обнаружена незавершённая сессия импорта"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:650
+msgid "Delete session"
+msgstr "Удалить сессию"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:652
+msgid "Start time"
+msgstr "Время начала"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:657
+msgid "Interruption time"
+msgstr "Время прерывания"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:663
+msgid "The next import will start from the place where the previous import was interrupted"
+msgstr "Следующий импорт начнётся с того места где остановился предыдущий"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:664
+msgid "To make the import work by default - delete this session using the button above"
+msgstr "Чтобы импорт сработал по умолчанию - удалите сессию кнопкой выше"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:674
+msgid "Delayed execution"
+msgstr "Отложенное выполнение"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:686
+msgid "CRON job not configured"
+msgstr "Задание CRON не настроено"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:688
+msgid "A deferred update has never been executed."
+msgstr "Отложенное обновление еще ни разу не выполнялось"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:694
+msgid "The CRON job has not been performed for a long time"
+msgstr "Отложенное обновление давно не выполнялось"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:697
+msgid "CRON job configured"
+msgstr "Задание CRON настроено"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:698
+msgid "The last deferred synchronization was performed"
+msgstr "Последняя отложенная сихронизация выполнялась"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:714
+msgid "Start sync"
+msgstr "Начать синхронизацию"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:734
+msgid "Please do not close the browser until the operation is finished."
+msgstr "Пожалуйста, не закрывайте браузер пока операция не закончится"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/snapshot/Snapshot.html:7
+msgid "File structure"
+msgstr "Структура файла"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/snapshot/Snapshot.html:96
+msgid "Add"
+msgstr "Добавить"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/snapshot/Snapshot.html:104
+msgid "Select feature"
+msgstr "Выберите характеристику"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/snapshot/Snapshot.html:116
+msgid "Select product type"
+msgstr "Выберите тип товаров"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/snapshot/Snapshot.html:131
+msgid "All product types"
+msgstr "Все типы товаров"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/snapshot/Snapshot.html:161
+msgid "Create sku"
+msgstr "Создавать артикул"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/snapshot/Snapshot.html:165
+msgid "Resubmit"
+msgstr "Обновлять повторно"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginFeatures.controller.php:19
+msgid "Choose feature"
+msgstr "Выберите характеристику"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:1564
+msgid "Error while rebuild thumbnails"
+msgstr "Ошибка при генерации миниатюр"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:128
+msgid "PHP extension XMLReader required"
+msgstr "Расширение PHP XMLReader не найдено"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:132
+msgid "PHP extension SimpleXML required"
+msgstr "Расширение PHP SimpleXML не найдено"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:141
+msgid "Profile configuration not found"
+msgstr "Конфигурация профиля не найдена"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:145
+msgid "Source type not specified"
+msgstr "Не указан тип источника"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:150
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:208
+msgid "No matches specified"
+msgstr "Соответсвия не установлены"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:186
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:202
+msgid "Nothing to import"
+msgstr "Нечего импортировать"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:265
+msgid "No file selected"
+msgstr "Файл не выбран"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:272
+msgid "Link to the xml file not specified"
+msgstr "Не указана ссылка на XML файл"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:300
+msgid "Not found any data to import"
+msgstr "Данные для импорта не найдены"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:365
+msgid "Cannot open the file"
+msgstr "Невозможно открыть файл"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:473
+msgid "Synchronization completed successfully"
+msgstr "Синхронизация завершена успешно"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:479
+msgid "Categories"
+msgstr "Категории"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:483
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:503
+msgid "Total processed"
+msgstr "Всего обработано"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:487
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:504
+msgid "Added"
+msgstr "Добавлено"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:491
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:505
+msgid "Updated"
+msgstr "Обновлено"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:500
+msgid "Products"
+msgstr "Товары"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:810
+msgid "External ID not found"
+msgstr "Не найден внешний ID"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:1771
+msgid "Import from XML"
+msgstr "Импорт товаров из XML"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:1771
+msgid "Execution time"
+msgstr "Время выполнения"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:1775
+msgid "Memory consumption"
+msgstr "Потребление памяти"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:1779
+msgid "Processed products"
+msgstr "Товаров обработано"
+
+#: /wa-apps/shop/plugins/xml/lib/actions/shopXmlPluginSyncRun.controller.php:1783
+msgid "Processed categories"
+msgstr "Категорий обработано"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:15
+msgid "Undefined primary key"
+msgstr "Неизвестный первичный ключ"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:119
+msgid "Category"
+msgstr "Категория"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:120
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:219
+msgid "Product"
+msgstr "Товар"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:124
+msgid "Name"
+msgstr "Наименование"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:125
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:131
+msgid "External ID"
+msgstr "Внешний ID"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:126
+msgid "Parent external ID"
+msgstr "Внешний ID родителя"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:127
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:135
+msgid "Description"
+msgstr "Описание"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:132
+msgid "Product name"
+msgstr "Наименование"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:133
+msgid "Currency"
+msgstr "Валюта"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:134
+msgid "Summary"
+msgstr "Краткое описание"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:136
+msgid "Status"
+msgstr "Статус"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:138
+msgid "Title"
+msgstr "Заголовок"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:139
+msgid "META Keyword"
+msgstr "META Ключевые слова"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:140
+msgid "META Description"
+msgstr "META Описание"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:141
+msgid "Storefront link"
+msgstr "Ссылка на витрину"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:142
+msgid "Product images"
+msgstr "Изображения"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:143
+msgid "Video URL on YouTube or Vimeo"
+msgstr "URL виде на YouTube или Vimeo"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:144
+msgid "Category ID"
+msgstr "ID категории"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:145
+msgid "Group ID"
+msgstr "ID группы"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:149
+msgid "SKU name"
+msgstr "Название артикула"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:150
+msgid "SKU code"
+msgstr "Код артикула"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:152
+msgid "Available for purchase"
+msgstr "Доступно для заказа"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:153
+msgid "Compare at price"
+msgstr "Зачёркнутая цена"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:154
+msgid "Purchase price"
+msgstr "Цена закупки"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:155
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:234
+msgid "In stock"
+msgstr "Количество в наличии"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:159
+msgid "Upload to existing"
+msgstr "Загрузить в существующую"
+
+#: /wa-apps/shop/plugins/xml/lib/classes/shopXmlHelper.class.php:207
+msgid "1C identifier"
+msgstr "Идентификатор 1С"
+
+#: /wa-apps/shop/plugins/xml/lib/config/plugin.php:3
+msgid "Import products from XML"
+msgstr "Импорт товаров из XML"
+
+#: /wa-apps/shop/plugins/xml/lib/config/requirements.php:5
+msgid "Exchange data with external servers"
+msgstr "Обмен данными с внешними серверами"
+
+#: /wa-apps/shop/plugins/xml/lib/config/requirements.php:11
+msgid "XML parser"
+msgstr "Синтаксический анализатор XML"
+
+#: /wa-apps/shop/plugins/xml/lib/config/requirements.php:17
+msgid "Toolset to convert XML to an object"
+msgstr "Набор инструментов для преобразования XML в объект"
+
+#: /wa-apps/shop/plugins/xml/lib/shopXml.plugin.php:8
+msgid "Main"
+msgstr "Основные"
+
+#: /wa-apps/shop/plugins/xml/lib/shopXml.plugin.php:9
+msgid "Product fields"
+msgstr "Поля товара"
+
+#: /wa-apps/shop/plugins/xml/lib/shopXml.plugin.php:10
+msgid "Category fields"
+msgstr "Поля категории"
+
+#: /wa-apps/shop/plugins/xml/lib/shopXml.plugin.php:14
+msgid "Product features"
+msgstr "Характеристики товара"
+
+#: /wa-apps/shop/plugins/xml/lib/shopXml.plugin.php:184
+msgid "XML profiles"
+msgstr "Профили XML"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:334
+msgid "Image URL separator"
+msgstr "Разделитель ссылок на изображения"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:337
+msgid "Comma"
+msgstr "Запятая"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:338
+msgid "Semicolon"
+msgstr "Точка с запятой"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:341
+msgid "Space"
+msgstr "Пробел"
+
+#: /wa-apps/shop/plugins/xml/templates/actions/backend/BackendSetup.html:344
+msgid "By default, plugin takes every tag/attribute value as a separate and direct link to the image. But sometimes links are concatenated and separted by comma or another char"
+msgstr "По умолчанию, плагин воспринимает каждое значение тега/артибута как отдельную прямую ссылку на изображение. Но иногда ссылки указаны в одном теге разделённые к примеру запятой"
+
+msgid "Category level"
+msgstr "Категория уровень"
+
+msgid "Recommended price"
+msgstr "Рекомендуемая цена (РРЦ)"
+
+msgid "Reset stocks that are not updated by the plugin"
+msgstr "Обнулять склады не обновлённые плагином"
+
+msgid "If you load leftovers into a specific warehouse, then the other warehouses will be reset to zero. To prevent other stores from changing the value, disable this option."
+msgstr "Если вы загружаете остатки в определённый склад, то друие склады будут обнулены. Чтобы другие склады не меняли значение отключите эту опцию."
+
+msgid "Convert prices to the main store currency"
+msgstr "Конвертировать цены в основную валюту магазина"
+
+msgid "Template"
+msgstr "Шаблон"
+
+msgid "Characteristic fields"
+msgstr "Поля характеристик"
+
+msgid "Feature unit"
+msgstr "Ед. измерения"
+
+msgid "Feature value"
+msgstr "Значение характеристики"
+
+msgid "Feature name"
+msgstr "Название характеристики"
+
+msgid "Unit"
+msgstr "Ед. измерения"
+
+msgid "Add profile"
+msgstr "Добавить профиль"
+
+msgid "Purchase option"
+msgstr "Вариант покупки"
+
+msgid "Vertical bar"
+msgstr "Вертикальная черта"
+
+msgid "Products name"
+msgstr "Названия товаров"
+
+msgid "Feature code"
+msgstr "Код характеристики"

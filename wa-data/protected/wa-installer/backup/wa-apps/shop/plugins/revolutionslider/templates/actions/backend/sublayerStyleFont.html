@@ -1,0 +1,87 @@
+<h4><i class="icon-text"></i> [`Font`] <i class="fa icon-angle-down control"></i></h4>
+<div class="line" style="display: none">
+    <div class="form-group fullhalf">
+        <label data-toggle="tooltip" data-placement="top" title="[`Font Family`]в" for="">[`Font`]</label>
+        <input  class="form-control" type="text"  name="rsLayerStyleTxtFontfamily" value="{if isset ($sublayer.rsLayerStyleTxtFontfamily)}{$sublayer.rsLayerStyleTxtFontfamily}{else}Arial{/if}">
+    </div>
+
+    <div class="form-group fullsix">
+        <label data-toggle="tooltip" data-html="true" data-placement="top" title="<i class='icon-fontsize'></i>[`Font size in px`]" for="">[`Size`]</label>
+        <input  class="form-control" type="number" min="0" max="1000" name="rsLayerStyleTxtfontsize" value="{if isset ($sublayer.rsLayerStyleTxtfontsize)}{$sublayer.rsLayerStyleTxtfontsize}{else}18{/if}">
+    </div>
+
+    <div class="form-group fullsix">
+        <label data-toggle="tooltip" data-html="true" data-placement="top" title="<i class='icon-lineheight bolder'></i> [`Line height in px`]" for="">[`Line`]</label>
+        <input  class="form-control" type="number" min="0" max="1000" name="rsLayerStyleTxtlineheight" value="{if isset ($sublayer.rsLayerStyleTxtlineheight)}{$sublayer.rsLayerStyleTxtlineheight}{else}18{/if}">
+    </div>
+
+    <div class="form-group fullsix">
+        <label data-toggle="tooltip"  data-html="true" data-placement="top" title="<i class='icon-fontweight'></i>[`Font weight`]">[`Weight`]</label>
+        <select  name="rsLayerStyleTxtWeight">
+            {if !isset($sublayer.rsLayerStyleTxtWeight)}
+            {assign var='rsLayerStyleTxtWeight' value='300'}
+            {else}
+            {assign var='rsLayerStyleTxtWeight' value=$sublayer.rsLayerStyleTxtWeight|default:'none'}
+            {/if}
+            <option value="100" {if $rsLayerStyleTxtWeight == '100'}selected="selected"{/if}>100</option>
+            <option value="200" {if $rsLayerStyleTxtWeight == '200'}selected="selected"{/if}>200</option>
+            <option value="300" {if $rsLayerStyleTxtWeight == '300'}selected="selected"{/if}>300</option>
+            <option value="400" {if $rsLayerStyleTxtWeight == '400'}selected="selected"{/if}>400</option>
+            <option value="500" {if $rsLayerStyleTxtWeight == '500'}selected="selected"{/if}>500</option>
+            <option value="600" {if $rsLayerStyleTxtWeight == '600'}selected="selected"{/if}>600</option>
+            <option value="700" {if $rsLayerStyleTxtWeight == '700'}selected="selected"{/if}>700</option>
+            <option value="800" {if $rsLayerStyleTxtWeight == '800'}selected="selected"{/if}>800</option>
+            <option value="900" {if $rsLayerStyleTxtWeight == '900'}selected="selected"{/if}>900</option>
+        </select>
+    </div>
+
+    <div class="form-group incolor">
+        <label class="colorchange" data-toggle="tooltip" data-html="true" data-placement="top" title="<i class='icon-color'></i>[`Font color`]">[`Color`]</label>
+        <div class="form-group">
+        <input class="colorpick colorin" data-position="top left" data-format="rgb" data-opacity="1.00" name="rsLayerStyleTxtColor" value="{if isset ($sublayer.rsLayerStyleTxtColor)}{$sublayer.rsLayerStyleTxtColor}{else}rgba(0, 0, 0, 1){/if}">
+        </div>
+    </div>
+
+    <div class="form-group fullfourth">
+        <label data-toggle="tooltip" data-html="true" data-placement="bottom"  data-original-title="[`Defines the way how the line should break based on the width and height settings of the Layer.<br> <strong>nowrap<strong> – will not auto break the line. Text will overflow the container if it has set smaller (not auto or none).<br> <strong>normal</strong> – content will auto line break based on the layer width`]">[`Whitespace`]</label>
+        <select class="form-control" name="rsLayerWordWrap">
+            {if !isset($sublayer.rsLayerWordWrap)}
+            {assign var='rsLayerWordWrap' value='nowrap'}
+            {else}
+            {assign var='rsLayerWordWrap' value=$sublayer.rsLayerWordWrap|default:'nowrap'}
+            {/if}
+            <option {if $rsLayerWordWrap == 'nowrap'}selected="selected"{/if} value="nowrap">[`nowrap`]</option>
+            <option {if $rsLayerWordWrap == 'normal'}selected="selected"{/if} value="normal">[`normal`]</option>
+        </select>
+    </div>
+
+    <div class="form-group fullthird">
+        <label data-toggle="tooltip" data-html="true" data-placement="top" data-original-title="<i class='icon-alignment'></i>[`Text Align`]">[`Text Align`]</label>
+        <select class="form-control"  name="rsLayerStyleTxtAlign">
+            {if !isset($sublayer.rsLayerStyleTxtAlign)}
+            {assign var='rsLayerStyleTxtAlign' value='left'}
+            {else}
+            {assign var='rsLayerStyleTxtAlign' value=$sublayer.rsLayerStyleTxtAlign|default:'left'}
+            {/if}
+            <option {if $rsLayerStyleTxtAlign == 'left'}selected="selected"{/if}value="left">[`Left`]</option>
+            <option {if $rsLayerStyleTxtAlign == 'center'}selected="selected"{/if}value="center">[`Center`]</option>
+            <option {if $rsLayerStyleTxtAlign == 'right'}selected="selected"{/if}value="right">[`Right`]</option>
+        </select>
+    </div>
+
+    <div class="form-group fullthird">
+        <label data-toggle="tooltip" data-html="true" data-placement="top" data-original-title="<i class='icon-textdecoration'></i>[`Text decoration`]">[`Decoration`]</label>
+        <select class="form-control"  name="rsLayerStyleTxtDecoration">
+            {if !isset($sublayer.rsLayerStyleTxtDecoration)}
+            {assign var='rsLayerStyleTxtDecoration' value='none'}
+            {else}
+            {assign var='rsLayerStyleTxtDecoration' value=$sublayer.rsLayerStyleTxtDecoration|default:'none'}
+            {/if}
+            <option value="none" {if $rsLayerStyleTxtDecoration == 'none'}selected="selected"{/if}>none</option>
+            <option value="underline" {if $rsLayerStyleTxtDecoration == 'underline'}selected="selected"{/if}>underline</option>
+            <option value="overline" {if $rsLayerStyleTxtDecoration == 'overline'}selected="selected"{/if}>overline</option>
+            <option value="line-through" {if $rsLayerStyleTxtDecoration == 'line-through'}selected="selected"{/if}>line-through</option>
+        </select>
+    </div>
+
+</div>

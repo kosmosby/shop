@@ -1,0 +1,245 @@
+<div class="contain">
+    <div class="col-xs-12 form-inline">
+        <div class="form-group">
+            <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`Select Transition effect for Slider change animation`]">[`Transition Effect`]</label>
+             <select class="form-control half" name="rslidetransition">
+                    {if !isset($layer) && !isset($layerr.properties) && !isset($layer.properties.rslidetransition)}
+                        {assign var='rslidetransition' value='Random'}
+                    {else}
+                        {assign var='rslidetransition' value=$layer.properties.rslidetransition|default:'Random'}
+                    {/if}
+                    <optgroup label="---BASICS---">
+                            <option {if $rslidetransition == 'notransition'}selected="selected"{/if} value="notransition">No Transition</option>
+                            <option {if $rslidetransition == 'fade'}selected="selected"{/if} value="fade">Fade</option>
+                            <option {if $rslidetransition == 'crossfade'}selected="selected"{/if} value="crossfade">Cross Fade</option>
+                            <option {if $rslidetransition == 'fadethroughdark'}selected="selected"{/if} value="fadethroughdark">Fade through Dark BG</option>
+                            <option {if $rslidetransition == 'fadethroughlight'}selected="selected"{/if} value="fadethroughlight">Fade through Light BG</option>
+                            <option {if $rslidetransition == 'fadethroughtransparent'}selected="selected"{/if} value="fadethroughtransparent">Fade through predefined BG</option>
+                    </optgroup>
+                    <optgroup label="---SLIDE SIMPLE---">
+                            <option {if $rslidetransition == 'slideup'}selected="selected"{/if} value="slideup">Slide To Top</option>
+                            <option {if $rslidetransition == 'slidedown'}selected="selected"{/if} value="slidedown">Slide To Bottom</option>
+                            <option {if $rslidetransition == 'slideright'}selected="selected"{/if} value="slideright">Slide To Right</option>
+                            <option {if $rslidetransition == 'slideleft'}selected="selected"{/if} value="slideleft">Slide To Left</option>
+                            <option {if $rslidetransition == 'slidehorizontal'}selected="selected"{/if} value="slidehorizontal">Slide Horizontal (Next/Previous)</option>
+                            <option {if $rslidetransition == 'slidevertical'}selected="selected"{/if} value="slidevertical">Slide Vertical (Next/Previous)</option>
+                    </optgroup>
+                    <optgroup label="---SLIDE OVER---">
+                            <option {if $rslidetransition == 'slideoverup'}selected="selected"{/if} value="slideoverup">Slide Over To Top</option>
+                            <option {if $rslidetransition == 'slideoverdown'}selected="selected"{/if} value="slideoverdown">Slide Over To Bottom</option>
+                            <option {if $rslidetransition == 'slideoverright'}selected="selected"{/if} value="slideoverright"> Slide Over To Right</option>
+                            <option {if $rslidetransition == 'slideoverleft'}selected="selected"{/if} value="slideoverleft">Slide Over To Left</option>
+                            <option {if $rslidetransition == 'slideoverhorizontal'}selected="selected"{/if} value="slideoverhorizontal">Slide Over Horizontal (Next/Previous)</option>
+                            <option {if $rslidetransition == 'slideoververtical'}selected="selected"{/if} value="slideoververtical">Slide Over Vertical (Next/Previous)</option>
+                    </optgroup>
+                    <optgroup label="---SLOTS AND BOXES---">
+                         <option {if $rslidetransition == 'boxslide'}selected="selected"{/if} value="boxslide">Slide Boxes</option>
+                            <option {if $rslidetransition == 'slotslide-horizontal'}selected="selected"{/if} value="slotslide-horizontal">Slide Slots Horizontal</option>
+                            <option {if $rslidetransition == 'slotslide-vertical'}selected="selected"{/if} value="slotslide-vertical">Slide Slots Vertical</option>
+                            <option {if $rslidetransition == 'boxfade'}selected="selected"{/if} value="boxfade">Fade Boxes</option>
+                            <option {if $rslidetransition == 'slotfade-horizonta'}selected="selected"{/if} value="slotfade-horizonta">Fade Slots Horizontal</option>
+                            <option {if $rslidetransition == 'slotfade-horizonta'}selected="selected"{/if} value="slotfade-horizonta">Fade Slots Vertical</option>
+                    </optgroup>
+                    <optgroup label="---FADE & SLIDE---">
+                            <option {if $rslidetransition == 'fadefromright'}selected="selected"{/if} value="fadefromright">Fade and Slide from Right</option>
+                            <option {if $rslidetransition == 'fadefromleft'}selected="selected"{/if} value="fadefromleft">Fade and Slide from Left</option>
+                            <option {if $rslidetransition == 'fadefromtop'}selected="selected"{/if} value="fadefromtop">Fade and Slide from Top</option>
+                            <option {if $rslidetransition == 'fadefrombottom'}selected="selected"{/if} value="fadefrombottom">Fade and Slide from Bottom</option>
+                            <option {if $rslidetransition == 'fadetoleftfadefromright'}selected="selected"{/if} value="fadetoleftfadefromright">Fade To Left From Right</option>
+                            <option {if $rslidetransition == 'fadetorightfadefromleft'}selected="selected"{/if} value="fadetorightfadefromleft">Fade To Right From Left</option>
+                            <option {if $rslidetransition == 'fadetotopfadefrombottom'}selected="selected"{/if} value="fadetotopfadefrombottom">Fade To Top From Bottom</option>
+                            <option {if $rslidetransition == 'fadetobottomfadefromtop'}selected="selected"{/if} value="fadetobottomfadefromtop">Fade To Bottom From Top</option>
+                    </optgroup>
+                    <optgroup label="---PARALLAX---">
+                            <option {if $rslidetransition == 'parallaxtoright'}selected="selected"{/if} value="parallaxtoright">Parallax to Right</option>
+                            <option {if $rslidetransition == 'parallaxtoleft'}selected="selected"{/if} value="parallaxtoleft">Parallax to Left</option>
+                            <option {if $rslidetransition == 'parallaxtotop'}selected="selected"{/if} value="parallaxtotop">Parallax to Top</option>
+                            <option {if $rslidetransition == 'parallaxtobottom'}selected="selected"{/if} value="parallaxtobottom">Parallax to Bottom</option>
+                            <option {if $rslidetransition == 'parallaxhorizontal'}selected="selected"{/if} value="parallaxhorizontal"> Parallax Horizontal</option>
+                            <option {if $rslidetransition == 'parallaxvertical'}selected="selected"{/if} value="parallaxvertical">Parallax Vertical</option>
+                    </optgroup>
+                    <optgroup label="---SLIDING OVERLAYS---">
+                            <option {if $rslidetransition == 'slidingoverlayup'}selected="selected"{/if} value="slidingoverlayup">Sliding Overlays to the Top</option>
+                            <option {if $rslidetransition == 'slidingoverlaydown'}selected="selected"{/if} value="slidingoverlaydown">Sliding Overlays to the Bottom</option>
+                            <option {if $rslidetransition == 'slidingoverlayright'}selected="selected"{/if} value="slidingoverlayright">Sliding Overlays to the Right</option>
+                            <option {if $rslidetransition == 'slidingoverlayleft'}selected="selected"{/if} value="slidingoverlayleft">Sliding Overlays to the Left</option>
+                            <option {if $rslidetransition == 'slidingoverlayhorizontal'}selected="selected"{/if} value="slidingoverlayhorizontal">Sliding Overlays Horizontal</option>
+                            <option {if $rslidetransition == 'slidingoverlayvertical'}selected="selected"{/if} value="slidingoverlayvertical">Sliding Overlays Vertical</option>
+                    </optgroup>
+                    <optgroup label="---ZOOM TRANSITIONS---">
+                            <option {if $rslidetransition == 'scaledownfromright'}selected="selected"{/if} value="scaledownfromright">Zoom Out and Fade From Right</option>
+                            <option {if $rslidetransition == 'scaledownfromleft'}selected="selected"{/if} value="scaledownfromleft">Zoom Out and Fade From Left</option>
+                            <option {if $rslidetransition == 'scaledownfromtop'}selected="selected"{/if} value="scaledownfromtop">Zoom Out and Fade From Top</option>
+                            <option {if $rslidetransition == 'scaledownfrombottom'}selected="selected"{/if} value="scaledownfrombottom">Zoom Out and Fade From Bottom</option>
+                            <option {if $rslidetransition == 'zoomout'}selected="selected"{/if} value="zoomout">ZoomOut</option>
+                            <option {if $rslidetransition == 'zoomin'}selected="selected"{/if} value="zoomin">ZoomIn</option>
+                            <option {if $rslidetransition == 'slotzoom-horizontal'}selected="selected"{/if} value="slotzoom-horizontal">Zoom Slots Horizontal</option>
+                            <option {if $rslidetransition == 'slotzoom-vertiacal'}selected="selected"{/if} value="slotzoom-vertiacal">Zoom Slots Vertical</option>
+                    </optgroup>
+                    <optgroup label="---CURTAIN TRANSITIONS---">
+                            <option {if $rslidetransition == 'curtain-1'}selected="selected"{/if} value="curtain-1">Curtain from Left</option>
+                            <option {if $rslidetransition == 'curtain-2'}selected="selected"{/if} value="curtain-2">Curtain from Right</option>
+                            <option {if $rslidetransition == 'curtain-3'}selected="selected"{/if} value="curtain-3">Curtain from Middle</option>
+                    </optgroup>
+                    <optgroup label="---PREMIUM TRANSITIONS---">
+                             <option {if $rslidetransition == '3dcurtain-horizontal'}selected="selected"{/if} value="3dcurtain-horizontal">3D Curtain Horizontal</option>
+                            <option {if $rslidetransition == '3dcurtain-vertical'}selected="selected"{/if} value="3dcurtain-vertical">3D Curtain Vertical</option>
+                            <option {if $rslidetransition == 'cube'}selected="selected"{/if}  value="cube">Cube Vertical</option>
+                            <option {if $rslidetransition == 'cube-horizontal'}selected="selected"{/if}  value="cube-horizontal">Cube Horizontal</option>
+                            <option {if $rslidetransition == 'incube'}selected="selected"{/if}  value="incube">In Cube Vertical</option>
+                            <option {if $rslidetransition == 'incube-horizontal'}selected="selected"{/if}  value="incube-horizontal">In Cube Horizontal</option>
+                            <option {if $rslidetransition == 'turnoff'}selected="selected"{/if}  value="turnoff">TurnOff Horizontal</option>
+                            <option {if $rslidetransition == 'turnoff-vertical'}selected="selected"{/if}  value="turnoff-vertical">TurnOff Vertical</option>
+                            <option {if $rslidetransition == 'papercut'}selected="selected"{/if}  value="papercut">Paper Cut</option>
+                            <option {if $rslidetransition == 'flyin'}selected="selected"{/if}  value="flyin">Fly In</option>
+                    </optgroup>
+                    <optgroup label="---RANDOM---">
+                            <option {if $rslidetransition == 'random'}selected="selected"{/if} value="random">Random</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`This option defines the duration of the Transition in ms (milliseconds). The value “default” is also accepted which will pick the best Duration for the selected Transition. `]">[`Transition Speed`]</label>
+                <input class="form-control halfto" type="text" name="rslidemasterspeed" value="{if isset($layer) && isset($layer.properties) && isset($layer.properties.rslidemasterspeed)}{$layer.properties.rslidemasterspeed}{else}default{/if}">
+            </div>
+
+            <div class="form-group">
+                <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`The number of slots or slices the Slide image is “split” to in the transition. Only available for Transitions with Slots and Slices`]">[`Slots`]</label>
+                <input type="text" class="form-control halfto" name="rslideslotamount" value="{if isset($layer) && isset($layer.properties) && isset($layer.properties.rslideslotamount)}{$layer.properties.rslideslotamount}{else}8{/if}">
+            </div>
+
+            <div class="form-group">
+                <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`The rotation of the Single Slots/Slices, or full image during the Transition. Some transition will ignore this value.  Negative and Positive values are allowed. (i.e. -360, or 180 etc..)`]"><i class="icon-rotatex bolder"></i></label>
+                <input class="form-control halfto" type="text" name="rsliderotate" value="{if isset($layer) && isset($layer.properties) && isset($layer.properties.rsliderotate)}{$layer.properties.rsliderotate}{else}0{/if}">
+            </div>
+
+            <div class="form-group">
+                <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`The In animation Easing.  If you dont know how you wish to ease the animation, simple do not define it, or use the value “default” which will pick the best ease per transition type.`]">[`Start Easing`]</label>
+                <select class="form-control half" name="rslideeasein">                        
+                        {if !isset($layer) && !isset($layer.properties) && !isset($layer.properties.rslideeasein)}
+                            {assign var='rslideeasein' value='Default'}
+                        {else}
+                             {assign var='rslideeasein' value=$layer.properties.rslideeasein|default:'Default'}
+                        {/if}
+                        <option {if $rslideeasein == 'Default'}selected="selected"{/if} value="Default">Default</option>
+                        <option {if $rslideeasein == 'Linear.easeNone'}selected="selected"{/if} value="Linear.easeNone">Linear.easeNone</option>
+                        <option {if $rslideeasein == 'Power0.easeIn'}selected="selected"{/if} value="Power0.easeIn">Power0.easeIn</option>
+                        <option {if $rslideeasein == 'Power0.easeInOut'}selected="selected"{/if} value="Power0.easeInOut">Power0.easeInOut</option>
+                        <option {if $rslideeasein == 'Power0.easeOut'}selected="selected"{/if} value="Power0.easeOut">Power0.easeOut</option>
+                        <option {if $rslideeasein == 'Power1.easeIn'}selected="selected"{/if} value="Power1.easeIn">Power1.easeIn</option>
+                        <option {if $rslideeasein == 'Power1.easeInOut'}selected="selected"{/if} value="Power1.easeInOut">Power1.easeInOut</option>
+                        <option {if $rslideeasein == 'Power1.easeOut'}selected="selected"{/if} value="Power1.easeOut">Power1.easeOut</option>
+                        <option {if $rslideeasein == 'Power2.easeIn'}selected="selected"{/if} value="Power2.easeIn">Power2.easeIn</option>
+                        <option {if $rslideeasein == 'Power2.easeInOut'}selected="selected"{/if} value="Power2.easeInOut">Power2.easeInOut</option>
+                        <option {if $rslideeasein == 'Power2.easeOut'}selected="selected"{/if} value="Power2.easeOut">Power2.easeOut</option>
+                        <option {if $rslideeasein == 'Power3.easeIn'}selected="selected"{/if} value="Power3.easeIn">Power3.easeIn</option>
+                        <option {if $rslideeasein == 'Power3.easeInOut'}selected="selected"{/if} value="Power3.easeInOut">Power3.easeInOut</option>
+                        <option {if $rslideeasein == 'Power3.easeOut'}selected="selected"{/if} value="Power3.easeOut">Power3.easeOut</option>
+                        <option {if $rslideeasein == 'Power4.easeIn'}selected="selected"{/if} value="Power4.easeIn">Power4.easeIn</option>
+                        <option {if $rslideeasein == 'Power4.easeInOut'}selected="selected"{/if} value="Power4.easeInOut">Power4.easeInOut</option>
+                        <option {if $rslideeasein == 'Power4.easeOut'}selected="selected"{/if} value="Power4.easeOut">Power4.easeOut</option>
+                        <option {if $rslideeasein == 'Quad.easeIn'}selected="selected"{/if} value="Quad.easeIn">Quad.easeIn</option>
+                        <option {if $rslideeasein == 'Quad.easeInOut'}selected="selected"{/if} value="Quad.easeInOut">Quad.easeInOut</option>
+                        <option {if $rslideeasein == 'Quad.easeOut'}selected="selected"{/if} value="Quad.easeOut">Quad.easeOut</option>
+                        <option {if $rslideeasein == 'Cubic.easeIn'}selected="selected"{/if} value="Cubic.easeIn">Cubic.easeIn</option>
+                        <option {if $rslideeasein == 'Cubic.easeInOut'}selected="selected"{/if} value="Cubic.easeInOut">Cubic.easeInOut</option>
+                        <option {if $rslideeasein == 'Cubic.easeOut'}selected="selected"{/if} value="Cubic.easeOut">Cubic.easeOut</option>
+                        <option {if $rslideeasein == 'Quart.easeIn'}selected="selected"{/if} value="Quart.easeIn">Quart.easeIn</option>
+                        <option {if $rslideeasein == 'Quart.easeInOut'}selected="selected"{/if} value="Quart.easeInOut">Quart.easeInOut</option>
+                        <option {if $rslideeasein == 'Quart.easeOut'}selected="selected"{/if} value="Quart.easeOut">Quart.easeOut</option>
+                        <option {if $rslideeasein == 'Quint.easeIn'}selected="selected"{/if} value="Quint.easeIn">Quint.easeIn</option>
+                        <option {if $rslideeasein == 'Quint.easeInOut'}selected="selected"{/if} value="Quint.easeInOut">Quint.easeInOut</option>
+                        <option {if $rslideeasein == 'Quint.easeOut'}selected="selected"{/if} value="Quint.easeOut">Quint.easeOut</option>
+                        <option {if $rslideeasein == 'Strong.easeIn'}selected="selected"{/if} value="Strong.easeIn">Strong.easeIn</option>
+                        <option {if $rslideeasein == 'Strong.easeInOut'}selected="selected"{/if} value="Strong.easeInOut">Strong.easeInOut</option>
+                        <option {if $rslideeasein == 'Strong.easeOut'}selected="selected"{/if} value="Strong.easeOut">Strong.easeOut</option>
+                        <option {if $rslideeasein == 'Back.easeIn'}selected="selected"{/if} value="Back.easeIn">Back.easeIn</option>
+                        <option {if $rslideeasein == 'Back.easeInOut'}selected="selected"{/if} value="Back.easeInOut">Back.easeInOut</option>
+                        <option {if $rslideeasein == 'Back.easeOut'}selected="selected"{/if} value="Back.easeOut">Back.easeOut</option>
+                        <option {if $rslideeasein == 'Bounce.easeIn'}selected="selected"{/if} value="Bounce.easeIn">Bounce.easeIn</option>
+                        <option {if $rslideeasein == 'Bounce.easeInOut'}selected="selected"{/if} value="Bounce.easeInOut">Bounce.easeInOut</option>
+                        <option {if $rslideeasein == 'Bounce.easeOut'}selected="selected"{/if} value="Bounce.easeOut">Bounce.easeOut</option>
+                        <option {if $rslideeasein == 'Circ.easeIn'}selected="selected"{/if} value="Circ.easeIn">Circ.easeIn</option>
+                        <option {if $rslideeasein == 'Circ.easeInOut'}selected="selected"{/if} value="Circ.easeInOut">Circ.easeInOut</option>
+                        <option {if $rslideeasein == 'Circ.easeOut'}selected="selected"{/if} value="Circ.easeOut">Circ.easeOut</option>
+                        <option {if $rslideeasein == 'Elastic.easeIn'}selected="selected"{/if} value="Elastic.easeIn">Elastic.easeIn</option>
+                        <option {if $rslideeasein == 'Elastic.easeInOut'}selected="selected"{/if} value="Elastic.easeInOut">Elastic.easeInOut</option>
+                        <option {if $rslideeasein == 'Elastic.easeOut'}selected="selected"{/if} value="Elastic.easeOut">Elastic.easeOut</option>
+                        <option {if $rslideeasein == 'Expo.easeIn'}selected="selected"{/if} value="Expo.easeIn">Expo.easeIn</option>
+                        <option {if $rslideeasein == 'Expo.easeInOut'}selected="selected"{/if} value="Expo.easeInOut">Expo.easeInOut</option>
+                        <option {if $rslideeasein == 'Expo.easeOut'}selected="selected"{/if} value="Expo.easeOut">Expo.easeOut</option>
+                        <option {if $rslideeasein == 'Sine.easeIn'}selected="selected"{/if} value="Sine.easeIn">Sine.easeIn</option>
+                        <option {if $rslideeasein == 'Sine.easeInOut'}selected="selected"{/if} value="Sine.easeInOut">Sine.easeInOut</option>
+                        <option {if $rslideeasein == 'Sine.easeOut'}selected="selected"{/if} value="Sine.easeOut">Sine.easeOut</option>
+                        <option {if $rslideeasein == 'SlowMo.ease'}selected="selected"{/if} value="SlowMo.ease">SlowMo.ease</option>                      
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`The Out animation Easing.  If you dont know how you wish to ease the animation, simple do not define it, or use the value “default” which will pick the best ease per transition type.`]">[`Finish Easing`]</label>
+                <select class="form-control half" name="rslideeaseout">
+                    {if !isset($layer) && !isset($layer.properties) && !isset($layer.properties.rslideeaseout) }
+                        {assign var='rslideeaseout' value='Default'}
+                    {else}
+                         {assign var='rslideeaseout' value=$layer.properties.rslideeaseout|default:'Default'}
+                    {/if}
+                    <option {if $rslideeaseout == 'Default'}selected="selected"{/if} value="Default">Default</option>
+                    <option {if $rslideeaseout == 'Linear.easeNone'}selected="selected"{/if} value="Linear.easeNone">Linear.easeNone</option>
+                    <option {if $rslideeaseout == 'Power0.easeIn'}selected="selected"{/if} value="Power0.easeIn">Power0.easeIn</option>
+                    <option {if $rslideeaseout == 'Power0.easeInOut'}selected="selected"{/if} value="Power0.easeInOut">Power0.easeInOut</option>
+                    <option {if $rslideeaseout == 'Power0.easeOut'}selected="selected"{/if} value="Power0.easeOut">Power0.easeOut</option>
+                    <option {if $rslideeaseout == 'Power1.easeIn'}selected="selected"{/if} value="Power1.easeIn">Power1.easeIn</option>
+                    <option {if $rslideeaseout == 'Power1.easeInOut'}selected="selected"{/if} value="Power1.easeInOut">Power1.easeInOut</option>
+                    <option {if $rslideeaseout == 'Power1.easeOut'}selected="selected"{/if} value="Power1.easeOut">Power1.easeOut</option>
+                    <option {if $rslideeaseout == 'Power2.easeIn'}selected="selected"{/if} value="Power2.easeIn">Power2.easeIn</option>
+                    <option {if $rslideeaseout == 'Power2.easeInOut'}selected="selected"{/if} value="Power2.easeInOut">Power2.easeInOut</option>
+                    <option {if $rslideeaseout == 'Power2.easeOut'}selected="selected"{/if} value="Power2.easeOut">Power2.easeOut</option>
+                    <option {if $rslideeaseout == 'Power3.easeIn'}selected="selected"{/if} value="Power3.easeIn">Power3.easeIn</option>
+                    <option {if $rslideeaseout == 'Power3.easeInOut'}selected="selected"{/if} value="Power3.easeInOut">Power3.easeInOut</option>
+                    <option {if $rslideeaseout == 'Power3.easeOut'}selected="selected"{/if} value="Power3.easeOut">Power3.easeOut</option>
+                    <option {if $rslideeaseout == 'Power4.easeIn'}selected="selected"{/if} value="Power4.easeIn">Power4.easeIn</option>
+                    <option {if $rslideeaseout == 'Power4.easeInOut'}selected="selected"{/if} value="Power4.easeInOut">Power4.easeInOut</option>
+                    <option {if $rslideeaseout == 'Power4.easeOut'}selected="selected"{/if} value="Power4.easeOut">Power4.easeOut</option>
+                    <option {if $rslideeaseout == 'Quad.easeIn'}selected="selected"{/if} value="Quad.easeIn">Quad.easeIn</option>
+                    <option {if $rslideeaseout == 'Quad.easeInOut'}selected="selected"{/if} value="Quad.easeInOut">Quad.easeInOut</option>
+                    <option {if $rslideeaseout == 'Quad.easeOut'}selected="selected"{/if} value="Quad.easeOut">Quad.easeOut</option>
+                    <option {if $rslideeaseout == 'Cubic.easeIn'}selected="selected"{/if} value="Cubic.easeIn">Cubic.easeIn</option>
+                    <option {if $rslideeaseout == 'Cubic.easeInOut'}selected="selected"{/if} value="Cubic.easeInOut">Cubic.easeInOut</option>
+                    <option {if $rslideeaseout == 'Cubic.easeOut'}selected="selected"{/if} value="Cubic.easeOut">Cubic.easeOut</option>
+                    <option {if $rslideeaseout == 'Quart.easeIn'}selected="selected"{/if} value="Quart.easeIn">Quart.easeIn</option>
+                    <option {if $rslideeaseout == 'Quart.easeInOut'}selected="selected"{/if} value="Quart.easeInOut">Quart.easeInOut</option>
+                    <option {if $rslideeaseout == 'Quart.easeOut'}selected="selected"{/if} value="Quart.easeOut">Quart.easeOut</option>
+                    <option {if $rslideeaseout == 'Quint.easeIn'}selected="selected"{/if} value="Quint.easeIn">Quint.easeIn</option>
+                    <option {if $rslideeaseout == 'Quint.easeInOut'}selected="selected"{/if} value="Quint.easeInOut">Quint.easeInOut</option>
+                    <option {if $rslideeaseout == 'Quint.easeOut'}selected="selected"{/if} value="Quint.easeOut">Quint.easeOut</option>
+                    <option {if $rslideeaseout == 'Strong.easeIn'}selected="selected"{/if} value="Strong.easeIn">Strong.easeIn</option>
+                    <option {if $rslideeaseout == 'Strong.easeInOut'}selected="selected"{/if} value="Strong.easeInOut">Strong.easeInOut</option>
+                    <option {if $rslideeaseout == 'Strong.easeOut'}selected="selected"{/if} value="Strong.easeOut">Strong.easeOut</option>
+                    <option {if $rslideeaseout == 'Back.easeIn'}selected="selected"{/if} value="Back.easeIn">Back.easeIn</option>
+                    <option {if $rslideeaseout == 'Back.easeInOut'}selected="selected"{/if} value="Back.easeInOut">Back.easeInOut</option>
+                    <option {if $rslideeaseout == 'Back.easeOut'}selected="selected"{/if} value="Back.easeOut">Back.easeOut</option>
+                    <option {if $rslideeaseout == 'Bounce.easeIn'}selected="selected"{/if} value="Bounce.easeIn">Bounce.easeIn</option>
+                    <option {if $rslideeaseout == 'Bounce.easeInOut'}selected="selected"{/if} value="Bounce.easeInOut">Bounce.easeInOut</option>
+                    <option {if $rslideeaseout == 'Bounce.easeOut'}selected="selected"{/if} value="Bounce.easeOut">Bounce.easeOut</option>
+                    <option {if $rslideeaseout == 'Circ.easeIn'}selected="selected"{/if} value="Circ.easeIn">Circ.easeIn</option>
+                    <option {if $rslideeaseout == 'Circ.easeInOut'}selected="selected"{/if} value="Circ.easeInOut">Circ.easeInOut</option>
+                    <option {if $rslideeaseout == 'Circ.easeOut'}selected="selected"{/if} value="Circ.easeOut">Circ.easeOut</option>
+                    <option {if $rslideeaseout == 'Elastic.easeIn'}selected="selected"{/if} value="Elastic.easeIn">Elastic.easeIn</option>
+                    <option {if $rslideeaseout == 'Elastic.easeInOut'}selected="selected"{/if} value="Elastic.easeInOut">Elastic.easeInOut</option>
+                    <option {if $rslideeaseout == 'Elastic.easeOut'}selected="selected"{/if} value="Elastic.easeOut">Elastic.easeOut</option>
+                    <option {if $rslideeaseout == 'Expo.easeIn'}selected="selected"{/if} value="Expo.easeIn">Expo.easeIn</option>
+                    <option {if $rslideeaseout == 'Expo.easeInOut'}selected="selected"{/if} value="Expo.easeInOut">Expo.easeInOut</option>
+                    <option {if $rslideeaseout == 'Expo.easeOut'}selected="selected"{/if} value="Expo.easeOut">Expo.easeOut</option>
+                    <option {if $rslideeaseout == 'Sine.easeIn'}selected="selected"{/if} value="Sine.easeIn">Sine.easeIn</option>
+                    <option {if $rslideeaseout == 'Sine.easeInOut'}selected="selected"{/if} value="Sine.easeInOut">Sine.easeInOut</option>
+                    <option {if $rslideeaseout == 'Sine.easeOut'}selected="selected"{/if} value="Sine.easeOut">Sine.easeOut</option>
+                    <option {if $rslideeaseout == 'SlowMo.ease'}selected="selected"{/if} value="SlowMo.ease">SlowMo.ease</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`Value is in milliseconds. Describes the length of the slide in ms.`]">[`Duration`]</label>
+                <input class="form-control halfto" type="text" name="rslidedelay" value="{if isset($layer) && isset($layer.properties) && isset($layer.properties.rslidedelay)}{$layer.properties.rslidedelay}{else}9000{/if}">
+            </div>
+    </div>
+</div>

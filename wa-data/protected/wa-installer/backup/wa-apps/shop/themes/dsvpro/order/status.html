@@ -1,0 +1,37 @@
+{$states = [
+    [ order => 0, id => "new", title => "[`New`]" ],
+    [ order => 1, id => "processing", title => "[`Processing`]" ],
+    [ order => 2, id => "paid", title => "[`Paid`]" ],
+    [ order => 3, id => "shipped", title => "[`Sent`]" ],
+    [ order => 4, id => "completed", title => "[`Completed`]" ],
+    [ order => 5, id => "refunded", title => "[`Refunded`]" ]
+]}
+<div class="col-md-6 col-xs-12 myOrder__status">
+    <ul class="progress-tracker progress-tracker--word progress-tracker--word-center">
+        {$current_state = $order.state->getId()}
+        {$current_state_order = 0}
+        {foreach $states as $state}
+            {if $state.id == $current_state}
+                {$current_state_order = $state.order}
+                {break}
+            {/if}
+        {/foreach}
+
+        {$state_class = ""}
+        {foreach $states as $state}
+            {if $state.order > $current_state_order}
+                {$state_class = ""}
+            {elseif $state.order == $current_state_order}
+                {$state_class = "is-active"}
+            {else}
+                {$state_class = "is-complete"}
+            {/if}
+            <li class="progress-step {$state_class}">
+                <span class="progress-marker"></span>
+                <div class="progress-text">
+                    <span class="progress-title">{$state.title}</span>
+                </div>
+            </li>
+        {/foreach}
+    </ul>
+</div>

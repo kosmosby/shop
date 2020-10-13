@@ -1,0 +1,23 @@
+<h4><i class="icon-brush"></i> [`Button`] <i class="fa icon-angle-down control"></i></h4>
+<div class="line">
+    <div class="form-group fullthird">
+        <label data-toggle="tooltip" data-placement="top" title="[`Tooltip button size in px`]">[`Size`]</label>
+        <input type="number" name="rsLayerTipSize" value="{if isset ($sublayer.rsLayerTipSize)}{$sublayer.rsLayerTipSize}{else}20{/if}">
+    </div>
+    <div class="form-group fullthird">
+        <label data-toggle="tooltip" data-placement="top" title="[`Border weight`]">[`Border weight`]</label>
+        <input  type="number" min="0" max="100" step="1" name="rsLayerTipBorderSize" value="{if isset ($sublayer.rsLayerTipBorderSize)}{$sublayer.rsLayerTipBorderSize}{else}2{/if}">
+    </div>
+    <div class="form-group fullthird spanlablepad">
+        <label class="colorchange" data-toggle="tooltip" data-placement="top" title="[`Button border color`]"><i class="icon-color" aria-hidden="true"></i></label>
+        <div class="form-group">
+        <input class="colorpick colorin" data-position="top left" data-format="rgb" data-opacity="1.00" data-keywords="transparent, initial, inherit" name="rsLayerTipBorderColor" value="{if isset ($sublayer.rsLayerTipBorderColor)}{$sublayer.rsLayerTipBorderColor}{else}#FFFFFF{/if}">
+        </div>
+    </div>
+     <div class="form-group fullthird spanlablepad">
+        <label class="colorchange" data-toggle="tooltip" data-placement="top" title="[`Button background color`]"><i class="icon-bgcolor" aria-hidden="true"></i></label>
+         <div class="form-group">
+        <input class="colorpick colorin" data-position="top left" data-format="rgb" data-opacity="1.00" data-keywords="transparent, initial, inherit" name="rsLayerTipBgColor" value="{if isset ($sublayer.rsLayerTipBgColor)}{$sublayer.rsLayerTipBgColor}{else}#FF5722{/if}">
+        </div>
+    </div>
+</div>

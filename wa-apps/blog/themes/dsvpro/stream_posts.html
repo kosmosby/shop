@@ -1,0 +1,95 @@
+{strip}
+<ul class="timeline">
+    {foreach $posts as $post}
+        <li class="timeline__item post" itemprop="blogPosts" itemscope itemtype="http://schema.org/BlogPosting">
+            <div class="timeline__badge">
+                <i class="mi mi-radio-button-checked mi-24"></i>
+            </div>
+            <div class="timeline__panel post__panel">
+                <div class="timeline__heading">
+                    <a class="black td-none" href="{$post.link}" itemprop="url">
+                        <div class="timeline__image">
+                            {if !empty($post.preview)}
+                                <img itemprop="image" alt="{$post.title}" class="img-responsive" src="{$post.preview}" itemprop="image">
+                            {/if}
+                            <div class="timeline__mask"></div>
+                        </div>
+                        <div class="h2 fw-7" itemprop="headline"{if !empty($post.header_color)} style="color: #{$post.header_color}"{/if}>
+                            {$post.title}
+
+                            {* @event prepare_posts_frontend.%plugin_id%.post_title *}
+                            {if !empty($post.plugins.post_title)}
+                                {foreach $post.plugins.post_title as $plugin => $output}{$output}{/foreach}
+                            {/if}
+                        </div>
+                    </a>
+                </div>
+                <div class="timeline__body fs-15em gray">
+                    {* @event prepare_posts_frontend.%plugin_id%.before *}
+                    {if !empty($post.plugins.before)}
+                        <div class="text_before">
+                            {foreach $post.plugins.before as $plugin => $output}{$output}{/foreach}
+                        </div>
+                    {/if}
+                    {$post.text|strip_tags}
+
+                    {if $post.album_id && $post.album.id && $post.album.photos}
+                        {$photos_loaded = 1}
+                        <ul class="list-unstyled list-inline post__photos">
+                            {foreach $post.album.photos as $p}
+                                <li>
+                                    <a href="{$post.link}#photo{$p.id}">
+                                        <img src="{$p.thumb_crop.url}" class="retinify" width="96" height="96" alt="{$p.name|escape}">
+                                    </a>
+                                </li>
+                            {/foreach}
+                        </ul>
+                    {/if}
+
+                    {* @event prepare_posts_frontend.%plugin_id%.after *}
+                    {if !empty($post.plugins.after)}
+                        <div class="text_after">
+                            {foreach $post.plugins.after as $plugin => $output}{$output}{/foreach}
+                        </div>
+                    {/if}
+                </div>
+                <div class="timeline__footer">
+                    <ul class="list-unstyled list-inline fs-13em gray">
+                        <li>{$post.datetime|wa_datetime:"humandate"}</li>
+                        {if !empty($post.comment_count)}
+                            <li>
+                                <a class="gray td-none" href="{$post.link}#comments">
+                                    <i class="mi mi-comment mi-24"></i> {$post.comment_count}
+                                </a>
+                            </li>
+                        {/if}
+                    </ul>
+                </div>
+            </div>
+            <div class="hidden">
+                <meta itemprop="author" content="{$post.user.name}">
+                <span itemprop="datePublished">{$post.datetime}</span>
+                <span itemprop="dateModified">{$post.datetime}</span>
+                <div itemprop="publisher" itemtype="http://schema.org/Organization" itemscope="">
+                    <span itemprop="name">{$wa->accountName()}</span>
+                </div>
+                <link itemprop="mainEntityOfPage" href="{$post.link}">
+            </div>
+        </li>
+    {foreachelse}
+        {if $page lt 2}
+            {_w('%d post','%d posts',0)}
+        {/if}
+    {/foreach}
+    <li class="clearfix"></li>
+</ul>
+
+{if !empty($photos_loaded) && blogPhotosBridge::is2xEnabled()}
+    <script src="{$wa_static_url}wa-content/js/jquery-plugins/jquery.retina.min.js"></script>
+    <script>
+        $(function() { "use strict";
+            $.Retina && $('img.retinify').retina();
+        });
+    </script>
+{/if}
+{/strip}

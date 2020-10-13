@@ -1,0 +1,43 @@
+{strip}
+<div class="checkout-content" data-step-id="payment">
+    <ul class="checkout__options list-unstyled">
+        {foreach $checkout_payment_methods as $m}
+            <li>
+                <input type="radio" name="payment_id" id="payment-{$m.id}" class="radio" value="{$m.id}" {if !empty($m.error)}disabled="disabled"{/if} {if $m.id == $payment_id}checked{/if}>
+                <label for="payment-{$m.id}">
+                    {if !empty($m.logo)}
+                        <img src="{$m.logo}">
+                    {/if}
+                    {$m.name|escape}
+                </label>
+                {if $m.description}<p class="fs-13em">{$m.description}</p>{/if}
+                {if !empty($m.error)}<p class="error"><em>{$m.error}</em></p>{/if}
+                {if !empty($m.custom_html)}
+                    <div class="wa-form form" {if $m.id != $payment_id}style="display:none"{/if}>
+                        {$m.custom_html}
+                    </div>
+                {/if}
+            </li>
+        {foreachelse}
+            <li>
+                <em class="error">[`Oops! We are sorry, but <strong>we can not offer any payment option for your order</strong>. Checkout can not be completed.`]</em>
+            </li>
+        {/foreach}
+    </ul>
+    {if !empty($error)}
+        <div class="checkout-result error">{$error}</div>
+    {/if}
+    <script type="text/javascript">
+        $(".checkout__options input:radio").change(function () {
+            if ($(this).is(':checked')) {
+                $(".checkout__options .form").hide();
+                $(this).closest('li').find('.form').show();
+            }
+        });
+    </script>
+
+    <!-- plugin hook: 'frontend_checkout' -->
+    {* @event frontend_checkout.%plugin_id% *}
+    {foreach $frontend_checkout as $_}{$_}{/foreach}
+</div>
+{/strip}

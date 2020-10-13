@@ -1,0 +1,268 @@
+{strip}
+{$wa->globals("crumb",$product.name|escape)}
+{$mobile = $wa->isMobile() || $wa->userAgent("device") == "ipad" || $wa->userAgent("device") == "android"}
+{$sidebar_default = $theme_settings.sidebar_shop_product && $theme_settings.sidebar_shop}
+{$sidebar = $wa->cookie("sidebar", $sidebar_default)}
+{if $sidebar}
+    {$wa->globals("sidebar",true)}
+{/if}
+<div class="container-fluid">
+    <div class="product" itemscope itemtype="http://schema.org/Product">
+        <h1 itemprop="name" class="product__h1">{$product.name|escape}</h1>
+        {if $theme_settings.product_summary}
+            <div class="fs-14em mb-10">{$product.summary}</div>
+        {/if}
+        <div class="row mb-20 product__row">
+            <div class="col-md-8 col-sm-7">
+                <ul class="list-inline">
+                    {if $theme_settings.product_reviews}
+                        {if !empty($product.rating) && $product.rating > 0}
+                            <li class="rating text-nowrap" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                                {$wa->shop->ratingHtml($product.rating)} <a href="#" class="scroll-to" data-target=".product__nav">{_w('%d review','%d reviews', $reviews_total_count)}</a>
+                                <span itemprop="reviewCount" class="hidden">{$reviews_total_count}</span>
+                                <span itemprop="ratingValue" class="hidden">{$product.rating}</span>
+                            </li>
+                        {else}
+                            <li class="rating text-nowrap">
+                                <i class="icon10 star-empty"></i><i class="icon10 star-empty"></i><i class="icon10 star-empty"></i><i class="icon10 star-empty"></i><i class="icon10 star-empty"></i>
+                                <a href="{$wa->shop->productUrl($product, 'reviews')}">[`Write a review`]</a>
+                            </li>
+                        {/if}
+                    {/if}
+                </ul>
+
+                {********* ГАЛЕРЕЯ / GALLERY **********}
+                {include file="product/gallery.html"}
+            </div>
+
+            {********* ФОРМА / ФОРМА **************}
+            <div class="col-md-4 col-sm-5">
+                {if !$mobile}
+                    <ul class="list-inline product__share hidden-xs">
+                        <li class="product__print">
+                            <a href="javascript:print()">
+                                <i class="mi mi-print mi-24"></i>
+                            </a>
+                        </li>
+                        <li>
+                            <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+                            <script src="//yastatic.net/share2/share.js"></script>
+                            <div class="ya-share2" data-services="collections,vkontakte,facebook,odnoklassniki,moimir"></div>
+                        </li>
+                    </ul>
+                {/if}
+                {include file="product.cart.html" inline}
+
+                <!-- plugin hook: 'frontend_product.block_aux' -->
+                {* @event frontend_product.%plugin_id%.block_aux *}
+                {if !empty($frontend_product)}
+                    <div class="aux">
+                        {foreach $frontend_product as $_}{$_.block_aux}{/foreach}
+                    </div>
+                {/if}
+            </div>
+        </div>
+
+        {if $mobile}
+            <ul class="list-inline product__share__mobile mb-20">
+                <li class="product__print">
+                    <a href="javascript:print()">
+                        <i class="mi mi-print mi-24"></i>
+                    </a>
+                </li>
+                <li>
+                    <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+                    <script src="//yastatic.net/share2/share.js"></script>
+                    <div class="ya-share2" data-services="collections,vkontakte,facebook,odnoklassniki,moimir"></div>
+                </li>
+            </ul>
+        {/if}
+
+        {********* ВКЛАДКИ / TABS *************}
+       {if $theme_settings.product_features}
+            {$product_tabs[] = [
+                "name" => "features",
+                "title" => "[`Features`]",
+                "url" => 0,
+                "template" => "features"
+            ]}
+        {/if}
+        {if $theme_settings.product_overview}
+            {$product_tabs[] = [
+                "name" => "overview",
+                "title" => "[`Overview`]",
+                "url" => 0,
+                "template" => "overview"
+            ]}
+        {/if}
+        {if $theme_settings.product_reviews}
+            {$product_tabs[] = [
+                "name" => "reviews",
+                "title" => "[`Reviews`] ({$reviews_total_count})",
+                "url" => {$wa->shop->productUrl($product, 'reviews')},
+                "template" => "reviews"
+            ]}
+        {/if}
+        {if $theme_settings.tab_vk && !empty($theme_settings.tab_vkid)}
+            {$product_tabs[] = [
+                "name" => "vkontakte_comments",
+                "title" => "<i class='icon-vkontakte'></i>",
+                "url" => 0,
+                "template" => "vkontakte"
+            ]}
+        {/if}
+        {if $theme_settings.tab_fb}
+            {$product_tabs[] = [
+                "name" => "facebook_comments",
+                "title" => "<i class='icon-facebook'></i>",
+                "url" => 0,
+                "template" => "facebook"
+            ]}
+        {/if}
+        {foreach $product.pages as $page}
+            {$product_tabs[] = [
+                "name" => "page_{$page.id}",
+                "title" => $page.name|escape,
+                "url" => $wa->shop->productUrl($product, 'page', ['page_url' => $page.url]),
+                "content" => $page.content,
+                "template" => "subpage",
+                "id" => $page.id
+            ]}
+        {/foreach}
+
+        {$active_tab = []}
+        {foreach $product_tabs as $tab}
+            {if $tab.name == $theme_settings.product_active_tab}
+                {if $tab.name !== "features"}
+                    {$active_tab[$tab.name] = 1 }
+                {elseif count($product.features) > 0}
+                    {$active_tab[$tab.name] = 1 }
+                {else}
+                    {$active_tab[$tab.name] = 0 }
+                    {$active_tab["overview"] = 1 }
+                {/if}
+            {else}
+                {$active_tab[$tab.name] = 0 }
+            {/if}
+        {/foreach}
+
+        {if !$mobile}
+            <div id="productNav" class="product__nav">
+                <ul class="nav nav-tabs container-fluid" role="tablist" id="productTabs">
+                    {if $theme_settings.product_nav == "tabs"}
+                        {foreach $product_tabs as $tab}
+                            {if $tab.name == "features" && count($product.features) == 0}
+                                {continue}
+                            {/if}
+                            <li{if $active_tab[$tab.name]} class="active"{/if}><a href="#{$tab.name}" role="tab" data-toggle="tab">{$tab.title}</a></li>
+                        {/foreach}
+                    {elseif $theme_settings.product_nav == "anchors"}
+                        {foreach $product_tabs as $tab}
+                            {if $tab.name == "features" && count($product.features) == 0}
+                                {continue}
+                            {/if}
+                            <li><a href="#{$tab.name}">{$tab.title}</a></li>
+                        {/foreach}
+                    {else}
+                        {foreach $product_tabs as $tab}
+                            {if $tab.name == "features" && count($product.features) == 0}
+                                {continue}
+                            {/if}
+                            <li{if $active_tab[$tab.name]} class="active"{/if}><a href="{if $tab.url}{$tab.url}{else}#{$tab.name}" data-toggle="tab{/if}">{$tab.title}</a></li>
+                        {/foreach}
+                    {/if}
+
+                    <!-- plugin hook: 'frontend_product.menu' -->
+                    {* @event frontend_product.%plugin_id%.menu *}
+                    {foreach $frontend_product as $_}{$_.menu}{/foreach}
+                </ul>
+            </div>
+            <div class="tab-content">
+                {$tab_class = ""}
+                {if $theme_settings.product_nav == "anchors"}
+                    {$tab_class = "product-block"}
+                {/if}
+                {foreach $product_tabs as $tab}
+                    {include file="product/`$tab.template`.html" tab=$tab tab_class=$tab_class inline}
+                {/foreach}
+
+                <!-- plugin hook: 'frontend_product.block' -->
+                {* @event frontend_product.%plugin_id%.block *}
+                {foreach $frontend_product as $_}{$_.block}{/foreach}
+            </div>
+        {else}
+            {include file="product/mobile_nav.html" inline}
+        {/if}
+
+        {********* РЕКОМЕНДУЕМЫЕ / RELATED ****}
+        {$upselling = $product->upSelling(12)}
+        {$crossselling = $product->crossSelling(12)}
+        {$slider.auto = 0}
+        {$slider.interval = 3000}
+        {if $crossselling}
+            <div class="productsSet">
+                <div class="heading">
+                    <span class="h3">[`Related products`]</span>
+                </div>
+                {include file="list-thumbs.html" products=$crossselling carousel=$slider}
+            </div>
+        {/if}
+        {if $upselling}
+            <div class="productsSet">
+                <div class="heading">
+                    <span class="h3">[`See also`]</span>
+                </div>
+                {include file="list-thumbs.html" products=$upselling carousel=$slider}
+            </div>
+        {/if}
+
+        {if $product.tags && $theme_settings.product_tags}
+            <div class="product__tags fs-13em mb-20">
+                <br>
+                <span class="productForm__heading">[`Tags`]:</span>
+                {foreach $product.tags as $t}
+                    <a href="{$wa->getUrl('/frontend/tag', ['tag' => urlencode($t)])}" class="td-none rounded-sm">{$t}</a>
+                {/foreach}
+            </div>
+        {/if}
+        <!-- TODO: удалить на js реализацию -->
+        {if isset($product.features.brand)}
+            <meta itemprop="brand" content="{$product.features.brand}">
+        {/if}
+    </div>
+</div>
+<div class="productAffix hidden-xs" id="productFormAffix">
+    <div class="container-fluid">
+        <div class="row vertical-align productAffix__info">
+            <div class="col-md-8">
+                {$wa->shop->productImgHtml($product, "70x70", [ "itemprop" => "image", "class" => "productAffix__img", "alt" => $product.name|escape ])}
+                <div class="productAffix__main">
+                    <div class="productAffix__name">{$product.name|escape}</div>
+                    <ul class="productAffix__list list-inline">
+                        {if $theme_settings.product_reviews && !empty($product.rating) && $product.rating > 0}
+                            <li class="rating text-nowrap">
+                                {$wa->shop->ratingHtml($product.rating)} <span>({$reviews_total_count})</span>
+                            </li>
+                        {/if}
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-4 text-right">
+                <div class="productAffix__prices">
+                    {if $product.compare_price > 0}
+                        <div class="productAffix__compare">{shop_currency_html($product.compare_price)}</div>
+                    {/if}
+                    <div class="productAffix__price">{shop_currency_html($product.price)}</div>
+                </div>
+                <a class="btn btn-primary productAffix__btn" href="#">[`Add to cart`]</a>
+            </div>
+        </div>
+    </div>
+</div>
+{/strip}
+<div id="productData"
+     data-id="{$product.id}"
+     data-tab="{$theme_settings.product_nav}"
+     data-producturl="{$wa->shop->productUrl($product)}"
+     data-reviewsajax="{if $theme_settings.product_reviews_ajax}1{else}0{/if}"
+></div>

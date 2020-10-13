@@ -1,0 +1,268 @@
+{strip}
+{$wa->globals("displayBreadcrumbs", 1)}
+{$wa->globals("js","cart.js")}
+{$added = $wa->get("added")}
+{$isFlexdiscountPlugin = class_exists("shopFlexdiscountPlugin")}
+{if empty($added)}
+    {if $isFlexdiscountPlugin}
+        {$flexdiscount_coupons = shopFlexdiscountPluginHelper::getActiveCoupons()}
+    {/if}
+    <div class="container-fluid">
+        {if !$cart.count}
+            <div class="blank text-center">
+                <div class="blank__inner">
+                    <div class="blank__icon">
+                        <i class="mi mi-shopping-cart"></i>
+                    </div>
+                    <h1 class="blank__heading">[`Your shopping cart is empty.`]</h1>
+                    <p class="blank__text fs-15em">[`Add item to the shopping cart. It will be displayed automatically`]</p>
+                </div>
+            </div>
+        {else}
+            <div class="cart">
+                <h1 class="cart__heading hidden-xs mb-20">[`Your shopping cart`]</h1>
+                <form method="post">
+                    <div class="{if count($cart.items) > 3}visible-xs{else}hidden{/if} cartMobile__total">
+                        <div class="fw-7 text-center mb-10">
+                            <span class="fs-15em">[`Total`]: </span>
+                            <span class="fs-20em cartTotal text-nowrap">{shop_currency_html($cart.total, true)}</span>
+                        </div>
+                        {* <button class="btn btn-danger btn-block btn-ripple cart__btn" type="submit">[`Proceed to checkout`]</button> *}
+                        <input class="btn btn-danger btn-block cart__btn" type="submit" name="checkout" value="[`Proceed to checkout`]">
+                    </div>
+                    <hr>
+                    {foreach $cart.items as $item}
+                        <div class="row cartItem" data-id="{$item.id}">
+                            <div class="col-md-8 col-sm-6 col-xs-12">
+                                <div class="cartItem__image">
+                                    {$wa->shop->productImgHtml($item.product, "96x96", ["default" => "`$wa_theme_url`img/noimage96.png"])}
+                                </div>
+                                <div class="cartItem__info clearfix mb-10">
+                                    <a class="black fs-15em fw-5" href="{$wa->shop->productUrl($item.product)}">{$item.product.name|escape}</a>
+                                    <ul class="list-unstyled fs-13em">
+                                        {if !empty($item.sku_code)}
+                                            <li>[`SKU`]: {$item.sku_code}</li>
+                                        {/if}
+                                        {if $item.sku_name && $item.sku_name != $item.product.name}
+                                            {$skus = $item.sku_name|escape}
+                                            {$skus_array = ", "|explode:$skus}
+                                            {foreach $skus_array as $sku}
+                                                <li>{$sku}</li>
+                                            {/foreach}
+                                        {/if}
+                                    </ul>
+                                </div>
+                                <div class="cartItem__services">
+                                    {foreach $item.services as $service_id => $s}
+                                        <!-- one option -->
+                                        <div {if !empty($s.id)}data-id="{$s.id}"{/if}>
+                                            <input {if !empty($s.id)}checked{/if} type="checkbox" name="services[{$item.id}][]" value="{$service_id}" class="checkbox" id="service-{$service_id}">
+                                            <label for="service-{$service_id}">
+                                                {$s.name|escape} {if $s.price && !isset($s.variants)}(<span class="gray">+{shop_currency_html($s.price, $s.currency)}</span>){/if}
+                                            </label>
+                                            {if isset($s.variants)}
+                                                <select name="service_variant[{$item.id}][{$service_id}]" {if empty($s.id)}disabled{/if}>
+                                                    {foreach $s.variants as $variant_id => $v}
+                                                    <option {if $s.variant_id == $variant_id}selected{/if} value="{$variant_id}">{$v.name|escape} (+{shop_currency($v.price, $s.currency)})</option>
+                                                    {/foreach}
+                                                </select>
+                                            {else}
+                                                <input type="hidden" name="service_variant[{$item.id}][{$service_id}]" value="{$s.variant_id}">
+                                            {/if}
+                                        </div>
+                                    {/foreach}
+                                </div>
+                            </div>
+                            <div class="col-md-2 col-sm-3 col-xs-7 text-nowrap">
+                                <div class="qty{if !empty($item.error)} has-error{/if}">
+                                    <input class="form-control qty__input" type="text" name="quantity[{$item.id}]" value="{$item.quantity}">
+                                    <button class="qty__plus" type="button"></button>
+                                    <button class="qty__minus" type="button"></button>
+                                </div>
+                                <a class="cartItem__delete fw-5 visible-xs-inline" href="#">[`Delete`]</a>
+                            </div>
+                            <div class="col-md-2 col-sm-3 col-xs-5 text-right">
+                                <div class="cartItem__total fw-7 black">
+                                    {if $isFlexdiscountPlugin}
+                                        {shopFlexdiscountPluginHelper::cartPrice($item)}
+                                    {else}
+                                        {shop_currency_html($item.full_price, true)}
+                                    {/if}
+                                </div>
+                                <div class="fs-13em cartItem__each mb-10 text-nowrap">
+                                    {if $isFlexdiscountPlugin}
+                                        {shopFlexdiscountPluginHelper::cartPrice($item, 0)}
+                                    {else}
+                                        {shop_currency_html($item.price, $item.currency)} [`items`]
+                                    {/if}
+                                </div>
+                                <a class="cartItem__delete fw-5 hidden-xs" href="#">[`Delete`]</a>
+                            </div>
+                            <div class="clearfix"></div>
+                            <hr>
+                        </div>
+                        {if !empty($item.error)}<script>alert({json_encode($item.error)});</script>{/if}
+                    {/foreach}
+                    <div class="cartOrder{if count($cart.items) > 5} cartOrder-affix{/if}">
+                        <div class="cartOrder__block mb-20">
+                            {*
+                            <div class="cartOrder__subtotal clearfix">
+                                <span class="cartOrder__label gray">[`Total sum`]</span>
+                                <span class="cartOrder__price darken js-cart-subtotal text-nowrap">{shop_currency_html($cart.total + $discount, true)}</span>
+                            </div>
+                            *}
+                            <div class="cartOrder__discount clearfix{if !shopDiscounts::isEnabled('coupons') && !$discount} hidden{/if}">
+                                <span class="cartOrder__label gray">[`Discount`]</span>
+                                <span class="cartOrder__price darken js-cart-discount text-nowrap">&minus; {shop_currency_html($discount, true)}</span>
+                            </div>
+                            {if shopAffiliate::isEnabled() && $affiliate_bonus > 0}
+                                <div class="cartOrder__affiliate affiliate-discount clearfix"{if $use_affiliate} data-use="1"{/if}>
+                                    <span class="cartOrder__label gray">[`Bonus`]</span>
+                                    <span class="cartOrder__price darken js-cart-affiliate text-nowrap">&minus; {if $use_affiliate}{shop_currency_html(shopAffiliate::convertBonus($used_affiliate_bonus))}{else}0{/if}</span>
+                                </div>
+                            {/if}
+                            <hr>
+                            <div class="cartOrder__total clearfix mb-20">
+                                <span class="cartOrder__label black">[`Total`]</span>
+                                <span class="cartOrder__price black js-cart-total text-nowrap">{shop_currency_html($cart.total, true)}</span>
+                            </div>
+                            {* <button class="btn btn-danger btn-block btn-ripple cart__btn" name="checkout" type="submit">[`Proceed to checkout`]</button> *}
+                            <input class="btn btn-danger btn-block cart__btn" name="checkout" type="submit" value="[`Proceed to checkout`]">
+                        </div>
+
+                        <!-- plugin hook: 'frontend_cart' -->
+                        {* @event frontend_cart.%plugin_id% *}
+                        {foreach $frontend_cart as $_key => $_}
+                            {if $_key == "quickorder-plugin"}
+                                {$_|replace:"quickorder-button-cart":"btn btn-sea btn-quick btn-block mb-15"}
+                            {elseif $_key == "storequickorder-plugin"}
+                                {$_|replace:"storequickorder-button button":"btn btn-sea btn-quick btn-block mb-15"}
+                            {else}
+                                {$_}
+                            {/if}
+                        {/foreach}
+
+                        {if shopDiscounts::isEnabled('coupons')}
+                            <div class="mb-15">
+                                {if !$coupon_code}
+                                    <span class="fs-14em td-none black">[`I have a coupon!`]</span>
+                                {/if}
+                                <div id="apply-coupon-code">
+                                    <div class="input-group input-group-merged">
+                                        <input type="text" name="coupon_code" class="form-control mb-10" value="{$coupon_code|escape}" placeholder="[`Coupon code`]">
+                                        <span class="input-group-addon">
+                                            <input type="submit"  value="[`Apply`]" class="btn btn-sea">
+                                        </span>
+                                    </div>
+
+                                    {if ($coupon_code && empty($coupon_discount) && empty($coupon_free_shipping)) || ($isFlexdiscountPlugin && empty($flexdiscount_coupons))}
+                                        <em class="errormsg">[`Invalid coupon code`]</em>
+                                    {/if}
+                                </div>
+                            </div>
+                        {/if}
+                        {if shopAffiliate::isEnabled() && $affiliate_bonus > 0}
+                            <div>
+                                {if $use_affiliate}
+                                    <a id="cancel-affiliate" href="#" class="fs-14em td-none">[`Don’t use bonus discount`]</a>
+                                {else}
+                                    <span class="fs-14em td-none black">[`Loyalty program`]</span>
+                                    <div id="affiliate_program">
+                                        <p class="fs-12em">{sprintf('[`Your current affiliate bonus of %s points allows you to get an additonal discount of up to %s`]', $affiliate_bonus, "<span class=\"affiliate-discount-available\">{shop_currency_html($affiliate_discount)}</span>")}</p>
+                                        <input type="submit" name="use_affiliate" class="btn btn-default btn-block" value="[`Use bonuses`]">
+                                    </div>
+                                {/if}
+                            </div>
+                        {/if}
+                    </div>
+
+                    {if shopAffiliate::isEnabled() && !empty($add_affiliate_bonus)}
+                        <div class="affiliate alert alert-success">
+                            {sprintf("[`This order will add <strong>+%s bonuses</strong> to  your account, which you will be able to spend on getting additional discounts later.`]", $add_affiliate_bonus)}
+                        </div>
+                    {/if}
+                </form>
+                {$related = $wa->shop->crossSelling($cart.items, "product_id", true)}
+                {if $related}
+                    <div class="productsSet">
+                        <div class="heading">
+                            <span class="h3">[`Recommended!`]</span>
+                        </div>
+                        {$slider.auto = $auto|default:0}
+                        {$slider.interval = $interval|default:3000}
+                        {include file="list-thumbs.html" products=$related carousel=$slider sidebar=1 inline}
+                    </div>
+                {/if}
+            </div>
+        {/if}
+    </div>
+{else}
+    <div class="modal__content added">
+        {$qty =  $wa->get("qty")|default:1}
+        <div class="h1 added__heading">
+            [`You added`] {_w('%d product','%d products', $qty)} <span class="color-secondary">([`in total`] {$cart.count} [`items`])</span>
+        </div>
+        {foreach $cart.items as $item}
+            {if $item.id !== $added}{continue}{/if}
+            <div class="row added__product">
+                <div class="col-sm-6 added__info">
+                    {$wa->shop->productImgHtml($item.product, "96x96", ["class" => "added__image", "default" => "`$wa_theme_url`img/noimage96.png"])}
+                    <div class="added__name">
+                        {$item.product.name|escape}
+                        {if $item.sku_name && $item.sku_name != $item.product.name}
+                            <span class="added__skuname">
+                                {$item.sku_name|escape}
+                            </span>
+                        {/if}
+                    </div>
+                </div>
+                <div class="col-sm-3 added__qty">
+                    [`Qty`]: <span class="added__count">{$item.quantity}</span>
+                </div>
+                <div class="col-sm-3 added__price color-price">{shop_currency_html($item.price, $item.currency)}</div>
+            </div>
+        {/foreach}
+        {$related = $wa->shop->crossSelling($item.product.id, 5, true)}
+        {if $related}
+            <div class="productsSet clearfix hidden-xs">
+                <div class="heading">
+                    <span class="h3">[`Recommended!`]</span>
+                </div>
+                {include file="list-modal.html" products=$related}
+            </div>
+        {/if}
+        <div class="added__summary">
+            <div class="h1 fw-7">[`In cart`]</div>
+            <table class="added__table mb-10">
+                <tbody>
+                    <tr>
+                        <td>[`Total sum`]</td>
+                        <td>{shop_currency_html($cart.total - $discount, true)}</td>
+                    </tr>
+                    <tr>
+                        <td>[`Discount`]</td>
+                        <td>&minus; {shop_currency_html($discount, true)}</td>
+                    </tr>
+                    </tbody>
+                    <tfoot>
+                    <tr>
+                        <td class="color-secondary">[`Total`]</td>
+                        <td class="color-price">{shop_currency_html($cart.total, true)}</td>
+                    </tr>
+                </tfoot>
+            </table>
+            {if method_exists($wa->shop, 'checkout')}
+                {$_cart_url = $wa->shop->checkout()->cartUrl()}
+                {$_checkout_url = $wa->shop->checkout()->url()}
+            {else}
+                {$_cart_url = $wa->getUrl('shop/frontend/cart')}
+                {$_checkout_url = $wa->getUrl('shop/frontend/checkout')}
+            {/if}
+            <a class="btn btn-block btn-darkblue btn-brd added__btn mb-10" href="{$_cart_url}">[`Go to shopping cart`]</a>
+            <a class="btn btn-block btn-danger btn-ripple added__btn mb-10" href="{$_checkout_url}">[`Place order`]</a>
+        </div>
+        <button class="btn btn-darkblue btn-brd added__btn added__continue" data-dismiss="modal">[`Continue shopping`]</button>
+        </div>
+    </div>
+{/if}
+{/strip}

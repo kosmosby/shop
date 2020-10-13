@@ -1,0 +1,72 @@
+{strip}
+{**
+* @param string $condition - search condition (set/promo)
+* @param int $limit - count of products (null)
+*}
+{$size = ["1400x0", "500"]}
+{$products = $wa->shop->products($condition|default:"`$theme_settings.slider_condition`", null, $limit|default:null, ["params" => 1])}
+{$products_photos = $wa->shop->images( array_keys($products), $size )}
+
+{$slides_photos = []}
+{foreach $products_photos as $product_id => $photos}
+    {foreach $photos as $photo}
+        {if $photo.description == "bg"}
+            {$slides_photos[$product_id]["bg"] = $photo['url_0']}
+        {/if}
+        {if $photo.description == "image"}
+            {$slides_photos[$product_id]["image"] = $photo['url_1']}
+        {/if}
+    {/foreach}
+{/foreach}
+{if count($slides_photos) > 0}
+    <div class="slider master-slider ms-slide-catalog" id="masterslider" data-type="productslider4" data-autoplay="{$theme_settings.slider_auto}">
+        {foreach $products as $p}
+            {if !isset($slides_photos[$p.id]["bg"])}
+                {continue}
+            {/if}
+            {$available = $wa->shop->settings('ignore_stock_count') || $p.count === null || $p.count > 0}
+            {$default_name = $p.name|escape}
+            {$default_description = strip_tags($p.summary)|truncate:130:"..."}
+            <div class="ms-slide ms-slide-decoration" data-fill-mode="tile" data-delay="{$theme_settings.slider_delay|default:5}">
+                {* BG *}
+                {if isset($slides_photos[$p.id]["bg"])}
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="catalog bg" data-src="{$slides_photos[$p.id]['bg']}">
+                {/if}
+
+                {* CATEGORY NAME *}
+                {$cat = $wa->shop->category($p.category_id)}
+                <div class="ms-layer ms-slide__category" data-effect="t(true,n,30,n,n,n,n,n,n,n,n,n,n,n,n)" data-duration="2000" data-delay="200" data-ease="easeOutQuart" data-offset-x="200" data-offset-y="-176" data-origin="ml" data-widthlimit="768">
+                    {$cat.name|escape}
+                </div>
+
+                {* DIVIDER *}
+                <div class="ms-layer ms-slide__divider" data-effect="t(true,n,40,n,n,n,n,n,n,n,n,n,n,n,n)" data-duration="2200" data-delay="200" data-ease="easeOutQuart" data-offset-x="200" data-offset-y="-146" data-origin="ml" data-widthlimit="768"></div>
+
+                {* PARAM HEADING / PRODUCT NAME *}
+                <div class="ms-layer ms-slide__name" data-effect="t(true,n,60,n,n,n,n,n,n,n,n,n,n,n,n)" data-duration="2400" data-delay="200" data-ease="easeOutQuart" data-offset-x="200" data-offset-y="-85" data-origin="ml">
+                    {$p.params.heading|default:$default_name}
+                </div>
+
+                {if isset($p.params.text)}
+                    <div class="ms-layer ms-slide__info" data-effect="t(true,n,70,n,n,n,n,n,n,n,n,n,n,n,n)" data-duration="2600" data-delay="200" data-ease="easeOutQuart" data-offset-x="200" data-offset-y="-11" data-origin="ml">
+                        {$p.params.text}
+                    </div>
+                {/if}
+
+                {if !empty($p.summary)}
+                    <div class="ms-layer ms-slide__promo" style="width:356px" data-effect="t(true,n,80,n,n,n,n,n,n,n,n,n,n,n,n)" data-duration="2800" data-delay="200" data-ease="easeOutQuart" data-offset-x="200" data-offset-y="71" data-origin="ml" data-widthlimit="768">
+                        {$p.summary}
+                    </div>
+                {/if}
+                <div class="ms-layer ms-btn ms-btn-box ms-btn-n ms-slide__link" data-effect="t(true,n,100,n,n,n,n,n,n,n,n,n,n,n,n)" data-duration="3000" data-delay="200" data-ease="easeOutQuart" data-type="button" data-offset-x="200" data-offset-y="159" data-origin="ml">Подробнее</div>
+
+                {if isset($slides_photos[$p.id]["image"])}
+                    <img class="ms-layer" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="" data-src="{$slides_photos[$p.id]['image']}" data-effect="t(true,n,20,-200,n,n,n,n,n,n,n,n,n,n,n)" data-duration="3000" data-delay="800" data-ease="easeOutQuint" data-type="image" data-offset-x="255" data-offset-y="0" data-origin="mc" data-position="normal">
+                {/if}
+
+                <a href="{$wa->shop->productUrl($p)}">Link</a>
+            </div>
+        {/foreach}
+    </div>
+{/if}
+{/strip}

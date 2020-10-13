@@ -1,0 +1,64 @@
+{strip}
+{$wa->globals("crumb","[`My orders`]")}
+
+<div class="container-fluid">
+    <div class="my myOrders">
+        <h1>[`My orders`] <a href="{$wa->getUrl('/frontend/myProfile')}?mynav=1">[`Back`]</a></h1>
+        <div class="myTable myOrders__table fs-13em">
+            <div class="row fw-7 myTable__header hidden-xs">
+                <div class="col-md-1 col-sm-1 black">[`Order`]</div>
+                <div class="col-md-5 col-sm-5 black">[`Description`]</div>
+                <div class="col-md-2 col-sm-2 black">[`Sum`]</div>
+                <div class="col-md-2 col-sm-2 black">[`Order date`]</div>
+                <div class="col-md-2 col-sm-2 black">[`Status`]</div>
+            </div>
+            {foreach $orders as $o}
+                <div class="row">
+                    <div class="col-md-1 col-sm-1 col-xs-12 myOrders__id">
+                        <a href="{$o.url}">{$o.id_str}</a>
+                    </div>
+                    <div class="col-xs-12 visible-xs myOrders__date">
+                        <span class="fw-5 rounded-sm">[`Order date`]: {$o.create_datetime|wa_date:"humandate"}</span>
+                    </div>
+                    <div class="col-md-5 col-sm-5 col-xs-12">
+                        <a class="myOrders__collapse collapsed" href="#order{$o.id}" data-toggle="collapse">
+                            {_w("%d product", "%d products", count($o.items))}
+                        </a>
+                    </div>
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                        <span class="visible-xs-inline gray">[`Sum`]:</span>
+                        <span class="myOrders__price black fw-7 text-nowrap"> {wa_currency_html($o.total, $o.currency)}</span>
+                    </div>
+                    <div class="col-md-2 col-sm-2 hidden-xs">{$o.create_datetime|wa_date:"humandate"}</div>
+                    <div class="col-md-2 col-sm-2 col-xs-12">
+                        <span class="gray visible-xs-inline">[`Status`]: </span>
+                        <span style="{$o.state->getStyle(1)|replace:'background-color':'color'}">{$o.state->getName()}</span>
+                    </div>
+                    {if !empty($o.items)}
+                        <div class="col-md-12 col-xs-12 collapse myOrders__products" id="order{$o.id}">
+                            {foreach $o.items as $i}
+                                {$p = $wa->shop->product($i.product_id)}
+                                <div class="row">
+                                    <div class="col-md-7 col-md-offset-1 col-xs-8">
+                                        <a href="{$wa->shop->productUrl($p)}">{$i.name|escape}</a>
+                                    </div>
+                                    <div class="col-md-2 col-xs-2">{$i.quantity} [`items`]</div>
+                                    <div class="col-md-2 col-xs-2 text-nowrap">{wa_currency_html($i.price, $o.currency)}</div>
+                                </div>
+                            {/foreach}
+                        </div>
+                    {/if}
+                </div>
+            {foreachelse}
+                <div class="row">
+                    <div class="col-xs-12">[`You have no order history yet.`]</div>
+                </div>
+            {/foreach}
+        </div>
+    </div>
+
+    <!-- plugin hook: 'frontend_my_orders' -->
+    {* @event frontend_my_orders.%plugin_id% *}
+    {foreach $frontend_my_orders as $_}{$_}{/foreach}
+</div>
+{/strip}

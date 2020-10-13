@@ -1,0 +1,47 @@
+{strip}
+{$sb_cnt = 0}
+{if $sidebar|default:false}
+    {$sb_cnt = 1}
+{/if}
+<div class="hReviews">
+    <div class="heading">
+        <span class="h3">{$mytitle|default:'[`Latest reviews`]'}</span>
+    </div>
+    <ul class="hReviews__list list-unstyled slick-wm dataSlider" data-slick='{ "slidesToShow": 2, "slidesToScroll": 2, "dots": true, "infinite": true, "responsive": [  { "breakpoint": 1366, "settings": { "slidesToShow": {2-$sb_cnt}, "slidesToScroll": {2-$sb_cnt} } }, { "breakpoint": 1024, "settings": { "slidesToShow": 1, "slidesToScroll": 1 } } ]}'>
+        {foreach $wa->shop->reviews($limit|default:10) as $review}
+            {$review_product = $wa->shop->product($review.product_id)}
+            {* работало не корректно у некоторых клиентов
+                {$review.url = $review.product_url}
+                {$image = [
+                    "image_id" => $review.product_image_id,
+                    "id" => $review.product_id,
+                    "image_filename" => "",
+                    "ext" => $review.product_image_ext
+                ]}
+            *}
+            <li class="col-md-6  mb-20">
+                <div class="hReviews__item flex">
+                    <div class="hReviews__image image">
+                        <img alt="{$review.product_name}" src="{$wa->shop->productImgUrl($review_product, '200')}" class="hReviews__img">
+                    </div>
+                    <div class="hReviews__product">
+                        <div class="hReviews__name mb-10">{$review.product_name|escape}</div>
+                        <ul class="hReviews__credentials list-inline fs-11em mb-10">
+                            <li class="rating text-nowrap">
+                                {$wa->shop->ratingHtml($review.rate)}
+                            </li>
+                            <li>[`from`] {$review.author.name}</li>
+                            <li class="hReviews__date text-right">{$review.datetime|wa_datetime:"humandate"}</li>
+                        </ul>
+                        <div class="hReviews__info">
+                            <div class="hReviews__heading h3 darken fs-15em">{$review.title|escape}</div>
+                            <div class="hReviews__text fs-13em">{strip_tags($review.text)|truncate:200:"..."}</div>
+                            <a href="{$review.product_url}" class="fs-13em">[`More info`]</a>
+                        </div>
+                    </div>
+                </div>
+            </li>
+        {/foreach}
+    </ul>
+</div>
+{/strip}

@@ -1,0 +1,30 @@
+<h4><i class="icon-parallax"></i> [`Parallax`] <i class="fa icon-angle-down control"></i></h4>
+<div class="line" style="display: none">
+    <div class="form-group fullthird">
+        <label data-toggle="tooltip" data-placement="bottom"   data-original-title="[`Define the depth of parallax effect`]">[`Depth`]</label>
+        <select name="rsLayerParallaxlevel">
+            {if !isset($sublayer.rsLayerParallaxlevel)}
+            {assign var='rsLayerParallaxlevel' value='off'}
+            {else}
+            {assign var='rsLayerParallaxlevel' value=$sublayer.rsLayerParallaxlevel|default:'off'}
+            {/if}
+            <option {if $rsLayerParallaxlevel == 'off'}selected="selected"{/if} value="off">[`Off`]</option>
+            <option {if $rsLayerParallaxlevel == '1'}selected="selected"{/if} value="1">1</option>
+            <option {if $rsLayerParallaxlevel == '2'}selected="selected"{/if} value="2">2</option>
+            <option {if $rsLayerParallaxlevel == '3'}selected="selected"{/if} value="3">3</option>
+            <option {if $rsLayerParallaxlevel == '4'}selected="selected"{/if} value="4">4</option>
+            <option {if $rsLayerParallaxlevel == '5'}selected="selected"{/if} value="5">5</option>
+            <option {if $rsLayerParallaxlevel == '6'}selected="selected"{/if} value="6">6</option>
+            <option {if $rsLayerParallaxlevel == '7'}selected="selected"{/if} value="7">7</option>
+            <option {if $rsLayerParallaxlevel == '8'}selected="selected"{/if} value="8">8</option>
+            <option {if $rsLayerParallaxlevel == '9'}selected="selected"{/if} value="9">9</option>
+            <option {if $rsLayerParallaxlevel == '10'}selected="selected"{/if} value="10">10</option>
+            <option {if $rsLayerParallaxlevel == '11'}selected="selected"{/if} value="11">11</option>
+            <option {if $rsLayerParallaxlevel == '12'}selected="selected"{/if} value="12">12</option>
+            <option {if $rsLayerParallaxlevel == '13'}selected="selected"{/if} value="13">13</option>
+            <option {if $rsLayerParallaxlevel == '14'}selected="selected"{/if} value="14">14</option>
+            <option {if $rsLayerParallaxlevel == '15'}selected="selected"{/if} value="15">15</option>
+            <option {if $rsLayerParallaxlevel == '16'}selected="selected"{/if} value="16">16</option>
+        </select>
+    </div>
+</div>

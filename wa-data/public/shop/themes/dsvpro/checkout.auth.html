@@ -1,0 +1,54 @@
+{strip}
+{if !$wa->user()->isAuth()}
+    <ul class="list-unstyled" role="tablist" id="checkoutForms">
+        <li class="{if !$wa->post('wa_auth_login')} active{/if}" role="presentation">
+            <input name="user_type" type="radio" class="radio checkout-tab" id="user_type_new" {if !$wa->post('wa_auth_login')}checked{/if} value="0">
+            <label for="user_type_new">[`I’m a new customer`]</label>
+            <a href="#checkoutSignup" data-toggle="tab" aria-controls="checkoutSignup" class="hidden" id="showForm"></a>
+        </li>
+        <li class="{if $wa->post('wa_auth_login')} active{/if}" role="presentation">
+            <input name="user_type" type="radio" class="radio checkout-tab" id="user_type_user" {if $wa->post('wa_auth_login')}checked{/if} value="1">
+            <label for="user_type_user">[`I already have an account`]</label>
+            <a href="#checkoutAuth" data-toggle="tab" aria-controls="checkoutAuth" class="hidden" id="showAuth"></a>
+        </li>
+    </ul>
+    <div class="tab-content">
+        <div class="tab-pane fade{if $wa->post('wa_auth_login')} in active{/if}" role="tabpanel" id="checkoutAuth">
+            {include file="`$wa_parent_theme_path`/login.html" without_form=true}
+        </div>
+        <script>
+            $(function () {
+                $("#checkoutAuth input").attr('disabled', 'disabled');
+
+                $("input[name='user_type']").change(function () {
+                    if ($("input[name='user_type']:checked").val() == '1') {
+                        $("#checkoutAuth input").removeAttr('disabled');
+                        $(".panel.active input[type=submit]:last").hide();
+                        $("#showAuth").tab("show");
+                    } else {
+                        $("#checkoutAuth input").attr('disabled', 'disabled');
+                        $("#showForm").tab("show");
+                        $(".panel.active input[type=submit]:last").show();
+                    }
+                });
+
+                {if $checkout_current_step == $step_id}
+                    $("input[name='user_type']").change();
+                {/if}
+            });
+        </script>
+        <div class="tab-pane fade{if !$wa->post('wa_auth_login')} in active{/if}" role="tabpanel" id="checkoutSignup">
+            {* step *}
+            {stepcontent}
+        </div>
+    </div>
+{else}
+    <blockquote>
+        <img src="{$wa->user()->getPhoto(50)}" class="img-circle">
+        <p class="black">{sprintf("[`You are currently authorized as <strong>%s</strong>. Please verify or update your contact information using the form below. Your existing contact info will be automatically updated.`]", $wa->user('name'))}</p>
+        <div class="small">[`If you want to place an order on behalf of another customer, <a href="?logout">log out</a> from your current profile and proceed to checkout again.`]</div>
+    </blockquote>
+    {* step *}
+    {stepcontent}
+{/if}
+{/strip}

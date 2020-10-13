@@ -1,0 +1,56 @@
+{strip}
+<style>
+    .header,
+    .headerMobile,
+    .header-wrapper,
+    .footer,
+    .subscribe,
+    .breadcrumb { display: none !important; }
+    .onePage { min-height: 90vh; }
+    @media (min-width: 768px) {
+        .copyright {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+        }
+    }
+</style>
+<div class="onePage vertical-align">
+    <div class="checkout-result success text-center">
+        <div class="fs-15em mb-30">
+            {if $theme_settings.logo_checkout}
+                <div class="mb-10">
+                    {$default_logo = "img/logo-dark.png"}
+                    <a href="{$wa_url}" class="logo">
+                        <img src="{$wa_parent_theme_url}{$theme_settings.logo|default:$default_logo}?v{$wa_theme_version}" alt="{$wa->accountName()}">
+                    </a>
+                </div>
+            {/if}
+            <h1 class="mb-20">[`Thank you!`] [`We successfully accepted your order`]</h1>
+            <p>[`Order ID`]: <strong>{$order.id}</strong>.</p>
+            {if $wa->locale() == "ru_RU"}
+                <p>Информация о заказе была отправлена на адрес <span class="fw-7">{$wa->user("email", "default")}</span>
+                {if $wa->user()->isAuth()}, <br/>также вы можете отслеживать статус в <a href="{$wa->getUrl('/frontend/myOrders')}">личном кабинете</a>{/if}</p>
+            {else}
+                <p>[`We successfully accepted your order, and will contact you asap.`]</p>
+            {/if}
+        </div>
+        {if !empty($payment)}
+            <div class="plugin form mb-10">
+                {$payment}
+            </div>
+        {/if}
+
+        {if !empty($payment_success)}
+            <span class="highlighted">[`Your payment has been successfully accepted. We will process your order and contact you shortly.`]</span>
+        {/if}
+
+        <a href="{$wa_app_url}" class="btn btn-primary btn-ripple btn-lg">[`Back to the store`]</a>
+
+        <!-- plugin hook: 'frontend_checkout' -->
+        {* @event frontend_checkout.%plugin_id% *}
+        {foreach $frontend_checkout as $_}{$_}{/foreach}
+    </div>
+</div>
+{/strip}

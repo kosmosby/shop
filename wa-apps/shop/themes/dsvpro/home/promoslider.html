@@ -1,0 +1,39 @@
+{strip}
+{**
+* @param int $limit
+* @param int $col (1..12)
+{$wa->shop->promos()|@debug_print_var}
+*}
+{$speed = $theme_settings.slider_delay|default:5 * 1000}
+{* {$theme_settings.slider_auto} *}
+<div class="promo-slider dataSlider"  data-slick='{ "dots": true, "infinite": true, "autoplay": 0, "autoplaySpeed": {$speed}, "fade": false, "arrows": true, "responsive": [{ "breakpoint": 768, "settings": { "arrows": false } }]}'>
+    {foreach $wa->shop->promos() as $promo}
+        <div class="promo-slider__wrapper"{if $promo.background_color} style="background-color: {$promo.background_color}{/if}">
+            <div class="promo-slider__slide flex container-fluid">
+                {if $promo.image}
+                    <div class="promo-slider__banner flex">
+                        <div class="promo-slider__banner__wrapper">
+                            <img src="{$promo.image}" alt="{$promo.title|escape}" class="promo-slider__img">
+                        </div>
+                    </div>
+                {/if}
+                <div class="flex promo-slider__info">
+                    <div class="promo-slider__row promo-slider__row-info col-xs-12 col-sm-6">
+                        <a class="td-none text-muted promo-slider__link" href="{$promo.link|escape}">
+                            {if !empty($promo.title)}
+                                <div class="promo-slider__name">{$promo.title}</div>
+                            {/if}
+                            {if !empty($promo.body)}
+                                <div class="promo-slider__description">{$promo.body|escape}</div>
+                            {/if}
+                        </a>
+                    </div>
+                    <div class="promo-slider__row promo-slider__row-btn col-xs-12 col-sm-4">
+                        <a href="{$promo.link|escape}" class="btn btn-primary btn-lg btn-ripple promo-slider__btn">[`More info`]</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {/foreach}
+</div>
+{/strip}

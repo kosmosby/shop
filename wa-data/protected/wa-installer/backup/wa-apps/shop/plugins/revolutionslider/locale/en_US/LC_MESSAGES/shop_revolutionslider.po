@@ -1,0 +1,1750 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: shop/plugins/revolutionslider\n"
+"POT-Creation-Date: 2016-09-29 16:26+0300\n"
+"PO-Revision-Date: \n"
+"Last-Translator:  shop/plugins/revolutionslider\n"
+"Language-Team:  shop/plugins/revolutionslider\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-Language: en_US\n"
+"X-Poedit-SourceCharset: utf-8\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SearchPath-0: .\n"
+"X-Poedit-SearchPath-1: .\n"
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionAnimation.html:4
+msgid "Select Transition effect for Slider change animation"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionAnimation.html:4
+msgid "Transition Effect"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionAnimation.html:103
+msgid "This option defines the duration of the Transition in ms (milliseconds). The value “default” is also accepted which will pick the best Duration for the selected Transition. "
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionAnimation.html:103
+msgid "Transition Speed"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionAnimation.html:108
+msgid "The number of slots or slices the Slide image is “split” to in the transition. Only available for Transitions with Slots and Slices"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionAnimation.html:108
+msgid "Slots"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionAnimation.html:113
+msgid "The rotation of the Single Slots/Slices, or full image during the Transition. Some transition will ignore this value.  Negative and Positive values are allowed. (i.e. -360, or 180 etc..)"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionAnimation.html:118
+msgid "The In animation Easing.  If you dont know how you wish to ease the animation, simple do not define it, or use the value “default” which will pick the best ease per transition type."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionAnimation.html:118
+msgid "Start Easing"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionAnimation.html:180
+msgid "The Out animation Easing.  If you dont know how you wish to ease the animation, simple do not define it, or use the value “default” which will pick the best ease per transition type."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionAnimation.html:180
+msgid "Finish Easing"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionAnimation.html:241
+msgid "Value is in milliseconds. Describes the length of the slide in ms."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionAnimation.html:241
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:43
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:74
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:9
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:78
+msgid "Duration"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionCss.html:4
+msgid "Custom Css"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionCss.html:4
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:46
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:217
+msgid "CSS"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:6
+msgid "Defines the Event type of the Parallax sensibility.<br><strong>Off</strong> -  No Parallax Effect enabled Globally;<br> <strong>Mouse</strong> - elements will follow the mouse pointer movements over the sliders;<br><strong>Scroll</strong> - elements will follow the scroll positions<br><strong>Scroll+Mouse</strong> - elements will vertical follow the scroll positions, and horizontal follow the mouse positions <br><strong>3D</strong> - Just select and see it in action"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:6
+msgid "Effect Type"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:13
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:31
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:71
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:148
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:184
+msgid "Off"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:14
+msgid "Mouse"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:15
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:41
+msgid "Scroll"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:16
+msgid "Mouse + Scroll"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:17
+msgid "3D"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:22
+msgid "Defines the calculation base of the parallax direction and distances.<br><strong>Slider Center</strong> - distance between mouse and slider center will be calculated. The outer side of slider is -100% / 100% and the center is 0%.  Elements will be transformed like “distance percent” * “responsive strength of element” in vertical and horizontal direction;<br><strong>Enter Point</strong> - distance between mouse enter point and current mouse point will be calculated. Elements will be transformed like “distance percent” * “responsive strength of element” in vertical and horizontal direction"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:23
+msgid "Orign"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:29
+msgid "Enter Point"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:30
+msgid "Slider Center"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:35
+msgid "If checked - enable Background Parallax effects.  Still, you will need to set the Parallax Effect per Slide Background"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:35
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:90
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:120
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:43
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:214
+msgid "Background"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:42
+msgid "Disable Parallax Effect on mobiles for better Performance and smoother effects."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:42
+msgid "Disable on Mobile"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:49
+msgid "The speed of the position transform of element. 400 will move the elements in 0.4s."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:50
+msgid "Speed"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:57
+msgid "3D Settings"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:59
+msgid "Add Shadow effect to each Layer"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:59
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:64
+msgid "Shadow"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:66
+msgid "If checked - disable Background 3D effect."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:66
+msgid "Background Freeze"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:73
+msgid "If checked, all Slides and Layers are cropped by the Slider sides"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:73
+msgid "Slider Overflow"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:80
+msgid "If checked, Layers are cropped by the Grid dimensions to avoid Floated 3D Text and hide elements outside of the Slider"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:80
+msgid "Layers Overflow"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:87
+msgid "Solves issues in Safari Browser. It will move layers along Z axis if Background Freeze enabled to avoid 3D Renderig issues."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionParalax.html:87
+msgid "Crop Fix"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/tipStyleFont.html:3
+msgid "Tooltip weight"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/tipStyleFont.html:3
+msgid "Weight"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/tipStyleFont.html:7
+msgid "Title color"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/tipStyleFont.html:13
+msgid "Description color"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/tipStyleFont.html:19
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleBackground.html:3
+msgid "Background color"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerContent.html:1
+msgid "Text or HTML"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerContent.html:6
+msgid "Defines the way how the line should break based on the width and height settings of the Layer.<br> <strong>nowrap<strong> – will not auto break the line. Text will overflow the container if it has set smaller (not auto or none).<br> <strong>normal</strong> – content will auto line break based on the layer width"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerContent.html:6
+msgid "Whitespace"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerContent.html:13
+msgid "normal"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerContent.html:14
+msgid "nowrap"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:18
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:18
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:40
+msgid "Initial Layer Animation will start from that time point.<br><strong>Value in milliseconds</strong>"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:18
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:18
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:40
+msgid "Start"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:23
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:23
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:45
+msgid "Finish Layer Animation will start from that time point.<br><strong>Value in milliseconds</strong>"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:23
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:23
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:45
+msgid "Finish"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:27
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:27
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:49
+msgid "Current Horizontal position of Layer"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:31
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:31
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:53
+msgid "Current Vertical position of Layer"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:42
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:55
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:42
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:72
+msgid "Content"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:43
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:43
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:73
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:44
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:215
+msgid "Animation"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:44
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:44
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:74
+msgid "Styles"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:45
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:45
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:75
+msgid "Parallax"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:57
+msgid "Tooltip Title text"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:57
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionMeta.html:9
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionMeta.html:10
+msgid "Title"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:61
+msgid "Tooltip Description text"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:61
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionMeta.html:14
+msgid "Description"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:65
+msgid "Show Tooltip on the artboard"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:65
+msgid "Show Tooltip"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:101
+msgid "Button"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:102
+msgid "Body"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:132
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:141
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:177
+msgid "Define the depth of parallax effect"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addTipSublayer.html:133
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:141
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:177
+msgid "Depth"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionMeta.html:4
+msgid "Unique slide identificator"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionMeta.html:4
+msgid "Slide ID"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionMeta.html:9
+msgid "Slide Title that can be used in navigation"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionMeta.html:14
+msgid "Slide Description that can be used in navigation"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionMeta.html:15
+msgid "Short Description"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleBorder.html:3
+msgid "Border color"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleBorder.html:9
+msgid "Border style"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleBorder.html:16
+msgid "none"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleBorder.html:17
+msgid "solid"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleBorder.html:18
+msgid "dashed"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleBorder.html:19
+msgid "dotted"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleBorder.html:20
+msgid "double"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleBorder.html:25
+msgid "Border weight in px"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleBorder.html:29
+msgid "Border radius (Top-left, Top-right, Bottom-right, Bottom-left"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:2
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:2
+msgid "Error"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:3
+msgid "Are sure want to delete this Slider?"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:33
+msgid "Revolutionslider"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:51
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:91
+msgid "Edit"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:52
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:92
+msgid "Duplicate"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:53
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:93
+msgid "Insert"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:53
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:93
+msgid "Use the code below to insert slider into your theme"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:54
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:94
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:50
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:220
+msgid "Preview"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:60
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:100
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:6
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:141
+msgid "Slider"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:67
+msgid "Add New"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:73
+msgid "Template Library"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:111
+msgid "Help"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:114
+msgid "Youtube"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:115
+msgid "FAQ"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:116
+msgid "Update"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:121
+msgid "Report an error"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:122
+msgid "Suggest an Idea"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:123
+msgid "Contact Developer"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/MainPage.html:128
+msgid "Rate this Plugin"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:5
+msgid "Slider Name"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:5
+msgid "Name"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:9
+msgid "<strong>Standart</strong> - Regular Slider with unlimited amount of slides, 1 Slide is focused and visible in the same time;<br><strong>Hero</strong> - Typical Hero Block usage with animated layers, where only 1 Slide is defined and visible;<br> <strong>Carousel</strong> - A horizontal carousel where unlimited amount of slides can be defined.  1 Slide is focused, more slide visible in the same time."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:9
+msgid "Slider Type"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:16
+msgid "Standart"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:17
+msgid "Hero"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:18
+msgid "Carousel"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:22
+msgid "Defines the Layout of the Slider which can be:<br> <strong>Auto</strong> - slider will always fill the wrapping container horizontal, following any horizontal sizes. Height of slider will be calculated based on the Grid Sizes and current browser size. Max. height of Slider will be equal to the current gridheight.<br> <strong>Full Width</strong> - slider will always fill the full width of the browser, independent of the wrapping containers width. Height of slider will be calculated based on the Grid Sizes and current browser size. Max. height of Slider will be equal to the current gridheight.<br><strong>Full Screen</strong> - slider width and height will follow the exact width and height of the Browser size"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:29
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:39
+msgid "Auto"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:30
+msgid "Full Width"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:31
+msgid "Full Screen"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:35
+msgid "The width of slider grid in px"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:35
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:57
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:379
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:546
+msgid "Width"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:39
+msgid "The height of slider grid in px"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:39
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:61
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:384
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:551
+msgid "Height"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:43
+msgid "Value is in milliseconds. Describes the default (global) length of the slides in ms. Slides length can be individually set via Slide delay attribute.	In case the slide has no individual length, it will pick this value."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:47
+msgid "Wait with starting the first animation after the slider has been loaded. 1000 will wait 1sec before the slider starts.	Useful option for manipulate the DOM before the slider starts."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:47
+msgid "Start Delay"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:51
+msgid "Auto Play stop after the Slider has been looped  x time, which is defined via this parameter. -1 will ignore the option. First Loop is 0. "
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:51
+msgid "Loop"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:55
+msgid "Auto Play stop at Slide Nr. “x” which is defined via this parameter. - 1 will ignore this parameter. First Index of Slide is 0."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionMain.html:55
+msgid "Stop Autoplay"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerContentImage.html:1
+msgid "Image Upload"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerIDLEtransformation.html:3
+msgid "Layer Opasity"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerIDLEtransformation.html:7
+msgid "Layer horizontal scale <br> The value between 0 and 100, 1 = 100% of layer horizontal size"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerIDLEtransformation.html:11
+msgid "Layer vertical scale <br> The value between 0 and 100, 1 = 100% of layer horizontal size"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerIDLEtransformation.html:15
+msgid "Horizontal skew<br> The value between -100 and 100<br> 0 - no skew"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerIDLEtransformation.html:19
+msgid "Vertical skew<br> The value between -100 and 100<br> 0 - no skew"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleFont.html:4
+msgid "Font color"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleFont.html:11
+msgid "Font size in px"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleFont.html:15
+msgid "Line height in px"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleFont.html:20
+msgid "Font weight"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleFont.html:39
+msgid "Text decoration"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleFont.html:62
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:138
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:181
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:304
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:442
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:607
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:57
+msgid "Left"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleFont.html:63
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:139
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:153
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:182
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:196
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:305
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:320
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:443
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:458
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:608
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:624
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:58
+msgid "Center"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleFont.html:64
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:140
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:183
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:306
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:444
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:610
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:59
+msgid "Right"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleFont.html:67
+msgid "Font Family"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleFont.html:68
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:119
+msgid "Font"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:5
+msgid "<strong>Full</strong> - Load all image element in a sequence at the initialisation. This will boost up the loading of your page, and will preload all images to have a smooth and breakless run already in the first loop;<br> <strong>Smart</strong> - It will load the page as quick as possible, and load only the current and neighbour slide elements. If slide is called which not loaded yet, will be loaded on demand with minimal delays.<br> <strong>Single</strong> - It will load only the the start slide. Any other slides will be loaded on demand."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:5
+msgid "Lazy Load"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:12
+msgid "Full"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:13
+msgid "Smart"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:14
+msgid "Single"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:18
+msgid "If unchecked the Progressbar will be shown. To hide the Progress Bar check this."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:24
+msgid "Loader Spinner Type. If you want disable it, set this option to <strong>off</strong>'"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:24
+msgid "Loader Spinner"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:32
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:72
+msgid "Style 1"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:33
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:73
+msgid "Style 2"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:34
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:74
+msgid "Style 3"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:35
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:75
+msgid "Style 4"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:36
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:76
+msgid "Style 5"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:40
+msgid "If checked, the slider starts to play after it visible area enter in viewport "
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:40
+msgid "Viewport"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:46
+msgid "<strong>Wait</strong> will only first time trigger the Slider. In case the Slider is not visible during / after the Document loaded, the slider will wait till the Slider becomes in Visible Position.  Once the Slider is triggered to play, it will not stop again, even if the slider is not in the viewport.<br><strong>Pause</strong> similar to the wait behavior, however the slider will stop every time the Slider is out of the visible area."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:46
+msgid "Out Off"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:59
+msgid "Define how many percent of the Slider must be visible before it starts. 100% means, the full slider must be in the visible area before it starts, and 20% will start the slider already after 20% of the slider becomes visible."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:59
+msgid "Visible Area"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:64
+msgid "Shadow type which will be drawn via jQuery and css on demand."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionLayout.html:77
+msgid "Style 6"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:1
+msgid "Finish Animation"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:4
+msgid "Layer Finish X axis position in px relatively to Slider Grid"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:4
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:4
+msgid "X"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:8
+msgid "Layer Finish Y axis position in px relatively to Slider Grid"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:8
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:8
+msgid "Y"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:12
+msgid "Animation Out Easing"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:12
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:14
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:16
+msgid "Easing"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:77
+msgid "Duration of the Out Animation"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:82
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:86
+msgid "Scale, Skew, Opacity"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:85
+msgid "Layer Opacity on finish position"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:89
+msgid "Layer horizontal scale on finish position<br> The value between 0 and 100, 1 = 100% of layer horizontal size"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:93
+msgid "Layer vertical scale on finish position<br> The value between 0 and 100, 1 = 100% of layer horizontal size"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:99
+msgid "Horizontal axis rotation degree on finish position<br> The value between -1200 and 1200"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:103
+msgid "Vertical axis rotation degree on finish position<br> The value between -1200 and 1200"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:107
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:111
+msgid "Z axis rotation degree on start position<br> The value between -1200 and 1200"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:113
+msgid "Horizontal skew on finish position.<br> The value between -100 and 100<br> 0 - no skew"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateOut.html:117
+msgid "Vertical skew on finish position.<br> The value between -100 and 100<br> 0 - no skew"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:39
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:99
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:355
+msgid "Image"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:46
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:76
+msgid "Attributes"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:91
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:121
+msgid "Border"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:92
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:122
+msgid "Transformation"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:93
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:123
+msgid "Rotation"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:176
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:178
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:212
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:214
+msgid "Link"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:177
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:213
+msgid "Link URL"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:181
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:217
+msgid "<strong>_blank</strong> - Opens the linked document in a new window or tab;<br> <strong>_self</strong> - Opens the linked document in the same frame."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addImageSublayer.html:182
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:218
+msgid "Target"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:18
+msgid "Type"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:57
+msgid "Layer Widht in px"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/addHtmlSublayer.html:61
+msgid "Layer Height in px"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:4
+msgid "If checked, the Ken Burns Effect will be enabled."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:4
+msgid "On/Off"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:9
+msgid "The duration length of the Ken Burns Effect. It should be same or longer then the length of Slide Duration defined per slide or default in slider settings."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:14
+msgid "The Ease effect of the Ken Burns Effect."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:76
+msgid "The start Zoom Value. If the image would not cover the container any more, it will be automatically corrected to the next possible value.<br><strong>Default:</strong> - 100 (no scale)"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:76
+msgid "Start Zoom"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:81
+msgid "The End Zoom Value of the Ken Burns Effect. If the image would not cover the container any more, it will be automatically corrected to the next possible value.<br><strong>Example:</strong> - 110 (background will be zoomed for 10%)"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:81
+msgid "Finish Zoom"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:86
+msgid "Horizontal offsets for the Start position. It will be related to the Zoom and background position settings, and from that position it will move the full slide offsetting on X axis"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:86
+msgid "X Start"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:91
+msgid "Vertical offsets for the Start position. It will be related to the Zoom and background position settings, and from that position it will move the full slide offsetting on Y axis"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:91
+msgid "Y Start"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:96
+msgid "Horizontal offsets for the End position."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:96
+msgid "X Finish"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:101
+msgid "Vertical offsets for the End position."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:101
+msgid "Y Finish"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:106
+msgid "Defines the rotation degree of the SlideMain image at the start of the Ken Burns Effect. Use small values (positive or negative).  i.e. “-5” for a smooth and clever effect."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:106
+msgid "Start Rotation"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:111
+msgid "Defines the rotation degree of the Slide Main image at the end of the Ken Burns Effect. Use small values (positive or negative).  i.e. “-5” for a smooth and clever effect."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionKenburns.html:111
+msgid "Finish Rotation"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:6
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:72
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:225
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:351
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:521
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:142
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:143
+msgid "General"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:7
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:74
+msgid "Arrows"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:8
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:226
+msgid "Bullets"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:9
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:353
+msgid "Thumbs"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:10
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:523
+msgid "Tabs"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:21
+msgid "Allows to enable/disable the keyboard navigation."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:21
+msgid "Keyboard"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:28
+msgid "<strong>horizontal</strong> or <strong>vertical</strong> – use up/down or left/right arrows key for the navigation"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:28
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:284
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:463
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:628
+msgid "Direction"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:35
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:292
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:471
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:637
+msgid "Vertical"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:36
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:291
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:470
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:635
+msgid "Horizontal"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:41
+msgid "Allows mouse scroll based slide navigation."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:48
+msgid "Slider progress is stopped when Slider is hovered.  Will not stop the Layer animations, only the Slider Progress Bar"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:48
+msgid "Stop on Hover"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:55
+msgid "Enable/Disable the Touch function for none Carousel Sliders"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:55
+msgid "Touch"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:74
+msgid "If checked, Navigation arrows will be created for the Slider."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:81
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:234
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:360
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:530
+msgid "Style"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:88
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:241
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:537
+msgid "Ares"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:89
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:241
+msgid "Dionis"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:90
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:242
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:367
+msgid "Poseidon"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:91
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:243
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:368
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:538
+msgid "Demetra"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:92
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:244
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:369
+msgid "Jupiter"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:93
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:245
+msgid "Venus"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:94
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:246
+msgid "Hephaestus"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:95
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:247
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:539
+msgid "Hermes"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:96
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:248
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:370
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:540
+msgid "Aphrodite"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:97
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:249
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:371
+msgid "Persephone"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:98
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:250
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:372
+msgid "Uranus"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:99
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:252
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:373
+msgid "Zeus"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:104
+msgid "If checked, the Navigation Arrows are hide on on Mobile Devices"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:104
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:256
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:408
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:573
+msgid "Hide on Mobile"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:111
+msgid "Hide navigation arrows when mouse live slider container "
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:111
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:263
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:415
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:580
+msgid "Hide on Leve"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:118
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:421
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:586
+msgid "After how many “ms” the Navigation arrows fade out."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:118
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:270
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:422
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:587
+msgid "Hide Delay"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:123
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:426
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:591
+msgid "After how many “ms” the Navigation arrows fade out on mobile devices. "
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:123
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:275
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:427
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:592
+msgid "Mobile Hide Delay"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:129
+msgid "Left Arrow"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:131
+msgid "The Horizontal Align of the Left Arrow within the Slider."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:131
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:174
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:296
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:435
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:600
+msgid "Horizontal Align"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:145
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:310
+msgid "The Vertical Align of the Left Arrow within the Slider."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:145
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:188
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:310
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:449
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:614
+msgid "Vertical Align"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:152
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:195
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:319
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:457
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:622
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:54
+msgid "Top"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:154
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:197
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:318
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:456
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:621
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:60
+msgid "Bottom"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:159
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:202
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:329
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:666
+msgid "The Horizontal offset in px from the Aligned position. Negative Values on left aligned elements will move left,
+							         and negative values on right aligned elements will move right the element."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:160
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:203
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:330
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:502
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:668
+msgid "Horizontal Offset"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:165
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:208
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:335
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:672
+msgid "The Vertical offset in px from the Aligned position. Negative Values on top aligned elements will move top,
+							        and negative values on bottom aligned elements will move bottom the element."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:166
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:209
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:336
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:507
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:674
+msgid "Vertical Offset"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:172
+msgid "Right Arrow"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:174
+msgid "The Horizontal Align of the Right Arrow within the Slider."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:188
+msgid "The Vertical Align of the Right Arrow within the Slider."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:226
+msgid "If checked, Navigation Bullets will be created for the Slider."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:256
+msgid "If checked, the Navigation bullets are hide on on Mobile Devices"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:263
+msgid "Hide navigation bullets when mouse live slider container "
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:270
+msgid "After how many “ms” the Navigation bullets fade out."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:275
+msgid "After how many “ms” the Navigation bullets fade out on mobile devices. "
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:282
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:433
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:599
+msgid "Layout"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:283
+msgid "The Direction of the Bullets.<br> <strong>Vertical</strong> or <strong>Horizontal</strong>"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:296
+msgid "The Horizontal Align of the Bullets within the Slider."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:324
+msgid "The space between single Bullet Points in px"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:325
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:492
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:657
+msgid "Space"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:352
+msgid "If checked, Navigation Thumbs will be created for the Slider."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:378
+msgid "Thumb width in px"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:383
+msgid "Thumb height in px"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:388
+msgid "The maximum visible amount of Thumbs in the same time. If more thumbs exist, the Thumbs becomes Draggable and scrollable. If less, the amount of Thumbs will be equal to the amount of existing thumbs."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:389
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:556
+msgid "Visible Amount"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:393
+msgid "The background color of the Thumbnails Wrapper Container"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:400
+msgid "The opacity of the background of the Thumbnais Wrapper Container"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:407
+msgid "If checked, the Navigation Thumbs are hide on on Mobile Devices"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:414
+msgid "Hide navigation Thumbs when mouse live slider container "
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:434
+msgid "The Horizontal Align of the Thumnails within the Slider."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:448
+msgid "The Vertical Align of the Thumnails within the Slider."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:462
+msgid "The Direction of the Thumbnails.<br> <strong>Vertical</strong> or <strong>Horizontal</strong>"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:475
+msgid "Where the Thumbnails are drawn. Inner or Outer the Slider."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:476
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:641
+msgid "Position"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:483
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:648
+msgid "Inside Slider"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:484
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:649
+msgid "Left outer"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:485
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:650
+msgid "Right outer"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:486
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:651
+msgid "Bottom outer"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:487
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:653
+msgid "Top Outer"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:491
+msgid "The space between single Thumbs in px."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:496
+msgid "The Thumbnails Wrapped Container Padding in px"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:497
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:662
+msgid "Padding"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:501
+msgid "The Horizontal offset in px from the Aligned position. Negative Values on left aligned elements will move left, and negative values on right aligned elements will move right the element."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:506
+msgid "The Vertical offset in px from the Aligned position. Negative Values on top aligned elements will move top, and negative values on bottom aligned elements will move bottom the element."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:522
+msgid "If checked, Navigation Tabs will be created for the Slider."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:546
+msgid "Tab width in px"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:550
+msgid "Tab height in px"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:555
+msgid "he maximum visible amount of Tabs in the same time. If more thumbs exist, the Tabs becomes Draggable and scrollable. If less, the amount of Tabs will be equal to the amount of existing."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:560
+msgid "The background color of the Tabs Wrapper Container"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:567
+msgid "The opacity of the background of the Tabs Wrapper Container"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:572
+msgid "If checked, the Navigation Tabs are hide on on Mobile Devices"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:579
+msgid "Hide navigation Tabs when mouse live slider container "
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:599
+msgid "The Horizontal Align of the Tabs within the Slider."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:613
+msgid "The Vertical Align of the Tabs within the Slider."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:627
+msgid "The Direction of the Tabs.<br> <strong>Vertical</strong> or <strong>Horizontal</strong>"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:640
+msgid "Where the Tabs are drawn. Inner or Outer the Slider."
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:656
+msgid "The space between single Tabs in px"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/globalSliderOptionNavigation.html:661
+msgid "The Tabs Wrapped Container Padding in px"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/tipStyleButtont.html:3
+msgid "Tooltip button size in px"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/tipStyleButtont.html:3
+msgid "Size"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/tipStyleButtont.html:7
+msgid "Button border color"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/tipStyleButtont.html:13
+msgid "Button weight"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/tipStyleButtont.html:17
+msgid "Button background color"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:1
+msgid "Start Animation"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:4
+msgid "Layer Start X axis position in px relatively to Slider Grid"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:8
+msgid "Layer Start Y axis position in px relatively to Slider Grid"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:12
+msgid "Layer Start Z axis position in px relatively to Slider Grid"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:12
+msgid "Z"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:16
+msgid "Animation In Easing"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:81
+msgid "Duration of the Start Animation"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:89
+msgid "Layer Opacity on start position"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:93
+msgid "Layer horizontal scale on start position<br> The value between 0 and 100, 1 = 100% of layer horizontal size"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:97
+msgid "Layer vertical scale on start position<br> The value between 0 and 100, 1 = 100% of layer vertical size"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:103
+msgid "Horizontal axis rotation degree on start position<br> The value between -1200 and 1200"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:107
+msgid "Vertical axis rotation degree on start position<br> The value between -1200 and 1200"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:118
+msgid "Horizontal skew on start position.<br> The value between -100 and 100<br> 0 - no skew"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerAnimateIn.html:122
+msgid "Vertical skew on start position.<br> The value between -100 and 100<br> 0 - no skew"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:3
+msgid "Slider saved successfully!"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:4
+msgid "Are sure want to delete this Layer?"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:41
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:212
+msgid "Slider Settings"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:42
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:213
+msgid "Meta"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:45
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:216
+msgid "Kenburns"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:47
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:146
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:218
+msgid "Thumb"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:48
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:218
+msgid "Delete Slide"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:49
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:219
+msgid "Duplicate Slide"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:88
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:331
+msgid "Layers"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:95
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:350
+msgid "Add New Layer"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:99
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:354
+msgid "HTML"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:100
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:357
+msgid "ToolTip"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:140
+msgid "Back to Slider List"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:144
+msgid "Appearance"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:145
+msgid "Parallax & 3D"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:147
+msgid "Save"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:148
+msgid "Slider Preview"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:149
+msgid "Reorder Slides"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/SliderPage.html:150
+msgid "Add Slide"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:4
+msgid "Slide Background Color"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:10
+msgid "Upload Background Image"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:13
+msgid "Remove image"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:17
+msgid "Define how the background image will be repeated"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:17
+msgid "BG Repeat"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:24
+msgid "Repeat"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:25
+msgid "No Repeat"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:26
+msgid "Repeat X"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:27
+msgid "Repeat Y"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:32
+msgid "Define Background Image size.<br><strong>Auto</strong> - Default value. The background-image contains its width and height<br><strong>Cover</strong> - Scale the background image to be as large as possible so that the background area is completely covered by the background image. Some parts of the background image may not be in view within the background positioning area	Play it »<br><strong>Contain</strong> - Scale the image to the largest size such that both its width and its height can fit inside the content area"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:32
+msgid "BG Size"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:40
+msgid "Cover"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:41
+msgid "Contain"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:46
+msgid "Define Background Image alignment relatively to the slider sides"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:46
+msgid "BG Position"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:55
+msgid "Top Right"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:56
+msgid "Top Left"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:61
+msgid "Bottom Right"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:62
+msgid "Bottom Left"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/slideOptionBackground.html:67
+msgid "Defint the Depth of Background parallax effect"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerStyleBackground.html:9
+msgid "Padding (top, right, bottom, left)"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerIDLErotation.html:3
+msgid "X axis rotation degree position<br> The value between -1200 and 1200"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerIDLErotation.html:7
+msgid "Y axis rotation degree position<br> The value between -1200 and 1200"
+msgstr ""
+
+#: /wa-apps/shop/plugins/revolutionslider/templates/actions/backend/sublayerIDLErotation.html:11
+msgid "Z axis rotation degree position<br> The value between -1200 and 1200"
+msgstr ""

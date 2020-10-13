@@ -1,0 +1,14 @@
+9cec952d9f7fdae411dba89e12f30dc5 *img/worldwide.png
+9ec162da7779daf18301da265222e66b *img/worldwide16.png
+a285da79a1cf95556e4eb1fd40059097 *lib/.htaccess
+fe65ca53c51b072487f74d24e9c98222 *lib/config/build.php
+eac233ae170f55ab25ae8a7b87d81830 *lib/config/plugin.php
+66755ab7a20cf073bd3bddd2b22b7942 *lib/config/settings.php
+2e7f61aca61613ee75ff6476e4826bf6 *lib/worldwideShipping.class.php
+a1751e1f10a3b96b05d0401c97e72008 *locale/.htaccess
+50814977140f56d187efa436da460289 *locale/en_US/LC_MESSAGES/shipping_worldwide.mo
+83383dbfbbb1f7f581542fa378364824 *locale/en_US/LC_MESSAGES/shipping_worldwide.po
+3548c3a785f9689ef09b1a8a2762d8f9 *locale/ru_RU/LC_MESSAGES/shipping_worldwide.mo
+91cfbfabe52aa1ca4d8c2762224225e9 *locale/ru_RU/LC_MESSAGES/shipping_worldwide.po
+a1751e1f10a3b96b05d0401c97e72008 *templates/.htaccess
+4522f07d033051f25cc6332fe59f3117 *templates/settings.html

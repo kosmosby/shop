@@ -1,0 +1,190 @@
+<script>
+    var _str_error = '[`Error`]';
+    var _str_delete_slider = '[`Are sure want to delete this Slider?`]';
+    var _str_copied_to_clipboard = '[`Copied to clipboard...`]';
+    var _str_delete_folder = '[`Are sure want to delete this folder?`]';
+    var _str_saving = '[`Saving...`]';
+    var _str_click_to_edit = '[`Click to edit...`]';
+</script>
+
+<script src="{$wa_app_static_url}plugins/revolutionslider/js/file_uploader/vendor/jquery.ui.widget.js"></script>
+<script src="{$wa_app_static_url}plugins/revolutionslider/js/file_uploader/jquery.iframe-transport.js"></script>
+<script src="{$wa_app_static_url}plugins/revolutionslider/js/file_uploader/jquery.fileupload.js"></script>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,600&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" href="{$wa_app_static_url}plugins/revolutionslider/css/bootstrap.min.css">
+<link rel="stylesheet" href="{$wa_app_static_url}plugins/revolutionslider/css/revolution/revoslider_admin.css">
+<link rel="stylesheet" href="{$wa_app_static_url}plugins/revolutionslider/css/revolution/magic-slider.css">
+<link rel="stylesheet" href="{$wa_app_static_url}plugins/revolutionslider/css/revolution/jquery.minicolors.css">
+<link rel="stylesheet" href="{$wa_app_static_url}plugins/revolutionslider/css/revolution/jBox.css">
+<link rel="stylesheet" href="{$wa_app_static_url}plugins/revolutionslider/css/slider.css?ver=1.2">
+<script src="{$wa_app_static_url}plugins/revolutionslider/js/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/jquery.minicolors.min.js"></script>
+<script src="{$wa_app_static_url}plugins/revolutionslider/js/jBox.min.js"></script>
+<script src="{$wa_app_static_url}plugins/revolutionslider/js/jquery.jeditable.mini.js"></script>
+<link rel="stylesheet" type="text/css" href="{$wa_app_static_url}plugins/revolutionslider/css/revolution/settings.css">
+<link rel="stylesheet" type="text/css" href="{$wa_app_static_url}plugins/revolutionslider/css/revolution/layers.css">
+<link rel="stylesheet" type="text/css" href="{$wa_app_static_url}plugins/revolutionslider/css/revolution/navigation.css">
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/revolution/jquery.themepunch.tools.min.js"></script>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/revolution/jquery.themepunch.revolution.min.js"></script>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/revolution/extensions/revolution.extension.carousel.min.js"></script>
+<script type="text/javascript" src="{$wa_app_static_url}plugins/revolutionslider/js/revolution/extensions/revolution.extension.parallax.min.js"></script>
+<script src="{$wa_app_static_url}plugins/revolutionslider/js/revoslider/revoslider_admin_main.js?ver=1.2"></script>
+
+
+<div id="revoslider-tabs" class="plugin-home-section">
+<h2><i class="icon-diamond" aria-hidden="true"></i> [`Revolutionslider`] <span class="folder add-new-folder"><a  data-toggle="tooltip" data-original-title="[`Add New Folder`]" data-placement="top"><i class="icon-add-folder"></i></a></span></span><input type="text" id="sliders_filter" placeholder="[`Search...`]"></h2>
+
+
+    <ul class="sliders_groups">
+        {foreach from=$slides key=group_id item=group name=group}
+        <li class="sliders_group {if $group_id == 0}not-grouped-sliders{/if}" data-slider_group_id="{$group_id}">
+            {if $group_id != 0}
+                <span class="folder show-folder">
+                    <span class="ui-icon ui-icon-close delete-folder" data-toggle="tooltip" data-original-title="[`Delete Folder`]" data-placement="top" ><i class="icon-trash" aria-hidden="true"></i></span>
+                    <i class="icon-just-folder"></i>
+                    <span class="group-title">{$group.group_title}</span>
+                </span>
+                <span class="folder back-to-root" style="display:none">
+                    <i class="icon-bullets"></i>
+                    <span>[`Back to Root`]</span>
+                </span>
+            {/if}
+
+
+            <ul class="all-sliders {if $group_id == 0}opened-group{/if}" {if $group_id != 0}style="display:none"{/if}>
+                {foreach from=$group.sliders key=slidekey item=slide name=slides}
+                <li class="slider-block">
+                    <div class="slider-thumb" style="
+                    {foreach from=$slide.layers key=layerkey item=layer}
+                        {if $layerkey == 0}
+        background-size:{if isset($layer.properties.background)}cover{else}inherit{/if};
+        background-color:{if isset($layer.properties.bgcolor)}{$layer.properties.bgcolor}{else}inherit{/if};
+        background-image:url('{if isset($slide.properties.globalthumbimagefull) && !empty($slide.properties.globalthumbimagefull)}{$slide.properties.globalthumbimagefull}{else}{if isset($layer.properties.background)}{$layer.properties.background}{else}{$wa_app_static_url}plugins/revolutionslider/img/nobg.png{/if}{/if}');
+                            {break}
+                        {/if}
+                    {/foreach}
+                    "></div>
+
+                    <div class="slider-options" data-slider_id="{$slide.slider_id}">
+                        <span class="ui-icon ui-icon-close delete-slider"><i class="icon-trash" aria-hidden="true"></i></span>
+                        <div class="options">
+                            <a data-toggle="tooltip" data-original-title="[`Edit`]" data-placement="top" class="link" href="?plugin=revolutionslider&slider={$slide.slider_id}"><span><i class="icon-pencil" aria-hidden="true"></i></span></a>
+                            <a data-toggle="tooltip" data-original-title="[`Duplicate`]" data-placement="top" class="clone-slider" href=""><span><i class="icon-docs" aria-hidden="true"></i></span></a>
+                            <a data-toggle="tooltip" data-original-title="[`Insert`]" data-placement="top" class="templcode-slider" href="javascript:void(0);"><span data-toggle="popover" data-html="true" data-placement="bottom" title="[`Use the code below to insert slider into your theme`]" data-content="<span class='shortcode'>{literal}{shopRevolutionsliderPlugin::display({/literal}{$slide.slider_id}{literal})}{/literal}</span><span class='codetip'>[`Use the shortcode below to add slider to Site, Blog or Photo app`]</span><span class='site-shortcode'>{literal}{if $wa->shop}<br>&nbsp;&nbsp;{if method_exists('shopRevolutionsliderPlugin', 'display')}</br>&nbsp;&nbsp;&nbsp;&nbsp;{shopRevolutionsliderPlugin::generalDisplay({/literal}{$slide.slider_id}{literal})}<br>&nbsp; {/if} <br>{/if}{/literal}</span>"><i class="icon-rocket" aria-hidden="true"></i></span></a>
+                            <a data-toggle="tooltip" data-original-title="[`Preview`]" data-placement="top" class="sliderpreview" href="javascript:void(0);"><span><i class="icon-eye" aria-hidden="true"></i></span></a>
+
+                        </div>
+                    </div>
+                    <div class="slider-controls">
+                        <a class="link slider-title" href="?plugin=revolutionslider&slider={$slide.slider_id}">{if isset($slide.properties.globalname)}{$slide.properties.globalname|truncate:30}{else}[`Slider`] {$slide.slider_id}{/if}</a>
+                    </div>
+
+                </li>
+                {/foreach}
+                <li class="add-new-slider {if $group_id != 0}add-new-in-group{/if}"><button class="button-primary button revoslider-add-tab"><i class="icon-plus-squared-alt" aria-hidden="true"></i></button><span>[`Add New`]</span></li>
+
+            </ul>
+
+        </li>
+        {/foreach}
+
+
+        <!-------- NEW GROUP -------->
+
+        <div id="new_slider_group" style="display:none">
+            <li class="sliders_group">
+                <span class="folder show-folder">
+                    <span class="ui-icon ui-icon-close delete-folder" data-toggle="tooltip" data-original-title="[`Delete Folder`]" data-placement="top" ><i class="icon-trash" aria-hidden="true"></i></span>
+                    <i class="icon-just-folder"></i>
+                    <span class="group-title">[`New Group`]</span>
+                </span>
+                <span class="folder back-to-root" style="display:none">
+                    <i class="icon-bullets"></i>
+                    <span>[`Back to Root`]</span>
+                </span>
+
+                <ul class="all-sliders" style="display:none">
+                    <li class="add-new-slider"><button class="button-primary button revoslider-add-tab"><i class="icon-plus-squared-alt" aria-hidden="true"></i></button><span>[`Add New`]</span></li>
+                </ul>
+            </li>
+        </div>
+
+        <!-------- -------->
+
+    </ul>
+
+
+
+</div>
+
+<div id="revoslider-tabs_demo" class="plugin-home-section">
+    <h2><i class="icon-folder-empty" aria-hidden="true"></i> [`Template Library`]</h2>
+
+    <ul class="all-sliders temlate-library">
+        {foreach from=$slides_demo key=slidekey item=slide name=slides}
+        <li class="slider-block">
+            <div class="slider-thumb" style="
+            {foreach from=$slide.layers key=layerkey item=layer}
+                {if $layerkey == 0}
+background-size:{if isset($layer.properties.background)}cover{else}inherit{/if};
+background-color:{if isset($layer.properties.bgcolor)}{$layer.properties.bgcolor}{else}inherit{/if};
+background-image:url('{if isset($slide.properties.globalthumbimagefull) && !empty($slide.properties.globalthumbimagefull)}{$slide.properties.globalthumbimagefull}{else}{if isset($layer.properties.background)}{$layer.properties.background}{else}{$wa_app_static_url}plugins/revolutionslider/img/nobg.png{/if}{/if}');
+                    {break}
+                {/if}
+            {/foreach}
+            "></div>
+            <div class="slider-options" data-slider_id="{$slide.slider_id}">
+                <span style="display: none;" class="ui-icon ui-icon-close delete-slider"><i class="icon-trash" aria-hidden="true"></i></span>
+                <div class="options">
+                    <a style="display: none;" data-toggle="tooltip" data-original-title="[`Edit`]" data-placement="top" class="edit-slider link" href="?plugin=revolutionslider&slider={$slide.slider_id}"><span><i class="icon-pencil" aria-hidden="true"></i></span></a>
+                    <a data-toggle="tooltip" data-original-title="[`Duplicate`]" data-placement="top" class="clone-slider" href=""><span><i class="icon-docs" aria-hidden="true"></i></span></a>
+                    <a style="display: none;" data-toggle="tooltip" data-original-title="[`Insert`]" data-placement="top" class="templcode-slider" href="javascript:void(0);"><span data-toggle="popover" data-html="true" data-placement="bottom" title="[`Use the code below to insert slider into your theme`]" data-content="<span class='shortcode'>{literal}{shopRevolutionsliderPlugin::display({/literal}{$slide.slider_id}{literal})}{/literal}</span><span class='codetip'>[`Use the shortcode below to add slider to Site, Blog or Photo app`]</span><span class='site-shortcode'>{literal}{if $wa->shop}<br>&nbsp;&nbsp;{if method_exists('shopRevolutionsliderPlugin', 'display')}</br>&nbsp;&nbsp;&nbsp;&nbsp;{shopRevolutionsliderPlugin::generalDisplay({/literal}{$slide.slider_id}{literal})}<br>&nbsp; {/if} <br>{/if}{/literal}</span>"><i class="icon-rocket" aria-hidden="true"></i></span></a>
+                    <a data-toggle="tooltip" data-original-title="[`Preview`]" data-placement="top" class="sliderpreview" href="javascript:void(0);"><span><i class="icon-eye" aria-hidden="true"></i></span></a>
+
+                </div>
+            </div>
+            <div class="slider-controls">
+                <a class="link" href="#">
+                    {if isset($slide.properties.globalname)}{$slide.properties.globalname|truncate:30}{else}[`Slider`] {$slide.slider_id}{/if}
+                </a>
+            </div>
+
+        </li>
+        {/foreach}
+    </ul>
+
+</div>
+
+<div class="plugin-home-section">
+    <h2><i class="icon-lifebuoy" aria-hidden="true"></i> [`Help`]</h2>
+    <div class="support-block">
+        <ul>
+            <li><a target="_blank" href="https://www.youtube.com/channel/UCHnfTlh2QldXl7EUnx7PO1g"><i class="icon-youtube" aria-hidden="true"></i> [`Youtube`]</a></li>
+            <li><a target="_blank" href="http://shopscript.morbiplay.com/faq/?preview=fd276cce20e63c7f64db737b90808f47"><i class="icon-help-circled" aria-hidden="true"></i> [`FAQ`]</a></li>
+            <li><a target="_blank" href="http://shopscript.morbiplay.com/obnovleniya/"><i class="icon-update" aria-hidden="true"></i> [`Update`]</a></li>
+        </ul>
+    </div>
+    <div class="support-block">
+        <ul>
+            <li><a target="_blank" href="http://shopscript.morbiplay.com/soobshchit-ob-oshibke/ "><i class="icon-attention" aria-hidden="true"></i> [`Report an error`]</a></li>
+            <li><a target="_blank" href="http://shopscript.morbiplay.com/predlozhit-ideyu/"><i class="icon-lightbulb" aria-hidden="true"></i> [`Suggest an Idea`]</a></li>
+            <li><a target="_blank" href="http://shopscript.morbiplay.com/kontakt/ "><i class="icon-email" aria-hidden="true"></i> [`Contact Developer`]</a></li>
+        </ul>
+    </div>
+    <div class="support-block">
+        <ul>
+            <li><a href="https://www.webasyst.ru/store/plugin/shop/revolutionslider/reviews/"><i class="icon-thumbs-up" aria-hidden="true"></i> [`Rate this Plugin`]</a></li>
+        </ul>
+    </div>
+</div>
+
+<div class="slider-preview-main" style="display: none;">
+    <span class="close-preview"><a href="javascript:void(0);" class="close-link"><i class="icon-close" aria-hidden="true"></i></a></span>
+    <div class="container">
+        <div class="col-lg-12">
+            <div id="myModal"></div>
+        </div>
+    </div>
+</div>
+
+

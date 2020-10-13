@@ -1,0 +1,19 @@
+<div class="contain">
+    <div class="col-xs-12 form-inline">
+		<div class="form-group">
+			<label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`Unique slide identificator`]">[`Slide ID`]</label>
+		    <input class="form-control" type="text" name="title" value="{if isset ($layer.properties.title)}{$layer.properties.title}{/if}">
+		</div>
+
+		<div class="form-group">
+		    <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`Slide Title that can be used in navigation`]">[`Title`]</label>
+		    <input  class="form-control" type="text" name="slidetitle" value="{if isset ($layer.properties.slidetitle)}{$layer.properties.slidetitle}{/if}" placeholder="[`Title`]">
+		</div>
+
+		<div class="form-group">
+		    <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`Slide Description that can be used in navigation`]">[`Description`]</label>
+		    <input  class="form-control" type="text" name="slidedescription" value="{if isset ($layer.properties.slidedescription)}{$layer.properties.slidedescription}{/if}" placeholder="[`Short Description`]">
+		</div>
+	</div>
+</div>
+

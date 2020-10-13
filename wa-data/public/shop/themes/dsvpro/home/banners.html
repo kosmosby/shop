@@ -1,0 +1,19 @@
+{strip}
+{if $wa->photos && !empty($album)}
+    {$size = '0x500'}
+    {$banners = $wa->photos->photos("album/`$album`", $size, null, 5)}
+    <div class="container-fluid hBanners flex mb-15">
+        <div class="hBanners__item mb-15">
+            {foreach $banners as $banner}
+                {if $banner@iteration == 3}
+                    </div><div class="hBanners__item mb-15">
+                {/if}
+                <a href="{$banner.description|default:'javascript:void(0)'}" style="background-image: url({$banner['thumb_'|cat:$size].url});{if isset($color)} color: {$color};{/if}" class="td-none">
+                    <span>{$banner.name}</span>
+                </a>
+                {if $banner@iteration == 3}</div><div class="hBanners__item mb-15">{/if}
+            {/foreach}
+        </div>
+    </div>
+{/if}
+{/strip}

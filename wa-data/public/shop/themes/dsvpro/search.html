@@ -1,0 +1,33 @@
+{strip}
+    {$sidebar_default = $theme_settings.sidebar_shop_search && $theme_settings.sidebar_shop}
+    {$sidebar = $wa->cookie("sidebar", $sidebar_default)}
+
+    {if $sidebar}
+        {$wa->globals("sidebar",true)}
+    {/if}
+    <div class="search">
+        <div class="container-fluid">
+            {$func = $wa->get("func")}
+            {$wa->globals("displayBreadcrumbs", 1)}
+
+            <!-- plugin hook: 'frontend_search' -->
+            {* @event frontend_search.%plugin_id% *}
+            {foreach $frontend_search as $_}{$_}{/foreach}
+
+            {if !empty($func)}
+                {$pages_count = 1}
+                {$sorting = null}
+
+                {if $func == "viewed"}
+                    {include file="search/viewed.html" inline}
+                {elseif $func == "wishlist"}
+                    {include file="search/wishlist.html" inline}
+                {elseif $func == "settings"}
+                    {include file="search/settings.html" inline}
+                {/if}
+            {else}
+                {include file="search/default.html" inline}
+            {/if}
+        </div>
+    </div>
+{/strip}

@@ -1,0 +1,97 @@
+<div class="contain">
+    <div class="col-xs-12 form-inline">
+        <div class="form-group">
+            <label class="colorchange" data-toggle="tooltip" data-placement="bottom" title="[`Slide Background Color`]"><i class="icon-bgcolor" aria-hidden="true"></i></label>
+            <div class="form-group">
+                <input class="colorpick colorin"  data-format="rgb" data-opacity="1.00" data-keywords="transparent, initial, inherit" name="bgcolor" value="{if isset ($layer.properties.bgcolor)}{$layer.properties.bgcolor}{else}transparent{/if}">
+            </div>
+        </div> 
+        <div class="form-group">
+                <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`Upload Background Image`]"><i class="icon-image"></i></label>
+                <input type="text" name="background" class="revo_upload_input form-control" value="{if isset ($layer.properties.background)}{$layer.properties.background|strip:'&nbsp;'}{/if}">
+                <input class="fileupload form-control main-background" type="file" name="files[]" data-url="?plugin=revolutionslider&action=photoupload">
+                 <a data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`Remove image`]" href="#" class="remove-bg"><i class="fa fa-times" aria-hidden="true"></i></a>
+        </div>
+
+        <div class="form-group">
+            <label data-toggle="tooltip" data-placement="bottom" title="" data-original-title="[`Background Image Alt`]"> ALT</label>
+            <input name="rsLayerBgAlt" value="{if isset ($layer.properties.rsLayerBgAlt)}{$layer.properties.rsLayerBgAlt}{/if}" class="form-control half">
+        </div>
+        <div class="form-group">
+            <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`Define how the background image will be repeated`]">[`BG Repeat`] </label>
+            <select class="form-control half" name="bgrepeat">
+                {if !isset($layer) && !isset($layer.properties) && !isset($layer.properties.bgrepeat)}
+                    {assign var='bgrepeat' value='Random'}
+                {else}
+                    {assign var='bgrepeat' value=$layer.properties.bgrepeat|default:'repeat'}
+                {/if}
+                <option {if $bgrepeat == 'repeat'}selected="selected"{/if} value="repeat">[`Repeat`]</option>
+                <option {if $bgrepeat == 'no-repeat'}selected="selected"{/if} value="no-repeat">[`No Repeat`]</option>
+                <option {if $bgrepeat == 'repeat-x'}selected="selected"{/if} value="repeat-x">[`Repeat X`]</option>
+                <option {if $bgrepeat == 'repeat-y'}selected="selected"{/if} value="repeat-y">[`Repeat Y`]</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-toggle="tooltip" data-html="true"  data-placement="bottom" title="" for="" data-original-title="[`Define Background Image size.<br><strong>Auto</strong> - Default value. The background-image contains its width and height<br><strong>Cover</strong> - Scale the background image to be as large as possible so that the background area is completely covered by the background image. Some parts of the background image may not be in view within the background positioning area	Play it »<br><strong>Contain</strong> - Scale the image to the largest size such that both its width and its height can fit inside the content area`]">[`BG Size`]</label>
+            <select class="form-control half" name="bgfit">
+                {if !isset($layer) && !isset($layer.properties) && !isset($layer.properties.bgfit)}
+                    {assign var='bgfit' value='auto'}
+                {else}
+                    {assign var='bgfit' value=$layer.properties.bgfit|default:'auto'}
+                {/if}
+                <option {if $bgfit == 'auto'}selected="selected"{/if} value="auto">[`Auto`]</option>
+                <option {if $bgfit == 'cover'}selected="selected"{/if} value="cover">[`Cover`]</option>
+                <option {if $bgfit == 'contain'}selected="selected"{/if} value="contain">[`Contain`]</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`Define Background Image alignment relatively to the slider sides`]">[`BG Position`]</label>
+            <select class="form-control half" name="bgposition">
+                {if !isset($layer) && !isset($layer.properties) && !isset($layer.properties.bgposition)}
+                    {assign var='bgposition' value='center center'}
+                {else}
+                    {assign var='bgposition' value=$layer.properties.bgposition|default:'center center'}
+                {/if}
+                <option {if $bgposition == 'top center'}selected="selected"{/if} value="top center">[`Top`]</option>
+                <option {if $bgposition == 'top right'}selected="selected"{/if} value="top right">[`Top Right`]</option>
+                <option {if $bgposition == 'top left'}selected="selected"{/if} value="top left">[`Top Left`]</option>
+                <option {if $bgposition == 'left'}selected="selected"{/if} value="left">[`Left`]</option>
+                <option {if $bgposition == 'center center'}selected="selected"{/if} value="center center">[`Center`]</option>
+                <option {if $bgposition == 'right'}selected="selected"{/if} value="right">[`Right`]</option>
+                <option {if $bgposition == 'bottom center'}selected="selected"{/if} value="bottom center">[`Bottom`]</option>
+                <option {if $bgposition == 'bottom right'}selected="selected"{/if} value="bottom right">[`Bottom Right`]</option>
+                <option {if $bgposition == 'bottom left'}selected="selected"{/if} value="bottom left">[`Bottom Left`]</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label data-toggle="tooltip" data-placement="bottom" title="" for="" data-original-title="[`Defint the Depth of Background parallax effect`]">Parallax</label>
+            <select class="form-control halfto" name="bgparallaxlevel">
+                {if !isset($layer) && !isset($layer.properties) && !isset($layer.properties.bgparallaxlevel)}
+                    {assign var='bgparallaxlevel' value='1'}
+                {else}
+                    {assign var='bgparallaxlevel' value=$layer.properties.bgparallaxlevel|default:'1'}
+                {/if}
+                <option {if $bgparallaxlevel == '1'}selected="selected"{/if} value="1">1</option>
+                <option {if $bgparallaxlevel == '2'}selected="selected"{/if} value="2">2</option>
+                <option {if $bgparallaxlevel == '3'}selected="selected"{/if} value="3">3</option>
+                <option {if $bgparallaxlevel == '4'}selected="selected"{/if} value="4">4</option>
+                <option {if $bgparallaxlevel == '5'}selected="selected"{/if} value="5">5</option>
+                <option {if $bgparallaxlevel == '6'}selected="selected"{/if} value="6">6</option>
+                <option {if $bgparallaxlevel == '7'}selected="selected"{/if} value="7">7</option>
+                <option {if $bgparallaxlevel == '8'}selected="selected"{/if} value="8">8</option>
+                <option {if $bgparallaxlevel == '9'}selected="selected"{/if} value="9">9</option>
+                <option {if $bgparallaxlevel == '10'}selected="selected"{/if} value="10">10</option>
+                <option {if $bgparallaxlevel == '11'}selected="selected"{/if} value="11">11</option>
+                <option {if $bgparallaxlevel == '12'}selected="selected"{/if} value="12">12</option>
+                <option {if $bgparallaxlevel == '13'}selected="selected"{/if} value="13">13</option>
+                <option {if $bgparallaxlevel == '14'}selected="selected"{/if} value="14">14</option>
+                <option {if $bgparallaxlevel == '15'}selected="selected"{/if} value="15">15</option>
+                <option {if $bgparallaxlevel == '16'}selected="selected"{/if} value="16">16</option>
+            </select>
+        </div>
+        
+    </div>
+</div>

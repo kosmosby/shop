@@ -1,0 +1,70 @@
+{strip}
+
+{$sidebar_default = $theme_settings.sidebar_blog_post && $theme_settings.sidebar_blog}
+{$sidebar = $wa->cookie("sidebar", $sidebar_default)}
+{$wa->globals("sidebar",$sidebar)}
+
+{$wa->globals("crumb",$post.title)}
+
+<div class="post contentDescription" itemscope itemtype="http://schema.org/BlogPosting">
+    <h1 itemprop="name" class="mt-0">
+        {$post.title}
+
+        {* @event prepare_posts_frontend.%plugin_id%.post_title *}
+        {if !empty($post.plugins.post_title)}
+            {foreach $post.plugins.post_title as $plugin => $output}
+                {$output}
+            {/foreach}
+        {/if}
+    </h1>
+    <ul class="list-unstyled list-inline gray fs-13em">
+        <li itemprop="author">
+            {if $post.contact_id}
+                <a href="{$post.user.posts_link}">{$post.user.name}</a>
+            {else}
+                {$post.user.name}
+            {/if}
+        </li>
+        <li>{$post.datetime|wa_datetime:"humandate"}</li>
+        {if $show_comments && $post.comments_allowed && count($post.comments)}
+            <li>{_w('%d comment','%d comments', count($post.comments))}</li>
+        {/if}
+    </ul>
+
+    {* @event prepare_posts_frontend.%plugin_id%.before *}
+    {if !empty($post.plugins.before)}
+        <div class="text_before">
+            {foreach $post.plugins.before as $plugin => $output}{$output}{/foreach}
+        </div>
+    {/if}
+
+    <div class="postText fs-15em" itemprop="articleBody">
+        {$post.text}
+    </div>
+
+    {if $post.album_id && $post.album.id && $post.album.photos}
+        {include file="post.album.html" album=$post.album inline}
+    {/if}
+
+    {* @event prepare_posts_frontend.%plugin_id%.after *}
+    {if !empty($post.plugins.after)}
+        <div class="text_after">
+            {foreach $post.plugins.after as $plugin => $output}{$output}{/foreach}
+        </div>
+    {/if}
+    <meta itemprop="datePublished" content="{$post.datetime|date_format:'Y-m-d\TH:i'}">
+</div>
+
+{* @event frontend_post.%plugin_id%.footer *}
+{foreach $frontend_post as $plugin => $output}
+    {if !empty($output.footer)}{$output.footer}{/if}
+{/foreach}
+
+{if $show_comments && $post.comments_allowed}
+    {if $post.status eq blogPostModel::STATUS_PUBLISHED}
+        {include file="post/comments.html" inline}
+    {else}
+        <h4>[`Comments for non published posts are disabled`]</h4>
+    {/if}
+{/if}
+{/strip}

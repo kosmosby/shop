@@ -1,0 +1,38 @@
+{$mobile = $wa->isMobile() || $wa->userAgent("device") == "ipad" || $wa->userAgent("device") == "android"}
+{if $theme_settings.sidebar_nav}
+    {include file="`$wa_parent_theme_path`/sidebar/nav.html"}
+{/if}
+
+{********* ФИЛЬТРАЦИЯ / FILTERING *****}
+{if isset($filters) && !empty($filters) && ($theme_settings.filter_position == "sidebar" || $mobile)}
+    {include file="./sidebar/`$theme_settings.filter_option`.html" inline}
+{/if}
+
+{********* ПЛАГИНЫ / PLUGINS **********}
+{include file="./sidebar/plugins.html" inline}
+
+{if $theme_settings.sidebar_promos}
+    {include file="`$wa_parent_theme_path`/sidebar/promos.html"}
+{/if}
+
+{if $theme_settings.sidebar_related}
+    {include file="`$wa_parent_theme_path`/sidebar/related.html"}
+{/if}
+
+{if $theme_settings.sidebar_posts}
+    {include file="`$wa_parent_theme_path`/sidebar/posts.html"}
+{/if}
+
+{if $theme_settings.sidebar_tags}
+    {include file="`$wa_parent_theme_path`/sidebar/tags.html" limit=10}
+{/if}
+
+{if $theme_settings.sidebar_latestphotos}
+    {include file="`$wa_parent_theme_path`/sidebar/photos.html"}
+{/if}
+
+{include file="`$wa_parent_theme_path`/social/vkontakte.html"}
+{include file="`$wa_parent_theme_path`/social/facebook.html"}
+{include file="`$wa_parent_theme_path`/social/instagram.html"}
+{include file="`$wa_parent_theme_path`/social/odnoklassniki.html"}
+{include file="`$wa_parent_theme_path`/social/twitter.html"}

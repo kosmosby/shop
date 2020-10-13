@@ -1,0 +1,137 @@
+{if $wa->get("cart")}
+    {$active_tab = null}
+    {$product_tabs = []}
+    {if $theme_settings.product_overview}
+        {$product_tabs[] = [
+            "name" => "overview",
+            "title" => "[`Description`]",
+            "template" => "overview"
+        ]}
+    {/if}
+    {*
+    {if $theme_settings.product_features}
+        {$product_tabs[] = [
+            "name" => "features",
+            "title" => "[`Features`]",
+            "template" => "features"
+        ]}
+        {$products[$product.id] = $product}
+        {$features = $wa->shop->features($products)}
+    {/if}
+    *}
+    <div class="modal__content quickview">
+        <div class="row">
+            <div class="col-sm-6">
+                {********* ГАЛЕРЕЯ / GALLERY **********}
+                {include file="product/gallery.html"}
+                <div class="text-center">
+                    <a class="quickview__link td-none" href="{$wa->shop->productUrl($product)}">[`Product page`]</a>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <ul class="nav nav-tabs quickview__tabs" role="tablist">
+                    <li class="active"><a href="#productform" role="tab" data-toggle="tab">[`Overview`]</a></li>
+                    {* <li><a href="#description" role="tab" data-toggle="tab">[`Description`]</a></li> *}
+                    {foreach $product_tabs as $tab}
+                        <li><a href="#{$tab.name}" role="tab" data-toggle="tab">{$tab.title}</a></li>
+                    {/foreach}
+                </ul>
+                <div class="tab-content">
+                    <div class="tab-pane fade in active" id="productform" role="tabpanel">
+                        <h1>{$product.name|escape}</h1>
+                        <ul class="list-inline">
+                            {if !empty($product.rating) && $product.rating > 0}
+                            <li class="rating text-nowrap" itemprop="aggregateRating" itemscope itemtype="http://schema.org/AggregateRating">
+                                {$wa->shop->ratingHtml($product.rating)} <span itemprop="reviewCount">({$product.rating_count})</span>
+                                <span itemprop="ratingValue" class="hidden">{$product.rating}</span>
+                            </li>
+                            {/if}
+                            {* <li class="product__sku">Артикул #</li> *}
+                        </ul>
+                        {*
+                        <ul class="list-inline product__share hidden-xs">
+                            <li class="product__print">
+                                <a href="javascript:print()">
+                                    <i class="mi mi-print mi-24"></i>
+                                </a>
+                            </li>
+                            <li><a href="#">Share</a></li>
+                        </ul>
+                        *}
+                        {include file="product/form.html" inline}
+                    </div>
+                    {*
+                        <div class="tab-pane fade" id="description">
+                            {$product.description}
+                        </div>
+                    *}
+                    {foreach $product_tabs as $tab}
+                        {include file="product/`$tab.template`.html" tab=$tab inline}
+                    {/foreach}
+                </div>
+            </div>
+        </div>
+    </div>
+    {$prev = null}
+    {$next = null}
+    {$siblings = $wa->shop->products("category/`$product.category_id`")}
+    {foreach $siblings as $sibling}
+        {if $sibling.id == $product.id}
+            {$next = $sibling}
+        {/if}
+        {if !$next && $sibling.id != $product.id}
+            {$prev = $sibling}
+        {/if}
+        {if $next && $sibling.id != $product.id}
+            {$next = $sibling}
+            {break}
+        {/if}
+    {/foreach}
+    {$last_sibling = end($siblings)}
+    {if $last_sibling.id == $product.id}
+        {$next = null}
+    {/if}
+
+    {if $prev}
+        <span class="products__sibling products__sibling_prev" data-url="{$prev.frontend_url}?cart=1" data-id="{$prev.id}"></span>
+    {/if}
+    {if $next}
+        <span class="products__sibling products__sibling_next" data-url="{$next.frontend_url}?cart=1" data-id="{$next.id}"></span>
+    {/if}
+{else}
+    {include file="product/form.html" inline}
+{/if}
+<script>
+    $(function() {
+        function initProduct() {
+            new Product("#cart-form{if $wa->get('cart')}-dialog{/if}{if $wa->get('view')}-view{/if}", {
+                currency: {json_encode($currency_info)}
+                {if count($product.skus) > 1 or $product.sku_type}
+                    ,services: {json_encode($sku_services)}
+                {/if}
+                {if $product.sku_type}
+                    ,features: {json_encode($sku_features_selectable)}
+                {/if}
+            });
+            WA_THEME.productGallery.init();
+
+            {if !$wa->get("cart")}
+                if ("productPage" in WA_THEME) {
+                    WA_THEME.productPage.init();
+                    $(window).trigger("initProductGallery");
+                }
+                if ("reviews" in WA_THEME) {
+                    WA_THEME.reviews.init();
+                }
+            {/if}
+        }
+
+        if (typeof Product === "function") {
+            initProduct();
+        } else {
+            $.getScript("{$wa_theme_url}js/product.js?v{$wa_theme_version}", function () {
+                initProduct();
+            });
+        }
+    });
+</script>

@@ -1,0 +1,70 @@
+{strip}
+{$sb_cnt = 0}
+{if $sidebar|default:false}
+    {$sb_cnt = 1}
+{/if}
+<div class="recommended mb-30">
+    <div class="container-fluid">
+        <div class="heading">
+            <span class="h3">{$mytitle|default:'[`Recommended`]'}</span>
+        </div>
+        <ul class="list-unstyled dataSlider"  data-slick='{ "slidesToShow": {3-$sb_cnt}, "slidesToScroll": {3-$sb_cnt}, "dots": true, "arrows": false, "autoplay": {$auto|default:0}, "autoplaySpeed": {$interval|default:3000}, "infinite": true, "responsive": [  { "breakpoint": 768, "settings": { "slidesToShow": 1, "slidesToScroll": 1 } } ]}'>
+            {* ОТЗЫВ 1 / REVIEW 1 *}
+            <li class="col-sm-4 col-xs-6 recommended__item">
+                <div class="recommended__review fs-15em mb-25">
+                    Приморский филиал «Ростелеком» выражает благодарность Softline за плодотворное сотрудничество в рамках проекта технической поддержки IT-активов инфраструктуры компании.
+                </div>
+                <div class="recommended__name tt-uc fs-13em fw-5">
+                    Р.К. Тулаганов
+                </div>
+                <div class="fs-11em gray">
+                    Директор филиала «Ростелеком»
+                </div>
+            </li>
+            {* КОНЕЦ ОТЗЫВ 1 / END REVIEW 1 *}
+
+            {* ОТЗЫВ 2 / REVIEW 2 *}
+            <li class="col-sm-4 col-xs-6 recommended__item">
+                <div class="recommended__review fs-15em mb-25">
+                    Приморский филиал «Ростелеком» выражает благодарность Softline за плодотворное сотрудничество в рамках проекта технической поддержки IT-активов инфраструктуры компании.
+                </div>
+                <div class="recommended__name fs-13em fw-5">
+                    Р.К. Тулаганов
+                </div>
+                <div class="fs-11em gray">
+                    Директор филиала «Ростелеком»
+                </div>
+            </li>
+            {* КОНЕЦ ОТЗЫВ 2 / END REVIEW 2 *}
+
+            {* ОТЗЫВ 3 / REVIEW 3 *}
+            <li class="col-sm-4 col-xs-6 recommended__item">
+                <div class="recommended__review fs-15em mb-25">
+                    Приморский филиал «Ростелеком» выражает благодарность Softline за плодотворное сотрудничество в рамках проекта технической поддержки IT-активов инфраструктуры компании.
+                </div>
+                <div class="recommended__name fs-13em fw-5">
+                    Р.К. Тулаганов
+                </div>
+                <div class="fs-11em gray">
+                    Директор филиала «Ростелеком»
+                </div>
+            </li>
+            {* КОНЕЦ ОТЗЫВ 3 / END REVIEW 3 *}
+
+            {* ОТЗЫВ 4 / REVIEW 4 *}
+            <li class="col-sm-4 col-xs-6 recommended__item">
+                <div class="recommended__review fs-15em mb-25">
+                    Приморский филиал «Ростелеком» выражает благодарность Softline за плодотворное сотрудничество в рамках проекта технической поддержки IT-активов инфраструктуры компании.
+                </div>
+                <div class="recommended__name fs-13em fw-5">
+                    Р.К. Тулаганов
+                </div>
+                <div class="fs-11em gray">
+                    Директор филиала «Ростелеком»
+                </div>
+            </li>
+            {* КОНЕЦ ОТЗЫВ 4 / END REVIEW 4 *}
+        </ul>
+    </div>
+</div>
+{/strip}

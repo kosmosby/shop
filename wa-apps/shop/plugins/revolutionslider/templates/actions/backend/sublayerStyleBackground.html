@@ -1,0 +1,29 @@
+<h4><i class="icon-bgcolor"></i> [`Background`] <i class="fa icon-angle-down control"></i></h4>
+<div class="line" style="display: none">
+    <div class="form-group incolor">
+        <label  data-toggle="tooltip" data-html="true"  data-placement="top" data-original-title="<i class='icon-bgcolor'></i>[`Background color`]">[`Color`]</label>
+        <div class="form-group">
+        <input class="colorpick colorin" data-position="top left" data-format="rgb" data-opacity="1.00" name="rsLayerStyleBackgroundColor" value="{if isset ($sublayer.rsLayerStyleBackgroundColor)}{$sublayer.rsLayerStyleBackgroundColor}{else}transparent{/if}">
+        </div>
+    </div>
+
+    <div class="form-group spanlable">
+        <label data-toggle="tooltip" data-placement="top" title="[`Padding (top, right, bottom, left)`]"><i class="icon-padding" aria-hidden="true"></i></label>
+    </div>
+    <div class="form-group fullsix">
+        <label>[`Top`]</label>
+        <input type="number" name="rsLayerStyleBackgroundPaddingTop" value="{if isset ($sublayer.rsLayerStyleBackgroundPaddingTop)}{$sublayer.rsLayerStyleBackgroundPaddingTop}{else}0{/if}">
+    </div>
+    <div class="form-group fullsix">
+        <label>[`Right`]</label>
+        <input  type="number" name="rsLayerStyleBackgroundPaddingRight" value="{if isset ($sublayer.rsLayerStyleBackgroundPaddingRight)}{$sublayer.rsLayerStyleBackgroundPaddingRight}{else}0{/if}">
+    </div>
+    <div class="form-group fullsix">
+        <label>[`Bottom`]</label>
+        <input  type="number" name="rsLayerStyleBackgroundPaddingBottom" value="{if isset ($sublayer.rsLayerStyleBackgroundPaddingBottom)}{$sublayer.rsLayerStyleBackgroundPaddingBottom}{else}0{/if}">
+    </div>
+    <div class="form-group fullsix">
+        <label>[`Left`]</label>
+        <input  type="number" name="rsLayerStyleBackgroundPaddingLeft" value="{if isset ($sublayer.rsLayerStyleBackgroundPaddingLeft)}{$sublayer.rsLayerStyleBackgroundPaddingLeft}{else}0{/if}">
+    </div>
+</div>

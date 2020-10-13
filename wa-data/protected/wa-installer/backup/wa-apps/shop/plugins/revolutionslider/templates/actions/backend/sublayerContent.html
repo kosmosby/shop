@@ -1,0 +1,27 @@
+<h4><i class="icon-settings"></i> [`General`] <i class="fa icon-angle-down control"></i></h4>
+
+<div class="line">
+    <div class="form-group full">
+        <label>[`Text or HTML`]</label>
+        <input name="rsLayerHtml" value="{if isset ($sublayer.rsLayerHtml)}{$sublayer.rsLayerHtml|escape:'html'}{/if}" class="form-control">
+    </div>
+    <div class="form-group fullsix">
+        <label data-toggle="tooltip" data-placement="top" title="[`Current Horizontal position of Layer`]">[`X position`]</label>
+        <input class="form-control" type="text" name="top" value="{if isset ($sublayer.top)}{$sublayer.top}{else}100{/if}">
+    </div>
+    <div class="form-group fullsix">
+        <label data-toggle="tooltip" data-placement="top" title="[`Current Vertical position of Layer`]">[`Y position`]</label>
+        <input class="form-control" type="text" name="left" value="{if isset ($sublayer.left)}{$sublayer.left}{else}100{/if}">
+    </div>
+    <div class="form-group spanlable">
+        <label><i class="icon-delay" aria-hidden="true"></i></label>
+    </div>
+    <div class="form-group fullsix">
+        <label data-toggle="tooltip" data-html="true" data-placement="top" title="[`Initial Layer Animation will start from that time point.<br><strong>Value in milliseconds</strong>`]">[`Start`]</label>
+        <input class="form-control" type="text" name="delayin" value="{if isset ($sublayer.delayin)}{$sublayer.delayin}{else}300{/if}">
+    </div>
+    <div class="form-group fullsix">
+        <label data-toggle="tooltip" data-html="true" data-placement="top" title="[`Finish Layer Animation will start from that time point.<br><strong>Value in milliseconds</strong>`]">[`Finish`]</label>
+        <input class="form-control" type="text" name="delayout" value="{if isset ($sublayer.delayout)}{$sublayer.delayout}{/if}">
+    </div>
+</div>

@@ -1,0 +1,96 @@
+{strip}
+{**
+* @param string $condition - search condition (set/promo)
+* @param int $limit - count of products (null)
+*}
+{$size = "500"}
+{$products = $wa->shop->products($condition|default:"`$theme_settings.slider_condition`", null, $limit|default:null, ["params" => 1])}
+{$products_photos = $wa->shop->images( array_keys($products), $size )}
+
+{$slides_photos = []}
+{foreach $products_photos as $product_id => $photos}
+    {foreach $photos as $photo}
+        {if $photo.description == "bg"}
+            {$slides_photos[$product_id]["bg"] = $photo}
+        {/if}
+        {if $photo.description == "image"}
+            {$slides_photos[$product_id]["image"] = $photo}
+        {/if}
+    {/foreach}
+{/foreach}
+
+{if count($slides_photos) > 0}
+    <div class="slider master-slider ms-skin-default" id="masterslider" data-type="{$theme_settings.slider_type}" data-autoplay="{$theme_settings.slider_auto}">
+        {foreach $products as $p}
+            {if !isset($slides_photos[$p.id]["bg"])}
+                {continue}
+            {/if}
+            {$available = $wa->shop->settings('ignore_stock_count') || $p.count === null || $p.count > 0}
+            {$default_name = $p.name|escape}
+            {$default_description = strip_tags($p.summary)|truncate:130:"..."}
+            <div class="ms-slide slide1" data-delay="{$theme_settings.slider_delay|default:5}">
+                {* BACKGROUND IMAGE *}
+                {if isset($slides_photos[$p.id]["bg"])}
+                    <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{$slides_photos[$p.id]['bg']['url_'|cat:$size]}" alt="{$p.name}">
+                {/if}
+
+                {* ADDITION IMAGE *}
+                {if isset($slides_photos[$p.id]["image"])}
+                    <img class="ms-layer" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="{$slides_photos[$p.id]['image']['description']}" data-src="{$slides_photos[$p.id]['image']['url_'|cat:$size]}"
+                         data-effect="t(true,-70,150,n,n,n,n,n,n,n,n,n,n,n,n)"
+                         data-delay="1000"
+                         data-ease="easeInOutCubic"
+                         data-type="image"
+                         data-offset-x="100"
+                         data-offset-y="0"
+                         data-origin="ml"
+                         data-parallax="5">
+                {/if}
+
+                {* PARAM HEADING / PRODUCT NAME *}
+                <div class="ms-layer ms-slide__name"
+                     data-effect="right(100)"
+                     data-delay="200"
+                     data-ease="easeOutQuint"
+                     data-offset-x="960"
+                     data-offset-y="180"
+                     data-origin="tl">
+                    {$p.params.heading|default:$default_name} / <span class="ms-slide__price">{shop_currency_html($p.price)}</span>
+                </div>
+
+                {* PARAM TEXT / PRODUCT SUMMARY *}
+                <div class="ms-layer ms-slide__promo"
+                     data-effect="bottom(40)"
+                     data-delay="400"
+                     data-ease="easeInOutQuad"
+                     data-offset-x="960"
+                     data-offset-y="250"
+                     data-origin="tl"
+                     data-widthlimit="768">
+                    {$p.params.text|default:$default_description}
+                </div>
+
+                {* BUTTON *}
+                <form class="ms-layer slider_add"
+                      data-effect="bottom(40)"
+                      data-delay="600"
+                      data-ease="easeInOutQuad"
+                      data-type="button"
+                      data-offset-x="960"
+                      data-offset-y="340"
+                      data-origin="tl" method="post" action="{$wa->getUrl('/frontendCart/add')}">
+                    {if $available}
+                        <button class="btn btn-primary btn-lg" type="submit">[`Buy`]</button>
+                    {else}
+                        <button class="btn btn-primary btn-lg" type="submit" disabled>[`Out of stock`]</button>
+                    {/if}
+                    {if $p.sku_count > 1}
+                        <span class="product-url" data-url="{$p.frontend_url}{if strpos($p.frontend_url, '?')}&{else}?{/if}cart=1"></span>
+                    {/if}
+                    <input type="hidden" name="product_id" value="{$p.id}">
+                </form>
+            </div>
+        {/foreach}
+    </div>
+{/if}
+{/strip}

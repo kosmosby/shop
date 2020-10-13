@@ -1,0 +1,46 @@
+<div class="col-md-6 col-xs-12 myOrder__info">
+    <h3 class="mb-15">[`Shipping`]
+        {if $order.shipping_name}
+         &mdash; {$order.shipping_name}
+        {/if}
+    </h3>
+    {if !empty($order.params.tracking_number)}
+        [`Shipment tracking number`]: {$order.params.tracking_number}
+        <br />
+    {/if}
+    {if !empty($tracking) && $order.state->getId() != "completed"}
+        <div class="form formOrder mb-10">
+            {$tracking}
+        </div>
+    {/if}
+
+    <p class="fs-14em">
+        {$contact.name|escape}<br>
+        {if $shipping_address}
+            {$shipping_address}
+        {/if}
+    </p>
+    <h3 class="mb-20">[`Payment`]
+        {if $order.payment_name}
+         &mdash; {$order.payment_name}
+        {/if}
+    </h3>
+    <div class="fs-14em">
+        {$contact.name|escape}<br>
+        {if $billing_address}
+            {$billing_address}
+        {/if}
+    </div>
+    {if !empty($payment)}
+        <div class="form formOrder">
+            {$payment}
+        </div>
+    {/if}
+
+    {if !empty($order.comment)}
+        <h3 class="mb-20">[`Comment`]</h3>
+        <p>
+            {$order.comment|escape}<br>
+        </p>
+    {/if}
+</div>

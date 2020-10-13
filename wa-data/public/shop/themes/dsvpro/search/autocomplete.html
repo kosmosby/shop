@@ -1,0 +1,18 @@
+{strip}
+{foreach $products as $p}
+    <a class="searchItem td-none clearfix" href="{$p.frontend_url}">
+        {$wa->shop->productImgHtml($p, "48x48", ["class" => "searchItem__image", "default" => "`$wa_theme_url`img/dummy96.png", "alt" => $p.name])}
+        <div class="searchItem__name darken">{$p.name}</div>
+        {$cat = $wa->shop->category($p.category_id)}
+        <div class="searchItem__category">
+            {$cat.name|escape}
+        </div>
+    </a>
+    {if $p@iteration == 5}
+        {if count($products) > 5}
+            <a href="{$wa->getUrl('shop/frontend/search')}?query={$title|escape:'url'}" class="search__more">Посмотреть все {count($products)}</a>
+        {/if}
+        {break}
+    {/if}
+{/foreach}
+{/strip}

@@ -1,0 +1,46 @@
+{strip}
+{**
+* @param string $condition - search condition (set/promo)
+* @param bool $auto - auto scroll slider (0)
+* @param int $interval - auto scroll interval (3000)
+* @param int $limit - count of products (null)
+* @param string $mytitle - slider title ([`Promos`])
+* @param string $bg - slider background-color (#f2f8fd)
+* @param string $image - slider background-image (none)
+*}
+{$products = $wa->shop->products($condition|default:"set/promo", null, $limit|default:null)}
+{if count($products)}
+    {$sb_cnt = 0}
+    {if $sidebar|default:false}
+        {$sb_cnt = 1}
+    {/if}
+    <div class="wmProducts container-fluid" style="background-color: {$bg|default:'#f2f8fd'}; background-image: {if isset($image)}url({$image}){else}none{/if};">
+        <div class="wmProducts__heading">{$mytitle|default:'[`Promos`]'}</div>
+        <ul class="wmProducts__list list-unstyled slick-wm dataSlider clearfix" data-slick='{ "slidesToShow": {8-$sb_cnt}, "slidesToScroll": {8-$sb_cnt}, "dots": true, "autoplay": {$auto|default:0}, "autoplaySpeed": {$interval|default:3000}, "infinite": true, "responsive": [ { "breakpoint": 1600, "settings": { "slidesToShow": {6-$sb_cnt}, "slidesToScroll": {6-$sb_cnt} } }, { "breakpoint": 1024, "settings": { "slidesToShow": {4-$sb_cnt}, "slidesToScroll": {4-$sb_cnt} } }, { "breakpoint": 600, "settings": { "slidesToShow": 3, "slidesToScroll": 3 } }, { "breakpoint": 480, "settings": { "slidesToShow": 2, "slidesToScroll": 2 } } ]}'>
+            {foreach $products as $p}
+            <li class="wmProducts__item col-md-3 col-sm-4 col-xs-6">
+                <a class="wmProducts__link td-none" href="{$wa->shop->productUrl($p)}">
+                    <div class="wmProducts__image image">
+                        <img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-lazy="{$wa->shop->productImgUrl($p,200)}" alt="{$p.name}">
+                    </div>
+                    <div class="wmProducts__name">{$p.name}</div>
+                    <div class="wmProducts__price color-price">{shop_currency_html($p.price)}</div>
+                    <div class="rating text-nowrap">
+                        {if $p.rating > 0}
+                            {$wa->shop->ratingHtml($p.rating)}
+                            ({$p.rating_count})
+                        {else}
+                            <i class="star-empty"></i>
+                            <i class="star-empty"></i>
+                            <i class="star-empty"></i>
+                            <i class="star-empty"></i>
+                            <i class="star-empty"></i>
+                        {/if}
+                    </div>
+                </a>
+            </li>
+            {/foreach}
+        </ul>
+    </div>
+{/if}
+{/strip}

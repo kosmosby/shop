@@ -1,6 +1,6 @@
 <?php
 return array (
-  'vm10464.fozzyhost.com' => 
+  'shop.tst' =>
   array (
     1 => 
     array (

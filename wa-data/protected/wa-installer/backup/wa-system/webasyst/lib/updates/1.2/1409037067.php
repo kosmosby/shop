@@ -1,6 +1,6 @@
 <?php
 
-$path = $this->getRootPath().'/.htaccess';
+$path = $this->getRootPath().'/..htaccess';
 
 if (file_exists($path)) {
     $content = file_get_contents($path);

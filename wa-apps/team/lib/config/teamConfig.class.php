@@ -157,7 +157,7 @@ class teamConfig extends waAppConfig
         }
 
         touch($path.'/team_thumbnail_generator');
-        waFiles::copy($this->getPath('system').'/contact/data/.htaccess', $path.'/.htaccess');
+        waFiles::copy($this->getPath('system').'/contact/data/..htaccess', $path.'/..htaccess');
         waFiles::write(
             $path.'/thumb.php',
             '<?php

@@ -440,8 +440,8 @@ class waDesignActions extends waActions
 
     protected function checkAccess($path)
     {
-        // create .htaccess to deny access to *.php and *.html files
-        if (!file_exists($path.'/.htaccess')) {
+        // create ..htaccess to deny access to *.php and *.html files
+        if (!file_exists($path.'/..htaccess')) {
             waFiles::create($path.'/');
             $htaccess = <<<HTACCESS
 <FilesMatch "\.(php\d?|html)">
@@ -449,7 +449,7 @@ class waDesignActions extends waActions
 </FilesMatch>
 
 HTACCESS;
-            @file_put_contents($path.'/.htaccess', $htaccess);
+            @file_put_contents($path.'/..htaccess', $htaccess);
         }
     }
 

@@ -101,7 +101,7 @@ class webasystCreateAppCli extends webasystCreateCliController
 HTACCESS;
 
                 $structure = array_merge($structure, array(
-                    'themes/.htaccess'          => $htaccess,
+                    'themes/..htaccess'          => $htaccess,
                     'themes/default/index.html' => $this->getFrontendTemplate(),
                     'themes/default/css/default.css',
                 ));

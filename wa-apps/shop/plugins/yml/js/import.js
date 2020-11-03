@@ -1592,12 +1592,18 @@
 
         file: {
             init: function(){
+
+                //console.log('init worked')
+
                 var source_file = call('#local-source-file');
                 source_file.fileupload({
                     url: '?plugin=yml&module=upload',
                     sequentialUploads: true,
                     dropZone: null,
                     start: function () {
+
+                        console.log('start worked');
+
                         call('.sources .source-tab.local .progress').fadeIn();
                     },
 

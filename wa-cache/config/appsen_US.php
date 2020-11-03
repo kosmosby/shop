@@ -197,7 +197,7 @@ return array (
     'routing_params' => 
     array (
       'checkout_version' => 2,
-      'checkout_storefront_id' => 'd99afe79299055ee32b3f83f7d6d06b3',
+      'checkout_storefront_id' => 'f17f9a0c68d4636ca63071d192489b46',
     ),
     'build' => 30,
     'img' => 'wa-apps/shop/img/shop48.png',
@@ -207,7 +207,8 @@ return array (
     'id' => 'supplier',
     'name' => 'Supplier matching',
     'img' => 'wa-apps/supplier/img/supplier.png',
-    'build' => 1602519023,
+    'rights' => true,
+    'build' => 1603796786,
     'icon' => 
     array (
       48 => 'wa-apps/supplier/img/supplier.png',

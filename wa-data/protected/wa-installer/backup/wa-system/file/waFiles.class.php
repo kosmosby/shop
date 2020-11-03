@@ -868,13 +868,13 @@ class waFiles
     }
 
     /**
-     * Protect a directory by creating .htaccess with 'Deny from all', if it does not exist.
+     * Protect a directory by creating ..htaccess with 'Deny from all', if it does not exist.
      *
      * @param string $path Path to directory
      */
     public static function protect($path)
     {
-        self::write($path.'/.htaccess', "Deny from all\n");
+        self::write($path.'/..htaccess', "Deny from all\n");
     }
 
     /**

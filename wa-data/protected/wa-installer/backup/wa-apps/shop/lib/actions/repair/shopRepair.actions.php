@@ -562,13 +562,13 @@ if (file_exists($file)) {
             print "File thumb.php for product images already exists\n";
         }
 
-        $target = $target_path.'.htaccess';
+        $target = $target_path.'..htaccess';
         if (!file_exists($target)) {
-            waFiles::copy($source_path.'.htaccess', $target);
-            print "Restore .htaccess for product images\n";
+            waFiles::copy($source_path.'..htaccess', $target);
+            print "Restore ..htaccess for product images\n";
 
         } else {
-            print "File .htaccess for product images already exists\n";
+            print "File ..htaccess for product images already exists\n";
         }
 
 // generate promos thumb via php on demand
@@ -592,12 +592,12 @@ if (file_exists($file)) {
         }
 
 
-        $target = $target_path.'.htaccess';
+        $target = $target_path.'..htaccess';
         if (!file_exists($target)) {
-            waFiles::copy($source_path.'.htaccess', $target);
-            print "Restore .htaccess for promos\n";
+            waFiles::copy($source_path.'..htaccess', $target);
+            print "Restore ..htaccess for promos\n";
         } else {
-            print "File .htaccess for promos already exists\n";
+            print "File ..htaccess for promos already exists\n";
         }
     }
 

@@ -1,11 +1,11 @@
 <?php
 
 /**
- * Fix .htaccess - add -MultiViews
+ * Fix ..htaccess - add -MultiViews
  * Rename webasyst.php to wa.php
  */
 
-$path = $this->getRootPath().'/.htaccess';
+$path = $this->getRootPath().'/..htaccess';
 
 if (file_exists($path)) {
     $content = file_get_contents($path);

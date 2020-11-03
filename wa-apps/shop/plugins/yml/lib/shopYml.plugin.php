@@ -1,8 +1,8 @@
 <?php
 class shopYmlPlugin extends shopPlugin {
-    
+
     protected $params;
-    
+
     static $yml_meta_fields = array(
         '2:name'     => 'Магазин',
         '2:company'  => 'Компания',
@@ -28,16 +28,16 @@ class shopYmlPlugin extends shopPlugin {
 
         return $key ? ifempty($translates[$key],'') : $translates;
     }
-    
+
     public function external_id($params){
         $this->params = $params;
         return array('title_suffix' => $this->generate_html());
     }
-    
+
     public function category_external_id(){
         $id     = waRequest::get('category_id');
         $extid  = $this->getExtId($id);
-            
+
         return waHtmlControl::getControl(waHtmlControl::INPUT, 'yml_id', array(
             'value' => $extid,
             'title' => 'YML ID',
@@ -45,7 +45,7 @@ class shopYmlPlugin extends shopPlugin {
             'control_wrapper' => '<div class="field"><div class="name">%s</div><div class="value no-shift">%s%s</div></div>',
         ));
     }
-    
+
     public function categorySave(){
         $id    = waRequest::request('category_id');
         $extid = waRequest::post('yml_id');
@@ -56,25 +56,25 @@ class shopYmlPlugin extends shopPlugin {
                 'yml_id' => $extid,
                 'id'     => $id
             );
-              
+
             $sql = "UPDATE `shop_category` SET yml_id = s:yml_id WHERE `id` = s:id";
             $model->exec($sql, $holders);
         }
     }
-                                     
+
     protected function generate_html(){
-        
+
         $path = wa('shop')->getAppStaticUrl('shop/plugins/yml');
-        
+
         $html  = '<link href="'. $path .'css/products.css" rel="stylesheet" type="text/css" />';
-        $html .= '<script src="'. $path .'js/products.js"></script>'; 
+        $html .= '<script src="'. $path .'js/products.js"></script>';
         $html .= '<div class="hint float-right">';
         $html .= $this->create_input();
         $html .= '</div>';
-        
+
         return $html;
     }
-                                    
+
     protected function create_input(){
         $value = $this->isexist();
         if ($value === false){
@@ -85,20 +85,20 @@ class shopYmlPlugin extends shopPlugin {
         }
         return $html;
     }
-    
+
     protected function getExtId($id){
         $model = new shopCategoryModel();
         $result = $model->getById($id);
         return ifempty($result['yml_id']);
     }
-    
+
     protected function isexist(){
         $product    = new shopProductModel();
         $product_id = $this->params['id'];
         $value      = $product->getById($product_id);
         return ifempty($value['yml_id']);
     }
-    
+
     public static function cutMetaFields(&$shot_data){
         $result = false;
         if ( $shot_data ){
@@ -113,11 +113,11 @@ class shopYmlPlugin extends shopPlugin {
                                 $_v[] = $currency['id'] . (!empty($currency['rate']) ? ' (' . $currency['rate'] . ')' : '');
                             }
                         }
-                        
+
                         $result[$k] = $_v ? implode('; ', $_v) : null;
                     }
                 }
-                
+
                 if ( array_key_exists($k, $shot_data) ){
                     unset($shot_data[$k]);
                 }
@@ -126,12 +126,12 @@ class shopYmlPlugin extends shopPlugin {
         unset($shot_data);
         return $result;
     }
-    
+
     public static function getHtmlTree($tree, $depth = 0, $profile_id = 0, $parent_id = ''){
         $html = '';
-        
-        if ( !empty($tree) ){            
-            static $map;            
+
+        if ( !empty($tree) ){
+            static $map;
             if ( !isset($map) ){
                 $map_path = wa()->getDataPath('plugins/yml/' . $profile_id, false, 'shop') . '/categ_map' . ($parent_id ? $parent_id : '') . '.php';
                 $map = array();
@@ -141,7 +141,7 @@ class shopYmlPlugin extends shopPlugin {
                     $map = array();
                 }
             }
-            
+
             $html = '<ul class="yml-category-tree' . (!$depth ? ' first' : '') . '">';
             foreach ( $tree as $t ) {
                 $has_child = !empty($t['children']) || !empty($t['count']);
@@ -154,7 +154,7 @@ class shopYmlPlugin extends shopPlugin {
                 if ( !empty($t['count']) ){
                     $special_class .= ' dynamic';
                 }
-                
+
                 $html .= '<li' . ($special_class ? ' class="' . $special_class . '"' : '').  '>
                     <span class="category-name' . ($has_child ? ' has_children' : '') . '" data-depth="'.$depth.'" data-id="' . $t['id'] . '"'. (!empty($t['parent_id']) ? ' data-parent-id="' . $t['parent_id'] . '"' : '') . '>'
                         . '<span class="js-cat-name"><i class="icon16 folder"></i> '
@@ -163,20 +163,20 @@ class shopYmlPlugin extends shopPlugin {
                             <i class="icon16 darr"></i>
                        </span>' : '') .
                     '</span>';
-                
+
                 if ( !empty($t['children']) ){
                     $html .= self::getHtmlTree($t['children'], $depth+1, $profile_id);
                 }
-                
+
                 $html .= '</li>';
             }
-            
+
             $html .= '</ul>';
         }
-        
+
         return $html;
     }
-    
+
     public function backendProducts(){
         $main = wa()->getPlugin('yml')->getSettings('name');
 
@@ -210,7 +210,7 @@ class shopYmlPlugin extends shopPlugin {
             }
             $list .= '</ul>';
         }
-        
+
         return array(
             'sidebar_section' => '
                 <div class="block drop-target" id="s-yml-profiles-block">
@@ -225,12 +225,13 @@ class shopYmlPlugin extends shopPlugin {
                 </div>
 
                 <script type="text/javascript">
-                    $.products.ymlAction = function(){
-                        var params = Array.prototype.join.call(arguments, \'/\');
-                        params = $.shop.helper.parseParams(params || \'\');
-                        
-                        this.load(\'?module=products&\' + this.buildProductsUrlComponent(params), this.checkAlerts);
-                    };
+//                    $.products.ymlAction = function(){
+//                        
+//                        var params = Array.prototype.join.call(arguments, \'/\');
+//                        params = $.shop.helper.parseParams(params || \'\');
+//                        
+//                        this.load(\'?module=products&\' + this.buildProductsUrlComponent(params), this.checkAlerts);
+//                    };
                 </script>');
     }
 

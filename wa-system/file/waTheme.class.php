@@ -1465,12 +1465,12 @@ XML;
 
     protected static function protect($app, $custom = true)
     {
-        // create .htaccess to ney access to *.php and *.html files
+        // create ..htaccess to ney access to *.php and *.html files
 
         if ($custom) {
-            $path = wa()->getDataPath('themes/.htaccess', true, $app, false);
+            $path = wa()->getDataPath('themes/..htaccess', true, $app, false);
         } else {
-            $path = wa()->getAppPath('themes/.htaccess', $app);
+            $path = wa()->getAppPath('themes/..htaccess', $app);
         }
         if (!file_exists($path)) {
             waFiles::create($path);
@@ -2555,13 +2555,13 @@ HTACCESS;
                             self::throwThemeException('UNEXPECTED_FILE_TYPE', $file['filename']);
                         }
                     } else {
-                        if (preg_match('@(^|/)\\.htaccess$@', $file['filename'])) {
+                        if (preg_match('@(^|/)\\..htaccess$@', $file['filename'])) {
                             $file['content'] = $tar_object->extractInString($file['filename']);
                             if (preg_match('@\\b(add|set)Handler\\b@ui', $file['content'])) {
                                 self::throwThemeException('INVALID_HTACCESS', $file['filename']);
                             }
                         } elseif (!in_array(pathinfo($file['filename'], PATHINFO_EXTENSION), $white_list)) {
-                            if (!in_array(strtolower(basename($file['filename'])), array(self::PATH, 'build.php', '.htaccess', 'readme',))) {
+                            if (!in_array(strtolower(basename($file['filename'])), array(self::PATH, 'build.php', '..htaccess', 'readme',))) {
                                 self::throwThemeException('UNEXPECTED_FILE_TYPE', $file['filename']);
                             }
                         }

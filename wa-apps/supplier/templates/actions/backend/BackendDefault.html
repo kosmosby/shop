@@ -4,15 +4,171 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>{$wa->appName()} - {$wa->accountName()}</title>
     {$wa->css()}
-    <script src="{$wa->url()}wa-content/js/jquery/jquery-1.4.2.min.js"
-            type="text/javascript"></script>
+
+
+    <script src="/wa-content/js/jquery/jquery-1.11.1.min.js"></script>
+
+    <script type="text/javascript" src="/wa-content/js/jquery-ui/jquery.ui.core.min.js"></script>
+    <script type="text/javascript" src="/wa-content/js/jquery-ui/jquery.ui.widget.min.js"></script>
+    <script type="text/javascript" src="/wa-content/js/jquery-ui/jquery.ui.mouse.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="{$wa_url}wa-apps/shop/plugins/yml/css/tooltipster.bundle.min.css">
+    <link rel="stylesheet" type="text/css" href="{$wa_url}wa-apps/shop/plugins/yml/css/import.css"/>
+    <link rel="stylesheet" type="text/css" href="{$wa_url}wa-content/css/jquery-ui/ui-lightness/jquery.ui.slider.css">
+    <link rel="stylesheet" type="text/css" href="{$wa_url}wa-apps/shop/plugins/yml/css/jquery.formstyler.css"/>
+    <link rel="stylesheet" type="text/css" href="{$wa_url}wa-apps/shop/plugins/yml/css/jquery.formstyler.theme.css"/>
+
+     <script type="text/javascript" src="{$wa_url}wa-content/js/jquery-ui/jquery.ui.slider.min.js"></script>
+
+    <script type="text/javascript" src="{$wa_url}wa-content/js/jquery-plugins/fileupload/jquery.fileupload.js"></script>
+    <script type="text/javascript" src="{$wa_url}wa-apps/shop/plugins/yml/js/jquery.formstyler.min.js"></script>z
+    <script type="text/javascript" src="{$wa_url}wa-apps/supplier/js/import.js"></script>
+
 </head>
 <body>
 <div id="wa">
     {$wa->header()}
     <div id="wa-app">
-        <div class="block">Hello world!</div>
+
+            <div id="yml">
+
+                <div class="fields form tab-content" id="profile-content">
+
+                    {if !empty($profile_id)}
+                    <span class="delete-profile" data-id="{$profile_id}">
+                    <i class="icon16 no"></i> Удалить профиль
+                </span>
+                    {/if}
+
+                    <form action="?plugin=yml&module=backend&action=save" id="importform" method="POST">
+
+                        <div class="field no-border">
+                            <div class="name special-padd">Файл</div>
+                            <div class="value">
+
+                                <div class="sources">
+                                    <div class="sources-head">
+                                        <span class="sh-col{if empty($settings.source_type) || ($settings.source_type == 'remote')} active{/if}" data-type="remote">Ссылка</span>
+                                        <span class="sh-col{if ifempty($settings.source_type) == 'local'} active{/if}" data-type="local">С компьютера</span>
+                                        <span class="sh-col{if ifempty($settings.source_type) == 'server'} active{/if}" data-type="server">С сервера</span>
+
+                                        <input type="hidden" name="settings[source_type]" value="{ifempty($settings.source_type)}">
+                                    </div>
+                                    <div class="source-tabs">
+                                        <div class="source-tab remote{if empty($settings.source_type) || ($settings.source_type == 'remote')} active{/if}">
+                                            <input type="text" class="std" name="settings[url]" {if !empty($settings.url)} value="{$settings.url}"{/if}/>
+
+                                            <div class="yml-auth" id="yml-auth">
+                                                <input type="checkbox" class="iButton no_highlight" name="settings[http_auth]" value="1"{if !empty($settings.http_auth)} checked{/if}>
+                                                HTTP авторизация
+
+                                                <div class="yml-auth-data"{if empty($settings.http_auth)} style="display: none"{/if}>
+                                                <span class="hint">Логин:</span>
+                                                <input type="text" class="short" name="settings[http_login]" value="{ifempty($settings.http_login,'')}" style="margin-right: 15px">
+
+                                                <span class="hint">Пароль:</span>
+                                                <input type="password" class="short" name="settings[http_pass]" value="{ifempty($settings.http_pass,'')}">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="source-tab local{if ifempty($settings.source_type) == 'local'} active{/if}">
+                                        <div class="server-col left" style="width: 210px">
+                                            <input type="file" name="yml_file" id="local-source-file">
+
+                                            <div class="progress" style="display: none;">
+                                                <div class="progress-bar" style="width: 0"></div>
+                                            </div>
+                                        </div>
+
+                                        {$finfo = shopYmlPlugin::pathInfo(ifempty($settings['local.file']))}
+                                        <div class="server-col right"{if empty($settings['local.file'])} style="display:none"{/if}>
+                                        <span class="server-file file" style="margin-top: 4px">
+                                            <span class="server-file-name" title="{ifempty($finfo.basename,'')}">{ifempty($finfo.basename,'')|truncate:35:'..'}</span>
+                                            <span class="server-file-size">{ifempty($settings['local.file.size'])}</span>
+
+                                            <span class="yml-delete-file" title="Удaлить"><i class="icon16 delete"></i></span>
+                                        </span>
+                                    </div>
+
+                                </div>
+
+                                <div class="source-tab server{if ifempty($settings.source_type) == 'server'} active{/if}">
+                                    <div class="server-col left" style="width: 120px">
+                                        <button type="button" class="button mini yellow">{if empty($settings['server.file'])}Выбрать{else}Сменить{/if}</button>
+                                    </div>
+
+                                    <div class="server-col right"{if empty($settings['server.file'])} style="display:none"{/if}>
+                                    {$finfo = shopYmlPlugin::pathInfo(ifempty($settings['server.file']))}
+                                    <span class="server-file path">
+                                                    {ifempty($finfo.dirname,'')}
+                                                </span>
+
+                                    <span class="server-file file">
+                                            <span class="server-file-name">{ifempty($finfo.basename,'')}</span>
+                                            <span class="server-file-size">{if !empty($settings['server.file'])}{shopYmlPlugin::formatSize($settings['server.file'])}{/if}</span>
+
+                                            <span class="yml-delete-file" title="Удалить"><i class="icon16 delete"></i></span>
+                                            <input type="hidden" name="settings[server.file]" value="{ifempty($settings['server.file'], '')}">
+                                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+        <div class="field" style="padding-top: 0">
+            <div class="name special-padd">Соответствия</div>
+            <div class="value">
+                <button class="yml-matches make-snapshot button yellow" type="button">
+                    <i class="icon16 merge"></i>
+                    {if empty($settings.matched)}
+                    Указать
+                    {else}
+                    Изменить
+                    {/if}
+                </button>
+            </div>
+        </div>
+
+
     </div>
 </div>
+
+
+<div id="yml-dialog">
+    <div class="yml-dialog-inner">
+        <form name="yml-dialog-form">
+            <div class="yml-dialog-header bg-gd-orange no-hover">
+                <span class="yml-dialog-title"></span>
+
+                <div class="yml-dialog-buttons">
+                    {*}<button type="button" title="Обновить схему" class="yml-dialog-reset"><i class="icon16 update"></i></button>
+                    <button type="submit" title="Сохранить"><i class="icon16 yes"></i></button>
+                    <button type="button" title="Отмена" class="yml-dialog-close">
+                        <i class="icon16 no"></i>
+                    </button>{*}
+                </div>
+
+            </div>
+
+            <div class="yml-dialog-content">
+                <div class="yml-loader-wrap">
+                </div>
+            </div>
+
+            {*}
+            <div class="yml-dialog-footer bg-gd-orange no-hover">
+                <button type="submit"><i class="icon16 yes"></i> Сохранить</button>
+                <a href="#" class="yml-dialog-cancel"><i class="icon16 no"></i> Отмена</a>
+            </div>
+            {*}
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript" src="{$wa_url}wa-apps/supplier/js/import.js"></script>
 </body>
 </html>

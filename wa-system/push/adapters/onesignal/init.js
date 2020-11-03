@@ -57,7 +57,7 @@
                 OneSignal.SERVICE_WORKER_PARAM = { scope: '/' };
 
                 // We use custom extension here because 'js'
-                // is cached by nginx and/or intercepted at .htaccess level.
+                // is cached by nginx and/or intercepted at ..htaccess level.
                 OneSignal.SERVICE_WORKER_PATH = urls["worker"];
                 OneSignal.SERVICE_WORKER_UPDATER_PATH = urls["worker_updater"];
 

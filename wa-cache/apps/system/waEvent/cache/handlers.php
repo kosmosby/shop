@@ -978,20 +978,6 @@ return array (
           ),
         ),
       ),
-      'backend_dispatch_miss' => 
-      array (
-        0 => 
-        array (
-          'app_id' => 'team',
-          'regex' => '/backend_dispatch_miss/',
-          'file' => 'webasyst.backend_dispatch_miss.handler.php',
-          'class' => 'teamWebasystBackend_dispatch_missHandler',
-          'method' => 
-          array (
-            0 => 'execute',
-          ),
-        ),
-      ),
       'backend_personal_profile' => 
       array (
         0 => 
@@ -1000,6 +986,20 @@ return array (
           'regex' => '/backend_personal_profile/',
           'file' => 'webasyst.backend_personal_profile.handler.php',
           'class' => 'teamWebasystBackend_personal_profileHandler',
+          'method' => 
+          array (
+            0 => 'execute',
+          ),
+        ),
+      ),
+      'backend_dispatch_miss' => 
+      array (
+        0 => 
+        array (
+          'app_id' => 'team',
+          'regex' => '/backend_dispatch_miss/',
+          'file' => 'webasyst.backend_dispatch_miss.handler.php',
+          'class' => 'teamWebasystBackend_dispatch_missHandler',
           'method' => 
           array (
             0 => 'execute',
@@ -1037,20 +1037,6 @@ return array (
           ),
         ),
       ),
-      'route_save.after' => 
-      array (
-        0 => 
-        array (
-          'app_id' => 'shop',
-          'regex' => '/route_save\\.after/',
-          'file' => 'site.route_save.after.handler.php',
-          'class' => 'shopSiteRoute_saveAfterHandler',
-          'method' => 
-          array (
-            0 => 'execute',
-          ),
-        ),
-      ),
       'route_save.before' => 
       array (
         0 => 
@@ -1059,6 +1045,20 @@ return array (
           'regex' => '/route_save\\.before/',
           'file' => 'site.route_save.before.handler.php',
           'class' => 'shopSiteRoute_saveBeforeHandler',
+          'method' => 
+          array (
+            0 => 'execute',
+          ),
+        ),
+      ),
+      'route_save.after' => 
+      array (
+        0 => 
+        array (
+          'app_id' => 'shop',
+          'regex' => '/route_save\\.after/',
+          'file' => 'site.route_save.after.handler.php',
+          'class' => 'shopSiteRoute_saveAfterHandler',
           'method' => 
           array (
             0 => 'execute',

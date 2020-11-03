@@ -13,7 +13,7 @@ if (!$theme->path_custom) {
 }
 
 // Make sure this meta-update is not run concurrently
-$file_lock_path = $theme->path_custom.'/.htaccess';
+$file_lock_path = $theme->path_custom.'/..htaccess';
 if (!file_exists($file_lock_path)) {
     return;
 }

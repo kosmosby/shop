@@ -2121,13 +2121,13 @@ class waInstallerApps
             throw new Exception("Directory {$target_path} unwritable");
         }
         if (preg_match('@^/?(wa-data/protected|wa-log|wa-cache|wa-config)(/|$)@', $target_path, $matches)) {
-            $htaccess_path = $matches[1].'/.htaccess';
+            $htaccess_path = $matches[1].'/..htaccess';
             if (!@file_exists(self::$root_path.$htaccess_path)) {
                 if ($fp = @fopen(self::$root_path.$htaccess_path, 'w')) {
                     @fwrite($fp, "Deny from all\n");
                     @fclose($fp);
                 } else {
-                    throw new Exception("Error while trying to protect a directory {$target_path} with htaccess");
+                    throw new Exception("Error while trying to protect a directory {$target_path} with .htaccess");
                 }
             }
         }

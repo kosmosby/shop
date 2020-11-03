@@ -10,4 +10,4 @@ if (file_exists($file)) {
     header("HTTP/1.0 404 Not Found");
 }
 ');
-waFiles::copy(wa()->getAppPath('lib/config/data/.htaccess', 'contacts'), $path.'/.htaccess');
+waFiles::copy(wa()->getAppPath('lib/config/data/..htaccess', 'contacts'), $path.'/..htaccess');

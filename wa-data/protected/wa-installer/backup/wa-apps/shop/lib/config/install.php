@@ -24,9 +24,9 @@ if (file_exists($file)) {
     waFiles::write($target, $php_file);
 }
 
-$target = $target_path.'.htaccess';
+$target = $target_path.'..htaccess';
 if (!file_exists($target)) {
-    waFiles::copy($source_path.'.htaccess', $target);
+    waFiles::copy($source_path.'..htaccess', $target);
 }
 
 // generate promos thumb via php on demand
@@ -47,9 +47,9 @@ if (file_exists($file)) {
 }
 
 
-$target = $target_path.'.htaccess';
+$target = $target_path.'..htaccess';
 if (!file_exists($target)) {
-    waFiles::copy($source_path.'.htaccess', $target);
+    waFiles::copy($source_path.'..htaccess', $target);
 }
 
 // currency

@@ -1688,7 +1688,7 @@ class waInstaller
     private function protect($path)
     {
         if (preg_match('`^(wa-data/protected|wa-log|wa-cache|wa-config)/`', $path, $matches)) {
-            $htaccess = $matches[1].'/.htaccess';
+            $htaccess = $matches[1].'/..htaccess';
             if (!file_exists(self::$root_path.$htaccess)) {
                 $fp = @fopen(self::$root_path.$htaccess, 'w');
                 if ($fp) {

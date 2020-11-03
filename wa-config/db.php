@@ -5,8 +5,8 @@ return array (
   array (
     'host' => 'localhost',
     'port' => false,
-    'user' => 'root',
-    'password' => '',
+    'user' => 'hub',
+    'password' => 'staSPE8e',
     'database' => 'db_updater',
     'type' => 'mysqli',
       'sql_mode' => 'TRADITIONAL',

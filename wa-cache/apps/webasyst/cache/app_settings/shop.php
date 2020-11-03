@@ -640,13 +640,13 @@ return array (
   array (
     'app_id' => 'shop.yml',
     'name' => 'local.file',
-    'value' => 'test_formats.xml',
+    'value' => '',
   ),
   107 => 
   array (
     'app_id' => 'shop.yml',
     'name' => 'local.file.size',
-    'value' => '48.23 KBytes',
+    'value' => '',
   ),
   108 => 
   array (

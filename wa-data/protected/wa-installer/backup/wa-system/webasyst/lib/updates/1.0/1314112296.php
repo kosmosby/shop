@@ -1,6 +1,6 @@
 <?php
 
-$path = wa()->getConfig()->getRootPath().'/.htaccess';
+$path = wa()->getConfig()->getRootPath().'/..htaccess';
 
 if (file_exists($path)) {
     $content = file_get_contents($path);

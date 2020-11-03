@@ -404,7 +404,7 @@ TEXT;
      */
     protected function createHtaccess()
     {
-        $path = $this->entity->getLocalePath().'/.htaccess';
+        $path = $this->entity->getLocalePath().'/..htaccess';
 
         if (!file_exists($path)) {
             if (!$this->write($path, "Deny from all\n")) {

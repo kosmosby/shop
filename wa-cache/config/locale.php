@@ -162,13 +162,6 @@ return array (
       ),
     ),
   ),
-  'es_ES' => 
-  array (
-    'name' => 'Español',
-    'region' => 'España',
-    'english_name' => 'Spanish',
-    'english_region' => 'Spain',
-  ),
   'fr_FR' => 
   array (
     'name' => 'Français',
@@ -196,5 +189,12 @@ return array (
       ),
       'single' => true,
     ),
+  ),
+  'es_ES' => 
+  array (
+    'name' => 'Español',
+    'region' => 'España',
+    'english_name' => 'Spanish',
+    'english_region' => 'Spain',
   ),
 );

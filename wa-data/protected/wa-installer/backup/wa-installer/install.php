@@ -595,7 +595,7 @@ HTML;
             'database' => '',
         );
 
-        $htaccess_path = dirname(__FILE__).'/../.htaccess';
+        $htaccess_path = dirname(__FILE__).'/../..htaccess';
         if (!file_exists($htaccess_path) && ($fp = fopen($htaccess_path, 'w'))) {
             $htaccess_content =
                 <<<HTACCESS
@@ -845,13 +845,13 @@ HTML;
             $config_dir = dirname(__FILE__).'/../wa-config/';
             if (!file_exists($config_dir)) {
                 mkdir($config_dir);
-                $htaccess_path = $config_dir.'.htaccess';
+                $htaccess_path = $config_dir.'..htaccess';
                 if (!file_exists($htaccess_path)) {
                     if ($fp = @fopen($htaccess_path, 'w')) {
                         fwrite($fp, "Deny from all\n");
                         fclose($fp);
                     } else {
-                        throw new Exception("Error while trying to protect a directory wa-config with htaccess");
+                        throw new Exception("Error while trying to protect a directory wa-config with .htaccess");
                     }
                 }
             }

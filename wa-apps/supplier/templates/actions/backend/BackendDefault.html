@@ -12,7 +12,7 @@
     <script type="text/javascript" src="/wa-content/js/jquery-ui/jquery.ui.widget.min.js"></script>
     <script type="text/javascript" src="/wa-content/js/jquery-ui/jquery.ui.mouse.min.js"></script>
 
-
+    <link href="/wa-content/css/wa/wa-1.3.css?v1.13.7" rel="stylesheet" type="text/css" >
     <link rel="stylesheet" type="text/css" href="{$wa_url}wa-apps/shop/plugins/yml/css/tooltipster.bundle.min.css">
     <link rel="stylesheet" type="text/css" href="{$wa_url}wa-apps/shop/plugins/yml/css/import.css"/>
     <link rel="stylesheet" type="text/css" href="{$wa_url}wa-content/css/jquery-ui/ui-lightness/jquery.ui.slider.css">
@@ -22,8 +22,8 @@
      <script type="text/javascript" src="{$wa_url}wa-content/js/jquery-ui/jquery.ui.slider.min.js"></script>
 
     <script type="text/javascript" src="{$wa_url}wa-content/js/jquery-plugins/fileupload/jquery.fileupload.js"></script>
-    <script type="text/javascript" src="{$wa_url}wa-apps/shop/plugins/yml/js/jquery.formstyler.min.js"></script>z
-    <script type="text/javascript" src="{$wa_url}wa-apps/supplier/js/import.js"></script>
+    <script type="text/javascript" src="{$wa_url}wa-apps/shop/plugins/yml/js/jquery.formstyler.min.js"></script>
+<!--    <script type="text/javascript" src="{$wa_url}wa-apps/supplier/js/import.js"></script>-->
 
 </head>
 <body>
@@ -33,15 +33,54 @@
 
             <div id="yml">
 
+                <div class="profiles">
+
+                    <div class="profile-nav">
+                        <span class="profile-nav-button prev" data-direction="left">&larr;</span>
+                        <span class="profile-nav-button next" data-direction="right">&rarr;</span>
+                    </div>
+
+                    <ul class="tabs">
+                        <li {if !$profile_id}class="selected"{/if} id="default-profile">
+                        <a href="#/yml/">
+                            {ifempty($default_title,'Профиль 1')}
+                        </a>
+                        </li>
+
+                        {foreach $profiles as $p_id => $p}
+                        <li data-id="{$p_id}" id="profile{$p_id}"{if $profile_id == $p_id} class="selected"{/if}>
+                        <a href="#/yml:{$p_id}/">
+                            {$p.name}
+                        </a>
+                        </li>
+                        {/foreach}
+
+                        <li class="no-tab add-profile">
+                            <a href="#">
+                                <i class="icon16 add"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+
                 <div class="fields form tab-content" id="profile-content">
 
                     {if !empty($profile_id)}
                     <span class="delete-profile" data-id="{$profile_id}">
                     <i class="icon16 no"></i> Удалить профиль
-                </span>
+                    </span>
                     {/if}
 
-                    <form action="?plugin=yml&module=backend&action=save" id="importform" method="POST">
+                    <form action="?module=profile&action=add" id="importform" method="POST">
+
+                        <div class="field" id="profile-name">
+                            <div class="name special-padd">Название профиля</div>
+                            <div class="value">
+                                <input type="text" class="std" name="settings[name]" value="{ifempty($settings.name, 'Без названия')}">
+                            </div>
+                        </div>
 
                         <div class="field no-border">
                             <div class="name special-padd">Файл</div>
@@ -115,6 +154,18 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="field yml-buttons">
+                            <div class="name"></div>
+                            <div class="value" style="margin-left: 255px">
+                                <input type="submit" id="yml-pre-sync" class="button green" value="Сохранить" />
+                                <span id="save-status"></span>
+                                <input type="button" class="button green" id="yml-start-sync" value="Начать синхронизацию" />
+
+                                <input type="hidden" name="profile_id" value="{ifempty($profile_id,'')}">
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>

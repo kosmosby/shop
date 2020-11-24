@@ -114,8 +114,14 @@ class shopImportexportHelper
      */
     public function getList()
     {
+
+//        echo "<pre>";
+//        print_r($this->plugin); die;
+
+
         if (!isset($this->collection)) {
             $profiles = $this->model->getProfiles($this->plugin);
+
             $this->collection = $profiles[$this->plugin];
         }
         return $this->collection;

@@ -472,7 +472,7 @@ return array (
   array (
     'app_id' => 'shop.yml',
     'name' => 'name',
-    'value' => 'City-opt.ru',
+    'value' => 'City-opt.com',
   ),
   79 => 
   array (

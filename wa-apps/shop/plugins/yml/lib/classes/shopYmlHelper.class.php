@@ -261,8 +261,8 @@ class shopYmlHelper {
         }
 
 
-        echo "<pre>";
-        print_r($fields); die;
+//        echo "<pre>";
+//        print_r($fields); die;
 
         return $fields;
     }

@@ -1,4 +1,4 @@
-<?php /* Smarty version Smarty-3.1.14, created on 2020-11-03 11:48:38
+<?php /* Smarty version Smarty-3.1.14, created on 2020-11-17 17:55:04
          compiled from "/Users/kosmos/Documents/sites/shop/wa-apps/supplier/templates/actions/backend/BackendDefault.html" */ ?>
 <?php /*%%SmartyHeaderCode:870087715f97ff3308b7c2-68312350%%*/if(!defined('SMARTY_DIR')) exit('no direct access allowed');
 $_valid = $_smarty_tpl->decodeProperties(array (
@@ -7,7 +7,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'bfeed45c7175c3ce7b18550ef230185817084447' => 
     array (
       0 => '/Users/kosmos/Documents/sites/shop/wa-apps/supplier/templates/actions/backend/BackendDefault.html',
-      1 => 1604393317,
+      1 => 1605624840,
       2 => 'file',
     ),
   ),
@@ -22,6 +22,10 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     'wa' => 0,
     'wa_url' => 0,
     'profile_id' => 0,
+    'default_title' => 0,
+    'profiles' => 0,
+    'p_id' => 0,
+    'p' => 0,
     'settings' => 0,
     'finfo' => 0,
   ),
@@ -45,7 +49,7 @@ $_valid = $_smarty_tpl->decodeProperties(array (
     <script type="text/javascript" src="/wa-content/js/jquery-ui/jquery.ui.widget.min.js"></script>
     <script type="text/javascript" src="/wa-content/js/jquery-ui/jquery.ui.mouse.min.js"></script>
 
-
+    <link href="/wa-content/css/wa/wa-1.3.css?v1.13.7" rel="stylesheet" type="text/css" >
     <link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['wa_url']->value;?>
 wa-apps/shop/plugins/yml/css/tooltipster.bundle.min.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $_smarty_tpl->tpl_vars['wa_url']->value;?>
@@ -63,9 +67,9 @@ wa-content/js/jquery-ui/jquery.ui.slider.min.js"></script>
     <script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['wa_url']->value;?>
 wa-content/js/jquery-plugins/fileupload/jquery.fileupload.js"></script>
     <script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['wa_url']->value;?>
-wa-apps/shop/plugins/yml/js/jquery.formstyler.min.js"></script>z
-    <script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['wa_url']->value;?>
-wa-apps/supplier/js/import.js"></script>
+wa-apps/shop/plugins/yml/js/jquery.formstyler.min.js"></script>
+<!--    <script type="text/javascript" src="<?php echo $_smarty_tpl->tpl_vars['wa_url']->value;?>
+wa-apps/supplier/js/import.js"></script>-->
 
 </head>
 <body>
@@ -76,16 +80,67 @@ wa-apps/supplier/js/import.js"></script>
 
             <div id="yml">
 
+                <div class="profiles">
+
+                    <div class="profile-nav">
+                        <span class="profile-nav-button prev" data-direction="left">&larr;</span>
+                        <span class="profile-nav-button next" data-direction="right">&rarr;</span>
+                    </div>
+
+                    <ul class="tabs">
+                        <li <?php if (!$_smarty_tpl->tpl_vars['profile_id']->value){?>class="selected"<?php }?> id="default-profile">
+                        <a href="#/yml/">
+                            <?php echo ifempty($_smarty_tpl->tpl_vars['default_title']->value,'Профиль 1');?>
+
+                        </a>
+                        </li>
+
+                        <?php  $_smarty_tpl->tpl_vars['p'] = new Smarty_Variable; $_smarty_tpl->tpl_vars['p']->_loop = false;
+ $_smarty_tpl->tpl_vars['p_id'] = new Smarty_Variable;
+ $_from = $_smarty_tpl->tpl_vars['profiles']->value; if (!is_array($_from) && !is_object($_from)) { settype($_from, 'array');}
+foreach ($_from as $_smarty_tpl->tpl_vars['p']->key => $_smarty_tpl->tpl_vars['p']->value){
+$_smarty_tpl->tpl_vars['p']->_loop = true;
+ $_smarty_tpl->tpl_vars['p_id']->value = $_smarty_tpl->tpl_vars['p']->key;
+?>
+                        <li data-id="<?php echo $_smarty_tpl->tpl_vars['p_id']->value;?>
+" id="profile<?php echo $_smarty_tpl->tpl_vars['p_id']->value;?>
+"<?php if ($_smarty_tpl->tpl_vars['profile_id']->value==$_smarty_tpl->tpl_vars['p_id']->value){?> class="selected"<?php }?>>
+                        <a href="#/yml:<?php echo $_smarty_tpl->tpl_vars['p_id']->value;?>
+/">
+                            <?php echo $_smarty_tpl->tpl_vars['p']->value['name'];?>
+
+                        </a>
+                        </li>
+                        <?php } ?>
+
+                        <li class="no-tab add-profile">
+                            <a href="#">
+                                <i class="icon16 add"></i>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+
                 <div class="fields form tab-content" id="profile-content">
 
                     <?php if (!empty($_smarty_tpl->tpl_vars['profile_id']->value)){?>
                     <span class="delete-profile" data-id="<?php echo $_smarty_tpl->tpl_vars['profile_id']->value;?>
 ">
                     <i class="icon16 no"></i> Удалить профиль
-                </span>
+                    </span>
                     <?php }?>
 
-                    <form action="?plugin=yml&module=backend&action=save" id="importform" method="POST">
+                    <form action="?module=profile&action=add" id="importform" method="POST">
+
+                        <div class="field" id="profile-name">
+                            <div class="name special-padd">Название профиля</div>
+                            <div class="value">
+                                <input type="text" class="std" name="settings[name]" value="<?php echo ifempty($_smarty_tpl->tpl_vars['settings']->value['name'],'Без названия');?>
+">
+                            </div>
+                        </div>
 
                         <div class="field no-border">
                             <div class="name special-padd">Файл</div>
@@ -170,6 +225,19 @@ wa-apps/supplier/js/import.js"></script>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="field yml-buttons">
+                            <div class="name"></div>
+                            <div class="value" style="margin-left: 255px">
+                                <input type="submit" id="yml-pre-sync" class="button green" value="Сохранить" />
+                                <span id="save-status"></span>
+                                <input type="button" class="button green" id="yml-start-sync" value="Начать синхронизацию" />
+
+                                <input type="hidden" name="profile_id" value="<?php echo ifempty($_smarty_tpl->tpl_vars['profile_id']->value,'');?>
+">
+                            </div>
+                        </div>
+
                     </form>
                 </div>
             </div>

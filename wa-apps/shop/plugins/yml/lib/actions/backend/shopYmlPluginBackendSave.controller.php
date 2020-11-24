@@ -3,7 +3,11 @@ class shopYmlPluginBackendSaveController extends waJsonController{
     public function execute(){
         $profile_id = waRequest::post('profile_id', 0, waRequest::TYPE_INT);
         $settings   = waRequest::post('settings', array() , waRequest::TYPE_ARRAY);
-        
+
+//        echo "<pre>";
+//        print_r($_REQUEST); die;
+
+
         $checkboxes = array(
             'no_update_products',
             'http_auth',
@@ -51,8 +55,13 @@ class shopYmlPluginBackendSaveController extends waJsonController{
                 $importexport_model->updateByField($search_by, $data );
             }
         }
+
+
         
         if ( ($settings['markup_type'] == '2') && ($markup = waRequest::post('stepped_markup', array(),waRequest::TYPE_ARRAY)) ){
+
+
+
             $path = wa()->getDataPath('plugins/yml/' . $profile_id . '/', true, 'shop') . '/markup.php';
 
             $m = array(
@@ -62,5 +71,6 @@ class shopYmlPluginBackendSaveController extends waJsonController{
 
             waUtils::varExportToFile($m,$path);
         }
+
     }
 }

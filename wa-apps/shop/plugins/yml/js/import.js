@@ -330,12 +330,15 @@
                 var form = $(this);
 
                 call('#save-status').html('<i class="icon16 loading"></i>');
-                
+
                 $.ajax({
                     type: form.attr('method'),
                     url:  form.attr('action'),
                     data: form.serialize(),
                     success: function(r){
+
+                        //console.log('response: ')
+
                         if ( r.status == 'ok' ) {
                             var profile_name = call('#profile-name input[type=text]').val();
                                 

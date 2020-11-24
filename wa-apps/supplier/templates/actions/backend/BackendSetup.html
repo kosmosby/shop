@@ -1,0 +1,233 @@
+<script src="/wa-content/js/jquery/jquery-1.11.1.min.js"></script>
+
+<script type="text/javascript" src="/wa-content/js/jquery-ui/jquery.ui.core.min.js"></script>
+<script type="text/javascript" src="/wa-content/js/jquery-ui/jquery.ui.widget.min.js"></script>
+<script type="text/javascript" src="/wa-content/js/jquery-ui/jquery.ui.mouse.min.js"></script>
+
+<link href="/wa-content/css/wa/wa-1.3.css?v1.13.7" rel="stylesheet" type="text/css" >
+<link rel="stylesheet" type="text/css" href="{$wa_url}wa-apps/shop/plugins/yml/css/tooltipster.bundle.min.css">
+<link rel="stylesheet" type="text/css" href="{$wa_url}wa-apps/shop/plugins/yml/css/import.css"/>
+<link rel="stylesheet" type="text/css" href="{$wa_url}wa-content/css/jquery-ui/ui-lightness/jquery.ui.slider.css">
+<link rel="stylesheet" type="text/css" href="{$wa_url}wa-apps/shop/plugins/yml/css/jquery.formstyler.css"/>
+<link rel="stylesheet" type="text/css" href="{$wa_url}wa-apps/shop/plugins/yml/css/jquery.formstyler.theme.css"/>
+
+<script type="text/javascript" src="{$wa_url}wa-content/js/jquery-ui/jquery.ui.slider.min.js"></script>
+
+<script type="text/javascript" src="{$wa_url}wa-content/js/jquery-plugins/fileupload/jquery.fileupload.js"></script>
+<script type="text/javascript" src="{$wa_url}wa-apps/shop/plugins/yml/js/jquery.formstyler.min.js"></script>
+
+
+
+<div id="yml">
+
+    <div class="profiles">
+
+        <div class="profile-nav">
+            <span class="profile-nav-button prev" data-direction="left">&larr;</span>
+            <span class="profile-nav-button next" data-direction="right">&rarr;</span>
+        </div>
+
+        <ul class="tabs">
+            <li {if !$profile_id}class="selected"{/if} id="default-profile">
+                <a href="#/yml/">
+                    {ifempty($default_title,'Профиль 1')}
+                </a>
+            </li>
+
+            {foreach $profiles as $p_id => $p}
+                <li data-id="{$p_id}" id="profile{$p_id}"{if $profile_id == $p_id} class="selected"{/if}>
+                    <a href="#/yml:{$p_id}/">
+                        {$p.name}
+                    </a>
+                </li>
+            {/foreach}
+
+            <li class="no-tab add-profile">
+                <a href="#">
+                    <i class="icon16 add"></i>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <div class="fields form tab-content" id="profile-content">
+        
+        {if !empty($profile_id)}
+            <span class="delete-profile" data-id="{$profile_id}">
+                <i class="icon16 no"></i> Удалить профиль
+            </span>
+        {/if}
+        
+        <form action="?action=save" id="importform" method="POST">
+            
+            <div class="field" id="profile-name">
+                <div class="name special-padd">Название профиля</div>
+                <div class="value">
+                    <input type="text" class="std" name="settings[name]" value="{ifempty($settings.name, 'Без названия')}">
+                </div>
+            </div>
+
+            <div class="field no-border">
+                <div class="name special-padd">Файл</div>
+                <div class="value">
+
+                    <div class="sources">
+                        <div class="sources-head">
+                            <span class="sh-col{if empty($settings.source_type) || ($settings.source_type == 'remote')} active{/if}" data-type="remote">Ссылка</span>
+                            <span class="sh-col{if ifempty($settings.source_type) == 'local'} active{/if}" data-type="local">С компьютера</span>
+                            <span class="sh-col{if ifempty($settings.source_type) == 'server'} active{/if}" data-type="server">С сервера</span>
+
+                            <input type="hidden" name="settings[source_type]" value="{ifempty($settings.source_type)}">
+                        </div>
+                        <div class="source-tabs">
+                            <div class="source-tab remote{if empty($settings.source_type) || ($settings.source_type == 'remote')} active{/if}">
+                                <input type="text" class="std" name="settings[url]" {if !empty($settings.url)} value="{$settings.url}"{/if}/>
+
+                                <div class="yml-auth" id="yml-auth">
+                                        <input type="checkbox" class="iButton no_highlight" name="settings[http_auth]" value="1"{if !empty($settings.http_auth)} checked{/if}>
+                                        HTTP авторизация
+
+                                    <div class="yml-auth-data"{if empty($settings.http_auth)} style="display: none"{/if}>
+                                        <span class="hint">Логин:</span>
+                                        <input type="text" class="short" name="settings[http_login]" value="{ifempty($settings.http_login,'')}" style="margin-right: 15px">
+
+                                        <span class="hint">Пароль:</span>
+                                        <input type="password" class="short" name="settings[http_pass]" value="{ifempty($settings.http_pass,'')}">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="source-tab local{if ifempty($settings.source_type) == 'local'} active{/if}">
+                                <div class="server-col left" style="width: 210px">
+                                    <input type="file" name="yml_file" id="local-source-file">
+
+                                    <div class="progress" style="display: none;">
+                                        <div class="progress-bar" style="width: 0"></div>
+                                    </div>
+                                </div>
+
+                                {$finfo = shopYmlPlugin::pathInfo(ifempty($settings['local.file']))}
+                                <div class="server-col right"{if empty($settings['local.file'])} style="display:none"{/if}>
+                                    <span class="server-file file" style="margin-top: 4px">
+                                        <span class="server-file-name" title="{ifempty($finfo.basename,'')}">{ifempty($finfo.basename,'')|truncate:35:'..'}</span>
+                                        <span class="server-file-size">{ifempty($settings['local.file.size'])}</span>
+
+                                        <span class="yml-delete-file" title="Удaлить"><i class="icon16 delete"></i></span>
+                                    </span>
+                                </div>
+
+                            </div>
+
+                            <div class="source-tab server{if ifempty($settings.source_type) == 'server'} active{/if}">
+                                <div class="server-col left" style="width: 120px">
+                                    <button type="button" class="button mini yellow">{if empty($settings['server.file'])}Выбрать{else}Сменить{/if}</button>
+                                </div>
+
+                                <div class="server-col right"{if empty($settings['server.file'])} style="display:none"{/if}>
+                                    {$finfo = shopYmlPlugin::pathInfo(ifempty($settings['server.file']))}
+                                    <span class="server-file path">
+                                                {ifempty($finfo.dirname,'')}
+                                            </span>
+
+                                    <span class="server-file file">
+                                        <span class="server-file-name">{ifempty($finfo.basename,'')}</span>
+                                        <span class="server-file-size">{if !empty($settings['server.file'])}{shopYmlPlugin::formatSize($settings['server.file'])}{/if}</span>
+
+                                        <span class="yml-delete-file" title="Удалить"><i class="icon16 delete"></i></span>
+                                        <input type="hidden" name="settings[server.file]" value="{ifempty($settings['server.file'], '')}">
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="field" style="padding-top: 0">
+                <div class="name special-padd">Соответствия</div>
+                <div class="value">
+                    <button class="yml-matches make-snapshot button yellow" type="button">
+                        <i class="icon16 merge"></i>
+                        {if empty($settings.matched)}
+                            Указать
+                        {else}
+                            Изменить
+                        {/if}
+                    </button>
+                </div>
+            </div>
+
+            
+            <div class="field yml-buttons">
+                <div class="name"></div>
+                <div class="value" style="margin-left: 255px">
+                    <input type="submit" id="yml-pre-sync" class="button green" value="Сохранить" />
+                    <span id="save-status"></span>
+                    <input type="button" class="button green" id="yml-start-sync" value="Начать синхронизацию" />
+                    
+                    <input type="hidden" name="profile_id" value="{ifempty($profile_id,'')}">
+                </div>
+            </div>
+
+            <div class="field no-border" style="padding-left: 30px">
+                <div class="name"></div>
+                <div class="value" style="margin-left:150px; border: none;">
+                    <!-- Progress bar -->
+                    <div id="progressbar" style="display:none; margin-top: 20px;">
+                        <div class="stage_label"></div>
+
+                        <div class="progressbar blue float-left" style="display: none; width: 80%;">
+                            <div class="progressbar-outer" style="overflow: hidden;">
+                                <div class="progressbar-inner" style="width: 0%;"></div>
+                            </div>
+                        </div>
+
+                        <img style="float:left; margin-top:8px;" src="{$wa_url}wa-content/img/loading32.gif" />
+                        <div class="clear"></div>
+                        <span class="progressbar-description">0%</span>
+                        <em class="hint">Пожалуйста не закрывайте браузер пока операция не закончится.</em>
+                        <br clear="left" />
+                        <em class="errormsg"></em>
+                    </div>
+
+                    <div id="report"></div>
+                    <!-- ./Progress Bar -->
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+    
+<div id="yml-dialog">
+    <div class="yml-dialog-inner">
+        <form name="yml-dialog-form">
+            <div class="yml-dialog-header bg-gd-orange no-hover">
+                <span class="yml-dialog-title"></span>
+                
+                <div class="yml-dialog-buttons">
+                    {*}<button type="button" title="Обновить схему" class="yml-dialog-reset"><i class="icon16 update"></i></button>
+                    <button type="submit" title="Сохранить"><i class="icon16 yes"></i></button>
+                    <button type="button" title="Отмена" class="yml-dialog-close">
+                        <i class="icon16 no"></i>
+                    </button>{*}
+                </div>
+
+            </div>
+            
+            <div class="yml-dialog-content">
+                <div class="yml-loader-wrap">
+                </div>
+            </div>
+            
+            {*}
+                <div class="yml-dialog-footer bg-gd-orange no-hover">
+                    <button type="submit"><i class="icon16 yes"></i> Сохранить</button>
+                    <a href="#" class="yml-dialog-cancel"><i class="icon16 no"></i> Отмена</a>
+                </div>
+            {*}
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript" src="{$wa_url}wa-apps/supplier/js/import.js"></script>

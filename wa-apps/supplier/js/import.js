@@ -381,7 +381,7 @@
                 var self = $(this);
                 $.ajax({
                     type:    'POST',
-                    url:     '?plugin=yml&module=profile&action=add',
+                    url:     '?module=profile&action=add',
                     success: function(r){
                         if ( r.status == 'ok' ){
                             var profile_id   = r.data.profile_id,
@@ -454,7 +454,7 @@
 
                     $.ajax({
                         type: 'POST',
-                        url:  '?plugin=yml&module=profile&action=delete',
+                        url:  '?module=profile&action=delete',
                         data: { profile_id: profile_id },
                         success: function(r){
                             if ( r.status == 'ok' ){
@@ -538,7 +538,7 @@
                 offset = typeof offset === 'undefined' ? -1 : offset;
                 $.ajax({
                     type : 'POST',
-                    url  : '?plugin=yml&module=snapshot&action=make',
+                    url  : '?module=snapshot&action=make',
                     data : {'profile_id' : $.yml.profileId(), reset: reset, offset: offset, zip_file: zip_file},
                     success: function(r){
                         if ( r.status == 'ok' ){
@@ -1526,7 +1526,7 @@
 
             $.ajax({
                 type: 'POST',
-                url:  '?plugin=yml&module=backend&action=setup',
+                url:  '?module=backend',
                 data: { profile: profile_id },
                 success: function(r){
                     if ( !in_background ){
@@ -1774,7 +1774,7 @@
                     if ( confirm('Удалить файл?') ){
                         $.ajax({
                             type: 'POST',
-                            url: '?plugin=yml&module=filemng&action=delete',
+                            url: '?module=filemng&action=save',
                             data: {profile_id: $.yml.profileId(), type: $(col).closest('.sources').find('> .sources-head .sh-col.active').data('type')},
                             success: function(r){
                                 if ( r.status == 'ok' ){
@@ -1857,6 +1857,9 @@
                 e.stopImmediatePropagation();
                 $(document).find('#yml-pre-sync').click();
                 toggle(call('#yml form'), true);
+
+                console.log('button was clicked');
+
                 startSync();
             });
 

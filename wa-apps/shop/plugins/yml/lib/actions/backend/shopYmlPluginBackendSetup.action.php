@@ -5,10 +5,18 @@ class shopYmlPluginBackendSetupAction extends waViewAction {
         $profiler      = new shopImportexportHelper('yml');
         $settings      = shopYmlHelper::getProfileConfig($profile_id);
         $default_title = wa('shop')->getPlugin('yml')->getSettings('name');
-        
+
+
+
+//                echo "<pre>";
+//        print_r($default_title); die;
+
         $type          =  new shopTypeModel();
         $types         =  $type->getAll();
         $profiles      =  $profiler->getList();
+
+
+
         $root_path     =  wa()->getConfig()->getPath('root');
 
         $version = wa()->getPlugin('yml')->getVersion();
@@ -35,7 +43,11 @@ class shopYmlPluginBackendSetupAction extends waViewAction {
             $session = include($path);
             $this->view->assign('session', $session);
         }
-        
+
+
+//
+
+
         $this->view->assign( 'features'      , $features      );
         $this->view->assign( 'categories'    , $categories    );
         $this->view->assign( 'default_title' , $default_title );

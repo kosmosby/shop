@@ -4,7 +4,7 @@ return array (
   array (
     'app_id' => 'installer',
     'name' => 'token_data',
-    'value' => '{"token":"da86d7de7e8e6a72fd60f86b11e3e740","expire_datetime":"2020-11-04 11:17:51"}',
+    'value' => '{"token":"cf88155125060e89655ec7350eee4479","expire_datetime":"2020-11-24 18:52:18"}',
   ),
   1 => 
   array (
@@ -16,7 +16,7 @@ return array (
   array (
     'app_id' => 'installer',
     'name' => 'update_counter_timestamp',
-    'value' => '1604397097',
+    'value' => '1606217803',
   ),
   3 => 
   array (

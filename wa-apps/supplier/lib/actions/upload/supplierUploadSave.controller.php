@@ -13,9 +13,13 @@ class supplierUploadSaveController extends waController {
 
         $file->moveTo($path,$file->name);
 
-        /*
+
         $profile_id = waRequest::request('profile_id', 0, waRequest::TYPE_INT);
 
+        $this->updateProfile($profile_id, $file->name);
+
+        //echo $profile_id; die;
+        /*
         $settings = shopYmlHelper::getProfileConfig($profile_id);
         */
 
@@ -41,6 +45,15 @@ class supplierUploadSaveController extends waController {
             'name' => $file->name,
             'size' => waFiles::formatSize($file->size),
         );
+    }
+
+    public function updateProfile ($profile_id, $name) {
+        if($profile_id) {
+            $model = new supplierSettingsModel();
+            $data['local.file'] = $name;
+            $data['source_type'] = 'local';
+            $model->updateById($profile_id, $data);
+        }
     }
 
 }
